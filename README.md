@@ -1,63 +1,62 @@
 # PM Skills Arsenal
 
-> **Knowledge weapons for product managers.** Not templates. Not checklists. Deep analytical frameworks encoded into AI skill files that produce outputs you can't get from raw prompting.
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-![Skills](https://img.shields.io/badge/skills-1%20of%206-blue)
-![Benchmark Tested](https://img.shields.io/badge/benchmark-tested%20across%203%20models-orange)
+
+**Deep PM frameworks encoded for AI agents.** Load a skill file into any model. Get structured analysis with evidence tiers, scoring rubrics, and confidence calibration — output a PM cannot produce unaided.
+
+Works with Claude, ChatGPT, Copilot, Cursor, Codex, and any agent that accepts custom context.
 
 ---
 
 ## Why This Exists
 
-AI models are smart. But they don't naturally apply strategic frameworks, tier their evidence, or calibrate their confidence. They produce reasonable-sounding analysis that a senior PM could have written from memory.
+Most PM skill files are process guides: "Step 1: Define scope. Step 2: Identify competitors." A senior PM already knows these steps. The file saves time but doesn't change what's possible.
 
-**Skill files change that.** They encode domain-specific intellectual ammunition — 7 Powers scoring, disruption vector analysis, moat decomposition, evidence tiering — so that any AI agent produces output at the "$500K strategy engagement" quality tier.
+This repo takes a different approach. Each skill is a **knowledge weapon** — it encodes domain frameworks (7 Powers scoring, Aggregation Theory, Christensen's disruption vectors, switching cost taxonomies, evidence tiering systems) with scoring rubrics and decision tables. When loaded into an agent, the skill produces analysis the PM could not reconstruct from memory in a single session.
 
-The difference isn't marginal. It's measured.
+**The distinction:** process guides raise the floor. Knowledge weapons raise the ceiling.
 
----
+### Design Principles
 
-## Benchmark: Proof, Not Claims
+Every skill in this repo must satisfy:
 
-We tested our skill against raw prompting and an existing PM skill ([Dean Peters' company-research](https://github.com/deanpeters/Product-Manager-Skills)) across 3 models (Claude Sonnet 4, GPT-5.1, Claude Haiku 4.5) on a real competitive analysis problem.
-
-### Results (Average Across 3 Models)
-
-| Dimension | PM Skills Arsenal | Raw Prompting | Existing PM Skill | Ours vs. Raw |
-|-----------|:-:|:-:|:-:|:-:|
-| **Framework Depth** | **8.7** | 5.3 | 4.0 | +64% |
-| **Artifact Quality** | **9.0** | 6.3 | 5.3 | +43% |
-| **Actionability** | **8.0** | 6.3 | 4.7 | +27% |
-| **Evidence Rigor** | **8.7** | 3.7 | 3.7 | **+135%** |
-| **Novel Insight** | **8.0** | 4.7 | 3.3 | +70% |
-| **TOTAL (/50)** | **42.3** | 26.3 | 21.0 | **+61%** |
-
-```
-                    PM Skills Arsenal    Raw Prompting    Existing PM Skill
-                    ─────────────────    ─────────────    ─────────────────
-Claude Sonnet 4          43/50              25/50              20/50
-GPT-5.1                  46/50              28/50              25/50
-Claude Haiku 4.5         38/50              26/50              18/50
-                    ─────────────────    ─────────────    ─────────────────
-Average                  42.3               26.3               21.0
-```
-
-**Key finding:** Evidence rigor is where skill files matter most (+135%). Models don't naturally tier their evidence or calibrate confidence. The skill forces this behavior — every claim gets an evidence tier tag, every recommendation gets a confidence percentage.
-
-**Cross-model portability:** The cheapest model (Haiku 4.5) with our skill (38/50) outperformed the best model (GPT-5.1) raw (28/50) by 36%. Encoded frameworks raise the floor for all models.
-
-> 📊 Full benchmark methodology, per-model breakdown, and dimension-by-dimension analysis: [`skills/competitive-market-analysis/benchmark/`](skills/competitive-market-analysis/benchmark/README.md)
+1. **The unaided test** — Run the PM problem WITHOUT the skill, then WITH. If the skill-loaded output contains frameworks, taxonomies, or analytical structures the PM couldn't produce from memory, those are the right frameworks to encode.
+2. **The practitioner test** — Would a $500/hr strategy consultant use this specific framework for this problem type? If yes, encode it. If it's academic or theoretical, skip it.
+3. **Agent-native design** — Skills are written for the agent to reason within frameworks, not for the PM to follow steps with AI assistance. The agent applies 7 Powers scoring. The PM reviews the output.
 
 ---
 
-## The Difference: Before and After
+## Benchmark
 
-**Without skill (raw prompting):**
-> "Figma has strong switching costs." *(No decomposition, no evidence tier, no confidence level.)*
+Tested against raw prompting (no skill file) and [Dean Peters' PM Skills](https://github.com/deanpeters/Product-Manager-Skills) (42 skills, CC BY-NC-SA) across three models using the competitive analysis skill on a Figma evaluation.
 
-**With PM Skills Arsenal:**
-> **Switching Cost Decomposition — Figma:**
+| Dimension | PM Skills Arsenal | Raw Prompting | Delta |
+|-----------|:-:|:-:|:-:|
+| Framework Depth | **8.7** | 5.3 | +64% |
+| Artifact Quality | **9.0** | 6.3 | +43% |
+| Actionability | **8.0** | 6.3 | +27% |
+| Evidence Rigor | **8.7** | 3.7 | **+135%** |
+| Novel Insight | **8.0** | 4.7 | +70% |
+| **Average (/10)** | **8.5** | 5.3 | **+61%** |
+
+Per-model breakdown:
+
+| Model | With Skill | Raw Prompting |
+|-------|:-:|:-:|
+| Claude Sonnet 4 | 43/50 | 25/50 |
+| GPT-5.1 | 46/50 | 28/50 |
+| Claude Haiku 4.5 | 38/50 | 26/50 |
+
+Key finding: the cheapest model with the skill (Haiku, 38/50) outperformed the best model without it (GPT-5.1, 28/50). Encoded frameworks raise the floor across all models. The widest gap is evidence rigor (+135%) — models don't naturally tier evidence or calibrate confidence unless the skill forces it.
+
+Full methodology: [`skills/competitive-market-analysis/benchmark/`](skills/competitive-market-analysis/benchmark/README.md)
+
+### Before / After
+
+**Raw prompting:**
+> "Figma has strong switching costs."
+
+**With skill loaded:**
 > | Cost Type | Strength | Evidence |
 > |-----------|----------|----------|
 > | Procedural | 🟢 High | 📊 [Tier 1] Teams have built muscle memory around Figma workflows |
@@ -65,134 +64,114 @@ Average                  42.3               26.3               21.0
 > | Relational | 🟡 Medium | [Tier 3] Stakeholder commenting creates organizational dependency |
 > | Financial | 🔴 Low | [Tier 4] Per-seat pricing is competitive, no lock-in premium |
 >
-> *Moat classification: Customer-CREATED switching costs (data + procedural), not vendor-imposed. Durability: HIGH — these assets compound over time.* Confidence: 80%
-
-The skill doesn't just produce more text. It produces **structured analytical artifacts** with evidence tiers, confidence calibration, and decomposed frameworks a PM can present to their VP without editing.
+> *Customer-CREATED switching costs (data + procedural), not vendor-imposed. Durability: HIGH — compounds over time.* Confidence: 80%
 
 ---
 
-## Available Skills
+## Skills
 
-| # | Skill | What It Does | Status |
-|---|-------|-------------|--------|
-| 1 | [**Competitive & Market Analysis**](skills/competitive-market-analysis/) | Score competitors against 7+ strategic frameworks. Produce a Competitive War Map with evidence-graded confidence. | ✅ Shipped |
-| 2 | **Metrics & Experimentation** | Design metric hierarchies, run experiment design, detect Goodhart's Law, validate statistical significance. | 🔜 Next |
-| 3 | **Problem Framing** | Decompose ambiguous problems into testable questions using first-principles reasoning. | 📋 Planned |
-| 4 | **Discovery & Research** | Synthesize research evidence with quality tiers and confidence calibration. | 📋 Planned |
-| 5 | **Narrative Building** | Build strategic narratives using Minto Pyramid, SCQ-A, and positioning frameworks. | 📋 Planned |
-| 6 | **Specification Writing** | Write zero-question specs where no clarifying questions remain. | 📋 Planned |
+Six skills mapped to the PM operating cycle. Each addresses a cognitive bottleneck where domain expertise dramatically changes output quality.
 
-Each skill is a **knowledge weapon** — it encodes domain frameworks with scoring rubrics and decision tables, not just references or checklists. The difference: knowledge weapons change the *ceiling* of what's possible. Process guides change the *floor*.
+| # | Skill | PM Cycle Stage | Core Question | Status |
+|---|-------|---------------|---------------|--------|
+| 1 | [**Competitive & Market Analysis**](skills/competitive-market-analysis/) | Analyze | Who are we fighting and where do we win? | ✅ Shipped |
+| 2 | **Metrics & Experimentation** | Evaluate | How do we know this worked? | 🔜 Next |
+| 3 | **Problem Framing** | Decompose | What exactly are we solving and for whom? | Planned |
+| 4 | **Discovery & Research** | Research | What does the evidence actually say? | Planned |
+| 5 | **Narrative Building** | Position | What's the story that makes this inevitable? | Planned |
+| 6 | **Specification Writing** | Define | What must be true when this ships? | Planned |
+
+### What's Inside Each Skill
+
+- **5+ named domain frameworks** with scoring rubrics or decision tables
+- **Quality gradients**: intern → consultant → elite tier output
+- **Named failure modes** with detection patterns and corrections
+- **Worked examples** at elite tier demonstrating the quality bar
+- **Evidence tiers** or confidence calibration methodology
+- **Optional Python scripts** for computation-heavy steps (market sizing, scoring matrices)
+
+### What's NOT Here (and Why)
+
+- No user stories (templates, not knowledge weapons — Dean Peters covers this well)
+- No RICE/ICE prioritization (procedural scoring, doesn't benefit from 700 lines of frameworks)
+- No workshop facilitation (our audience is agents, not facilitators)
+- No TAM/SAM/SOM calculator (useful but deterministic math, not a moat)
+
+### Skill Chaining
+
+Skills are 99% standalone — each works from raw context (a brain dump, a Slack thread, meeting notes). But each skill's output is structured to feed the next. The chain creates **progressive rigor**: the competitive map informs the narrative, the narrative constrains the spec, the spec defines what you measure. Each artifact inherits the discipline of the one before it.
+
+```
+Problem Framing → Discovery → Competitive Analysis → Narrative → Spec → Measurement
+```
+
+Orchestration hints are embedded in each skill's "What's Next" section. Smart models figure out chaining on their own. Weaker models get explicit guidance.
 
 ---
 
-## Quick Start
+## How to Use
 
-### Option 1: Copy into context (works anywhere)
-
-Copy the contents of [`skills/competitive-market-analysis/SKILL.md`](skills/competitive-market-analysis/SKILL.md) into any AI agent's context window. Works with Claude, ChatGPT, Gemini, Copilot, Cursor, Codex — any model, any platform.
-
-### Option 2: Clone the repo
+**Quickstart:** Copy [`SKILL.md`](skills/competitive-market-analysis/SKILL.md) into your agent's context window. That's it.
 
 ```bash
 git clone https://github.com/avyayalaya/pm-skills-arsenal.git
 ```
 
-Then load the skill file into your agent:
-```
-Load the file skills/competitive-market-analysis/SKILL.md and follow its methodology.
-```
-
-### Option 3: Claude Code / Copilot CLI
-
-Place the skill in your project's `.github/skills/` directory or load directly:
-```
-@skill competitive-market-analysis
-```
-
-### Using the scripts (optional)
-
+**Optional scripts** for computation-heavy steps:
 ```bash
 cd skills/competitive-market-analysis
 pip install -r requirements.txt
-python scripts/market_sizing.py --help
 python scripts/competitive_scorer.py --help
 ```
 
-Scripts provide deterministic calculations (market sizing arithmetic, 7 Powers scoring matrices). The skill works without them — they add precision for computation-heavy steps.
+Scripts are deterministic helpers (math, scoring, validation) — not core skill logic. The SKILL.md is the knowledge weapon; the script is a tool it can invoke.
 
 ---
 
-## How Skills Work
-
-Each skill follows a consistent structure:
+## Repo Structure
 
 ```
 skills/
   competitive-market-analysis/
-    SKILL.md              # The knowledge weapon — load this into your agent
-    manifest.yaml         # Metadata for marketplace discovery
+    SKILL.md              # The skill — load this into your agent
+    manifest.yaml         # Metadata (name, version, tags, compatibility)
     README.md             # Quick reference
-    requirements.txt      # Python dependencies (if scripts exist)
+    requirements.txt      # Python dependencies for scripts
     examples/
-      sample.md           # Full worked example
-    scripts/
-      market_sizing.py    # Deterministic computation helpers
-      competitive_scorer.py
-    benchmark/
-      README.md           # Head-to-head benchmark results
+      sample.md           # Full worked example at elite tier
+    scripts/              # Computation helpers (optional)
+    benchmark/            # Head-to-head evaluation results
 ```
 
-**SKILL.md** contains:
-- **Purpose** — when to use, when not to use
-- **Input Contract** — what you need to provide
-- **Domain Frameworks** — encoded with scoring rubrics, not just referenced
-- **Quality Gradients** — intern → consultant → elite tiers
-- **Failure Modes** — named patterns with detection and prevention
-- **Worked Example** — realistic case at consultant tier
-- **What's Next** — chain interface to other skills
-
----
-
-## Quality Philosophy
-
-**Knowledge weapons, not process guides.**
-
-A process guide tells you the steps. A knowledge weapon encodes the domain frameworks you'd need hours to research — 7 Powers scoring, Aggregation Theory classification, switching cost decomposition by type, disruption vector analysis — and makes them available in every analysis.
-
-The test: **can a PM produce this output without the skill file?** If yes, it's a template. If no, it's a knowledge weapon.
-
-Every skill in this repo passes that test. The [benchmark data](skills/competitive-market-analysis/benchmark/README.md) proves it empirically.
+Each new skill follows this structure. `manifest.yaml` uses ecosystem-standard format (name ≤64 chars, description ≤200 chars) for marketplace compatibility.
 
 ---
 
 ## Roadmap
 
-- [x] Competitive & Market Analysis (shipped, benchmarked)
-- [ ] Metrics & Experimentation
-- [ ] Problem Framing
-- [ ] Discovery & Research
-- [ ] Narrative Building
-- [ ] Specification Writing
-- [ ] Cross-skill benchmark (3 problems × 3 approaches × 3 models)
-- [ ] MCP server for universal agent discovery
+- [x] Competitive & Market Analysis — 7 Powers, Aggregation Theory, disruption vectors, evidence-tiered war maps
+- [ ] Metrics & Experimentation — metric hierarchies, experiment design, Goodhart's Law detection, statistical validity
+- [ ] Problem Framing — Ishikawa, 5 Whys taxonomy, assumption grading, opportunity mapping
+- [ ] Discovery & Research — source quality taxonomy, confidence calibration, synthesis patterns, bias detection
+- [ ] Narrative Building — Minto Pyramid, SCQ-A, positioning frameworks, stakeholder calibration
+- [ ] Specification Writing — completeness taxonomy, ambiguity detection, zero-question standard
 
 ---
 
 ## Contributing
 
-This repo is MIT licensed. Contributions welcome:
+MIT licensed. Contributions welcome.
 
-- **Use a skill and share results** — file an issue with what worked and what didn't
-- **Report quality gaps** — if a framework is under-applied or a failure mode is missing
-- **Suggest new skills** — file an issue with the PM task, why raw prompting isn't enough, and what frameworks should be encoded
+- **Bug:** A framework is under-applied or produces weak output → file an issue
+- **Gap:** A failure mode is missing or a scoring rubric needs calibration → PR or issue
+- **New skill idea:** A PM task where raw prompting falls short and encoded frameworks would help → open a discussion
 
 ---
 
 ## License
 
-[MIT](LICENSE) — use commercially, modify, redistribute. No restrictions.
+[MIT](LICENSE) — permissive for commercial and enterprise use.
 
 ---
 
-*Built by [Parth Sangani](https://www.linkedin.com/in/parthsangani/) — Principal PM at Microsoft, building AI systems that understand context at scale.*
+Built by [Parth Sangani](https://www.linkedin.com/in/parthsangani/) · Principal PM, Microsoft M365 Copilot
