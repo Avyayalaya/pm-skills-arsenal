@@ -1,7 +1,7 @@
 ---
 name: competitive-market-analysis
 description: "Use when performing competitive analysis, market entry assessment, moat evaluation, positioning strategy, build/buy/partner decisions, or responding to a competitor move. Encodes 7 Powers, Aggregation Theory, Christensen Disruption, JTBD, Wardley Mapping, and evidence-tier standards. Produces a Competitive War Map artifact."
-version: "1.1.0"
+version: "1.2.0"
 type: "codex"
 tags: ["Analyze", "Strategy", "Market Intelligence"]
 created: "2026-02-18"
@@ -56,6 +56,246 @@ These rules govern every output produced by this codex. They are not style prefe
 6. **Flag time-sensitive claims.** Any claim based on data older than 6 months must carry `[POTENTIALLY STALE — verify before presenting]`. Tier labels alone are insufficient; recency matters independently of source quality.
 
 7. **Flag thin-evidence conclusions.** If a key strategic conclusion rests only on Tier 4-6 evidence, prepend it with `[EVIDENCE-LIMITED: validate with Tier 1-2 before acting]`.
+
+---
+
+## Output Template (Mandatory Document Skeleton)
+
+Every Competitive War Map MUST follow this exact structure. Copy this skeleton and fill it in. Do not reorder sections, skip sections, or invent new top-level sections. If a framework was skipped in Step 0, note "Skipped — not load-bearing for this question type" in that section.
+
+```markdown
+# Competitive War Map: [Subject — e.g., "SMB HR Analytics Market Entry"]
+
+> **Date:** [YYYY-MM-DD] | **Confidence band:** [Overall H/M/L] | **Staleness window:** [Date after which key claims need revalidation]
+
+---
+
+## Executive Summary
+
+[5 sentences max. A VP reads only this and makes a decision. Final sentence = the recommended action in bold.]
+
+---
+
+## Step 0: Framework Selection
+
+| Question type | Primary frameworks (apply in full) | Supporting frameworks (scan only) | Skipped (why) |
+|---|---|---|---|
+| [e.g., "Market entry decision"] | [e.g., 7 Powers, COAP, JTBD] | [e.g., Blue Ocean, Wardley] | [e.g., "Win/Loss — no existing deals to analyze"] |
+
+---
+
+## 1. Competitive Set
+
+| Tier | Competitors | Rationale |
+|---|---|---|
+| **Primary** (full analysis) | [3-5 names] | [Why these are direct substitutes] |
+| **Secondary** (scan) | [3-6 names] | [Adjacent players expanding toward you] |
+| **Non-obvious / H3** | [2-3 names] | [Different paradigm entirely] |
+
+---
+
+## 2. 7 Powers Heat Map
+
+| Power | [Competitor A] | [Competitor B] | [Competitor C] | [Your Product] |
+|---|:---:|:---:|:---:|:---:|
+| Scale Economies | 🟢/🟡/🔴 (TX) | | | |
+| Network Effects | | | | |
+| Counter-Positioning | | | | |
+| Switching Costs | | | | |
+| Branding | | | | |
+| Cornered Resource | | | | |
+| Process Power | | | | |
+| **Accruing / Eroding** | [direction] | [direction] | [direction] | [direction] |
+
+📊 [Inline evidence citations for key ratings]
+
+**Decision point:** [e.g., "No competitor holds >2 strong powers → market is structurally contestable."]
+
+---
+
+## 3. Switching Cost Decomposition
+
+| Type | [Competitor A] | [Competitor B] | [Your Product] |
+|---|:---:|:---:|:---:|
+| Financial/Contractual | ████░░░░░░ X/10 (TX) | | |
+| Data/Migration | | | |
+| Workflow/Integration | | | |
+| Identity | | | |
+| Learning/Procedural | | | |
+| Relational/Trust | | | |
+| Social/Community | | | |
+
+**Key insight:** [Customer-created vs. vendor-imposed distinction. Strategic implication.]
+
+---
+
+## 4. Aggregation & Disruption Analysis
+
+**Aggregation Theory:**
+| Question | Finding | Evidence |
+|---|---|---|
+| Who owns the user relationship? | | (TX) |
+| Marginal costs approaching zero? | | (TX) |
+| Which layers commoditizing? | | (TX) |
+
+**Christensen COAP:**
+| Test | Evidence | Assessment |
+|---|---|---|
+| Serves non-consumers? | | ✅/❌/⚠️ |
+| "Good enough" for the job? | | ✅/❌/⚠️ |
+| Incumbent can't respond? | | ✅/❌/⚠️ |
+| Trajectory toward mainstream? | | ✅/❌/⚠️ |
+
+**Decision point:** [Where are profits shifting? Who is vulnerable?]
+
+---
+
+## 5. Strategy Reverse-Engineering (Where to Play / How to Win)
+
+| Competitor | Stated Strategy | Revealed Strategy | Gap |
+|---|---|---|---|
+| [A] | | | |
+| [B] | | | |
+
+**Wardley Map Findings:** [Key misallocations — custom effort on commodity, or commoditizing genesis.]
+
+---
+
+## 6. Blue Ocean Check
+
+**Strategy Canvas:** [Describe or render the value curve comparison across key factors.]
+
+**ERRC Grid:**
+| Eliminate | Reduce | Raise | Create |
+|---|---|---|---|
+| [factors] | [factors] | [factors] | [factors] |
+
+---
+
+## 7. Adoption Stage Assessment
+
+| Question | Finding |
+|---|---|
+| TAL position | [Innovators / Early Adopters / Early Majority / Late Majority] |
+| Chasm status | [Pre-chasm / In the chasm / Crossed] |
+| Whole product gap | [What's missing for mainstream adoption?] |
+| Bowling alley head pin | [Specific beachhead segment + rationale] |
+
+---
+
+## 8. Tactical Layer
+
+**Feature/Capability Matrix:**
+
+| Capability | Strategic Weight | [Comp A] | [Comp B] | [Your Product] |
+|---|:---:|:---:|:---:|:---:|
+| [Capability 1] | H/M/L | ✅/🔄/🚧/❌ (TX) | | |
+| [Capability 2] | | | | |
+
+**GTM & Distribution Comparison:**
+
+| Dimension | [Comp A] | [Comp B] | [Your Product] |
+|---|---|---|---|
+| Pricing model | | | |
+| Free tier | | | |
+| Enterprise motion | | | |
+| Distribution channel | | | |
+| Bundle leverage | | | |
+
+**Customer & User Signals:**
+- [Signal 1] 📊 (TX: source)
+- [Signal 2] 📊 (TX: source)
+
+---
+
+## 9. Win/Loss Pattern Mapping
+
+| Pattern | Structural Cause | Framework Attribution |
+|---|---|---|
+| [e.g., "Losing enterprise deals on security"] | [e.g., "Branding gap — no SOC2 narrative"] | 7 Powers: Branding |
+
+---
+
+## 10. Strategic Recommendations (O→I→R→C→W Cascade)
+
+**Recommendation 1: [Title]**
+- **Observation** [TX]: [What we see]
+- **Implication**: [Why it matters — the mechanism]
+- **Response**: [Specific action + owner + timeline]
+- **Confidence**: [H/M/L] — assumes [key assumption]
+- **Watch**: [Observable signal]; if [threshold], re-assess
+
+**Recommendation 2: [Title]**
+- **Observation** [TX]: ...
+- **Implication**: ...
+- **Response**: ...
+- **Confidence**: ...
+- **Watch**: ...
+
+**Recommendation 3: [Title]**
+[Same structure]
+
+---
+
+## Three Horizons Threat Landscape
+
+| H1 (0-12mo) | H2 (12-36mo) | H3 (36mo+) |
+|---|---|---|
+| [Direct threats] | [Adjacent expansion] | [Paradigm shifts] |
+| [Response] | [Response] | [Response] |
+
+---
+
+## Cross-Framework Contradictions
+
+| Contradiction | Framework A says | Framework B says | Resolution / Which to weight |
+|---|---|---|---|
+| [e.g., "Moat strength vs. profit trajectory"] | [7 Powers: strong moat] | [COAP: profits shifting away] | [Which matters more and why] |
+
+---
+
+## Assumption Registry
+
+| # | Assumption | Framework it underpins | Confidence | Evidence | What would invalidate this |
+|---|---|---|---|---|---|
+| 1 | | | H/M/L | (TX) | |
+| 2 | | | H/M/L | (TX) | |
+| 3 | | | H/M/L | (TX) | |
+
+---
+
+## Adversarial Self-Critique
+
+**Weakness 1: [Title]**
+[Steelmanned argument against the analysis. What assumption is made? What evidence would disprove it? Scenario where this recommendation is catastrophically wrong.]
+
+**Weakness 2: [Title]**
+[Same depth]
+
+**Weakness 3: [Title]**
+[Same depth]
+
+---
+
+## Revision Triggers
+
+| Trigger | What to re-assess | Timeline |
+|---|---|---|
+| [Observable event] | [Which sections break] | [When to check] |
+
+---
+
+## Sources
+
+[All sources cited in the analysis, with evidence tier and date.]
+```
+
+**Rules for using this template:**
+1. **Do not skip sections.** If a section isn't applicable, write "Skipped — [reason]" and move on.
+2. **Every table cell with a rating or claim must have an evidence tier tag** — `(T1)` through `(T6)`.
+3. **Section headers are conclusions, not labels.** Replace generic headers (e.g., "Switching Cost Analysis") with insight headers (e.g., "Looker's Lock-In Is Customer-Created — Ours Isn't") after completing the section.
+4. **The Executive Summary is written last** but appears first. Do not write it until all sections are complete.
+5. **Progress bars** (`████░░░░░░`) are mandatory in the Switching Cost Decomposition. Do not substitute with text ratings.
 
 ---
 
