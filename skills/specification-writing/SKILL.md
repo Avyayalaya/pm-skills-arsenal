@@ -1,7 +1,7 @@
 ---
 name: specification-writing
 description: "Use when writing a product spec, feature spec, API contract, agent task spec, or any other specification where a zero-question document is required. Encodes outcome-first methodology, acceptance criteria taxonomy, scope boundary protocol, executor context model, and ambiguity resolution framework."
-version: "1.1.0"
+version: "1.2.0"
 type: "codex"
 tags: ["Problem Shaping", "Execution"]
 created: "2026-02-19"
@@ -118,6 +118,224 @@ If a spec section rests on multiple assumptions rather than validated decisions,
 `[ASSUMPTION-HEAVY: {N} unvalidated assumptions in this section; requires stakeholder sign-off before execution]`
 
 **Why this matters:** Sections built on assumptions look identical to sections built on validated decisions. The flag alerts reviewers and executors to concentrate their verification effort where uncertainty is highest.
+
+---
+
+## Output Template (Mandatory Document Skeleton)
+
+Every Zero-Question Specification MUST follow this exact structure. Copy this skeleton and fill it in. Do not reorder sections, skip sections, or invent new top-level sections. Depth per section varies by spec type (see Step 0 routing table) — lighter sections should still appear with a brief note, not be omitted.
+
+```markdown
+# Specification: [Title — name the capability, not the project]
+
+> **Spec type:** [Product/feature | API contract | Agent task | Process/workflow | Infrastructure/migration | Research/discovery]
+> **Load-bearing frameworks:** [F-numbers] | **Supporting:** [F-numbers]
+> **Date:** [YYYY-MM-DD] | **Author:** [name] | **Decision owner:** [name]
+> **Zero-Question Score:** [X — computed after Step 6]
+
+---
+
+## 1. Outcome Statement
+
+**After this spec is executed:**
+[One sentence. What is true that wasn't true before? Binary-testable. Score ≥ 3 on the Outcome Rubric.]
+
+**Verification method:** [How an outsider confirms this outcome is achieved.]
+
+**Outcome rubric score:** [0-3 + brief rationale]
+
+---
+
+## 2. Scope
+
+### IN Scope
+
+| # | Capability | Description | Acceptance Criteria Reference |
+|---|---|---|---|
+| S-1 | [specific capability] | [what it does] | AC-1, AC-2 |
+| S-2 | | | |
+
+### OUT of Scope
+
+| # | Excluded Capability | Rationale | Where/When Addressed |
+|---|---|---|---|
+| X-1 | [named adjacent capability] | [why excluded now] | [e.g., "Phase 2 — tracked in backlog item #123"] |
+| X-2 | | | |
+
+### Scope Dependencies
+
+[Any OUT-of-scope item that is a prerequisite for an IN-scope item. Flag these — they are execution blockers.]
+
+### Open Scope Tensions (if any)
+
+```
+OPEN TENSION: [Capability A] requires [X], but [Capability B] requires [Y].
+PROPOSED RESOLUTION: [recommendation]
+DECISION OWNER: [who resolves]
+DEADLINE: [when]
+```
+
+---
+
+## 3. Acceptance Criteria
+
+| # | Type | Criterion | Score | Annotation |
+|---|---|---|:---:|---|
+| AC-1 | Behavioral | [Given... When... Then... — binary pass/fail] | 0-3 | [Validated] / [Assumed: verify] / [Unknown: TBD by date/person] |
+| AC-2 | Non-behavioral | [Performance/security/accessibility threshold] | 0-3 | |
+| AC-3 | Negative | [What the system explicitly does NOT do] | 0-3 | |
+| AC-4 | Edge case | [Empty state / error state / boundary value] | 0-3 | |
+| AC-5 | Dependency | [What must be true for other criteria to be testable] | 0-3 | |
+
+**Complexity check:** [Simple ≤5 | Medium 5-10 | Complex 10-15 | If >15, split the spec.]
+
+**Definition of done:** [All AC criteria pass + all non-behavioral thresholds met + all dependency criteria verified.]
+
+---
+
+## 4. Context and Decisions
+
+### Executor Profile
+
+| Field | Value |
+|---|---|
+| Executor type | [Senior engineer / Junior engineer / AI agent / Contractor / Cross-functional team] |
+| Domain familiarity | [High / Medium / Low / None] |
+| Codebase familiarity | [High / Medium / Low / None] |
+| Available for questions? | [Yes — sync / Yes — async / No — spec must be fully self-contained] |
+
+### Glossary
+
+| Term | Definition | Why non-obvious |
+|---|---|---|
+| [term] | [precise definition] | [what an executor might wrongly assume it means] |
+
+### Decisions Already Made
+
+| # | Decision | Rationale | Date | Decided by |
+|---|---|---|---|---|
+| D-1 | [specific design choice] | [why this over alternatives] | [date] | [name] |
+
+### Dependencies
+
+| # | Dependency | Type | Status | Owner | Blocker? |
+|---|---|---|---|---|---|
+| DEP-1 | [system/API/asset/team] | [Technical / Data / Team / External] | [Ready / In progress / Blocked] | [name] | [Yes/No] |
+
+### Constraints
+
+| # | Constraint | Type | Source |
+|---|---|---|---|
+| C-1 | [limitation] | [Technical / Resource / Timeline / Legal / Policy] | [who/what imposed this] |
+
+### Stakeholders
+
+| Role | Name | Involvement |
+|---|---|---|
+| Decision owner | [name] | Approves scope changes, resolves tensions |
+| Technical lead | [name] | Reviews AC feasibility, owns architecture decisions |
+| [Other] | [name] | [involvement] |
+
+---
+
+## 5. Failure Conditions
+
+| # | Type | Assumption at Risk | Deviation Signal | Escalation Action | Severity |
+|---|---|---|---|---|---|
+| FC-1 | [Technical / Data / Process / External] | [what the spec assumes] | [observable signal that assumption is wrong] | STOP / ADJUST [how] / ESCALATE to [whom] | [Critical / Major / Minor] |
+| FC-2 | | | | | |
+
+**Worst Misinterpretation Test:**
+[For each critical AC, what is the worst thing an executor could build that technically passes the criterion as written? Add failure conditions for dangerous misinterpretations.]
+
+---
+
+## 6. Ambiguity Audit
+
+| # | Ambiguity Type | Question an Executor Would Ask | Resolution | Confidence |
+|---|---|---|---|---|
+| AMB-1 | [Definitional / Behavioral / Precedence / Temporal / Ownership] | [the question] | [answer added to spec OR TBD by {date}/{person}] | H/M/L |
+
+**Zero-Question Score:** [Count of unresolved questions not marked TBD with owner + deadline]
+
+---
+
+## 7. Implementation Guidance (optional — include for complex specs)
+
+### Suggested Approach
+
+[High-level technical direction. Not prescriptive architecture — enough to prevent an executor from going down a dead end.]
+
+### Known Risks
+
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| [risk] | H/M/L | H/M/L | [mitigation] |
+
+### Milestones / Checkpoints
+
+| # | Milestone | Checkpoint Criteria | Estimated Effort |
+|---|---|---|---|
+| M-1 | [deliverable] | [what to verify before proceeding] | [T-shirt size] |
+
+---
+
+## Open Tensions
+
+[Surface any unresolved tensions between criteria, scope, constraints, or stakeholder needs. Each tension names the conflict, proposes a resolution, identifies the decision owner, and has a deadline.]
+
+---
+
+## Assumption Registry
+
+| # | Assumption | Section Underpinned | Confidence | Evidence | What Would Invalidate |
+|---|---|---|:---:|---|---|
+| A-1 | [specific assumption] | [which section] | H/M/L | [source or reasoning] | [observable invalidation condition] |
+| A-2 | | | | | |
+| A-3 | | | | | |
+
+---
+
+## Adversarial Self-Critique
+
+**Weakness 1: [Title]**
+- **Assumption being made:** [the specific assumption]
+- **What happens if wrong:** [what the executor would build incorrectly]
+- **Watch indicator:** [observable signal during execution]
+
+**Weakness 2: [Title]**
+- **Assumption being made:** ...
+- **What happens if wrong:** ...
+- **Watch indicator:** ...
+
+**Weakness 3: [Title]**
+- **Assumption being made:** ...
+- **What happens if wrong:** ...
+- **Watch indicator:** ...
+
+---
+
+## Revision Triggers
+
+| # | Trigger | Affected Section | Why |
+|---|---|---|---|
+| 1 | [specific observable condition] | [section] | [which assumption it invalidates] |
+| 2 | | | |
+| 3 | | | |
+
+---
+
+## Appendix (optional)
+
+[Wireframes, data schemas, API signatures, reference materials — anything that supports the spec but isn't the spec itself.]
+```
+
+**Rules for using this template:**
+1. **Do not skip sections.** If a section is light for this spec type (per Step 0), include it with a brief note rather than omitting it.
+2. **Every AC must be scored** using the AC Quality Rubric (0-3). Criteria scoring 0-1 must be rewritten before the spec is considered complete.
+3. **Every decision and constraint must carry an annotation** — `[Validated]`, `[Assumed: verify]`, or `[Unknown: TBD by {date}/{person}]`.
+4. **Section headers are conclusions where possible.** Replace generic headers (e.g., "Scope") with insight headers (e.g., "Scope: Dashboard Editing Only — No Export, No Sharing, No Mobile") after completing the section.
+5. **The Zero-Question Score is computed last** but appears in the header. A score > 0 means the spec is a draft, not a spec.
 
 ---
 
