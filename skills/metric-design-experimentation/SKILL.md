@@ -1,7 +1,7 @@
 ---
 name: metric-design-experimentation
 description: "Use when designing a metric framework, selecting a North Star metric, building a metric decomposition tree, designing A/B experiments, setting up retention cohort analysis, or diagnosing whether a metric is being gamed. Encodes NSM rubrics, Goodhart's Law countermeasures, statistical validity for PMs, and retention curve methodology."
-version: "1.1.0"
+version: "1.2.0"
 type: "codex"
 tags: ["Evaluate", "Metrics", "Experimentation"]
 created: "2026-02-18"
@@ -80,6 +80,281 @@ Any benchmark, threshold, or normative value based on data older than 6 months m
 
 ### Rule 7: Evidence-Limited Flags
 If a metric design recommendation rests only on theoretical reasoning (T6) or general SaaS benchmarks without validation in your own data, prepend: `[EVIDENCE-LIMITED: validate with your own data before acting]`.
+
+---
+
+## Output Template (Mandatory Document Skeleton)
+
+Every Measurement Framework MUST follow this exact structure. Copy this skeleton and fill it in. Do not reorder sections, skip sections, or invent new top-level sections. If a framework was skipped in Step 0, note "Skipped — not load-bearing for this question type" in that section.
+
+```markdown
+# Measurement Framework: [Subject — e.g., "Co-Editing Feature Launch Metrics"]
+
+> **Date:** [YYYY-MM-DD] | **Confidence band:** [Overall H/M/L] | **Staleness window:** [Date after which benchmarks and thresholds need revalidation]
+
+---
+
+## Executive Summary
+
+[5 sentences max. A VP reads only this and decides whether the measurement plan is sound. Final sentence = the single most important metric to watch in bold.]
+
+---
+
+## Step 0: Framework Selection
+
+| Question type | Primary frameworks (apply in full) | Supporting frameworks (scan only) | Skipped (why) |
+|---|---|---|---|
+| [e.g., "New feature launch"] | [e.g., F1 NSM + Decomposition, F2 Leading/Lagging, F3 Counter-Metrics, F4 Experiment Design] | [e.g., F8 HEART] | [e.g., "F7 MAB — insufficient traffic for multi-arm. F9 PMF — PMF already validated."] |
+
+---
+
+## 1. Value Moment & North Star Metric
+
+**Value moment:** [The specific instant the user receives core value.]
+
+**NSM Candidate Evaluation:**
+
+| Candidate NSM | Value Reflection | Leading Nature | Influenceability | Simplicity | Non-Gameability | Score |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| [Candidate 1] | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | X/5 |
+| [Candidate 2] | | | | | | X/5 |
+| [Candidate 3] | | | | | | X/5 |
+
+**Selected NSM:** [Winner + one-sentence explanation a new hire could repeat.]
+
+**GSM validation:** Goal → [what outcome?] | Signal → [what user behavior?] | Metric → [how measured?]
+
+---
+
+## 2. Metric Decomposition Tree
+
+| Level | Metric | Owner | Cadence | Target | Counter-Metric |
+|---|---|---|---|---|---|
+| **NSM** | [metric] | [exec] | Monthly | [target] (TX) | [counter-metric] |
+| **L1** | [metric] | [PM] | Weekly | [target] (TX) | [counter-metric] |
+| **L1** | [metric] | [PM] | Weekly | [target] (TX) | [counter-metric] |
+| **L1** | [metric] | [PM] | Weekly | [target] (TX) | [counter-metric] |
+| **L2** | [metric] | [feature team] | Daily | [target] (TX) | [counter-metric] |
+| **L2** | [metric] | [feature team] | Daily | [target] (TX) | [counter-metric] |
+| **Input** | [metric] | [eng lead] | Per-deploy | [target] (TX) | — |
+
+**Causal chain check:** [Trace from each input metric to the NSM in ≤3 steps. Flag any broken branch.]
+
+---
+
+## 3. Leading / Lagging Indicator Pairs
+
+| Lagging Metric | Leading Indicator | Temporal Lag | Correlation (est.) | Causal? | Alert Threshold |
+|---|---|---|---|---|---|
+| [metric] | [leading indicator] | Immediate/Short/Medium | r ≈ X.XX (TX) | Yes/Hypothesis | [threshold = action] |
+| [metric] | [leading indicator] | | | | |
+
+**Activation Metric (Aha Moment Protocol):**
+1. **Aha moment hypothesis:** [What action predicts retention?]
+2. **Correlation check:** [r value between action and retention] (TX)
+3. **Threshold:** [X actions within Y days]
+4. **Causal validation plan:** [Experiment to confirm causation, not just correlation]
+
+⚠️ [Flag whether activation metric is validated or hypothesized. If hypothesized, mark as `[EVIDENCE-LIMITED]`.]
+
+---
+
+## 4. Counter-Metric Design & Goodhart Vulnerability
+
+| Primary Metric | Most Likely Goodhart Variant | What Goes Wrong | Counter-Metric | Threshold | Gaming Detection Pattern |
+|---|---|---|---|---|---|
+| [metric] | Regressional/Extremal/Causal/Adversarial | [specific gaming scenario] | [counter-metric] | [failure threshold] | [observable signal of gaming] |
+| [metric] | | | | | |
+| [metric] | | | | | |
+
+**Quarterly Health Review Protocol:**
+- **Cadence:** [e.g., Every 13 weeks]
+- **Owner:** [name/role]
+- **Decision framework:** Keep (proxy-outcome r > 0.5) / Recalibrate (r 0.3-0.5) / Replace (r < 0.3)
+
+---
+
+## 5. Experiment Plan
+
+**Experiment 1: [Title]**
+
+| Field | Value |
+|---|---|
+| Hypothesis | [If we do X, metric Y will improve by ≥ Z] |
+| Primary metric | [single metric] |
+| Secondary metrics | [exploratory, Bonferroni-corrected at α = X] |
+| Guardrail metrics | [thresholds that must hold] |
+| MDE | [Xpp — business rationale for this threshold] |
+| α / Power | 0.05 / 0.80 |
+| Sample size | [computed via `sample_size_calculator.py` — state result or flag "script not available"] |
+| Duration | [X days — rationale: covers Y cycles] |
+| Randomization unit | [user/session/cluster — rationale] |
+| Exclusions | [who is excluded and why] |
+| Decision rule | [Ship if... Do NOT ship if...] |
+
+**Experiment Quality Score:** X/6 (pre-registered hypothesis, single primary metric, guardrails declared, duration committed, sample size computed, segmentation planned)
+
+**Experiment 2: [Title]**
+[Same structure]
+
+**"When NOT to Experiment" Check:**
+- [ ] Is the change reversible? If not, consider staged rollout instead.
+- [ ] Is there enough traffic? If sample size > 4 weeks of traffic, the experiment is infeasible.
+- [ ] Is the ethical bar met? If the control group is harmed by withholding, use quasi-experimental.
+
+---
+
+## 6. HEART Framework (if applicable)
+
+| Dimension | Goal | Signal | Metric | Target | Counter-Metric |
+|---|---|---|---|---|---|
+| Happiness | [goal] | [signal] | [metric] (TX) | [target] | [counter] |
+| Engagement | | | | | |
+| Adoption | | | | | |
+| Retention | | | | | |
+| Task Success | | | | | |
+
+[Select 2-3 relevant dimensions. Do NOT force all five. Note "Skipped — [reason]" for unused dimensions.]
+
+---
+
+## 7. PMF Assessment (if applicable)
+
+**Ellis Test:** [% who would be "very disappointed" if product disappeared] = X% (TX)
+- ≥40% = PMF signal present | 25-40% = weak signal | <25% = PMF not established
+
+**Behavioral PMF Check:**
+
+| Signal | Value | Assessment |
+|---|---|---|
+| Retention curve shape | Smile / Flat / Frown | [interpretation] |
+| Organic referral rate | X% (TX) | [benchmark comparison] |
+| Activation-to-retention correlation | r = X.XX (TX) | [strong/weak/unvalidated] |
+
+**Segmentation:** [Where is PMF strongest? Segment by channel, use case, activation behavior.]
+
+---
+
+## 8. Retention Cohort Design
+
+**Primary cohort type:** [Time-based / Behavior-based / Channel-based]
+
+**Retention Windows:**
+
+| Window | Definition | Benchmark | Degradation Threshold |
+|---|---|---|---|
+| Day 1 | [definition] | X% (TX) | >Xpp decline vs. prior cohort |
+| Day 7 | | | |
+| Day 14 | | | |
+| Day 30 | | | |
+| Day 60 | | | |
+| Day 90 | | | |
+
+**Cohort Cuts:**
+- **Time-based:** [weekly/monthly signup cohorts]
+- **Behavior-based:** [activated vs. not activated — validates activation metric]
+- **Channel-based:** [organic vs. paid — detects acquisition quality shifts]
+
+**Retention Curve Shape:** [Smile (recovering) / Flat (stable) / Frown (decaying)] — interpretation and action.
+
+**Revenue vs. Logo:** [Track both. Note if they diverge — expansion revenue can mask logo churn.]
+
+---
+
+## 9. Metric Intervention Recommendations (O→I→R→C→W Cascade)
+
+**Intervention 1: [Title]**
+- **Observation** [TX]: [What the data shows]
+- **Implication**: [Why it matters — the mechanism]
+- **Response**: [Specific action + owner + timeline]
+- **Confidence**: [H/M/L] — assumes [key assumption]
+- **Watch**: [Observable signal]; if [threshold], re-assess
+
+**Intervention 2: [Title]**
+- **Observation** [TX]: ...
+- **Implication**: ...
+- **Response**: ...
+- **Confidence**: ...
+- **Watch**: ...
+
+---
+
+## Cross-Framework Contradictions
+
+| Contradiction | Framework A says | Framework B says | Resolution / Which to weight |
+|---|---|---|---|
+| [e.g., "NSM growth vs. cohort degradation"] | [NSM trending up] | [Retention cohorts degrading] | [Which matters more and why — e.g., "Cohort signal is more structural; NSM growth is masking mix shift"] |
+
+---
+
+## Instrumentation Feasibility
+
+| Metric | Data exists? | Clean & reliable? | Timely (within cadence)? | ≥30 days history? | Status |
+|---|:---:|:---:|:---:|:---:|---|
+| [metric] | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | Ready / Needs work / Blocked |
+
+[Flag any metric that fails ≥1 check. Propose measurable proxy or instrumentation investment.]
+
+---
+
+## Review Cadence & Ownership
+
+| Metric Level | Review Cadence | Owner | Escalation Trigger |
+|---|---|---|---|
+| NSM | Monthly | [exec] | [e.g., ">10% decline sustained 2 months"] |
+| L1 | Weekly | [PM] | [e.g., "Misses target 3 consecutive weeks"] |
+| L2 | Daily | [feature team] | [e.g., "Alert threshold crossed"] |
+| Experiments | Per-experiment | [PM + data] | [e.g., "Guardrail violated"] |
+| Quarterly health review | Every 13 weeks | [owner] | [e.g., "Any proxy-outcome r < 0.5"] |
+
+---
+
+## Assumption Registry
+
+| # | Assumption | Framework it underpins | Confidence | Evidence | What would invalidate this |
+|---|---|---|---|---|---|
+| 1 | | | H/M/L | (TX) | |
+| 2 | | | H/M/L | (TX) | |
+| 3 | | | H/M/L | (TX) | |
+
+---
+
+## Adversarial Self-Critique
+
+**Weakness 1: [Title]**
+[What assumption is being made? What evidence would disprove it? Is there a scenario where this metric system is catastrophically wrong? Link to a Watch Indicator.]
+
+**Weakness 2: [Title]**
+[Same depth]
+
+**Weakness 3: [Title]**
+[Same depth]
+
+---
+
+## Revision Triggers
+
+| Trigger | What to re-assess | Timeline |
+|---|---|---|
+| NSM-outcome correlation drops below r = 0.5 | NSM selection | Next quarterly review |
+| Leading indicator no longer predicts lagging | Leading/lagging pairs | Immediate investigation |
+| Assumption Registry item invalidated | Dependent framework sections | Within 1 week |
+| Retention curve shape changes | PMF assessment + cohort design | Next quarterly review |
+| Counter-metric threshold crossed 2+ consecutive periods | Primary metric + gaming detection | Immediate investigation |
+
+---
+
+## Sources
+
+[All sources cited in the framework, with evidence tier and date.]
+```
+
+**Rules for using this template:**
+1. **Do not skip sections.** If a section isn't applicable (e.g., HEART skipped in Step 0), write "Skipped — [reason]" and move on.
+2. **Every table cell with a target, benchmark, or claim must have an evidence tier tag** — `(T1)` through `(T6)`.
+3. **Section headers are conclusions, not labels.** Replace generic headers (e.g., "Retention Analysis") with insight headers (e.g., "Day-30 Retention Is Masking a Cohort Degradation Problem") after completing the section.
+4. **The Executive Summary is written last** but appears first. Do not write it until all sections are complete.
+5. **Instrumentation Feasibility is not optional.** A beautiful metric that can't be measured is a planning artifact, not a measurement framework.
 
 ---
 
