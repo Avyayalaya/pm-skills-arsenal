@@ -1,0 +1,18 @@
+{
+  "name": "pm-skills-dev",
+  "description": "Local development marketplace for PM Skills codex: Competitive Analysis and Metric Design",
+  "owner": {
+    "name": "Parth Sangani"
+  },
+  "plugins": [
+    {
+      "name": "pm-skills",
+      "description": "Elite-tier PM knowledge codex: Competitive & Market Analysis (7 Powers, Aggregation Theory, Wardley, JTBD, Blue Ocean, Crossing the Chasm, Win/Loss) and Metric Design & Experimentation (NSM, Goodhart, MAB, HEART, PMF Measurement)",
+      "version": "1.2.0",
+      "source": "./",
+      "author": {
+        "name": "Parth Sangani"
+      }
+    }
+  ]
+}

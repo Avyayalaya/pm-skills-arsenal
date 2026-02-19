@@ -1,0 +1,10 @@
+{
+  "name": "pm-skills",
+  "description": "Elite-tier PM knowledge weapons: Competitive & Market Analysis (7 Powers, Aggregation Theory, Wardley, JTBD), Metric Design & Experimentation (NSM framework, Goodhart countermeasures, A/B design, retention cohorts), and Specification Writing (zero-question specs, AC taxonomy, scope boundary protocol).",
+  "version": "1.2.0",
+  "author": {
+    "name": "Parth Sangani"
+  },
+  "license": "MIT",
+  "keywords": ["product-management", "competitive-analysis", "metrics", "experimentation", "strategy", "knowledge-weapon"]
+}
