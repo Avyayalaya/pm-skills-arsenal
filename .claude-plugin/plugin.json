@@ -1,10 +1,13 @@
 {
   "name": "pm-skills",
-  "description": "Elite-tier PM knowledge weapons: Competitive & Market Analysis (7 Powers, Aggregation Theory, Wardley, JTBD), Metric Design & Experimentation (NSM framework, Goodhart countermeasures, A/B design, retention cohorts), and Specification Writing (zero-question specs, AC taxonomy, scope boundary protocol).",
+  "description": "Product management decision codex: competitive analysis (9 frameworks including 7 Powers, Aggregation Theory, Wardley Mapping), metric design and experimentation (NSM, Goodhart countermeasures, A/B design, retention cohorts), and specification writing (zero-question specs). Evidence-tiered, confidence-calibrated, adversarially self-critiqued.",
   "version": "1.2.0",
   "author": {
-    "name": "Parth Sangani"
+    "name": "Parth Sangani",
+    "url": "https://github.com/Avyayalaya"
   },
+  "homepage": "https://github.com/Avyayalaya/pm-skills-arsenal",
+  "repository": "https://github.com/Avyayalaya/pm-skills-arsenal",
   "license": "MIT",
-  "keywords": ["product-management", "competitive-analysis", "metrics", "experimentation", "strategy", "knowledge-weapon"]
+  "keywords": ["product-management", "competitive-analysis", "metrics", "experimentation", "strategy", "specification-writing"]
 }
