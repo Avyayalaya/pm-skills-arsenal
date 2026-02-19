@@ -1,7 +1,7 @@
 ---
 name: competitive-market-analysis
 description: "Use when performing competitive analysis, market entry assessment, moat evaluation, positioning strategy, build/buy/partner decisions, or responding to a competitor move. Encodes 7 Powers, Aggregation Theory, Christensen Disruption, JTBD, Wardley Mapping, and evidence-tier standards. Produces a Competitive War Map artifact."
-version: "1.2.0"
+version: "1.3.0"
 type: "codex"
 tags: ["Analyze", "Strategy", "Market Intelligence"]
 created: "2026-02-18"
@@ -57,6 +57,10 @@ These rules govern every output produced by this codex. They are not style prefe
 
 7. **Flag thin-evidence conclusions.** If a key strategic conclusion rests only on Tier 4-6 evidence, prepend it with `[EVIDENCE-LIMITED: validate with Tier 1-2 before acting]`.
 
+8. **Every framework reference gets a one-line contextual explanation the first time it appears.** Not "Hamilton Helmer's 7 Powers" but "Helmer's framework for scoring 7 types of competitive moat — we use it here to assess which advantages are durable vs. eroding." The framework name is for the author's rigor. The reader needs to know why this lens matters for *their* decision.
+
+9. **The document must be navigable by someone who didn't create it.** Include a reading guide (by time and by role), a notation key, and layered depth. A VP should be able to read only the Executive Summary and act. A PM should be able to read through Findings and skip Deep Analysis. The full document is for the analyst.
+
 ---
 
 ## Output Template (Mandatory Document Skeleton)
@@ -72,11 +76,83 @@ Every Competitive War Map MUST follow this exact structure. Copy this skeleton a
 
 ## Executive Summary
 
-[5 sentences max. A VP reads only this and makes a decision. Final sentence = the recommended action in bold.]
+[5 sentences max. A VP reads only this and makes a decision. No framework names, no jargon, no evidence tier tags. Plain language a non-PM exec can act on. Final sentence = the recommended action in bold.]
 
 ---
 
-## Step 0: Framework Selection
+## How to Read This Document
+
+**What this is:** A structural competitive assessment — not a feature comparison. It uses strategic frameworks to assess which advantages are durable, where value is migrating, and what to do about it.
+
+**Reading by time available:**
+
+| Time | Read | You'll get |
+|---|---|---|
+| **5 min** | Executive Summary only | The decision + recommended action |
+| **15 min** | Executive Summary + Findings (sections 1-4) | Key structural conclusions with evidence |
+| **30 min** | Full document through Recommendations | Complete analysis with supporting frameworks |
+| **Deep dive** | Everything including Appendix | Full framework applications, assumptions, self-critique |
+
+**Reading by role:**
+
+| Role | Start with | Then read | Skip unless curious |
+|---|---|---|---|
+| VP / Exec | Executive Summary | Recommendations (section 10), Assumption Registry | Everything in between |
+| PM Lead | Executive Summary | Findings (sections 2-5), Recommendations | Deep framework sections, Worked Examples |
+| Strategy / Analyst | Full document in order | Cross-Framework Contradictions, Adversarial Self-Critique | Nothing — this is your primary artifact |
+| Engineer / Designer | Executive Summary | Tactical Layer (section 8) for feature/capability matrix | Framework sections (unless building competitive tooling) |
+
+---
+
+## Notation Key
+
+**Confidence levels** — applied to every strategic conclusion:
+- **H (>70% confident)** — Strong evidence supports this conclusion. Act on it.
+- **M (40-70%)** — Direction is probable but evidence is mixed. Validate before committing resources.
+- **L (<40%)** — This is a hypothesis, not a finding. Do not act without further evidence.
+
+**Evidence tiers** — how we know what we claim to know (tagged inline as T1-T6):
+- **T1** — Direct behavioral data: usage analytics, revenue, SEC filings, job postings (strongest)
+- **T2** — Primary research: well-sampled surveys, structured interviews
+- **T3** — Expert analysis with disclosed reasoning: Stratechery, a16z, academic papers
+- **T4** — Industry reports: Gartner, IDC, Forrester (useful for sizing, less for insight)
+- **T5** — Executive statements and press releases (strategic signaling, not facts)
+- **T6** — Punditry, blog posts, social media, or first-principles reasoning (weakest)
+
+**Competitive power ratings:**
+- 🟢 **Strong** — Mature, actively accruing, 3+ years to replicate
+- 🟡 **Moderate** — Exists but nascent, eroding, or limited in scope
+- 🔴 **Weak/Absent** — No meaningful competitive barrier
+
+**Recommendation format** (O→I→R→C→W):
+- **O**bservation — What we see (with evidence tier)
+- **I**mplication — Why it matters (the mechanism)
+- **R**esponse — What to do (specific action + owner + timeline)
+- **C**onfidence — How sure we are (H/M/L + key assumption)
+- **W**atch — How to know if we're wrong (observable signal)
+
+**Flags:**
+- `[POTENTIALLY STALE]` — Source data is >6 months old; verify before presenting
+- `[EVIDENCE-LIMITED]` — Conclusion rests on T4-T6 evidence only; validate with stronger data before acting
+
+---
+
+## Step 0: Context Fitness Check
+
+Before selecting frameworks, verify that a Competitive War Map is the right artifact for this question.
+
+| Question | If Yes | If No |
+|---|---|---|
+| **Is the core problem external (competitive) or internal (activation/adoption)?** | Proceed to Framework Selection | A Competitive War Map is the wrong artifact. Consider: Activation Strategy Map (internal adoption problem), Metric Framework (measurement problem), or Problem Framing. |
+| **Do you have access to internal behavioral data (T1-T2)?** | Analysis can produce H-confidence conclusions | Flag prominently: "External-view analysis only. All conclusions are hypotheses — validate against internal telemetry before acting." Cap confidence at M for structural claims. |
+| **Is distribution through user choice or IT/enterprise provisioning?** | Standard competitive dynamics apply | Competitive set must include "do nothing," "existing workflow," and "the user's own inertia." Distribution competition is irrelevant — the battle is awareness → activation → habit. |
+| **Is the product standalone or a feature of a larger platform?** | Analyze as independent product | The product inherits the platform's powers AND constraints. Competitive analysis must account for bundle dynamics, cross-subsidy, and the fact that the product may not need to "win" independently. |
+
+**If any answer is "No":** State this prominently at the top of the Executive Summary. Example: *"Note: This analysis is produced from public sources only (T3-T5). All structural conclusions should be treated as hypotheses to be validated against internal data before strategic action."*
+
+---
+
+## Step 0b: Framework Selection
 
 | Question type | Primary frameworks (apply in full) | Supporting frameworks (scan only) | Skipped (why) |
 |---|---|---|---|
@@ -885,9 +961,9 @@ Apply to every data point:
 
 ## Application Method
 
-### Step 0: Route to Framework Subset (Do This First)
+### Step 0b: Route to Framework Subset
 
-Identify the question type and select load-bearing frameworks before applying any. Applying all 9 frameworks to every question inflates length, buries signal, and applies wrong-context frameworks.
+After passing the Context Fitness Check, identify the question type and select load-bearing frameworks. Applying all 9 frameworks to every question inflates length, buries signal, and applies wrong-context frameworks.
 
 | Question Type | Prompt Signals | Primary Frameworks | Frameworks to Skip |
 |---|---|---|---|
@@ -902,7 +978,8 @@ Apply primary frameworks fully. Apply supporting frameworks at reduced depth unl
 
 ### Quick Version (10 steps for experienced practitioners)
 
-0. **Route to framework subset** — Identify question type from the table above. Select 3-4 primary frameworks. Note which to skip.
+0a. **Context Fitness Check** — Verify a Competitive War Map is the right artifact. Check: external vs. internal problem? Data access? Distribution model?
+0b. **Route to framework subset** — Identify question type from the table above. Select 3-4 primary frameworks. Note which to skip.
 1. **Define the competitive set** — Primary (3-5 direct), Secondary (3-6 adjacent), Non-obvious (2-3 paradigm threats)
 2. **Score each competitor on 7 Powers** — Produce the heat map with 🟢🟡🔴 ratings and one-line justifications
 3. **Decompose switching costs by type** — Don't say "high" — show the breakdown per cost category
@@ -1245,6 +1322,18 @@ When producing the final artifact, use these visualization patterns:
 *Detection:* If you can remove all the numbers and the strategic conclusions don't change, quantification is decorative.
 *Correction:* Every number must answer "so what?" — TAM connects to addressable opportunity. Growth rate connects to urgency. Share connects to competitive position.
 
+**FM-8: Right Frameworks, Wrong Question**
+*What it looks like:* Structurally excellent competitive analysis — all frameworks applied correctly, evidence tiered, recommendations cascaded — but the analysis answers a question nobody is asking. The output is a Competitive War Map for a product whose real problem is internal activation, not external competition.
+*Why it happens:* The skill is triggered by any competitive-sounding prompt ("run competitive analysis for X") without checking whether a competitive war map is the right artifact. An enterprise product with low user awareness needs an activation strategy, not a market positioning analysis. A product embedded in a larger platform needs a bundle strategy, not an independent moat assessment.
+*Detection:* Ask: "Would the primary stakeholder's first question about this product be about a competitor, or about their own users?" If about their own users, the analysis is solving the wrong problem.
+*Correction:* Run the Context Fitness Check (Step 0) before Framework Selection (Step 0b). If the core problem is internal (activation, awareness, adoption), redirect to the appropriate artifact. If proceeding with a war map anyway (e.g., to inform a broader strategy), state explicitly in the Executive Summary what the analysis does and does not address.
+
+**FM-9: The Expert-Only Document**
+*What it looks like:* Output is dense with framework names (COAP, Aggregation Theory, Wardley), notation (T1-T6, H/M/L, O→I→R→C→W), and jargon that assumes the reader built the analysis. A VP or cross-functional stakeholder cannot extract the conclusions without a guided tour from the author.
+*Why it happens:* The skill optimizes for analytical completeness, not reader comprehension. The author knows all the notation; the reader doesn't. No reading guide, no notation key, no layered depth.
+*Detection:* Show the output to someone who didn't request it. If they need more than 60 seconds to find the conclusions, or if they ask "what does T2 mean?", the document fails the reader test.
+*Correction:* The output template mandates a "How to Read This Document" section and a Notation Key before the analysis begins. The Executive Summary uses zero framework jargon — plain language a non-PM exec can act on.
+
 ---
 
 ## What's Next
@@ -1265,6 +1354,11 @@ When producing the final artifact, use these visualization patterns:
 
 Use this to verify output completeness:
 
+- [ ] Context Fitness Check passed: problem is external/competitive, not internal/activation
+- [ ] If external-only data: flagged prominently in Executive Summary; confidence capped at M
+- [ ] How to Read This Document section present with role-based reading guide
+- [ ] Notation Key present: H/M/L, T1-T6, 🟢🟡🔴, O→I→R→C→W all explained
+- [ ] Executive Summary uses zero framework jargon — plain language only
 - [ ] Competitive set defined: primary (3-5) + secondary (3-6) + non-obvious (2-3)
 - [ ] Executive summary: 5 sentences a VP could act on alone
 - [ ] 7 Powers scored for each primary competitor with evidence
@@ -1392,5 +1486,5 @@ This output was produced by running steps 2, 3, and 4 of the Full Application Me
 ---
 
 *Created: 2026-02-18 | PM Skills Arsenal v1.0 | BLD-003*
-*Quality tier: Elite (≥600 lines, 7+ encoded frameworks, quality gradients, 7 failure modes)*
+*Quality tier: Elite (≥600 lines, 7+ encoded frameworks, quality gradients, 9 failure modes, reader navigation, context gate)*
 *License: MIT*

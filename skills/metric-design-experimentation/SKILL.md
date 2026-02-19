@@ -1,7 +1,7 @@
 ---
 name: metric-design-experimentation
 description: "Use when designing a metric framework, selecting a North Star metric, building a metric decomposition tree, designing A/B experiments, setting up retention cohort analysis, or diagnosing whether a metric is being gamed. Encodes NSM rubrics, Goodhart's Law countermeasures, statistical validity for PMs, and retention curve methodology."
-version: "1.2.0"
+version: "1.3.0"
 type: "codex"
 tags: ["Evaluate", "Metrics", "Experimentation"]
 created: "2026-02-18"
@@ -81,6 +81,12 @@ Any benchmark, threshold, or normative value based on data older than 6 months m
 ### Rule 7: Evidence-Limited Flags
 If a metric design recommendation rests only on theoretical reasoning (T6) or general SaaS benchmarks without validation in your own data, prepend: `[EVIDENCE-LIMITED: validate with your own data before acting]`.
 
+### Rule 8: Framework References Get One-Line Context
+Not "Goodhart's Law (Regressional variant)" but "Goodhart's Law — when optimizing a proxy metric causes it to diverge from the outcome you actually care about. The 'regressional' variant means the metric was a good proxy initially but optimization pushed it past the point where it predicts the real outcome." The reader needs to understand why a framework matters for their decision, not just its academic name.
+
+### Rule 9: The Document Must Be Navigable by Non-Creators
+Include a reading guide (by time and by role), a notation key, and layered depth. A VP should be able to read only the Executive Summary and know whether the measurement plan is sound. A PM lead should be able to read through the metric hierarchy and experiment plans. A data scientist should be able to dive into statistical design. No reader should encounter unexplained notation.
+
 ---
 
 ## Output Template (Mandatory Document Skeleton)
@@ -96,11 +102,81 @@ Every Measurement Framework MUST follow this exact structure. Copy this skeleton
 
 ## Executive Summary
 
-[5 sentences max. A VP reads only this and decides whether the measurement plan is sound. Final sentence = the single most important metric to watch in bold.]
+[5 sentences max. A VP reads only this and decides whether the measurement plan is sound. No framework names, no statistical jargon, no evidence tier tags. Plain language. Final sentence = the single most important metric to watch in bold.]
 
 ---
 
-## Step 0: Framework Selection
+## How to Read This Document
+
+**What this is:** A measurement engineering system — not a KPI list. It defines what to measure, how to know if it's working, what could go wrong, and how to detect problems early.
+
+**Reading by time available:**
+
+| Time | Read | You'll get |
+|---|---|---|
+| **5 min** | Executive Summary only | Whether the measurement plan is sound + the key metric to watch |
+| **15 min** | Executive Summary + Metric Hierarchy (section 2) + Experiment Plan (section 5) | What we're measuring, how we're testing, and the decision rules |
+| **30 min** | Full document through Recommendations | Complete metric system with counter-metrics, retention design, and interventions |
+| **Deep dive** | Everything including Appendix | Statistical design details, gaming detection, assumption stress-testing |
+
+**Reading by role:**
+
+| Role | Start with | Then read | Skip unless curious |
+|---|---|---|---|
+| VP / Exec | Executive Summary | Metric Hierarchy (section 2), Review Cadence | Statistical design, Goodhart analysis |
+| PM Lead | Executive Summary | Sections 1-5 (NSM through Experiments), Recommendations | MAB algorithm selection, Statistical Validity details |
+| Data Scientist / Analyst | Full document in order | Statistical Validity (section 5), Retention Cohorts (section 8), Adversarial Self-Critique | Outcome methodology (they know this) |
+| Engineering Lead | Executive Summary | Instrumentation Feasibility, Experiment Plan (duration/sample/unit) | Framework theory sections |
+
+---
+
+## Notation Key
+
+**Confidence levels** — applied to every metric design conclusion:
+- **H (>70% confident)** — Validated in your own data. Act on it.
+- **M (40-70%)** — Based on comparable products or reasonable inference. Validate before committing.
+- **L (<40%)** — Hypothesis only. Must be tested before treating as a metric target.
+
+**Evidence tiers** — how we know what we claim to know (tagged inline as T1-T6):
+- **T1** — Direct internal behavioral data: your own usage analytics, experiment results (strongest)
+- **T2** — Primary research on your users: well-sampled surveys, structured interviews
+- **T3** — Expert analysis with methodology: published case studies, Reforge frameworks
+- **T4** — Industry benchmarks: SaaS averages, Gartner norms (useful for direction, not targets)
+- **T5** — Comparable product claims: competitor announcements, case studies without methodology
+- **T6** — First-principles reasoning or general best practices (weakest — treat as starting hypothesis)
+
+**Metric status indicators:**
+- ✅ — Criterion met or metric healthy
+- ❌ — Criterion failed or metric degrading
+- ⚠️ — Warning signal; investigate
+
+**Recommendation format** (O→I→R→C→W):
+- **O**bservation — What the data shows (with evidence tier)
+- **I**mplication — Why it matters (the mechanism)
+- **R**esponse — What to do (specific action + owner + timeline)
+- **C**onfidence — How sure we are (H/M/L + key assumption)
+- **W**atch — How to know if we're wrong (observable signal)
+
+**Flags:**
+- `[POTENTIALLY STALE]` — Benchmark data is >6 months old; verify before using as a target
+- `[EVIDENCE-LIMITED]` — Recommendation based on T4-T6 only; validate with your own data before acting
+
+---
+
+## Step 0: Context Fitness Check
+
+Before selecting frameworks, verify that a Measurement Framework is the right artifact and that you have the data access to produce one.
+
+| Question | If Yes | If No |
+|---|---|---|
+| **Do you have access to the product's usage data?** | Analysis can set validated targets (T1-T2 evidence) | All targets are benchmarks or hypotheses. Flag prominently: "Targets below are industry benchmarks (T4) — replace with your own validated thresholds before operationalizing." |
+| **Has the product been live long enough for retention data?** | Retention cohort design can use real curves | Retention targets are hypothetical. Design the instrumentation to collect this data; don't set targets you can't yet validate. |
+| **Is the metric system for a new product or an existing one?** | New: focus on F1 (NSM), F4 (Experiments), F9 (PMF). Existing: focus on F3 (Goodhart), F6 (Cohorts), F2 (Leading/Lagging). | — |
+| **Who will operationalize this framework?** | If data team: full statistical depth. If PM without data support: simplify experiment design, focus on hierarchy + counter-metrics. | Match the framework's complexity to the team that will maintain it. A beautiful statistical design that nobody monitors is a planning artifact. |
+
+---
+
+## Step 0b: Framework Selection
 
 | Question type | Primary frameworks (apply in full) | Supporting frameworks (scan only) | Skipped (why) |
 |---|---|---|---|
@@ -908,9 +984,9 @@ Do NOT estimate sample sizes by reasoning alone when the script can provide prec
 
 ## Application Method
 
-### Step 0: Framework Selection
+### Step 0b: Framework Selection
 
-Use this routing table to select the 3-5 load-bearing frameworks for your question type before applying any framework. Not all 9 frameworks are needed for every question.
+After passing the Context Fitness Check, use this routing table to select the 3-5 load-bearing frameworks. Not all 9 frameworks are needed for every question.
 
 | Question Type | Load-Bearing Frameworks | Skip Unless... |
 |---|---|---|
@@ -1164,6 +1240,18 @@ When should this measurement framework be revisited? Specific, observable condit
 *Detection:* Before committing to any metric, answer 4 questions: (1) Does the event/data exist in our tracking? (2) Is it reliably logged (no gaps, no duplicates)? (3) Is it timely (available within the monitoring cadence)? (4) Do we have ≥30 days of historical baseline?
 *Correction:* Add "instrumentation feasibility" as a step in the metric design process. If any of the 4 questions is "no," either invest in instrumentation first or choose a measurable proxy.
 
+**FM-11: The Expert-Only Document**
+*What it looks like:* Output is dense with statistical terminology (Bonferroni correction, Thompson Sampling, regressional Goodhart variant), notation (T1-T6, H/M/L, O→I→R→C→W), and framework names a non-data PM cannot parse. The PM lead who commissioned the framework cannot explain it to their VP.
+*Why it happens:* The skill optimizes for analytical rigor, not reader comprehension. The author knows all the notation; the reader doesn't.
+*Detection:* Show the output to the PM who will present it. If they can't explain any section without looking up a term, the document fails the reader test.
+*Correction:* The output template mandates a "How to Read This Document" section and a Notation Key. The Executive Summary uses zero jargon. Every framework reference gets a one-line contextual explanation the first time it appears.
+
+**FM-12: Designing Without Data Access**
+*What it looks like:* A complete measurement framework with targets, thresholds, and retention benchmarks — but all targets are industry averages (T4) because the analyst had no access to internal data. The framework looks validated but is actually a hypothesis document.
+*Why it happens:* The skill produces the same output structure regardless of data access. A framework designed with internal data and one designed from SaaS benchmarks look identical.
+*Detection:* Check evidence tiers on targets. If >50% of targets are T4-T6, the framework is a starting template, not a validated system.
+*Correction:* Run the Context Fitness Check (Step 0). If internal data is unavailable, flag prominently and design the instrumentation to collect validation data as a first-phase deliverable.
+
 ---
 
 ## What's Next
@@ -1184,6 +1272,11 @@ When should this measurement framework be revisited? Specific, observable condit
 
 Use this to verify output completeness:
 
+- [ ] Context Fitness Check passed: data access verified, product maturity assessed, operationalizer identified
+- [ ] If no internal data: flagged prominently; targets marked as benchmarks requiring validation
+- [ ] How to Read This Document section present with role-based reading guide
+- [ ] Notation Key present: H/M/L, T1-T6, O→I→R→C→W all explained
+- [ ] Executive Summary uses zero statistical jargon — plain language only
 - [ ] Value moment articulated — the specific instant the user gets value
 - [ ] NSM scored against 5-criterion rubric (not picked by gut)
 - [ ] Decomposition tree: NSM → L1 (3-5) → L2 (2-4 per L1) → input metrics
@@ -1340,5 +1433,5 @@ The NSM was selected using the 5-criterion rubric (Framework 1), not by intuitio
 ---
 
 *Created: 2026-02-18 | PM Skills Arsenal v1.0 | BLD-003*
-*Quality tier: Elite (≥650 lines, 6 encoded frameworks, quality gradients, 10 failure modes)*
+*Quality tier: Elite (≥650 lines, 6 encoded frameworks, quality gradients, 12 failure modes, reader navigation, context gate)*
 *License: MIT*

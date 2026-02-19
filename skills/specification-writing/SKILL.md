@@ -1,7 +1,7 @@
 ---
 name: specification-writing
 description: "Use when writing a product spec, feature spec, API contract, agent task spec, or any other specification where a zero-question document is required. Encodes outcome-first methodology, acceptance criteria taxonomy, scope boundary protocol, executor context model, and ambiguity resolution framework."
-version: "1.2.0"
+version: "1.3.0"
 type: "codex"
 tags: ["Problem Shaping", "Execution"]
 created: "2026-02-19"
@@ -119,6 +119,14 @@ If a spec section rests on multiple assumptions rather than validated decisions,
 
 **Why this matters:** Sections built on assumptions look identical to sections built on validated decisions. The flag alerts reviewers and executors to concentrate their verification effort where uncertainty is highest.
 
+### Rule 8: The Spec Must Be Navigable by Every Role That Reads It
+
+An engineer needs Acceptance Criteria and Dependencies. A QA engineer needs AC and Failure Conditions. A designer needs Outcome Statement and Scope. A stakeholder needs Outcome Statement and Open Tensions. Include a role-based reading guide so each reader finds their sections immediately. A spec that requires reading end-to-end before any team member can start work is a lecture, not a reference document.
+
+### Rule 9: Notation Must Be Self-Explanatory
+
+Every spec uses annotation conventions: `[Validated]`, `[Assumed: verify]`, `[Unknown: TBD]`, H/M/L confidence, quality scores (0-3). Include a notation key at the top. An executor encountering `[Assumed: verify]` for the first time should know exactly what it means and what action they should take.
+
 ---
 
 ## Output Template (Mandatory Document Skeleton)
@@ -132,6 +140,44 @@ Every Zero-Question Specification MUST follow this exact structure. Copy this sk
 > **Load-bearing frameworks:** [F-numbers] | **Supporting:** [F-numbers]
 > **Date:** [YYYY-MM-DD] | **Author:** [name] | **Decision owner:** [name]
 > **Zero-Question Score:** [X — computed after Step 6]
+
+---
+
+## How to Read This Spec
+
+**Reading by role — start with your sections, reference others as needed:**
+
+| Role | Must read | Reference as needed | Skip unless relevant |
+|---|---|---|---|
+| **Engineer / Executor** | Outcome (§1), Scope (§2), Acceptance Criteria (§3), Dependencies (§4) | Failure Conditions (§5), Implementation Guidance (§7) | Ambiguity Audit, Assumption Registry |
+| **QA / Test** | Acceptance Criteria (§3), Failure Conditions (§5) | Edge cases in Scope (§2), Dependencies (§4) | Outcome rationale, Stakeholders |
+| **Designer** | Outcome (§1), Scope (§2), Edge Cases in AC (§3) | Constraints (§4), Open Tensions | Dependencies, Failure Conditions |
+| **PM / Stakeholder** | Outcome (§1), Scope (§2), Open Tensions, Assumption Registry | AC (§3) for completeness check | Implementation Guidance, Dependencies |
+| **Decision Owner** | Outcome (§1), Open Tensions, Assumption Registry, Adversarial Self-Critique | Scope (§2) for boundary validation | Everything else — this spec should not require your deep read to be actionable |
+
+---
+
+## Notation Key
+
+**Decision annotations** — every decision and constraint carries one:
+- `[Validated]` — Confirmed by stakeholder, data, or documented decision. Source named. Act on it.
+- `[Assumed: verify]` — Reasonable assumption; needs explicit sign-off before execution begins. Validator named.
+- `[Unknown: TBD by {date}/{person}]` — Explicitly unknown. The spec is incomplete until resolved.
+
+**Confidence levels** — applied to assumptions and scope decisions:
+- **H (>70%)** — Almost certainly correct; proceed without blocking
+- **M (40-70%)** — Needs validation before execution; validator and deadline named
+- **L (<40%)** — This is a guess. Must be resolved before the spec is actionable.
+
+**Acceptance Criteria quality scores:**
+- **0** — Not testable (subjective, aspirational). Must rewrite.
+- **1** — Testable with prior knowledge the executor may not have. Needs more context.
+- **2** — Testable by an outsider using only the spec. Acceptable.
+- **3** — Binary-testable with a specific threshold or automated test. Target for all "definition of done" criteria.
+
+**Flags:**
+- `[POTENTIALLY STALE]` — Referenced decision/dependency last verified >30 days ago; re-verify
+- `[ASSUMPTION-HEAVY]` — Section contains multiple unvalidated assumptions; needs stakeholder review
 
 ---
 
@@ -1190,6 +1236,13 @@ A Zero-Question Spec. The executor begins work immediately. Questions that arise
 - **Detection signal:** Check every dependency status and every decision reference date. If any are older than 30 days in an active codebase, they may be stale. Apply Format Rule 6: staleness flags.
 - **Correction:** Add `[POTENTIALLY STALE — last verified {date}; verify before execution]` to any reference older than 30 days. In the Revision Triggers, add a trigger for each stale-flagged item. Before handoff, re-verify flagged items or accept the risk explicitly.
 
+### FM-9: The Expert-Only Spec
+
+- **What it looks like:** The spec uses notation (`[Assumed: verify]`, H/M/L, quality scores 0-3) and framework concepts (negative criteria, edge case criteria, scope boundary protocol) without explaining them. A new team member or external contractor encounters the spec and cannot distinguish a score-2 criterion from a score-3, or understand what `[Assumed: verify]` means they should do.
+- **Why it happens:** The spec author is fluent in the notation system. They assume readers are too. This is rarely true for cross-functional teams, new hires, or external executors.
+- **Detection signal:** Show the spec to someone who has never used this skill. If they ask "what does this annotation mean?" for any notation, the spec fails the reader test.
+- **Correction:** The output template mandates a "How to Read This Spec" section with role-based navigation and a Notation Key that explains every annotation, score, and flag. The spec should be self-contained — the reader should never need to reference the skill file to understand the spec.
+
 ---
 
 ## What's Next
@@ -1228,6 +1281,8 @@ Use this checklist as a final review before handing off any spec. Every item sho
 - [ ] Step 0 completed: spec type identified, load-bearing frameworks selected, decision documented
 - [ ] Target executor type identified and documented
 - [ ] All Format Rules applied (confidence levels, annotations, cascade, tensions, staleness flags, assumption-heavy flags)
+- [ ] How to Read This Spec section present with role-based navigation
+- [ ] Notation Key present: [Validated]/[Assumed]/[Unknown], H/M/L, quality scores 0-3 all explained
 
 ### Outcome (F1)
 - [ ] Outcome statement is one sentence
