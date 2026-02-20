@@ -31,7 +31,11 @@ claude plugin install pm-skills@avyayalaya
 
 Skills auto-activate when you ask Claude to do anything in their domain. No slash commands needed.
 
-**Manual load (any AI — Claude, ChatGPT, Cursor, Copilot):**
+### GitHub Copilot
+
+Reference skill files with `#` in Copilot Chat or Copilot CLI. Full setup guide: **[docs/github-copilot-install.md](docs/github-copilot-install.md)**
+
+**Other AI tools (ChatGPT, Cursor, Gemini):**
 Copy the relevant `SKILL.md` directly into your context window.
 
 ---
