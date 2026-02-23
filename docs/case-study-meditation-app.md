@@ -1,3 +1,9 @@
+---
+layout: "default"
+title: "Case Study: Meditation App Engagement"
+parent: "Case Studies"
+nav_order: 2
+---
 # Case Study: Meditation App Engagement Recovery
 
 **Scenario:** Growth PM at Mindful (B2C meditation app, 280K DAU, 920K MAU). DAU/MAU ratio declining from 0.31 to 0.27 over Q1 2026 (Jan–Mar). Absolute DAU down 8% despite MAU holding steady — users installing but not sticking. CEO escalates in weekly all-hands: "We need better engagement. What's the plan?"

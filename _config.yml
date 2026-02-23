@@ -1,0 +1,72 @@
+# GitHub Pages Configuration - Just the Docs Theme
+# PM Skills Arsenal
+
+# Site settings
+title: PM Skills Arsenal
+description: Framework-driven PM skills that produce artifacts you cannot create unaided
+url: https://avyayalaya.github.io
+baseurl: /pm-skills-arsenal
+
+# Theme
+remote_theme: just-the-docs/just-the-docs
+
+# Plugins
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-include-cache
+  - jekyll-sitemap
+
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s\-/]+/
+  rel_url: true
+  button: false
+
+# Navigation
+aux_links:
+  GitHub:
+    - https://github.com/Avyayalaya/pm-skills-arsenal
+  "Report Issue":
+    - https://github.com/Avyayalaya/pm-skills-arsenal/issues
+
+# Enable "Edit this page" links
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: https://github.com/Avyayalaya/pm-skills-arsenal
+gh_edit_branch: main
+gh_edit_view_mode: "edit"
+
+# Footer
+footer_content: 'MIT License · <a href="https://github.com/avyayalaya">Parth Sangani</a>'
+
+# Last edit timestamp
+last_edit_timestamp: true
+last_edit_time_format: "%b %e %Y at %I:%M %p"
+
+# Color scheme (light or dark)
+color_scheme: light
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Exclude from processing
+exclude:
+  - .claude-plugin/
+  - node_modules/
+  - vendor/
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - README.md

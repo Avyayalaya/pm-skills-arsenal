@@ -1,3 +1,8 @@
+---
+layout: "default"
+title: "GitHub Copilot Installation"
+nav_order: 3
+---
 # Install PM Skills Arsenal — GitHub Copilot
 
 Load skill files into GitHub Copilot Chat or Copilot CLI to get elite-tier PM analysis. Same skills, same frameworks, same output quality as the Claude Code plugin.
@@ -137,4 +142,4 @@ Custom instructions (`.github/copilot-instructions.md`) are short, persistent ru
 
 ---
 
-*[Back to main README](../README.md) · [GitHub Repo](https://github.com/Avyayalaya/pm-skills-arsenal) · MIT License*
+*[Back to Home](../index.html) · [GitHub Repo](https://github.com/Avyayalaya/pm-skills-arsenal) · MIT License*
