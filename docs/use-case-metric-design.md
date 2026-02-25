@@ -4,6 +4,10 @@ title: "Metric Design: M365 Copilot Adoption"
 parent: "Use Cases"
 nav_order: 2
 ---
+
+<script>window.location.href = "{{ site.baseurl }}/showcase/articles/use-case-metric-design.html";</script>
+
+Redirecting to [interactive showcase]({{ site.baseurl }}/showcase/articles/use-case-metric-design.html)...
 # Use Case: Metric Design & Experimentation | M365 Copilot Adoption Metrics
 
 **A Comprehensive Measurement Framework**

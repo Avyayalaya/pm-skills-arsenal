@@ -4,6 +4,10 @@ title: "Specification: AI Chat Interface"
 parent: "Use Cases"
 nav_order: 3
 ---
+
+<script>window.location.href = "{{ site.baseurl }}/showcase/articles/use-case-specification.html";</script>
+
+Redirecting to [interactive showcase]({{ site.baseurl }}/showcase/articles/use-case-specification.html)...
 # Use Case: Specification Writing | AI Chat Interface
 
 **Claude vs ChatGPT Feature Parity Analysis | February 2026**

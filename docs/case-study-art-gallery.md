@@ -4,6 +4,10 @@ title: "Case Study: Art Gallery Expansion"
 parent: "Case Studies"
 nav_order: 1
 ---
+
+<script>window.location.href = "{{ site.baseurl }}/showcase/articles/case-study-art-gallery.html";</script>
+
+Redirecting to [interactive showcase]({{ site.baseurl }}/showcase/articles/case-study-art-gallery.html)...
 # Case Study: Art Gallery Expansion Strategy
 
 **Scenario:** Maya runs Lumina Gallery, a contemporary art space in Portland. After 4 years, she has steady foot traffic and a small collector base, but revenue plateaued at $180K/year. She knows she needs to grow but feels paralyzed by competing ideas: expand the physical space, launch an online store, host more events, or start an art advisory service. She has 8 hours/week to work ON the business (not just IN it).

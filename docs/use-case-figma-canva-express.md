@@ -5,6 +5,10 @@ parent: Use Cases
 nav_order: 1
 ---
 
+<script>window.location.href = "{{ site.baseurl }}/showcase/articles/use-case-figma-canva-express.html";</script>
+
+Redirecting to [interactive showcase]({{ site.baseurl }}/showcase/articles/use-case-figma-canva-express.html)...
+
 # Use Case: Competitive & Market Analysis | Figma vs Canva vs Adobe Express
 
 **Design Tools Market Analysis | February 2026**

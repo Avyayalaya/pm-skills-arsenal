@@ -4,6 +4,10 @@ title: "Narrative Building: Cursor Positioning"
 parent: "Use Cases"
 nav_order: 6
 ---
+
+<script>window.location.href = "{{ site.baseurl }}/showcase/articles/use-case-narrative-building.html";</script>
+
+Redirecting to [interactive showcase]({{ site.baseurl }}/showcase/articles/use-case-narrative-building.html)...
 # Use Case: Narrative Building | Cursor AI Positioning
 
 **The AI-First Code Editor (vs VS Code + Copilot)**

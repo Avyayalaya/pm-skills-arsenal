@@ -7,13 +7,11 @@ has_children: true
 
 # Use Cases
 
-Detailed demonstrations of each PM skill applied to recognizable real products and competitive scenarios.
+Interactive showcases — full skill outputs with tabbed navigation, evidence tiers, and framework analysis.
 
-Each use case includes:
-- Full framework application with scoring rubrics and decision tables
-- Evidence tier annotations (T1-T6) on every substantive claim
-- H/M/L confidence levels on strategic conclusions
-- O→I→R→C→W cascade for all recommendations
-- Assumption registries and adversarial self-critiques
-
-These are not templates or toy examples — they demonstrate the level of depth and rigor the skills produce when applied to real strategic questions.
+- **[Figma vs Canva vs Adobe Express]({{ site.baseurl }}/showcase/articles/use-case-figma-canva-express.html)** — Who wins the design tools war and why Canva's enterprise play changes the answer
+- **[M365 Copilot Adoption]({{ site.baseurl }}/showcase/articles/use-case-metric-design.html)** — How to measure whether a $30/user AI copilot is actually delivering value
+- **[AI Chat Interface Spec]({{ site.baseurl }}/showcase/articles/use-case-specification.html)** — A spec for a ChatGPT-style interface complete enough that an engineer starts building without questions
+- **[Notion's Growth Plateau]({{ site.baseurl }}/showcase/articles/use-case-problem-framing.html)** — Why Notion's growth stalled and which of 12 root causes actually matter
+- **[Superhuman vs Gmail]({{ site.baseurl }}/showcase/articles/use-case-discovery-research.html)** — What users say they want from email vs what their behavior reveals
+- **[Cursor's Positioning]({{ site.baseurl }}/showcase/articles/use-case-narrative-building.html)** — How Cursor positioned itself against GitHub Copilot and VS Code in a market Microsoft owns

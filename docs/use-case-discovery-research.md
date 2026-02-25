@@ -4,6 +4,10 @@ title: "Discovery Research: Superhuman Email"
 parent: "Use Cases"
 nav_order: 5
 ---
+
+<script>window.location.href = "{{ site.baseurl }}/showcase/articles/use-case-discovery-research.html";</script>
+
+Redirecting to [interactive showcase]({{ site.baseurl }}/showcase/articles/use-case-discovery-research.html)...
 # Use Case: Discovery Research | Superhuman Email Adoption
 
 **Why Teams Pay $30/User/Month Instead of Using Gmail for Free**

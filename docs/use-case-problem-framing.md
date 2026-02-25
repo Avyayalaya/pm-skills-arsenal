@@ -4,6 +4,10 @@ title: "Problem Framing: Notion's Growth Plateau"
 parent: "Use Cases"
 nav_order: 4
 ---
+
+<script>window.location.href = "{{ site.baseurl }}/showcase/articles/use-case-problem-framing.html";</script>
+
+Redirecting to [interactive showcase]({{ site.baseurl }}/showcase/articles/use-case-problem-framing.html)...
 # Use Case: Problem Framing | Notion's Growth Plateau
 
 **Decomposing the Productivity Tool Saturation Problem**
