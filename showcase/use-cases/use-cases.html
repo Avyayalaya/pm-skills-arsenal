@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Use Cases: Problem Framing — PM Skills Arsenal</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #FDFAF6;
+  --surface: #FFFFFF;
+  --surface-warm: #F7F3ED;
+  --border: #E8E0D4;
+  --border-light: #F0EBE3;
+  --text: #2C2520;
+  --text-secondary: #6B5E52;
+  --text-muted: #9B8E82;
+  --accent: #B85C38;
+  --accent-light: rgba(184, 92, 56, 0.08);
+  --accent-medium: rgba(184, 92, 56, 0.15);
+  --sage: #5B7B6A;
+  --sage-light: rgba(91, 123, 106, 0.08);
+  --sage-medium: rgba(91, 123, 106, 0.15);
+  --warm-gold: #B8963E;
+  --warm-gold-light: rgba(184, 150, 62, 0.08);
+  --stone: #8B7D6B;
+  --error: #A04030;
+  --error-light: rgba(160, 64, 48, 0.06);
+  --generic-bg: #FDF6F0;
+  --generic-border: #E8D5C4;
+  --skill-bg: #F0F7F3;
+  --skill-border: #C4DDD0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ HEADER ═══ */
+.page-header {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 48px 40px;
+}
+.page-header .overline {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.page-header h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 40px; font-weight: 700;
+  line-height: 1.2; color: var(--text);
+  max-width: 720px; margin-bottom: 14px;
+}
+.page-header .subtitle {
+  font-size: 16px; color: var(--text-secondary);
+  max-width: 600px; line-height: 1.65;
+}
+.stats-row {
+  display: flex; gap: 40px;
+  margin-top: 32px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.stat .val {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 30px; font-weight: 600; color: var(--text);
+}
+.stat .lbl {
+  font-size: 12px; color: var(--text-muted); margin-top: 2px;
+}
+
+/* ═══ NAV ═══ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(253,250,246,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+}
+nav .inner {
+  max-width: 960px; margin: 0 auto;
+  padding: 0 48px; display: flex;
+  gap: 0; overflow-x: auto;
+}
+nav button {
+  padding: 14px 20px; border: none; background: none;
+  font-size: 13px; font-weight: 500; white-space: nowrap;
+  color: var(--text-muted); cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+nav button.active { color: var(--text); border-bottom-color: var(--accent); }
+nav button:hover:not(.active) { color: var(--text-secondary); }
+
+/* ═══ SECTIONS ═══ */
+.section {
+  display: none; max-width: 960px;
+  margin: 0 auto; padding: 48px 48px 80px;
+}
+.section.active { display: block; }
+
+/* ═══ SCENARIO CARD ═══ */
+.scenario-card {
+  background: var(--surface-warm);
+  border-radius: 8px; padding: 28px 32px;
+  margin-bottom: 36px;
+}
+.scenario-card h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--text); margin-bottom: 12px;
+}
+.scenario-card p {
+  font-size: 15px; color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ═══ PROMPT BLOCK ═══ */
+.prompt-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--warm-gold);
+  border-radius: 6px; padding: 20px 24px;
+  margin-bottom: 40px;
+}
+.prompt-block .label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--warm-gold); margin-bottom: 10px;
+}
+.prompt-block blockquote,
+.prompt-block p {
+  font-size: 14px; color: var(--text-secondary);
+  line-height: 1.7; font-style: italic;
+}
+
+/* ═══ COMPARISON LAYOUT ═══ */
+.comparison-header {
+  display: flex; gap: 16px;
+  margin-bottom: 0;
+}
+.comparison-toggle {
+  flex: 1; padding: 14px 20px;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: var(--surface);
+  font-size: 14px; font-weight: 600;
+  cursor: pointer; text-align: center;
+  transition: all 0.15s;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text-muted);
+}
+.comparison-toggle.active-generic {
+  background: var(--generic-bg);
+  border-color: var(--generic-border);
+  color: var(--stone);
+}
+.comparison-toggle.active-skill {
+  background: var(--skill-bg);
+  border-color: var(--skill-border);
+  color: var(--sage);
+}
+.comparison-toggle:hover:not(.active-generic):not(.active-skill) {
+  background: var(--surface-warm);
+}
+
+.comparison-panel {
+  display: none;
+  border: 1px solid var(--border);
+  border-radius: 0 0 8px 8px;
+  padding: 32px;
+  margin-bottom: 36px;
+  animation: fadeIn 0.2s ease;
+}
+.comparison-panel.show { display: block; }
+.comparison-panel.generic {
+  background: var(--generic-bg);
+  border-color: var(--generic-border);
+}
+.comparison-panel.skill {
+  background: var(--skill-bg);
+  border-color: var(--skill-border);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ WHAT CHANGED ═══ */
+.what-changed {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 32px;
+  margin-top: 12px;
+}
+.what-changed h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--text); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.what-changed h3::before {
+  content: '\0394'; /* delta */
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent-light); color: var(--accent);
+  font-size: 16px; font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.change-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.change-item:last-child { border-bottom: none; }
+.change-item strong {
+  color: var(--text); font-weight: 600;
+  display: block; margin-bottom: 4px;
+  font-size: 14px;
+}
+.change-item p,
+.change-item span {
+  font-size: 14px; color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ═══ CONTENT TYPOGRAPHY ═══ */
+.content h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 24px; font-weight: 600;
+  color: var(--text); margin: 28px 0 14px;
+}
+.content h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--text); margin: 24px 0 10px;
+}
+.content h4 {
+  font-size: 14px; font-weight: 600;
+  color: var(--text); margin: 20px 0 8px;
+}
+.content p {
+  font-size: 15px; color: var(--text-secondary);
+  margin-bottom: 14px; line-height: 1.7;
+}
+.content ul, .content ol {
+  margin: 8px 0 14px 20px;
+  font-size: 15px; color: var(--text-secondary);
+}
+.content li { margin-bottom: 6px; line-height: 1.6; }
+.content li strong { color: var(--text); }
+.content em { color: var(--accent); font-style: italic; }
+.content strong { color: var(--text); font-weight: 600; }
+.content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+.content blockquote {
+  border-left: 3px solid var(--warm-gold);
+  padding: 12px 20px; margin: 14px 0;
+  background: var(--warm-gold-light);
+  border-radius: 0 6px 6px 0;
+}
+.content blockquote p { margin-bottom: 0; font-style: italic; }
+
+/* ═══ TABLES ═══ */
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 16px 0 20px; font-size: 13px;
+}
+.content th {
+  text-align: left; padding: 10px 14px;
+  background: var(--surface-warm);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600; color: var(--text);
+  font-size: 12px; letter-spacing: 0.3px;
+}
+.content td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  vertical-align: top; line-height: 1.6;
+}
+.content tr:hover td { background: rgba(247,243,237,0.5); }
+
+/* ═══ CODE BLOCKS ═══ */
+.content pre {
+  background: #2C2520;
+  color: #E8E0D4;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0 20px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+.content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: var(--surface-warm);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+.content pre code {
+  background: none; padding: 0;
+  color: inherit; font-size: inherit;
+}
+
+/* ═══ EVIDENCE BADGES ═══ */
+.evidence-badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  padding: 2px 7px; border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.evidence-badge.t1 { background: var(--sage-light); color: var(--sage); }
+.evidence-badge.t2 { background: var(--sage-light); color: var(--sage); }
+.evidence-badge.t3 { background: var(--warm-gold-light); color: var(--warm-gold); }
+.evidence-badge.t4 { background: var(--accent-light); color: var(--accent); }
+.evidence-badge.t5 { background: var(--error-light); color: var(--error); }
+
+/* ═══ CONFIDENCE TAGS ═══ */
+.conf-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 8px; border-radius: 10px;
+  text-transform: uppercase;
+}
+.conf-tag.high { background: var(--sage-light); color: var(--sage); }
+.conf-tag.medium { background: var(--warm-gold-light); color: var(--warm-gold); }
+.conf-tag.low { background: var(--error-light); color: var(--error); }
+
+/* ═══ FOOTER ═══ */
+footer {
+  max-width: 960px; margin: 0 auto;
+  padding: 24px 48px 48px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px; color: var(--text-muted);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .page-header { padding: 36px 24px 28px; }
+  .page-header h1 { font-size: 28px; }
+  nav .inner { padding: 0 24px; }
+  .section { padding: 32px 24px 60px; }
+  .stats-row { flex-wrap: wrap; gap: 24px; }
+  .comparison-header { flex-direction: column; gap: 8px; }
+  .content table { font-size: 12px; }
+  .content th, .content td { padding: 8px 10px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="overline">PM Skills Arsenal · Use Cases</div>
+  <h1>Problem Framing</h1>
+  <div class="subtitle">Side-by-side comparison: what generic AI produces vs. what the skill produces — with the same prompt, the same data, the same question.</div>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="val">3</div>
+      <div class="lbl">Use Cases</div>
+    </div>
+    <div class="stat">
+      <div class="val">2×</div>
+      <div class="lbl">Side-by-Side Comparisons</div>
+    </div>
+    <div class="stat">
+      <div class="val">△</div>
+      <div class="lbl">Delta Analysis Per Case</div>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="inner">
+    <button class="active" onclick="showUC(0)" id="nav-0">The CEO Says "We Need a Mobile App"</button><button onclick="showUC(1)" id="nav-1">Retention Is Declining 3% Month-Over-Month and ...</button><button onclick="showUC(2)" id="nav-2">Five Stakeholders, Five "Urgent" Feature Reques...</button>
+  </div>
+</nav>
+
+
+        <div class="section active" id="uc-0">
+          <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:28px; font-weight:600; margin-bottom:24px; color:var(--text);">
+            Use Case 1: The CEO Says &quot;We Need a Mobile App&quot;
+          </h2>
+
+          
+            <div class="scenario-card">
+              <h3>Scenario</h3>
+              <p>The CEO of a B2B SaaS analytics platform (2,000 enterprise customers, $40M ARR) tells the VP Product: "Our competitors all have mobile apps. We need one by Q3." The PM inherits this mandate and needs to determine whether a mobile app actually solves a real problem -- or whether the CEO is prescribing a solution before anyone has diagnosed the disease. No user research has been done; the directive is based on a board meeting where a competitor's mobile app was mentioned.</p>
+            </div>
+          
+            <div class="prompt-block">
+              <div class="label">The Prompt</div>
+              <p>Our CEO says we need to build a mobile app because our competitors have them. We're a B2B analytics platform. I need to figure out if this is the right thing to build and what problem it would actually solve. What should I do?</p>
+            </div>
+
+          <div class="comparison-header">
+            <button class="comparison-toggle active-generic" onclick="showPanel(0,'generic')" id="tog-0-generic">
+              Without the Skill
+            </button>
+            <button class="comparison-toggle active-skill" onclick="showPanel(0,'skill')" id="tog-0-skill">
+              With the Skill
+            </button>
+          </div>
+
+          <div class="comparison-panel generic show content" id="panel-0-generic">
+            <p>Building a mobile app for your B2B analytics platform is a significant undertaking, but it can drive real value. Here's a framework for approaching this:</p>
+<p><strong>Why a mobile app could make sense:</strong></p>
+<ul>
+<li>Executives and managers increasingly want to check dashboards on the go</li>
+<li>Mobile access can improve engagement and daily active usage</li>
+<li>Competitors offering mobile create a perception gap in sales conversations</li>
+<li>Mobile push notifications can drive re-engagement with key metrics</li>
+</ul>
+<p><strong>Key considerations before building:</strong></p>
+<ol>
+<li><strong>Target audience:</strong> Focus on executives and managers who need quick access to KPIs, not analysts who need deep data manipulation</li>
+<li><strong>Core features:</strong> Start with a read-only dashboard viewer, push alerts for metric thresholds, and a simple commenting/annotation feature</li>
+<li><strong>Platform choice:</strong> iOS first if your customers skew enterprise; consider React Native for cross-platform efficiency</li>
+<li><strong>MVP scope:</strong> A 12-week sprint could deliver a dashboard viewer with SSO and push notifications</li>
+</ol>
+<p><strong>Recommended approach:</strong></p>
+<ul>
+<li>Survey your top 20 customers to gauge interest</li>
+<li>Build a lightweight MVP focused on dashboard viewing</li>
+<li>Measure adoption over 90 days before investing in deeper features</li>
+<li>Use the mobile app as a differentiator in sales demos</li>
+</ul>
+<p><strong>Risks to manage:</strong></p>
+<ul>
+<li>Security requirements for mobile are higher in enterprise</li>
+<li>Low adoption could waste 3-6 months of engineering time</li>
+<li>Maintaining a separate mobile codebase increases ongoing cost</li>
+</ul>
+<p>The mobile app can be a strong competitive move if scoped correctly. Start small, measure adoption, and iterate based on usage data.</p>
+          </div>
+          <div class="comparison-panel skill content" id="panel-0-skill" style="display:none;">
+            <p><strong>Step 0: Context Fitness Check -- This Is a Solution, Not a Problem</strong></p>
+<p>The CEO's directive -- "build a mobile app" -- is a solution masquerading as a problem (Failure Mode FM-1). Before any scoping, feature listing, or technical planning, we need to define the actual problem. The question is not "should we build a mobile app?" The question is "what problem are our users experiencing that a mobile app might -- or might not -- solve?"</p>
+<p><strong>Problem Definition Canvas (Framework 1)</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Finding</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Who has this problem?</strong></td>
+<td>Unknown. CEO cited "our customers" but no specific segment identified. Could be: (a) executives wanting KPI glances, (b) field sales needing client data in meetings, (c) on-call analysts needing alert triage. Each is a different problem.</td>
+<td>(<span class="evidence-badge t5">T5</span>: CEO assertion based on board meeting)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>What are they trying to do?</strong></td>
+<td>Unknown. "Access analytics on mobile" is a solution description. The underlying goal has not been articulated by any user.</td>
+<td>(T6: inferred from competitor feature)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>What do they do today?</strong></td>
+<td>Unknown. No data on whether users attempt to access the platform on mobile browsers, request mobile access in support tickets, or use workarounds (screenshots, exported PDFs, email digests).</td>
+<td>(T6: no behavioral data collected)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Why is that painful?</strong></td>
+<td>Unvalidated. The assumption is that lack of mobile access is painful, but no evidence of pain -- no support tickets, no churn exit interviews citing mobile, no workaround behavior observed.</td>
+<td>(T6: assumed based on competitor parity logic)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>What triggers the pain?</strong></td>
+<td>Unspecified. If the trigger is "board meetings where competitors are mentioned," that is the CEO's pain (competitive positioning), not the user's pain.</td>
+<td>(<span class="evidence-badge t5">T5</span>: CEO's board meeting experience)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>What does "good" look like?</strong></td>
+<td>Undefined by users. The CEO's "good" is competitive parity. Users have not been asked.</td>
+<td>(<span class="evidence-badge t5">T5</span>: CEO framing)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>How do they know it's solved?</strong></td>
+<td>No user-defined success criteria exist.</td>
+<td>(T6: none established)</td>
+<td>L</td>
+</tr>
+</tbody></table></div>
+<p><strong>Canvas Assessment: 0 cells at <span class="evidence-badge t1">T1</span>-<span class="evidence-badge t2">T2</span>, 0 at <span class="evidence-badge t3">T3</span>-<span class="evidence-badge t4">T4</span>, 7 at <span class="evidence-badge t5">T5</span>-T6 = SPECULATION.</strong> This is not a problem definition -- it is an untested assumption. The Canvas itself becomes the research brief: every cell is a question that must be answered before committing engineering resources.</p>
+<p><code>[EVIDENCE-LIMITED: validate with Tier 1-2 before acting]</code></p>
+<p><strong>Root Cause Analysis (Framework 2 -- 5 Whys)</strong></p>
+<pre><code>Symptom: CEO says &quot;we need a mobile app&quot;
+|
++-- Why 1: Competitor was featured at a board meeting for having a mobile app (T5: CEO report)
+    |
+    +-- Why 2: Board members questioned whether our platform is falling behind (T5: CEO interpretation)
+        |
+        +-- Why 3a: Our sales team may be losing deals due to perceived feature gap (T5: unvalidated -- no win/loss data cited)
+        |   |
+        |   +-- ROOT CAUSE A: Competitive positioning gap in sales conversations (T5) -- [EVIDENCE-LIMITED]
+        |
+        +-- Why 3b: Users may genuinely need mobile access for specific workflows (T6: assumed, zero user evidence)
+            |
+            +-- ROOT CAUSE B: Unidentified user workflow gap (T6) -- [EVIDENCE-LIMITED]</code></pre>
+<p><strong>Divergence check:</strong> The root cause diverges dramatically from the presented problem. The CEO framed this as a product gap ("we need a mobile app"). The 5 Whys reveal two possible root problems: (a) a sales/positioning problem, or (b) an unvalidated user workflow problem. These require completely different solutions. A sales positioning problem might be solved by a demo-ready prototype or a roadmap slide. A user workflow problem requires Discovery research to even define.</p>
+<p><strong>Opportunity Sizing (Framework 4)</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Score</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Frequency</strong></td>
+<td>? -- Cannot score</td>
+<td>No data on how often users need mobile access (T6)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Severity</strong></td>
+<td>? -- Cannot score</td>
+<td>No evidence users are blocked, frustrated, or churning due to lack of mobile (T6)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Breadth</strong></td>
+<td>? -- Cannot score</td>
+<td>No data on what % of the 2,000 customers would use a mobile app (T6)</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Willingness</strong></td>
+<td>2 -- No evidence of workaround investment</td>
+<td>No users are paying for mobile workarounds, building mobile dashboards elsewhere, or requesting mobile in support tickets (T6: absence of signal)</td>
+<td>L</td>
+</tr>
+</tbody></table></div>
+<p><strong>Opportunity Score: Unscorable.</strong> Every dimension lacks the evidence needed to produce a meaningful score. Committing 3-6 months of engineering to an unscorable opportunity is the definition of building on assumption.</p>
+<p><strong>Recommendation (O-I-R-C-W Cascade)</strong></p>
+<ul>
+<li><strong>Observation</strong> [<span class="evidence-badge t5">T5</span>/T6]: The CEO's mobile app directive is based on competitive parity logic from a board meeting. Zero user behavioral data (<span class="evidence-badge t1">T1</span>) or primary research (<span class="evidence-badge t2">T2</span>) supports the existence of a mobile access problem.</li>
+<li><strong>Implication</strong>: Building a mobile app without validated problem evidence risks 3-6 months of engineering investment ($300K-$600K fully loaded) on a solution to a problem that may not exist for users. The real problem may be competitive positioning in sales conversations -- a fundamentally different problem with fundamentally different solutions.</li>
+<li><strong>Response</strong>: Before any mobile app work, run a 2-week problem validation sprint: (1) Pull mobile browser access logs to check if users are attempting mobile access today (<span class="evidence-badge t1">T1</span>, 2 days), (2) Analyze support tickets and churn exit interviews for mobile-related requests (<span class="evidence-badge t1">T1</span>, 2 days), (3) Interview 8-10 users across 3 segments -- executives, field sales users, on-call analysts -- about their out-of-office analytics workflows (<span class="evidence-badge t2">T2</span>, 1 week). Owner: PM. Timeline: 2 weeks.</li>
+<li><strong>Confidence</strong>: M -- assumes that 2 weeks of research will produce enough signal to either validate or invalidate the mobile problem. If the user base is too small or too disengaged for meaningful signal, additional research is needed.</li>
+<li><strong>Watch</strong>: If mobile browser access logs show >5% of DAU attempting mobile access, or if >3 of 10 interviewees describe a specific mobile workflow pain, the problem may be real. If neither signal appears, the problem is a stakeholder projection, not a user need.</li>
+</ul>
+          </div>
+
+          
+            <div class="what-changed">
+              <h3>What Changed</h3>
+              <div class="change-item"><strong>Solution-as-problem detected and redirected.</strong><span>The generic output accepted "build a mobile app" as the starting point and immediately began scoping features. The skill recognized this as FM-1 (Solution Masquerading as Problem) and redirected to problem definition before any solution work.</span></div>
+<div class="change-item"><strong>Problem Definition Canvas exposed total evidence vacuum.</strong><span>All 7 dimensions scored at <span class="evidence-badge t5">T5</span>-T6 with L confidence, producing a SPECULATION assessment. This makes the evidence gap viscerally clear to any stakeholder reading the document -- including the CEO.</span></div>
+<div class="change-item"><strong>Root cause analysis revealed two fundamentally different problems.</strong><span>The 5 Whys branched at Why 3 into a sales positioning problem (solvable without a mobile app) and an unvalidated user workflow problem (requires research to even define). The generic output conflated these.</span></div>
+<div class="change-item"><strong>Opportunity sizing was honestly declared unscorable.</strong><span>Rather than fabricating a plausible-sounding estimate, the skill flagged that every dimension lacked evidence to score -- making the case for research before commitment.</span></div>
+<div class="change-item"><strong>Concrete next action with timeline and success criteria.</strong><span>Instead of "survey your top 20 customers," the skill prescribed a specific 2-week validation sprint with <span class="evidence-badge t1">T1</span> data pulls and <span class="evidence-badge t2">T2</span> interviews, with explicit watch indicators that determine whether to proceed.  ---</span></div>
+
+            </div>
+        </div>
+        <div class="section" id="uc-1">
+          <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:28px; font-weight:600; margin-bottom:24px; color:var(--text);">
+            Use Case 2: Retention Is Declining 3% Month-Over-Month and Everyone Has a Theory
+          </h2>
+
+          
+            <div class="scenario-card">
+              <h3>Scenario</h3>
+              <p>A consumer SaaS product (photo editing tool, 800K MAU, freemium model) has seen 30-day retention drop from 42% to 33% over 4 months. The Head of Growth blames onboarding changes made in Q1. The Design Lead thinks the new editor UI is confusing power users. Engineering believes performance degradation on lower-end devices is the issue. Customer Support says users are leaving for a competitor that launched AI features. The PM needs to cut through competing narratives and identify the actual root cause -- or causes -- before the team spends a quarter building the wrong fix.</p>
+            </div>
+          
+            <div class="prompt-block">
+              <div class="label">The Prompt</div>
+              <p>Our 30-day retention has dropped from 42% to 33% over 4 months. Growth thinks it's onboarding, Design thinks it's the new UI, Engineering thinks it's performance, and Support thinks users are leaving for a competitor with AI features. How do I figure out what's actually going on and what to fix first?</p>
+            </div>
+
+          <div class="comparison-header">
+            <button class="comparison-toggle active-generic" onclick="showPanel(1,'generic')" id="tog-1-generic">
+              Without the Skill
+            </button>
+            <button class="comparison-toggle active-skill" onclick="showPanel(1,'skill')" id="tog-1-skill">
+              With the Skill
+            </button>
+          </div>
+
+          <div class="comparison-panel generic show content" id="panel-1-generic">
+            <p>A 9-percentage-point retention drop over 4 months is a serious problem that needs immediate investigation. Here's how to approach this systematically:</p>
+<p><strong>Step 1: Data Analysis</strong> First, segment your retention data to identify where the drop is concentrated:</p>
+<ul>
+<li>Cohort analysis by signup date to see if the decline started with a specific cohort</li>
+<li>Segment by user type (free vs. paid, new vs. returning, power user vs. casual)</li>
+<li>Check if the drop is uniform across platforms (web, iOS, Android)</li>
+</ul>
+<p><strong>Step 2: Evaluate Each Theory</strong></p>
+<ul>
+<li><strong>Onboarding (Growth's theory):</strong> Compare retention of users who went through old vs. new onboarding. If new onboarding cohorts retain worse, this is a signal.</li>
+<li><strong>UI confusion (Design's theory):</strong> Look at engagement metrics for power users specifically. Are they using the new editor less? Are they completing fewer projects?</li>
+<li><strong>Performance (Engineering's theory):</strong> Check crash rates, load times, and error rates by device tier. If low-end devices show higher churn, performance is a factor.</li>
+<li><strong>Competitor (Support's theory):</strong> Monitor competitor mentions in cancellation surveys and social media. Check if churn correlates with the competitor's launch date.</li>
+</ul>
+<p><strong>Step 3: Prioritize Fixes</strong> Based on your findings, use an impact-effort matrix:</p>
+<ul>
+<li><strong>Quick wins:</strong> Performance optimizations that improve experience across the board</li>
+<li><strong>High impact:</strong> Onboarding improvements if cohort data confirms the theory</li>
+<li><strong>Strategic:</strong> AI feature development if competitor threat is validated</li>
+</ul>
+<p><strong>Step 4: Run Experiments</strong></p>
+<ul>
+<li>A/B test a revised onboarding flow</li>
+<li>Roll back UI changes for a subset of power users to measure impact</li>
+<li>Implement performance improvements and measure retention lift</li>
+</ul>
+<p><strong>Recommended timeline:</strong></p>
+<ul>
+<li>Week 1-2: Data analysis and segmentation</li>
+<li>Week 3-4: Targeted fixes for the highest-signal theory</li>
+<li>Month 2-3: Deeper investments based on validated findings</li>
+</ul>
+<p>The key is letting data, not opinions, drive the decision. Start with the analysis, then act on what the numbers tell you.</p>
+          </div>
+          <div class="comparison-panel skill content" id="panel-1-skill" style="display:none;">
+            <p><strong>Step 0b: Framework Selection</strong></p>
+<p>Question type: <strong>Root cause investigation</strong> -- "why is this happening?" with multiple competing theories.</p>
+<ul>
+<li>Primary frameworks: F2 5 Whys Root Cause Analysis, F1 Problem Definition Canvas, F6 Constraint Mapping</li>
+<li>Supporting: F4 Opportunity Sizing (to quantify which root cause matters most), F7 Stakeholder Impact Matrix (to manage the four competing narratives)</li>
+<li>Skipped: F8 ICE/RICE -- premature until root causes are identified. F3 JTBD -- this is a diagnosis problem, not a "what job" problem.</li>
+</ul>
+<p><strong>Problem Statement</strong></p>
+<p>Retained users of a freemium photo editing tool (800K MAU) are churning at an accelerating rate -- 30-day retention declined from 42% to 33% over 4 months -- resulting in an estimated loss of ~72,000 monthly active users per cohort and projected revenue impact of $180K-$360K/quarter on conversion pipeline. <strong>Confidence: H</strong> (<span class="evidence-badge t1">T1</span>: retention data from product analytics).</p>
+<p>The problem statement is high-confidence on the <em>symptom</em>. The root cause is where confidence drops.</p>
+<p><strong>Root Cause Analysis (Framework 2 -- 5 Whys with Branching)</strong></p>
+<pre><code>Symptom: 30-day retention dropped from 42% to 33% over 4 months (T1: product analytics)
+|
++-- Why 1: More users are disengaging within the first 30 days than 4 months ago (T1: cohort data)
+    |
+    +-- Why 2a: ONBOARDING BRANCH -- New onboarding flow (shipped Q1) may be failing to activate users
+    |   |
+    |   Evidence check: Compare retention of Q1 onboarding cohort vs. pre-Q1 cohort (T1)
+    |   STATUS: [EVIDENCE AVAILABLE -- REQUIRES ANALYSIS]
+    |   If pre/post cohort retention diverges by &gt;3pp, this branch is validated.
+    |   If retention decline appears in BOTH cohorts, onboarding is not the root cause.
+    |   |
+    |   +-- Why 3a: New onboarding removed the guided project flow that previously drove first-session completion (T5: Growth team&#x27;s assertion)
+    |       |
+    |       +-- ROOT CAUSE A: Activation metric (first project completion) regressed due to onboarding redesign (T5 -- requires T1 validation)
+    |           [EVIDENCE-LIMITED: validate by pulling first-project-completion rates pre/post Q1]
+    |
+    +-- Why 2b: UI BRANCH -- Users who previously completed tasks are now struggling or abandoning
+    |   |
+    |   Evidence check: Task completion rates and session depth for returning users on new vs. old editor (T1)
+    |   STATUS: [EVIDENCE AVAILABLE -- REQUIRES ANALYSIS]
+    |   If returning-user task completion dropped post-UI change, this branch is validated.
+    |   If new users also struggle equally, the problem is broader than power-user confusion.
+    |   |
+    |   +-- Why 3b: New editor UI reorganized tool placement without user testing (T5: Design lead&#x27;s admission)
+    |       |
+    |       +-- ROOT CAUSE B: Learned workflows disrupted for existing users, increasing cognitive load per session (T5 + T6)
+    |           [EVIDENCE-LIMITED: validate with session recordings and task-completion-time analysis]
+    |
+    +-- Why 2c: PERFORMANCE BRANCH -- Users on lower-end devices experiencing degraded performance
+    |   |
+    |   Evidence check: Retention segmented by device tier; crash rates and load times by device (T1)
+    |   STATUS: [EVIDENCE AVAILABLE -- REQUIRES ANALYSIS]
+    |   If low-end device retention dropped disproportionately, this branch is validated.
+    |   If retention dropped equally across device tiers, performance is not the primary driver.
+    |   |
+    |   +-- Why 3c: New editor introduced WebGL rendering that requires more GPU memory (T3: engineering assessment)
+    |       |
+    |       +-- ROOT CAUSE C: Technology choice in new editor excludes ~25% of user base on lower-end hardware (T3 + T6)
+    |           [Partial evidence: engineering confirms WebGL requirements. User impact unquantified.]
+    |
+    +-- Why 2d: COMPETITIVE BRANCH -- Users leaving for a competitor with AI-powered features
+        |
+        Evidence check: Churn exit survey mentions of competitor; timing correlation with competitor launch (T1 + T2)
+        STATUS: [EVIDENCE PARTIALLY AVAILABLE -- exit surveys exist but sample is small]
+        If competitor mentions spiked in exit surveys post-launch, this branch is validated.
+        If churn increase predates competitor launch, competitive pressure is not the primary driver.
+        |
+        +-- Why 3d: Competitor launched AI background removal and auto-enhancement that our tool lacks (T5: Support team reports from user conversations)
+            |
+            +-- ROOT CAUSE D: Value proposition gap -- competitor offers capability our users want but we do not provide (T5)
+                [EVIDENCE-LIMITED: Support anecdotes are T5. Need exit survey data (T2) and competitor adoption data (T4).]</code></pre>
+<p><strong>The Critical Insight: This Is Probably Multi-Factorial</strong></p>
+<p>A 9pp retention decline over 4 months is unlikely to have a single cause. The timing suggests compounding factors: Q1 onboarding change + Q1 UI redesign + gradual performance degradation + competitor launch. The 5 Whys analysis deliberately branches because single-threading would produce a false diagnosis.</p>
+<p><strong>Opportunity Sizing Per Root Cause (Framework 4 -- Comparative)</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Root Cause</th>
+<th>Frequency</th>
+<th>Severity</th>
+<th>Breadth</th>
+<th>Willingness</th>
+<th>Score</th>
+<th>Evidence Quality</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>A: Onboarding regression</strong></td>
+<td>5 -- every new user (<span class="evidence-badge t1">T1</span>)</td>
+<td>3-4 -- fails to activate but does not block entirely (<span class="evidence-badge t5">T5</span>)</td>
+<td>4 -- 100% of new signups (<span class="evidence-badge t1">T1</span>)</td>
+<td>3 -- users who don't activate rarely return (<span class="evidence-badge t1">T1</span>)</td>
+<td>180-240</td>
+<td>Mixed: <span class="evidence-badge t1">T1</span> frequency/breadth, <span class="evidence-badge t5">T5</span> severity</td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>B: UI disruption</strong></td>
+<td>3 -- every editing session for returning users (T6)</td>
+<td>3 -- workaround exists (relearn) but friction is high (<span class="evidence-badge t5">T5</span>)</td>
+<td>2-3 -- affects returning users who learned old UI (T6)</td>
+<td>3 -- would stay if friction removed (T6)</td>
+<td>54-81</td>
+<td>Weak: mostly <span class="evidence-badge t5">T5</span>-T6</td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>C: Performance on low-end devices</strong></td>
+<td>4 -- every session on affected devices (<span class="evidence-badge t3">T3</span>)</td>
+<td>4 -- app crashes or runs unusably slow (<span class="evidence-badge t3">T3</span>)</td>
+<td>2 -- ~25% of user base on low-end devices (T6)</td>
+<td>4 -- users leave immediately when app is unusable (T6)</td>
+<td>128</td>
+<td>Partial: <span class="evidence-badge t3">T3</span> technical, T6 breadth</td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>D: Competitor AI features</strong></td>
+<td>2 -- relevant only when user needs specific AI capability (<span class="evidence-badge t5">T5</span>)</td>
+<td>2 -- can still edit photos, just lacks one capability (<span class="evidence-badge t5">T5</span>)</td>
+<td>2 -- subset of users who need AI features (<span class="evidence-badge t5">T5</span>)</td>
+<td>3 -- some users willing to switch (<span class="evidence-badge t5">T5</span>)</td>
+<td>24</td>
+<td>Weak: all <span class="evidence-badge t5">T5</span></td>
+<td>L</td>
+</tr>
+</tbody></table></div>
+<p><strong>Cross-Framework Contradiction (Mandatory)</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Contradiction</th>
+<th>Analysis A says</th>
+<th>Analysis B says</th>
+<th>Resolution</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Onboarding vs. UI as primary driver</td>
+<td>Root Cause A (onboarding) affects all new users -- highest breadth</td>
+<td>Root Cause B (UI) affects returning users -- the cohort with highest LTV</td>
+<td>Both could be true simultaneously. The retention decline may be a new-user activation problem AND a returning-user engagement problem. Segmented cohort analysis (new vs. returning user retention) is the discriminating test.</td>
+</tr>
+<tr>
+<td>Performance vs. Competitive pressure</td>
+<td>Root Cause C suggests users leave because the app is broken for them</td>
+<td>Root Cause D suggests users leave because a competitor is better</td>
+<td>For low-end device users, both may compound: degraded performance + attractive alternative = accelerated churn. Check if competitor mentions are disproportionately high among low-end device users.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Recommendations (O-I-R-C-W Cascade)</strong></p>
+<p><strong>Recommendation 1: Run the Discriminating Analysis Before Committing to Any Fix</strong></p>
+<ul>
+<li><strong>Observation</strong> [<span class="evidence-badge t1">T1</span>]: Four competing root cause theories exist, each championed by a different team. All four are plausible. None have been validated against behavioral data that already exists in the product analytics system.</li>
+<li><strong>Implication</strong>: Committing to any single fix without discriminating analysis risks spending a quarter solving 25% of the problem while 75% continues unchecked. Worse, each team will interpret any improvement (or lack thereof) as confirmation of their theory.</li>
+<li><strong>Response</strong>: Before any fix is built, run a 1-week data analysis sprint with four specific queries: (1) Retention by cohort, pre/post Q1 onboarding change. (2) Returning-user task completion rates, pre/post UI redesign. (3) Retention segmented by device tier with crash/load-time correlation. (4) Exit survey competitive mentions over time, correlated with competitor launch date. Owner: PM + Data Analyst. Timeline: 5 business days. Deliverable: A validated root cause ranking that replaces opinion with data.</li>
+<li><strong>Confidence</strong>: H -- the data to discriminate between theories already exists. This is not a research problem; it is an analysis problem.</li>
+<li><strong>Watch</strong>: If the data analysis shows roughly equal contribution from all four causes, the problem is systemic (cumulative quality regression), not attributable to a single root cause. This changes the response from "fix the root cause" to "halt new feature work and run a quality sprint."</li>
+</ul>
+<p><strong>Recommendation 2: Instrument the Activation Funnel Immediately</strong></p>
+<ul>
+<li><strong>Observation</strong> [<span class="evidence-badge t5">T5</span>]: Growth's theory (onboarding regression) has the highest potential opportunity score (180-240) but severity is unvalidated.</li>
+<li><strong>Implication</strong>: If first-project-completion rate dropped post-Q1, the onboarding change is destroying value at the widest point of the funnel. Every day without data is a day of compounding loss.</li>
+<li><strong>Response</strong>: Add activation funnel instrumentation (onboarding step completion, first project start, first project completion, first export) if not already tracked at step-level granularity. Owner: Engineering + Growth. Timeline: 2-3 days.</li>
+<li><strong>Confidence</strong>: H -- assumes onboarding step tracking is technically straightforward. If the onboarding flow is not instrumented at step level, this is itself a problem.</li>
+<li><strong>Watch</strong>: If first-project-completion rate is stable pre/post Q1, onboarding is not the cause. Redirect investigation to Root Causes B and C.</li>
+</ul>
+<p><strong>Assumption Registry</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>#</th>
+<th>Assumption</th>
+<th>Framework</th>
+<th>Confidence</th>
+<th>Evidence</th>
+<th>Invalidation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>The 4-month retention decline has identifiable, discrete root causes rather than being diffuse quality regression</td>
+<td>F2 Root Cause Analysis</td>
+<td>M</td>
+<td>T6: assumes the 5 Whys branching model applies; some retention declines are death-by-a-thousand-cuts</td>
+<td>If the discriminating analysis shows no single cause explains >3pp of the 9pp drop, the problem is systemic, not attributable</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Existing product analytics data is sufficient to discriminate between the four theories</td>
+<td>Recommendation 1</td>
+<td>M</td>
+<td>T6: assumes instrumentation exists for cohort comparison, device segmentation, and task completion tracking</td>
+<td>If key events are not tracked (e.g., onboarding steps, task completion), the 1-week analysis sprint becomes a 3-week instrumentation + analysis sprint</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The four theories from internal stakeholders cover the actual root causes</td>
+<td>F2 Root Cause Analysis</td>
+<td>L</td>
+<td><span class="evidence-badge t5">T5</span>: assumes the Growth, Design, Engineering, and Support teams have collectively identified all plausible causes</td>
+<td>A cause not represented by any internal team (e.g., pricing change by a partner, SEO channel shift bringing lower-intent users, seasonal effect) could be the real driver. The discriminating analysis should include a "none of the above" check. <code>[EVIDENCE-LIMITED]</code></td>
+</tr>
+</tbody></table></div>
+<p><strong>Adversarial Self-Critique</strong></p>
+<p><strong>Weakness 1: The Framework Assumes the Problem Is Diagnosable from Existing Data.</strong> If the product lacks granular event tracking -- a common state for 800K-MAU consumer tools that grew quickly -- the "1-week analysis sprint" recommendation falls apart. The PM would need 3-4 weeks of instrumentation before analysis can begin, during which retention continues to erode. The skill should have assessed data infrastructure maturity as a constraint (F6) before prescribing data-driven diagnosis.</p>
+<p><strong>Weakness 2: Stakeholder Theories May Be a Subset of Reality.</strong> The analysis takes the four internal theories as the universe of possible causes and structures the entire root cause tree around them. But retention declines can be driven by factors no internal team surfaces: changes in acquisition channel mix bringing lower-quality users, seasonal effects, a pricing or billing change, or even an external event (competitor free tier, viral social media criticism). The "none of the above" scenario is listed in the Assumption Registry but insufficiently investigated.</p>
+<p><strong>Weakness 3: Multi-Factorial Framing May Paralyze Rather Than Clarify.</strong> By acknowledging that all four causes might be real simultaneously, the analysis risks producing a "fix everything" recommendation that is operationally equivalent to no recommendation. A PM with four validated root causes and limited engineering capacity still needs to pick one to fix first -- and this analysis defers that decision to the discriminating data analysis rather than providing a decision framework for the post-analysis moment.</p>
+          </div>
+
+          
+            <div class="what-changed">
+              <h3>What Changed</h3>
+              <div class="change-item"><strong>Root cause analysis branched into four parallel tracks with explicit validation criteria for each.</strong><span>The generic output listed "evaluate each theory" as a step; the skill structured each theory as a 5 Whys branch with specific <span class="evidence-badge t1">T1</span> data queries that would confirm or eliminate it, including the exact conditional logic ("if X, this branch is validated; if Y, it is eliminated").</span></div>
+<div class="change-item"><strong>Opportunity sizing was applied per root cause, exposing which theories matter most even before validation.</strong><span>The generic output treated all four theories as equal candidates. The skill scored each on Frequency x Severity x Breadth x Willingness, revealing that onboarding regression (score 180-240) dwarfs competitive pressure (score 24) in potential impact -- changing the investigation priority order.</span></div>
+<div class="change-item"><strong>Cross-framework contradictions surfaced compound effects.</strong><span>The skill identified that performance degradation + competitive pressure may compound specifically for low-end device users -- a non-obvious interaction that none of the four teams would see from their individual vantage points.</span></div>
+<div class="change-item"><strong>Assumption Registry exposed the meta-risk.</strong><span>The third assumption -- that the four internal theories cover reality -- is the most dangerous blind spot. The skill flagged it at L confidence with a specific invalidation test, preventing the PM from treating stakeholder theories as the complete universe of possibilities.</span></div>
+<div class="change-item"><strong>Adversarial self-critique identified three genuine weaknesses in the analysis itself</strong><span>, including the risk that the "analyze first" recommendation may be impossible if instrumentation is inadequate, and that the multi-factorial framing could paralyze rather than clarify.  ---</span></div>
+
+            </div>
+        </div>
+        <div class="section" id="uc-2">
+          <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:28px; font-weight:600; margin-bottom:24px; color:var(--text);">
+            Use Case 3: Five Stakeholders, Five &quot;Urgent&quot; Feature Requests, One Platform Team
+          </h2>
+
+          
+            <div class="scenario-card">
+              <h3>Scenario</h3>
+              <p>A platform team at a mid-stage B2B company (internal developer platform, ~200 internal engineer users across 5 product teams) receives five simultaneous feature requests, each marked "urgent" and each from a different engineering team lead. Team A wants a self-service database provisioning tool. Team B wants CI/CD pipeline templates. Team C wants better observability dashboards. Team D wants an internal API gateway. Team E wants improved developer onboarding documentation. The platform PM has capacity for one major initiative this quarter. Each requester frames their request as the most critical blocker. The PM needs to identify the underlying problems, determine which are real and which are perceived, and make a defensible prioritization decision.</p>
+            </div>
+          
+            <div class="prompt-block">
+              <div class="label">The Prompt</div>
+              <p>I'm a platform PM and I just got 5 "urgent" feature requests from 5 different team leads: self-service DB provisioning, CI/CD templates, observability dashboards, API gateway, and better dev onboarding docs. I can only do one this quarter. How do I figure out which one to actually build?</p>
+            </div>
+
+          <div class="comparison-header">
+            <button class="comparison-toggle active-generic" onclick="showPanel(2,'generic')" id="tog-2-generic">
+              Without the Skill
+            </button>
+            <button class="comparison-toggle active-skill" onclick="showPanel(2,'skill')" id="tog-2-skill">
+              With the Skill
+            </button>
+          </div>
+
+          <div class="comparison-panel generic show content" id="panel-2-generic">
+            <p>This is a classic prioritization challenge. Here's a structured approach to pick the right initiative:</p>
+<p><strong>Step 1: Gather Context on Each Request</strong> Set up 30-minute conversations with each team lead to understand:</p>
+<ul>
+<li>What specific problem does this solve for their team?</li>
+<li>How much time are they spending on the current workaround?</li>
+<li>What happens if this doesn't get built this quarter?</li>
+<li>How many engineers on their team would benefit?</li>
+</ul>
+<p><strong>Step 2: Score Using RICE Framework</strong> For each request, estimate:</p>
+<ul>
+<li><strong>Reach:</strong> How many of the 200 engineers would use this?</li>
+<li><strong>Impact:</strong> How much would it improve their productivity? (3=massive, 2=high, 1=medium, 0.5=low)</li>
+<li><strong>Confidence:</strong> How confident are you in your estimates?</li>
+<li><strong>Effort:</strong> How many person-weeks to build?</li>
+</ul>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Request</th>
+<th>Reach</th>
+<th>Impact</th>
+<th>Confidence</th>
+<th>Effort</th>
+<th>RICE Score</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>DB provisioning</td>
+<td>40</td>
+<td>2</td>
+<td>80%</td>
+<td>8 weeks</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td>CI/CD templates</td>
+<td>150</td>
+<td>2</td>
+<td>80%</td>
+<td>6 weeks</td>
+<td>40.0</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>100</td>
+<td>1</td>
+<td>60%</td>
+<td>10 weeks</td>
+<td>6.0</td>
+</tr>
+<tr>
+<td>API gateway</td>
+<td>60</td>
+<td>2</td>
+<td>50%</td>
+<td>12 weeks</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>Dev onboarding</td>
+<td>30</td>
+<td>1</td>
+<td>70%</td>
+<td>4 weeks</td>
+<td>5.3</td>
+</tr>
+</tbody></table></div>
+<p><strong>Step 3: Consider Strategic Factors</strong> Beyond the RICE scores:</p>
+<ul>
+<li>Which request aligns with company OKRs this quarter?</li>
+<li>Are any of these blocking revenue-generating work?</li>
+<li>Is there a dependency chain (e.g., API gateway enables other teams)?</li>
+<li>Which builds platform capabilities that compound over time?</li>
+</ul>
+<p><strong>Step 4: Make the Call</strong> Based on this analysis, CI/CD templates likely win: highest reach, reasonable effort, and high confidence. It benefits 75% of your engineering org and can be delivered within a quarter.</p>
+<p><strong>Recommended approach:</strong></p>
+<ol>
+<li>Build CI/CD templates as the Q2 initiative</li>
+<li>Create lightweight self-service guides for DB provisioning as a stopgap</li>
+<li>Add observability and API gateway to the H2 roadmap</li>
+<li>Assign dev onboarding docs to a tech writer rather than the platform team</li>
+</ol>
+<p>This gives you the highest-impact investment while showing each team lead their request is on the roadmap.</p>
+          </div>
+          <div class="comparison-panel skill content" id="panel-2-skill" style="display:none;">
+            <p><strong>Step 0: Context Fitness Check</strong></p>
+<p>Five feature requests from five stakeholders are five <em>solutions</em>, not five <em>problems</em>. Before any prioritization scoring, the PM must peel each request back to the underlying problem. Prioritizing solutions before understanding problems is how platform teams build the wrong thing with perfect RICE scores. This is a <strong>Stakeholder alignment + Prioritize across problems</strong> question type.</p>
+<p><strong>Step 0b: Framework Selection</strong></p>
+<ul>
+<li>Primary: F7 Stakeholder Impact Matrix, F1 Problem Definition Canvas (per request), F8 ICE/RICE Prioritization, F4 Opportunity Sizing</li>
+<li>Supporting: F2 5 Whys (applied per request to peel solution back to problem), F5 Problem-Solution Fit</li>
+<li>Skipped: F3 JTBD (internal tooling -- functional job dominates; emotional/social secondary), F6 Constraint Mapping (apply after selection, not across all 5)</li>
+</ul>
+<p><strong>Peeling Solutions to Problems (Framework 1 + Framework 2, Applied Per Request)</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Request (Solution)</th>
+<th>Presented Problem</th>
+<th>5 Whys Root Problem</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>A: Self-service DB provisioning</strong></td>
+<td>"It takes 2 weeks to get a new database"</td>
+<td>Engineers cannot iterate on data model changes during development because DB provisioning requires a Jira ticket, DBA review, and manual setup -- creating a 2-week bottleneck in every project that needs a new data store. Root problem: <strong>DBA team is a serial bottleneck for a parallelizable task.</strong></td>
+<td>(<span class="evidence-badge t5">T5</span>: Team A lead assertion. <span class="evidence-badge t1">T1</span> data available: Jira ticket lead times for DB requests.)</td>
+<td>M -- lead time is verifiable from Jira; actual developer impact is <span class="evidence-badge t5">T5</span></td>
+</tr>
+<tr>
+<td><strong>B: CI/CD templates</strong></td>
+<td>"Every team builds CI/CD from scratch"</td>
+<td>Engineers spend 2-3 days per project configuring CI/CD pipelines because no standard templates exist, leading to inconsistent deployment practices and ~4 production incidents/quarter traced to misconfigured pipelines. Root problem: <strong>Lack of standardized deployment infrastructure causes both waste (setup time) and risk (incidents).</strong></td>
+<td>(<span class="evidence-badge t5">T5</span>: Team B lead assertion. <span class="evidence-badge t1">T1</span> partially available: incident post-mortems may confirm pipeline-related incidents.)</td>
+<td>M -- incident data is <span class="evidence-badge t1">T1</span> if post-mortems exist; setup time is <span class="evidence-badge t5">T5</span></td>
+</tr>
+<tr>
+<td><strong>C: Observability dashboards</strong></td>
+<td>"We can't see what's happening in production"</td>
+<td>When production issues occur, engineers spend 30-60 minutes assembling context from 4 different logging/monitoring tools before they can begin debugging, extending MTTR and increasing customer impact. Root problem: <strong>Fragmented observability tooling extends incident response time.</strong></td>
+<td>(<span class="evidence-badge t5">T5</span>: Team C lead assertion. <span class="evidence-badge t1">T1</span> available: MTTR data from incident management system.)</td>
+<td>M -- MTTR is measurable; the attribution to tooling fragmentation is <span class="evidence-badge t5">T5</span></td>
+</tr>
+<tr>
+<td><strong>D: API gateway</strong></td>
+<td>"Inter-service communication is a mess"</td>
+<td>Teams building integrations between internal services must negotiate ad-hoc contracts, handle auth independently, and manage versioning manually -- resulting in brittle integrations that break during deployments. Root problem: <strong>No internal API contract standard, causing integration fragility.</strong></td>
+<td>(<span class="evidence-badge t5">T5</span>: Team D lead assertion. <span class="evidence-badge t1">T1</span> partially available: deployment-related incidents involving service integration.)</td>
+<td>L -- "mess" is vague; severity depends on integration volume and incident frequency</td>
+</tr>
+<tr>
+<td><strong>E: Dev onboarding docs</strong></td>
+<td>"New hires take 3 months to be productive"</td>
+<td>New engineers cannot find authoritative documentation on internal systems, so they rely on asking teammates (interrupting them) or reading source code (slow and error-prone), extending time-to-productivity. Root problem: <strong>Tribal knowledge dependency -- institutional knowledge exists only in people's heads.</strong></td>
+<td>(<span class="evidence-badge t5">T5</span>: Team E lead assertion. <span class="evidence-badge t1">T1</span> partially available: time-to-first-commit for new hires.)</td>
+<td>L -- "3 months" is an assertion; time-to-productivity is hard to measure without baseline</td>
+</tr>
+</tbody></table></div>
+<p><strong>Key Insight from Problem Peeling:</strong> Requests A, B, and D share a common meta-problem -- <strong>the platform lacks self-service primitives, forcing engineers into ticket-based workflows that create bottlenecks.</strong> Solving any one in isolation helps one team; solving the meta-problem (self-service platform capabilities) helps all five. This reframing changes the prioritization entirely.</p>
+<p><strong>Stakeholder Impact Matrix (Framework 7)</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Problem Impact</th>
+<th>Power (1-5)</th>
+<th>Interest (1-5)</th>
+<th>Position</th>
+<th>Key Insight</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Team A lead (DB provisioning)</td>
+<td>2-week bottleneck per project (<span class="evidence-badge t5">T5</span>)</td>
+<td>2 -- peer influence only (T6)</td>
+<td>5 -- directly blocked (<span class="evidence-badge t5">T5</span>)</td>
+<td>Champion</td>
+<td>High interest, low power. Loudest voice but cannot approve/block.</td>
+</tr>
+<tr>
+<td>Team B lead (CI/CD)</td>
+<td>2-3 days per project + incident risk (<span class="evidence-badge t5">T5</span>)</td>
+<td>3 -- leads largest team (T6)</td>
+<td>4 -- significant friction (<span class="evidence-badge t5">T5</span>)</td>
+<td>Champion</td>
+<td>Broad impact claim. Verify with incident data.</td>
+</tr>
+<tr>
+<td>Team C lead (Observability)</td>
+<td>Extended MTTR (<span class="evidence-badge t5">T5</span>)</td>
+<td>3 -- owns on-call for critical service (<span class="evidence-badge t5">T5</span>)</td>
+<td>4 -- affects incident response (<span class="evidence-badge t5">T5</span>)</td>
+<td>Champion</td>
+<td>MTTR impact is measurable and visible to leadership.</td>
+</tr>
+<tr>
+<td>Team D lead (API gateway)</td>
+<td>Integration fragility (<span class="evidence-badge t5">T5</span>)</td>
+<td>2 -- smaller team (T6)</td>
+<td>3 -- painful but intermittent (<span class="evidence-badge t5">T5</span>)</td>
+<td>Supporter</td>
+<td>Problem is real but frequency may be low.</td>
+</tr>
+<tr>
+<td>Team E lead (Dev onboarding)</td>
+<td>Slow ramp-up (<span class="evidence-badge t5">T5</span>)</td>
+<td>2 -- newest team lead (T6)</td>
+<td>3 -- affects team capacity (<span class="evidence-badge t5">T5</span>)</td>
+<td>Supporter</td>
+<td>Long-term payoff but low urgency signal.</td>
+</tr>
+<tr>
+<td><strong>VP Engineering</strong></td>
+<td>All five problems affect eng velocity, which affects roadmap delivery</td>
+<td>5 -- approves platform roadmap (<span class="evidence-badge t5">T5</span>)</td>
+<td>4 -- cares about aggregate eng productivity (T6)</td>
+<td>Neutral -- has not weighed in</td>
+<td><strong>This is the decision-maker.</strong> Frame the recommendation in terms of aggregate eng velocity impact, not individual team requests.</td>
+</tr>
+<tr>
+<td><strong>DBA team</strong> (affected bystander for Request A)</td>
+<td>Self-service DB provisioning would reduce their workload but also reduce their gatekeeping role</td>
+<td>3 -- can slow-roll adoption (T6)</td>
+<td>3 -- mixed: less work but less control (T6)</td>
+<td>Potentially Resistant</td>
+<td>Hidden stakeholder. If they resist, DB provisioning adoption stalls regardless of build quality.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Proxy Stakeholder Alert:</strong> All five requests come from team leads (<span class="evidence-badge t5">T5</span> sources) speaking on behalf of their engineers. None of the requests include direct engineer input (<span class="evidence-badge t2">T2</span>) or behavioral data (<span class="evidence-badge t1">T1</span>). The team leads' framing may reflect their priorities, not their team's actual pain points. A 30-minute survey of 20 engineers across all 5 teams (<span class="evidence-badge t2">T2</span>, 3 days) would upgrade the evidence base for all five problems simultaneously.</p>
+<p><strong>Problem Prioritization (Framework 8 -- ICE Scoring with Evidence Tiers)</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>Rank</th>
+<th>Problem (not solution)</th>
+<th>Impact (1-5)</th>
+<th>Confidence (1-5)</th>
+<th>Ease (1-5)</th>
+<th>ICE Score</th>
+<th>Evidence Quality</th>
+<th>Recommended Action</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Lack of standardized CI/CD causes waste + incidents</strong></td>
+<td>4 (<span class="evidence-badge t5">T5</span>: broad impact claim; <span class="evidence-badge t1">T1</span>: incident data may confirm)</td>
+<td>3 (<span class="evidence-badge t5">T5</span> primary; <span class="evidence-badge t1">T1</span> available but unanalyzed)</td>
+<td>3 (6-week estimate, within quarter; <span class="evidence-badge t5">T5</span>: eng lead estimate)</td>
+<td>36</td>
+<td>33% <span class="evidence-badge t1">T1</span>-accessible, 67% <span class="evidence-badge t5">T5</span></td>
+<td><strong>Investigate</strong> -- pull incident post-mortems and CI/CD setup time estimates before committing</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>DBA bottleneck blocks iteration velocity</strong></td>
+<td>4 (<span class="evidence-badge t5">T5</span>: 2-week lead time claim; <span class="evidence-badge t1">T1</span>: Jira data available)</td>
+<td>3 (<span class="evidence-badge t5">T5</span> primary; <span class="evidence-badge t1">T1</span> available via Jira)</td>
+<td>2 (8-week estimate; requires DBA team buy-in -- hidden constraint)</td>
+<td>24</td>
+<td>33% <span class="evidence-badge t1">T1</span>-accessible, 67% <span class="evidence-badge t5">T5</span></td>
+<td><strong>Investigate</strong> -- verify lead time from Jira; assess DBA team alignment</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Fragmented observability extends MTTR</strong></td>
+<td>3 (<span class="evidence-badge t5">T5</span>: affects incident response; <span class="evidence-badge t1">T1</span>: MTTR data exists)</td>
+<td>3 (<span class="evidence-badge t5">T5</span> primary; <span class="evidence-badge t1">T1</span> via incident mgmt)</td>
+<td>2 (10-week estimate; scope risk is high)</td>
+<td>18</td>
+<td>33% <span class="evidence-badge t1">T1</span>-accessible, 67% <span class="evidence-badge t5">T5</span></td>
+<td><strong>Investigate</strong> -- pull MTTR trends and tool fragmentation data</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>No API contract standard causes integration fragility</strong></td>
+<td>2 (<span class="evidence-badge t5">T5</span>: "mess" is vague; frequency unclear)</td>
+<td>2 (<span class="evidence-badge t5">T5</span> only; no <span class="evidence-badge t1">T1</span> data path identified)</td>
+<td>1 (12 weeks; architectural change with adoption risk)</td>
+<td>4</td>
+<td>0% <span class="evidence-badge t1">T1</span>, 100% <span class="evidence-badge t5">T5</span></td>
+<td><strong>Deprioritize</strong> -- evidence too weak and effort too high for this quarter</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Tribal knowledge dependency slows onboarding</strong></td>
+<td>2 (<span class="evidence-badge t5">T5</span>: "3 months" unverified; long-term impact)</td>
+<td>2 (<span class="evidence-badge t5">T5</span> only; time-to-productivity hard to measure)</td>
+<td>4 (4 weeks; docs are lower-effort)</td>
+<td>16</td>
+<td>0% <span class="evidence-badge t1">T1</span>, 100% <span class="evidence-badge t5">T5</span></td>
+<td><strong>Deprioritize as platform initiative</strong> -- reassign to eng managers + tech writers</td>
+</tr>
+</tbody></table></div>
+<p><strong>Anti-gaming note:</strong> All Impact and Confidence scores are capped because no problem has been validated with <span class="evidence-badge t1">T1</span>-<span class="evidence-badge t2">T2</span> evidence. The top-ranked problem (CI/CD) scores highest not because of certainty but because it has the best combination of claimed breadth (150/200 engineers) and available <span class="evidence-badge t1">T1</span> validation path (incident post-mortems). Any score would change with actual data.</p>
+<p><strong>Recommendations (O-I-R-C-W Cascade)</strong></p>
+<p><strong>Recommendation 1: Do Not Prioritize Yet -- Run a 1-Week Evidence Sprint First</strong></p>
+<ul>
+<li><strong>Observation</strong> [<span class="evidence-badge t5">T5</span>]: All five problems are scored using team lead assertions (<span class="evidence-badge t5">T5</span>). No problem has <span class="evidence-badge t1">T1</span>-<span class="evidence-badge t2">T2</span> validation. The current ICE ranking is a hypothesis, not a finding.</li>
+<li><strong>Implication</strong>: Committing a quarter of platform capacity based on <span class="evidence-badge t5">T5</span> evidence risks building for the loudest stakeholder rather than the most impactful problem. The difference between a correct and incorrect prioritization decision is ~$150K in engineering time (one quarter of a 4-person platform team).</li>
+<li><strong>Response</strong>: Before committing to any initiative, run a 5-day evidence sprint: (1) Pull Jira lead times for DB provisioning requests -- validates Problem 2 (1 day, <span class="evidence-badge t1">T1</span>). (2) Review last 8 incident post-mortems for CI/CD and integration root causes -- validates Problems 1 and 4 (1 day, <span class="evidence-badge t1">T1</span>). (3) Pull MTTR data and correlate with observability tooling gaps -- validates Problem 3 (1 day, <span class="evidence-badge t1">T1</span>). (4) Survey 20 engineers across all 5 teams: "What wastes the most time in your development workflow?" Open-ended, not leading (2 days, <span class="evidence-badge t2">T2</span>). Owner: Platform PM. Timeline: 5 business days.</li>
+<li><strong>Confidence</strong>: H -- all four data sources exist and are accessible. The survey requires coordination but not new tooling.</li>
+<li><strong>Watch</strong>: If the survey reveals a problem that none of the five team leads raised, the entire prioritization changes. This is the "none of the above" scenario and it is common in internal platform work where team leads advocate for their own pain points but miss cross-cutting issues.</li>
+</ul>
+<p><strong>Recommendation 2: Frame the Quarterly Decision as "Meta-Problem" vs. "Point Solution"</strong></p>
+<ul>
+<li><strong>Observation</strong> [<span class="evidence-badge t5">T5</span> + T6]: Problems 1, 2, and 4 share a meta-problem -- the platform lacks self-service primitives, forcing engineers into ticket-based workflows. Problems 3 and 5 are different in kind (tooling fragmentation and knowledge management).</li>
+<li><strong>Implication</strong>: Solving the meta-problem (self-service platform capability) could address 3 of 5 requests partially, rather than solving 1 of 5 fully. This reframing changes the build vs. not-build decision for the VP Engineering -- who cares about aggregate eng velocity, not individual team requests.</li>
+<li><strong>Response</strong>: After the evidence sprint, present two options to VP Engineering: (a) One deep solution for the highest-scoring problem, or (b) A self-service platform foundation that partially addresses Problems 1, 2, and 4 with a common infrastructure layer. Include validated ICE scores for both options. Owner: Platform PM. Timeline: Present in Week 2, after evidence sprint.</li>
+<li><strong>Confidence</strong>: M -- the meta-problem framing is T6 (inferred pattern). It may not hold if the three problems are more different than they appear. The evidence sprint will clarify.</li>
+<li><strong>Watch</strong>: If engineers in the survey do not describe "ticket-based workflows" or "waiting for other teams" as a top pain point, the meta-problem framing is wrong. Revert to point-solution prioritization.</li>
+</ul>
+<p><strong>Assumption Registry</strong></p>
+<div style="overflow-x:auto;"><table>
+<thead><tr>
+<th>#</th>
+<th>Assumption</th>
+<th>Framework</th>
+<th>Confidence</th>
+<th>Evidence</th>
+<th>Invalidation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Team leads' assertions about their teams' problems accurately reflect reality</td>
+<td>All frameworks -- every problem definition is sourced from <span class="evidence-badge t5">T5</span></td>
+<td>L</td>
+<td><span class="evidence-badge t5">T5</span>: team lead interviews only. No direct engineer input.</td>
+<td>The 20-engineer survey (<span class="evidence-badge t2">T2</span>) reveals different top problems than what team leads reported. <code>[EVIDENCE-LIMITED]</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>The five requests cover the most important platform problems</td>
+<td>F8 Prioritization -- assumes the candidate set is complete</td>
+<td>L</td>
+<td><span class="evidence-badge t5">T5</span>: only problems surfaced by team leads who submitted requests. Engineers who did not escalate may have worse problems.</td>
+<td>Survey reveals a problem not on any team lead's list. <code>[EVIDENCE-LIMITED]</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>ICE scores will meaningfully change after the evidence sprint</td>
+<td>Recommendation 1 -- the sprint's value depends on data availability</td>
+<td>M</td>
+<td>T6: assumes incident post-mortems, Jira data, and MTTR data are accessible and granular enough to discriminate</td>
+<td>If data systems are too coarse (e.g., incident post-mortems do not attribute root cause to CI/CD vs. other factors), the evidence sprint produces ambiguous results.</td>
+</tr>
+</tbody></table></div>
+<p><strong>Adversarial Self-Critique</strong></p>
+<p><strong>Weakness 1: The "Evidence Sprint First" Recommendation May Be a Delay Tactic.</strong> From the stakeholders' perspective, the PM received five urgent requests and responded with "let me do a week of analysis before deciding." If any of the five problems is genuinely urgent -- for example, if CI/CD misconfiguration caused a production outage last week -- a 1-week delay has real cost. The skill biases toward evidence completeness over speed, which is correct on average but may be wrong in specific high-urgency situations. The PM should check: has any of these problems caused a Sev-1 incident in the last 30 days? If yes, that problem gets fast-tracked regardless of ICE score.</p>
+<p><strong>Weakness 2: The Meta-Problem Framing May Be Intellectually Elegant but Operationally Unshippable.</strong> Identifying that Problems 1, 2, and 4 share a "self-service primitives" meta-problem is an analytical insight. But building a "self-service platform foundation" in one quarter may be architecturally impossible -- it could require foundational infrastructure work that delivers value in Q3-Q4 but nothing shippable in Q2. The team leads need relief now, not an architectural vision. The analysis should have assessed whether the meta-solution is buildable within the quarter's constraints before recommending it as an option.</p>
+<p><strong>Weakness 3: Internal Platform Prioritization Has Political Dynamics the Framework Underweights.</strong> The Stakeholder Impact Matrix identifies the VP Engineering as the real decision-maker, but platform teams also depend on adoption. Building CI/CD templates that Team B champions but Team A ignores does not solve the platform's problem. The ICE framework scores impact by reach, but internal platform reach depends on voluntary adoption, which depends on the relationship between the platform team and each product team. A platform PM who picks CI/CD over DB provisioning may gain Team B's loyalty but lose Team A's trust and future adoption. The prioritization framework captures impact but not the second-order political consequences of the selection.</p>
+          </div>
+
+          
+            <div class="what-changed">
+              <h3>What Changed</h3>
+              <div class="change-item"><strong>Five solutions were peeled back to five problems -- and a meta-problem emerged.</strong><span>The generic output accepted the five feature requests at face value and scored them directly. The skill applied the Problem Definition Canvas and 5 Whys to each request, revealing that three of the five (DB provisioning, CI/CD, API gateway) share a root cause: the platform lacks self-service primitives. This reframing changes the entire quarterly decision.</span></div>
+<div class="change-item"><strong>Every score was tagged with evidence tier, exposing that all five problems are <span class="evidence-badge t5">T5</span>-only.</strong><span>The generic output produced confident RICE scores (e.g., "CI/CD templates: Reach 150, Impact 2, Confidence 80%") without disclosing that every number was a team lead's assertion. The skill flagged that zero problems have <span class="evidence-badge t1">T1</span>-<span class="evidence-badge t2">T2</span> validation, capping confidence and prescribing a 1-week evidence sprint before commitment.</span></div>
+<div class="change-item"><strong>Hidden stakeholders were identified.</strong><span>The generic output addressed only the five requesting team leads. The skill identified the VP Engineering as the actual decision-maker (who should be the audience for the prioritization) and the DBA team as a potential blocker for the DB provisioning initiative -- a hidden constraint that would cause adoption failure even if the tool is built perfectly.</span></div>
+<div class="change-item"><strong>Proxy stakeholder problem was flagged explicitly.</strong><span>The skill noted that all five requests come from team leads speaking for their engineers, and prescribed a direct engineer survey to check whether the leads' framing matches reality. The generic output took the team leads' framing as ground truth.</span></div>
+<div class="change-item"><strong>Adversarial self-critique identified three genuine risks</strong><span>, including that the "evidence sprint" recommendation may function as a delay tactic when urgency is real, that the meta-problem framing may not be buildable in one quarter, and that internal platform prioritization has political adoption dynamics that ICE/RICE does not capture.</span></div>
+
+            </div>
+        </div>
+
+<footer>
+  PM Skills Arsenal · Built with the PM Agent System · Problem Framing
+</footer>
+
+<script>
+function showUC(idx) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('uc-' + idx).classList.add('active');
+  document.getElementById('nav-' + idx).classList.add('active');
+}
+
+function showPanel(ucIdx, type) {
+  const generic = document.getElementById('panel-' + ucIdx + '-generic');
+  const skill   = document.getElementById('panel-' + ucIdx + '-skill');
+  const togG    = document.getElementById('tog-' + ucIdx + '-generic');
+  const togS    = document.getElementById('tog-' + ucIdx + '-skill');
+
+  if (type === 'generic') {
+    generic.style.display = 'block';
+    generic.classList.add('show');
+    skill.style.display = 'none';
+    skill.classList.remove('show');
+    togG.classList.add('active-generic');
+    togS.classList.remove('active-skill');
+  } else {
+    skill.style.display = 'block';
+    skill.classList.add('show');
+    generic.style.display = 'none';
+    generic.classList.remove('show');
+    togS.classList.add('active-skill');
+    togG.classList.remove('active-generic');
+  }
+}
+
+// Initialize: show "With the Skill" by default
+document.addEventListener('DOMContentLoaded', () => {
+  const ucCount = 3;
+  for (let i = 0; i < ucCount; i++) {
+    showPanel(i, 'skill');
+  }
+});
+</script>
+</body>
+</html>

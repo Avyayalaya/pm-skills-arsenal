@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meditation App Engagement Recovery — PM Skills Arsenal</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#FDFAF6; --surface:#FFFFFF; --text:#2C2520;
+  --text-secondary:#5A524A; --text-muted:#8B8178;
+  --accent:#B85C38; --accent-light:rgba(184,92,56,0.08);
+  --sage:#5B7B6A; --sage-light:rgba(91,123,106,0.08);
+  --warm-gold:#B8963E; --warm-gold-light:rgba(184,150,62,0.08);
+  --stone:#8B7D6B; --stone-light:rgba(139,125,107,0.08);
+  --human:#6B4C8A; --human-light:rgba(107,76,138,0.08);
+  --border:#E8E2DA; --border-light:#F0EBE4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* ── HEADER ── */
+.page-header{max-width:980px;margin:0 auto;padding:72px 48px 36px;text-align:center}
+.overline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Source Serif 4',Georgia,serif;font-size:40px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:16px}
+.subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;margin:0 auto 20px;line-height:1.65}
+.header-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;font-size:12.5px;color:var(--text-muted)}
+.header-meta strong{color:var(--text-secondary)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0}
+nav .inner{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:8px 48px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);padding:8px 16px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+nav button:hover{color:var(--text);background:var(--border-light)}
+nav button.active{color:var(--accent);background:var(--accent-light);font-weight:600}
+
+/* ── SECTIONS ── */
+.section{display:none;max-width:980px;margin:0 auto;padding:40px 48px 60px}
+.section.active{display:block}
+.section h2{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:15px;color:var(--text-secondary);margin-bottom:28px;line-height:1.65;max-width:760px}
+.section h3{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin:32px 0 10px}
+.section h4{font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin:24px 0 6px}
+.section p{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0;max-width:760px}
+.section ul,.section ol{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0 10px 24px;max-width:760px}
+.section li{margin:4px 0}
+.section li strong{color:var(--text)}
+.section a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)}
+.section a:hover{border-bottom-color:var(--accent)}
+.section code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--border-light);padding:1px 6px;border-radius:3px;color:var(--accent)}
+.section strong{color:var(--text)}
+.section-divider{border:none;border-top:1px solid var(--border-light);margin:28px 0}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--border);border-radius:8px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:13.5px}
+.table-wrap th{background:var(--surface);font-weight:600;color:var(--text);text-align:left;padding:10px 14px;border-bottom:2px solid var(--border);position:sticky;top:0;white-space:nowrap}
+.table-wrap td{padding:9px 14px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top}
+.table-wrap tr:last-child td{border-bottom:none}
+.table-wrap tbody tr:nth-child(even){background:rgba(253,250,246,0.6)}
+.table-wrap tbody tr:hover{background:var(--accent-light)}
+.table-wrap td:first-child{font-weight:500;color:var(--text)}
+
+/* ── ASIDE / CALLOUT ── */
+.aside{display:flex;gap:14px;padding:16px 20px;border-left:3px solid var(--sage);background:var(--sage-light);border-radius:0 8px 8px 0;margin:20px 0}
+.aside.decision{border-left-color:var(--accent);background:var(--accent-light)}
+.aside.watch{border-left-color:var(--warm-gold);background:var(--warm-gold-light)}
+.aside.strategy{border-left-color:var(--human);background:var(--human-light)}
+.a-icon{font-size:16px;flex-shrink:0;margin-top:1px;color:var(--text-muted)}
+.aside p{margin:0;font-size:14px;line-height:1.65;color:var(--text-secondary);max-width:none}
+
+/* ── CASCADE BLOCK ── */
+.cascade-block{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:24px 0}
+.cascade-header{background:var(--accent-light);padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.cascade-item{display:flex;padding:14px 20px;border-top:1px solid var(--border-light);gap:14px;align-items:flex-start}
+.cascade-label{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cascade-o .cascade-label{background:var(--sage-light);color:var(--sage)}
+.cascade-i .cascade-label{background:var(--warm-gold-light);color:var(--warm-gold)}
+.cascade-r .cascade-label{background:var(--accent-light);color:var(--accent)}
+.cascade-c .cascade-label{background:var(--stone-light);color:var(--stone)}
+.cascade-w .cascade-label{background:var(--human-light);color:var(--human)}
+.cascade-text{font-size:14px;line-height:1.65;color:var(--text-secondary);flex:1}
+.cascade-text strong{color:var(--text)}
+
+/* ── EVIDENCE BADGES / CONFIDENCE PILLS ── */
+.ev-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;vertical-align:middle;margin:0 1px;cursor:default}
+.ev-t1,.ev-t2{background:var(--sage-light);color:var(--sage)}
+.ev-t3{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t4{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t5,.ev-t6{background:var(--stone-light);color:var(--stone)}
+.ev-limited{background:var(--accent-light);color:var(--accent);font-size:9px}
+.ev-detail{font-size:12px;color:var(--text-muted);font-style:italic}
+.conf-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
+.conf-h{background:var(--sage-light);color:var(--sage)}
+.conf-m{background:var(--warm-gold-light);color:var(--warm-gold)}
+.conf-l{background:var(--accent-light);color:var(--accent)}
+
+/* ── COLORED DOTS ── */
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin:0 2px}
+.dot.green{background:#5B7B6A}
+.dot.yellow{background:#B8963E}
+.dot.red{background:#B85C38}
+
+/* ── CHECK / CROSS ICONS ── */
+.icon-check{color:var(--sage);font-weight:700;font-size:14px}
+.icon-cross{color:var(--accent);font-weight:700;font-size:14px}
+.icon-warn{color:var(--warm-gold);font-size:14px}
+
+/* ── PROGRESS BAR (replaces block chars) ── */
+.bar-container{display:flex;align-items:center;gap:8px}
+.bar-track{flex:1;height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;min-width:60px;max-width:120px}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--sage),var(--accent))}
+.bar-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--text-secondary);white-space:nowrap}
+
+/* ── CODE FIGURE ── */
+.code-figure{margin:20px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.code-figure pre{background:var(--surface);padding:18px 20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:var(--text);margin:0;white-space:pre}
+
+/* ── POWER ITEM (bold emoji paragraph) ── */
+.power-item{border-left:3px solid var(--border);padding:10px 18px;margin:10px 0;background:var(--surface);border-radius:0 8px 8px 0}
+.power-item p{margin:0;max-width:none}
+
+/* ── DATA GRID ── */
+.data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.data-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.data-card h4{font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;color:var(--text);margin:0 0 6px}
+.data-card p{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6;max-width:none}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:22px 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .val{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--accent)}
+.stat-card .lbl{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* ── FOOTER ── */
+.page-footer{max-width:980px;margin:0 auto;padding:32px 48px 64px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .page-header{padding:48px 24px 24px}
+  h1{font-size:28px}
+  .section{padding:28px 24px 48px}
+  nav .inner{padding:8px 16px}
+  .page-footer{padding:24px;flex-direction:column}
+  .data-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+  nav{display:none}
+  .section{display:block!important;page-break-inside:avoid}
+  .page-header{padding-top:32px}
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="overline">Case Study · Multi-Skill Chain · PM Skills Arsenal</div>
+  <h1>Meditation App Engagement Recovery</h1>
+  <p class="subtitle">5 skills producing a complete strategy: problem diagnosis through metric design to experiment specification.</p>
+  <div class="header-meta">
+    <span><strong>Skill:</strong> multi-skill-chain</span>
+    <span><strong>Date:</strong> February 2026</span>
+    <span><strong>Source:</strong> PM Skills Arsenal</span>
+  </div>
+</header>
+
+<nav>
+  <div class="inner">
+    <button class="active" onclick="show('the-chain')">The Chain</button>
+      <button onclick="show('research-question')">Research Question</button>
+      <button onclick="show('sample-size-power-analysis')">Sample Size &amp; Power</button>
+      <button onclick="show('outcome-north-star')">Outcome</button>
+      <button onclick="show('qa-scenarios')">QA Scenarios</button>
+      <button onclick="show('the-solution-your-first-week-structure-t')">The Solution</button>
+      <button onclick="show('what-success-looks-like')">What Success Looks</button>
+      <button onclick="show('resources')">Resources</button>
+  </div>
+</nav>
+
+<div class="section active" id="the-chain">
+  <h2>The Chain</h2>
+<h3>1. Problem Framing (15 min)</h3>
+
+<p><strong>Skill invoked:</strong> <code>/problem-framing</code></p>
+
+<p><strong>Output:</strong> Problem Definition Document (abbreviated)</p>
+
+<figure class="code-figure"><pre><code></code></pre></figure>
+  <h3 style="margin-top:40px">Problem Statement</h3>
+<p class="section-sub">DAU/MAU declining 13% (0.31→0.27) over 90 days. Absolute DAU -8% while MAU flat suggests acquisition is working but retention is broken. "Better engagement" is multi-causal — need to decompose into testable hypotheses.</p>
+  <h3 style="margin-top:40px">Root Cause Hypotheses (ICE Prioritization)</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Hypothesis</th>
+<th>Impact (1-10)</th>
+<th>Confidence (1-10)</th>
+<th>Ease (1-10)</th>
+<th>ICE Score</th>
+<th>Evidence Tier</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>(A) Onboarding drop-off</strong> — Users not reaching habit formation milestone (D7)</td>
+<td>9</td>
+<td>7</td>
+<td>6</td>
+<td>42</td>
+<td><strong>Tier 2</strong> (cohort retention curves show 60% churn by D7)</td>
+</tr>
+<tr>
+<td><strong>(B) Day 7 retention cliff</strong> — Specific failure point where habit loop breaks</td>
+<td>8</td>
+<td>8</td>
+<td>5</td>
+<td>40</td>
+<td><strong>Tier 1</strong> (SQL query shows 68% of D7+ survivors become D30+ users)</td>
+</tr>
+<tr>
+<td><strong>(C) Notification fatigue</strong> — Daily reminders perceived as spam, users muting</td>
+<td>6</td>
+<td>5</td>
+<td>8</td>
+<td>39</td>
+<td><strong>Tier 3</strong> (anecdotal from support tickets, not quantified)</td>
+</tr>
+<tr>
+<td><strong>(D) Content staleness</strong> — Library unchanged for 4 months, power users exhausting catalog</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+<td>21</td>
+<td><strong>Tier 4</strong> (assumption, not validated)</td>
+</tr>
+</tbody></table></div>
+  <h3 style="margin-top:40px">Prioritized Root Cause</h3>
+<p class="section-sub"><strong>(A) + (B) are the same problem:</strong> Getting users TO day 7 is the leverage point. - Current D7 retention: 41% - D7→D30 retention (for survivors): 68% - Math: Fixing onboarding to achieve 55% D7 retention would yield +39K DAU (14% lift)</p>
+  <h3 style="margin-top:40px">Confidence Level</h3>
+<p class="section-sub"><strong>HIGH</strong> on problem frame (evidence tier 1-2 from internal data) <strong>MEDIUM</strong> on solution direction (have not yet validated WHY users churn before D7)</p>
+
+<figure class="code-figure"><pre><code>
+**Key insight:** The problem isn&#x27;t &quot;engagement&quot; broadly — it&#x27;s a **day 7 habit formation cliff**. Users who survive to D7 love the product (68% become long-term). The bottleneck is getting them there.
+
+**Handoff to Discovery:** &quot;Validate: (1) What causes D0-D7 churn? (2) Do churned users have common behavioral patterns? (3) Is there a stated vs. revealed preference gap (what users SAY vs. what data shows)? Synthesize: 12 recent churned user interviews, cohort retention data, session recordings from D0-D7 users, most recent NPS survey.&quot;
+
+---
+
+### 2. Discovery &amp; Research (25 min)
+**Input:** Problem Framing&#x27;s prioritized hypothesis (D7 retention cliff) + research backlog (12 churned user interviews, cohort data, session recordings, NPS survey results)
+
+**Skill invoked:** `/discovery-research`
+
+**Output:** Research Synthesis Brief (abbreviated)
+
+```markdown</code></pre></figure>
+</div>
+
+<div class="section" id="research-question">
+  <h2>Research Question</h2>
+<p class="section-sub">Why do 59% of new users churn before day 7, despite high NPS (72) from retained users?</p>
+  <h3 style="margin-top:40px">Synthesis: The Onboarding Problem</h3>
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Current onboarding is a single 3-min intro, then dumps users into a 200+ session
+library with no scaffolding. 68% complete intro, only 34% engage with library. Users who survive
+D7 have figured out the library; churners never got oriented.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Habit formation requires (1) clarity on what to do next and (2) early wins to
+reinforce return. Current flow provides neither.</div>
+</div>
+</div>
+
+<p><strong>Response Recommendation:</strong> Redesign D0-D7 onboarding as a <strong>7-day guided program</strong> ("Your First Week") with daily unlock structure, progress tracking, and milestone celebrations at D3/D7.</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">HIGH (triangulated across 4 sources, stated/revealed gap identified)</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If D7 retention moves but D7→D30 retention DROPS, we've created a "fake win"
+(users completing onboarding but not forming real habit). Counter-metric required.</div>
+</div>
+</div>
+  <h3 style="margin-top:40px">Open Questions for Experimentation</h3>
+<ol>
+<li>What is the minimum effective onboarding length? (7 days vs. 3 days vs. 14 days?)</li>
+<li>Should onboarding be mandatory or optional? (Force flow vs. "Skip to library" escape hatch?)</li>
+<li>How much does progress visualization matter? (Streak counter vs. milestone badges vs. no gamification?)</li>
+</ol>
+
+<figure class="code-figure"><pre><code>
+**Key insight:** This is NOT a content problem or a notification problem. It&#x27;s an **orientation problem** — users complete the intro, then feel lost in a 200+ session library with no map. The stated preference (&quot;not enough content&quot;) is a rationalization; the revealed preference is &quot;I didn&#x27;t know where to start.&quot;
+
+**Handoff to Metric Design:** &quot;Design experiment for 7-day guided onboarding program (&#x27;Your First Week&#x27;). Primary metric: D7 retention rate (current 41%, target ≥55%). Counter-metric: Session quality (prevent gaming via fast-completion). Power analysis for 2-week test window. Identify trade-offs: Does mandatory onboarding increase D7 at the cost of D1 drop-off?&quot;
+
+---
+
+### 3. Metric Design &amp; Experimentation (25 min)
+**Input:** Discovery&#x27;s recommended intervention (7-day guided onboarding program) + target metric (D7 retention: 41% → ≥55%)
+
+**Skill invoked:** `/metric-design-experimentation`
+
+**Output:** Experiment Design + Metric Framework (abbreviated)
+
+```markdown</code></pre></figure>
+  <h3 style="margin-top:40px">North Star Metric Evaluation</h3>
+<h3>Candidate: D7 Retention Rate</h3>
+
+<p><strong>NSM Criteria Assessment:</strong> 1. ✓ <strong>Leading indicator:</strong> Predicts D30/D90 retention (68% of D7 survivors → D30+) 2. ✓ <strong>Captures value exchange:</strong> User has formed early habit (proxy for perceived value) 3. ✓ <strong>Actionable by team:</strong> Onboarding changes directly impact D0-D7 experience 4. ✓ <strong>Cross-functional alignment:</strong> Eng (build flow), Design (UX), Content (session selection), Growth (messaging) 5. <span class="icon-warn"><span class="icon-warn">⚠</span></span> <strong>Not gaming-resistant alone:</strong> Could be gamed via push spam to hit D7, need counter-metric</p>
+
+<p><strong>Goodhart Risk:</strong> If we optimize D7 retention without quality gates, we risk inflating the metric via low-quality engagement (e.g., users opening app to dismiss notification but not meditating).</p>
+
+<p><strong>Counter-Metric Required:</strong> Session Quality Score = (Total meditation minutes D0-D7) / (Total sessions started D0-D7). Target: ≥6 min/session average (current baseline: 7.2 min/session). If this drops below 6, we're creating hollow engagement.</p>
+
+<p><strong>Decision:</strong> D7 Retention Rate is the PRIMARY metric. Session Quality Score is COUNTER-METRIC (must not degrade).</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Experiment Design</h3>
+<h3>Hypothesis</h3>
+
+<h3>Variants</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Variant</th>
+<th>Experience</th>
+<th>Hypothesis</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Control</strong></td>
+<td>Current: 3-min intro → library homepage</td>
+<td>Baseline: 41% D7 retention</td>
+</tr>
+<tr>
+<td><strong>Treatment A</strong></td>
+<td>7-day guided program (mandatory, no skip)</td>
+<td>+14pp lift (55% D7 retention). Risk: D1 drop-off if users reject mandatory flow.</td>
+</tr>
+<tr>
+<td><strong>Treatment B</strong></td>
+<td>7-day guided program (optional, "Skip to Library" CTA)</td>
+<td>+8pp lift (49% D7 retention). Lower ceiling but safer (no D1 cannibalization).</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Recommendation:</strong> Run 3-way test (Control vs. A vs. B) to measure mandatory vs. optional trade-off.</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="sample-size-power-analysis">
+  <h2>Sample Size & Power Analysis</h2>
+<p class="section-sub"><strong>Baseline:</strong> 41% D7 retention (control) <strong>MDE (Minimum Detectable Effect):</strong> +8pp (49% D7 retention) <strong>Significance level (α):</strong> 0.05 <strong>Power (1-β):</strong> 0.80</p>
+
+<p><strong>Calculation (per variant):</strong> - n = 2 × [(Z_α/2 + Z_β)² × p(1-p)] / (MDE)² - n = 2 × [(1.96 + 0.84)² × 0.41(0.59)] / (0.08)² - n ≈ 14,200 users per variant</p>
+
+<p><strong>Total sample required:</strong> 42,600 users (3 variants) <strong>Current daily new users:</strong> ~3,000/day <strong>Test duration:</strong> 14 days to reach sample size + 7 days for D7 observation = <strong>21-day test</strong></p>
+
+<p><strong>Traffic allocation:</strong> 100% of new users (no holdout) — onboarding is pre-monetization, low risk</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Counter-Metrics & Guardrails</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Metric</th>
+<th>Baseline</th>
+<th>Threshold</th>
+<th>Alert Condition</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Session Quality Score</strong> (min/session, D0-D7)</td>
+<td>7.2 min</td>
+<td>≥6.0 min</td>
+<td>If <6.0, experiment is creating hollow engagement — STOP</td>
+</tr>
+<tr>
+<td><strong>D1 Retention</strong></td>
+<td>68%</td>
+<td>≥65%</td>
+<td>If <65%, mandatory onboarding is causing D1 churn — fail Treatment A, evaluate B</td>
+</tr>
+<tr>
+<td><strong>D30 Retention</strong> (post-test)</td>
+<td>28%</td>
+<td>≥26%</td>
+<td>If <26%, D7 lift didn't translate to long-term habit — re-evaluate program design</td>
+</tr>
+<tr>
+<td><strong>Session Start Rate</strong> (D0-D7)</td>
+<td>4.1 sessions</td>
+<td>≥3.5 sessions</td>
+<td>If <3.5, users completing program but not exploring library — onboarding too rigid</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Statistical Validity Checks</h3>
+<ol>
+<li><strong>A/A Test (Pre-Flight):</strong> Run 3-day A/A test on control variants to confirm randomization integrity (expect 0pp difference, p>0.05)</li>
+<li><strong>Sequential Testing:</strong> Use sequential testing framework (e.g., mSPRT) to enable early stopping if Treatment A hits +14pp at Day 10</li>
+<li><strong>Multiple Testing Correction:</strong> 3 variants = 3 comparisons. Use Bonferroni correction: α = 0.05/3 = 0.017 per test</li>
+<li><strong>Novelty Effect Control:</strong> Measure D7→D14 retention post-experiment to ensure lift persists beyond initial exposure</li>
+</ol>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Experiment Readiness Checklist</h3>
+<ul>
+<li>[ ] Instrumentation: D7 retention event logging (D0 cohort tag + D7 return event)</li>
+<li>[ ] Instrumentation: Session Quality Score (meditation_minutes / sessions_started, D0-D7 window)</li>
+<li>[ ] Randomization: User-level assignment (not session-level), consistent hash on user_id</li>
+<li>[ ] QA: All 3 variants render correctly on iOS/Android (no A/B crosstalk)</li>
+<li>[ ] Rollback plan: Feature flag ready, can revert to Control within 10 min if D1 retention crashes</li>
+<li>[ ] Stakeholder alignment: Eng (2 sprints), Design (assets ready), Content (7-day program finalized), Exec (approved 21-day test window)</li>
+</ul>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Success Criteria</h3>
+<p class="section-sub"><strong>Primary:</strong> Treatment A or B achieves ≥55% D7 retention (p<0.017) with no counter-metric violations <strong>Secondary:</strong> Session Quality Score ≥6.0 min/session (no hollow engagement) <strong>Tertiary:</strong> D1 retention ≥65% (no early churn from mandatory flow)</p>
+
+<p><strong>Decision Framework:</strong> - If Treatment A wins: Ship mandatory 7-day program - If Treatment B wins: Ship optional 7-day program (preserve user agency) - If both fail: Re-evaluate program design (may be content issue, not structure) - If A wins but violates D1 threshold: Ship B (optional variant)</p>
+
+<p><strong>Post-Launch:</strong> Monitor D30 retention 30 days post-ship to confirm long-term habit formation (not just D7 inflation)</p>
+
+<figure class="code-figure"><pre><code>
+**Key insight:** This isn&#x27;t just &quot;run an A/B test&quot; — it&#x27;s a **statistical decision framework** with counter-metrics, power analysis, multiple testing correction, and guardrails. The D7 metric could be gamed (push spam), so Session Quality Score acts as a fraud detector. Treatment B (optional onboarding) is the safety valve if mandatory flow backfires.
+
+**Handoff to Specification Writing:** &quot;Write spec for Treatment A (mandatory 7-day guided program). Outcome: ≥55% D7 retention, ≥6.0 min/session quality. Acceptance criteria by type: Functional (7 daily unlocks, progress UI, D7 milestone celebration), Performance (page load &lt;2s), Edge cases (user skips a day, what happens?). Failure conditions: If Session Quality Score drops &gt;15% (below 6.1), auto-rollback.&quot;
+
+---
+
+### 4. Specification Writing (20 min)
+**Input:** Metric Design&#x27;s experiment structure (Treatment A: mandatory 7-day guided program) + success criteria (55% D7 retention, 6.0 min/session quality)
+
+**Skill invoked:** `/specification-writing`
+
+**Output:** Feature Specification — &quot;Your First Week&quot; Guided Onboarding (abbreviated)
+
+```markdown</code></pre></figure>
+
+<p># Feature Spec: "Your First Week" Guided Onboarding Program</p>
+
+<p><strong>Owner:</strong> Growth PM (Parth) <strong>Sprint:</strong> 2-sprint build (Feb 24–Mar 7) <strong>Launch:</strong> Mar 10 (21-day experiment window) <strong>Status:</strong> Approved by Exec 2/23, Eng scoped 2/22</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="outcome-north-star">
+  <h2>Outcome (North Star)</h2>
+<p class="section-sub"><strong>Primary:</strong> Increase D7 retention from 41% to ≥55% (+14pp lift) <strong>Secondary:</strong> Maintain session quality score ≥6.0 min/session (prevent hollow engagement) <strong>Tertiary:</strong> D1 retention ≥65% (no churn from mandatory flow)</p>
+
+<p><strong>Success Metric:</strong> 55% of users who start "Your First Week" on D0 return to app on/after D7</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">User Story</h3>
+<p class="section-sub"><strong>As a</strong> new Mindful user <strong>I want</strong> clear guidance on how to build a meditation habit in my first week <strong>So that</strong> I don't feel lost in the content library and can experience early wins that motivate me to return</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Acceptance Criteria</h3>
+<h3>Functional Requirements</h3>
+
+<p><strong>F1. Program Structure</strong> - [ ] 7-day guided program ("Your First Week") replaces current 3-min intro - [ ] Each day unlocks 1 guided meditation session (5–12 min duration) - [ ] Day 1: "Welcome" (3 min, breathing basics) — matches current intro - [ ] Day 2: "Body Scan" (8 min) - [ ] Day 3: "Mindful Moment" (5 min, milestone celebration UI at completion) - [ ] Day 4: "Stress Release" (10 min) - [ ] Day 5: "Gratitude Practice" (7 min) - [ ] Day 6: "Walking Meditation" (12 min) - [ ] Day 7: "Your Foundation" (8 min, milestone celebration + library unlock) - [ ] Sessions are MANDATORY in sequence (cannot skip to Day 4 without completing D1-D3)</p>
+
+<p><strong>F2. Progress Visualization</strong> - [ ] Home screen shows "Your First Week" card with progress tracker (e.g., "Day 3 of 7 complete ✓") - [ ] Visual: 7-day calendar with checkmarks for completed days, lock icons for future days - [ ] Celebration UI at Day 3 ("Halfway there! 🎉") and Day 7 ("You've built your foundation! Library now unlocked 🔓")</p>
+
+<p><strong>F3. Daily Unlock Logic</strong> - [ ] Day N unlocks at 12:01 AM local time AFTER Day N-1 is completed - [ ] Edge case: If user completes Day 1 at 11:00 PM, Day 2 unlocks at 12:01 AM (1 hour later, acceptable) - [ ] Edge case: If user skips a day (e.g., completes D1 on Mon, returns Wed), Day 2 is STILL available (no penalty for gaps) - [ ] Edge case: If user completes multiple days in one session (e.g., D1 + D2 back-to-back same day), block this — force 1 day per calendar day to reinforce habit formation</p>
+
+<p><strong>F4. Notifications</strong> - [ ] Daily reminder push at user-selected time (default: 7 PM local) - [ ] Message: "Day [N] is ready: [Session Title]" (e.g., "Day 3 is ready: Mindful Moment") - [ ] If user has not set reminder time, prompt during D1 completion: "When should we remind you tomorrow?"</p>
+
+<p><strong>F5. Library Access</strong> - [ ] Full content library is LOCKED until Day 7 completion - [ ] "Library" tab shows lock icon + message: "Unlock after completing Your First Week" - [ ] After D7 completion, library fully accessible + "First Week" program remains in "Programs" section for replay</p>
+
+<h3>Performance Requirements</h3>
+
+<p><strong>P1. Page Load</strong> - [ ] "Your First Week" home card loads in <2s on 4G connection (p95) - [ ] Session video/audio starts playing within 3s of tap (p95)</p>
+
+<p><strong>P2. Instrumentation</strong> - [ ] Log event: <code>onboarding_day_N_started</code> (timestamp, user_id, day_number) - [ ] Log event: <code>onboarding_day_N_completed</code> (timestamp, user_id, day_number, session_duration_sec) - [ ] Log event: <code>onboarding_program_completed</code> (timestamp, user_id) — fires on D7 completion - [ ] Log event: <code>d7_return</code> (timestamp, user_id, days_since_d0) — fires on first return D7+</p>
+
+<h3>Edge Cases & Error Handling</h3>
+
+<p><strong>E1. User Force-Closes Mid-Session</strong> - [ ] Resume from last playback position (not restart from beginning) - [ ] Day is marked "complete" only if ≥80% of session is played (prevent gaming via 10-sec opens)</p>
+
+<p><strong>E2. User Reinstalls App Mid-Program</strong> - [ ] Progress persists via backend sync (not just local storage) - [ ] If user completed D1-D3, reinstalls, they resume at D4 (not reset to D1)</p>
+
+<p><strong>E3. User Changes Time Zone Mid-Program</strong> - [ ] Day unlock logic uses UTC offset at time of D0 start (consistent clock) - [ ] If user travels from PST → EST mid-program, unlock times shift with device clock</p>
+
+<p><strong>E4. User Completes Program, Then Churns, Then Returns</strong> - [ ] If user returns after D30, offer "Start a New Week" CTA (replay program) - [ ] Do NOT force re-onboarding (they already graduated)</p>
+
+<h3>Failure Conditions (Auto-Rollback)</h3>
+
+<p><strong>Rollback triggers (monitored in real-time during experiment):</strong> 1. <strong>D1 retention drops below 65%</strong> (from 68% baseline) → indicates mandatory flow causing early churn 2. <strong>Session Quality Score drops below 6.1 min/session</strong> (from 7.2 baseline, >15% decline) → indicates hollow engagement 3. <strong>Crash rate >2%</strong> on "Your First Week" flows (iOS or Android) 4. <strong>Page load time p95 >5s</strong> (UX unacceptable)</p>
+
+<p><strong>Rollback process:</strong> - Feature flag: <code>onboarding_first_week_enabled</code> (default: false) - If rollback triggered: Flip flag to false, all new users revert to Control (3-min intro) - Users mid-program: Allow completion (do not disrupt active cohort), but stop new enrollments</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Out of Scope (v1)</h3>
+<ul>
+<li>[ ] Personalized session recommendations (Day 1-7 are fixed for all users)</li>
+<li>[ ] Social features (e.g., "Invite a friend to join Your First Week")</li>
+<li>[ ] Localization (v1 is English-only, Spanish/French in v2)</li>
+<li>[ ] "Skip to Library" escape hatch (Treatment B variant, tested separately if A fails)</li>
+</ul>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Open Questions for Engineering</h3>
+<ol>
+<li><strong>Backend:</strong> How do we handle day unlock logic for users who cross time zones? (Proposal: store D0 timezone offset, use consistent clock)</li>
+<li><strong>iOS/Android:</strong> Can we block "complete D1+D2 same day" logic client-side, or need server-side validation? (Prefer server-side to prevent client manipulation)</li>
+<li><strong>Analytics:</strong> Session Quality Score (min/session) — calculate real-time or batch post-day? (Need real-time for rollback trigger)</li>
+</ol>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="qa-scenarios">
+  <h2>QA Scenarios</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Scenario</th>
+<th>Expected Behavior</th>
+<th>Test Status</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>User completes D1 at 11 PM, returns 1 hour later (12:01 AM)</td>
+<td>D2 unlocks, available immediately</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>User completes D1 on Mon, skips Tue, returns Wed</td>
+<td>D2 is available Wed (no penalty)</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>User completes D3, tries to tap D4 same day</td>
+<td>D4 locked, toast message: "Come back tomorrow for Day 4!"</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>User force-closes app at 50% of D2 session, reopens</td>
+<td>Resumes at 50% mark, progress saved</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>User plays 90% of D2 session, closes</td>
+<td>Day 2 marked complete (≥80% threshold met)</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>User plays 70% of D2 session, closes</td>
+<td>Day 2 NOT marked complete (toast: "Finish today's session to unlock tomorrow")</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>Session Quality Score drops to 5.8 min/session during test</td>
+<td>Auto-rollback triggered, feature flag flipped to false</td>
+<td>⏳ Pending</td>
+</tr>
+<tr>
+<td>User completes D7, taps Library tab</td>
+<td>Full library accessible, lock icon removed</td>
+<td>⏳ Pending</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Dependencies</h3>
+<ul>
+<li><strong>Content Team:</strong> 7 guided meditation sessions finalized (script + audio recorded) by Feb 28</li>
+<li><strong>Design:</strong> Progress tracker UI mockups approved by Feb 25</li>
+<li><strong>Engineering:</strong> Feature flag infrastructure (rollback-ready) by Feb 26</li>
+<li><strong>Analytics:</strong> Real-time dashboard for D1 retention + Session Quality Score by Mar 9 (1 day before launch)</li>
+</ul>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Launch Plan</h3>
+<ol>
+<li><strong>Mar 10:</strong> Enable feature flag for 100% of new users (no gradual rollout — need 14K/variant ASAP)</li>
+<li><strong>Mar 10-13 (Days 1-3):</strong> Monitor D1 retention hourly (rollback if <65%)</li>
+<li><strong>Mar 17-24 (Days 7-14):</strong> Monitor D7 retention daily (goal: ≥55%)</li>
+<li><strong>Mar 24:</strong> Analyze results, decide ship/kill/iterate</li>
+<li><strong>Mar 31:</strong> If shipped, measure D30 retention (goal: no drop from 28% baseline)</li>
+</ol>
+
+<figure class="code-figure"><pre><code>
+**Key insight:** The spec is NOT just &quot;build a 7-day program&quot; — it&#x27;s a **decision-ready artifact** with auto-rollback conditions, edge case handling, QA scenarios, and statistical guardrails. If Session Quality Score drops &gt;15%, the spec gives Eng authority to kill the experiment without PM approval (speed over bureaucracy).
+
+**Handoff to Narrative Building:** &quot;Need exec narrative to justify 2-sprint build (opportunity cost: delays other roadmap items). Narrative must answer: (1) Why onboarding, not content or notifications? (2) Why mandatory flow (Treatment A) vs. optional (Treatment B)? (3) What&#x27;s the ROI if we hit 55% D7 retention? (4) What&#x27;s the risk if we DON&#x27;T fix this? Use all prior outputs (Problem Framing&#x27;s DAU/MAU decline, Discovery&#x27;s stated vs. revealed gap, Metric Design&#x27;s 14% DAU lift projection, Spec&#x27;s rollback safety net).&quot;
+
+---
+
+### 5. Narrative Building (25 min)
+**Input:** Full chain context (Problem Framing → Discovery → Metric Design → Spec) + audience (exec team: CEO, CFO, Head of Product, Head of Eng) + goal (get buy-in for 2-sprint experiment, resource commitment)
+
+**Skill invoked:** `/narrative-building`
+
+**Output:** Executive Narrative — &quot;Why Onboarding is the Leverage Point&quot; (abbreviated, 3-min read)
+
+```markdown</code></pre></figure>
+
+<p># Executive Brief: The Onboarding Leverage Point</p>
+
+<p><strong>To:</strong> Exec Team (CEO, CFO, Head of Product, Head of Eng) <strong>From:</strong> Parth, Growth PM <strong>Date:</strong> Feb 23, 2026 <strong>Ask:</strong> Approve 2-sprint build for "Your First Week" guided onboarding experiment (Mar 10 launch)</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">The Problem: Users Love Us. They Just Never Discover It.</h3>
+<p class="section-sub">Our DAU/MAU ratio dropped 13% this quarter (0.31 → 0.27). The CEO asked for "better engagement."</p>
+
+<p>Here's the insight: <strong>We don't have an engagement problem. We have a discovery problem.</strong></p>
+
+<p>The data tells a clear story: - <strong>Users who survive to Day 7: 68% become long-term users (D30+).</strong> They love the product. - <strong>Users who churn before Day 7: 59% of all new installs.</strong> They never discover what we are.</p>
+
+<p><strong>The users who stay, stay.</strong> The problem is we're losing them before they get oriented.</p>
+
+<p>This isn't a content problem (our library has 200+ sessions). This isn't a notification problem (D1 retention is healthy at 68%). <strong>This is an onboarding problem.</strong></p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">What We Learned: The Stated vs. Revealed Preference Gap</h3>
+<p class="section-sub">We ran 12 churned user interviews. The stated reason for churn: "Not enough content variety."</p>
+
+<p>But the behavioral data revealed the truth: - 78% of churners completed our 3-min intro - <strong>Only 34% clicked into the content library after the intro</strong> - Of those who clicked, 62% browsed <30 seconds without playing anything - They churned before exploring more than 3 sessions</p>
+
+<p><strong>They blamed content. But they never engaged with content.</strong> The real issue: After the intro, we dump users into a 200+ session library with no map. They feel overwhelmed, not empowered.</p>
+
+<p><strong>Our NPS is 72 among retained users.</strong> The users who figure out the library love us. The users who don't, leave.</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="the-solution-your-first-week-structure-t">
+  <h2>The Solution: "Your First Week" — Structure the Habit Formation Window</h2>
+<p class="section-sub">Habit formation research (and our own data) shows Day 7 is the inflection point. Users who cross D7 have formed a routine. Users who don't, forget we exist.</p>
+
+<p><strong>Proposal:</strong> Replace the single 3-min intro with a 7-day guided program: - 1 session per day (5-12 min, sequenced for skill-building) - Progress visualization (daily checkmarks, milestone celebrations at D3/D7) - Library unlocks after D7 (users earn access by building foundation)</p>
+
+<p><strong>This isn't gamification. This is scaffolding.</strong> We're not tricking users into engagement. We're giving them structure to discover value before decision fatigue sets in.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">The Math: 14% DAU Lift if We Hit Target</h3>
+<p class="section-sub"><strong>Current state:</strong> - D7 retention: 41% - D7→D30 retention (for survivors): 68% - Projected annual DAU if we do nothing: continue 8% decline (from 280K to 258K)</p>
+
+<p><strong>Target state (if "Your First Week" succeeds):</strong> - D7 retention: 55% (+14pp) - D7→D30 retention: 68% (hold steady, or improve if onboarding creates better habit loops) - Projected annual DAU: +39K (14% lift from improved retention alone)</p>
+
+<p><strong>ROI:</strong> - 2-sprint build cost: ~$80K (Eng + Design + Content) - Value of +39K DAU: ~$1.2M annual revenue (assuming $30 LTV per DAU) - <strong>Payback period: <1 month</strong></p>
+
+<p><strong>Risk if we DON'T fix this:</strong> DAU continues declining at 2.5%/month. By Q4, we're below 250K DAU. Acquisition cost stays flat, but retention leak means every dollar spent on ads is 15% less effective.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Why Mandatory Flow (Treatment A) Over Optional (Treatment B)?</h3>
+<p class="section-sub">We're testing both, but here's the logic for Treatment A (mandatory 7-day program, no "Skip to Library" escape):</p>
+
+<p><strong>Pro:</strong> - Forces habit formation (users can't opt out of structure) - Higher ceiling (+14pp D7 lift vs. +8pp for optional variant) - Aligns with behavioral science: defaulting to the "right path" increases adoption</p>
+
+<p><strong>Con:</strong> - Risk: Some users reject mandatory flow, churn at D1 (power users who already know what they want)</p>
+
+<p><strong>Mitigation:</strong> - We monitor D1 retention in real-time. If it drops below 65% (from 68% baseline), we auto-rollback within 10 minutes. - Treatment B (optional flow) is the safety valve if A backfires.</p>
+
+<p><strong>Why we believe A will win:</strong> Only 9% of churned users cited "too much structure" in interviews. 67% cited "didn't know what to do." The demand signal is for MORE guidance, not less.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">The Safety Net: Auto-Rollback Conditions</h3>
+<p class="section-sub">This isn't a "build and pray" experiment. We've instrumented real-time rollback triggers:</p>
+
+<ol>
+<li><strong>D1 retention drops below 65%</strong> → mandatory flow is causing early churn, revert to Control</li>
+<li><strong>Session Quality Score drops below 6.1 min/session</strong> → we're creating hollow engagement (users opening app to dismiss notifications, not meditating), kill experiment</li>
+<li><strong>Crash rate >2%</strong> → UX broken, revert</li>
+</ol>
+
+<p><strong>Engineering has authority to rollback without PM approval.</strong> Speed over bureaucracy.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">The Ask: 2 Sprints, 21-Day Test, 1 Decision Point</h3>
+<p class="section-sub"><strong>Timeline:</strong> - <strong>Feb 24–Mar 7:</strong> Build (2 sprints) - <strong>Mar 10:</strong> Launch to 100% of new users - <strong>Mar 10-24:</strong> 14-day test window (need 14K users/variant for 80% power) - <strong>Mar 24:</strong> Analyze results, decide ship/kill/iterate - <strong>Mar 31:</strong> Post-ship D30 retention measurement (confirm long-term habit formation)</p>
+
+<p><strong>Opportunity cost:</strong> Delays 2 other roadmap items (social sharing feature, content personalization v2).</p>
+
+<p><strong>Why this is the right trade-off:</strong> Social sharing and personalization improve engagement for <strong>retained users</strong>. Onboarding fixes the retention leak for <strong>churning users</strong>. If we don't fix the leak, every other feature has 14% less reach.</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="what-success-looks-like">
+  <h2>What Success Looks Like</h2>
+<p class="section-sub"><strong>March 24 outcome scenarios:</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Scenario</th>
+<th>Result</th>
+<th>Decision</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>A: Treatment A wins (≥55% D7 retention, no counter-metric violations)</strong></td>
+<td>Ship mandatory 7-day program to 100%</td>
+<td>Winner</td>
+</tr>
+<tr>
+<td><strong>B: Treatment B wins (≥49% D7 retention, Treatment A violated D1 threshold)</strong></td>
+<td>Ship optional 7-day program (preserve user agency)</td>
+<td>Acceptable</td>
+</tr>
+<tr>
+<td><strong>C: Both fail (<49% D7 retention)</strong></td>
+<td>Re-evaluate program design (may need content changes, not just structure)</td>
+<td>Learn & iterate</td>
+</tr>
+<tr>
+<td><strong>D: Treatment A wins BUT Session Quality Score drops >15%</strong></td>
+<td>Kill experiment (hollow engagement = fake win)</td>
+<td>Protect long-term health</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Post-launch (Mar 31):</strong> If we ship, measure D30 retention. Goal: ≥28% (hold baseline). If D30 retention DROPS, we've created a "fake win" (users completing onboarding but not forming real habit). That triggers a deeper product review.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">The Bottom Line</h3>
+<p class="section-sub"><strong>The users who stay, stay.</strong> Our D7→D30 retention (68%) proves the product has enduring value.</p>
+
+<p><strong>The problem is getting users TO Day 7.</strong> Right now, 59% never make it. They leave before discovering what we are.</p>
+
+<p>"Your First Week" is the bridge. It's structure for the critical habit formation window. It's a map when users feel lost.</p>
+
+<p><strong>This is the leverage point.</strong> Fix onboarding, and every downstream metric improves: D30 retention, LTV, CAC efficiency, NPS.</p>
+
+<p><strong>Ask:</strong> Approve 2-sprint build, Mar 10 launch, 21-day test window. Rollback-ready if metrics degrade. Decision point Mar 24.</p>
+
+<p>Let's ship the map.</p>
+
+<hr class="section-divider">
+
+<p><strong>Approval signatures:</strong> - [ ] CEO (strategic priority) - [ ] CFO (budget approved: $80K build cost) - [ ] Head of Product (roadmap slot allocated) - [ ] Head of Engineering (2-sprint commitment)</p>
+
+<p><strong>Status:</strong> <span class="icon-check">✓</span> Approved 2/23/2026</p>
+
+<figure class="code-figure"><pre><code>
+**Key insight:** The narrative doesn&#x27;t lead with &quot;we need better engagement&quot; (vague CEO directive). It reframes the problem: **&quot;The users who stay, stay. The problem is getting them TO Day 7.&quot;** This shift — from &quot;engagement problem&quot; to &quot;discovery problem&quot; — changes the conversation from &quot;do more features&quot; to &quot;fix the map.&quot; The exec team approves because the narrative shows this is the HIGHEST LEVERAGE intervention (not just one of many options).
+
+**Outcome:** Exec team approved 2-sprint build on Feb 23. Experiment launched Mar 10. Results (Mar 24): Treatment A achieved 56% D7 retention (+15pp lift, p=0.003), no counter-metric violations. Shipped to 100% of users Mar 25. Post-launch D30 retention (measured Apr 24): 31% (+3pp from baseline, confirms long-term habit formation). Estimated annual impact: +42K DAU, $1.3M incremental revenue.
+
+---</code></pre></figure>
+  <h3 style="margin-top:40px">What This Demonstrates</h3>
+<h3>1. Complete Growth Initiative (Problem → Ship)</h3>
+
+<h3>2. Stated vs. Revealed Preference Analysis (Discovery Skill)</h3>
+
+<h3>3. Statistical Rigor (Metric Design Skill)</h3>
+
+<p><strong>A Growth PM without this rigor ships experiments that are underpowered (false negatives) or gamed (Goodhart's Law).</strong> This skill embeds statistical thinking into the PM workflow.</p>
+
+<h3>4. Auto-Rollback Safety Net (Specification Skill)</h3>
+
+<p>This is CRITICAL for growth experiments where metrics can degrade fast. The spec isn't just "what to build" — it's "when to stop building."</p>
+
+<h3>5. Narrative Reframes the Problem (Narrative Skill)</h3>
+
+<h3>6. Realistic Growth PM Challenges</h3>
+
+<p><strong>This is the daily work of a Growth PM.</strong> The skills chain automates the rigor (so you don't forget the power analysis or counter-metric), but the judgment calls (mandatory vs. optional flow, 7 days vs. 3 days, auto-rollback thresholds) remain human.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Time Breakdown</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Skill</th>
+<th>Time</th>
+<th>Output</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Problem Framing</strong></td>
+<td>15 min</td>
+<td>Problem Definition Doc (4 root causes, ICE prioritization, D7 cliff identified)</td>
+</tr>
+<tr>
+<td><strong>Discovery & Research</strong></td>
+<td>25 min</td>
+<td>Research Synthesis Brief (12 interviews, cohort data, session recordings, NPS — stated vs. revealed gap)</td>
+</tr>
+<tr>
+<td><strong>Metric Design & Experimentation</strong></td>
+<td>25 min</td>
+<td>Experiment Design (3 variants, power analysis, counter-metrics, rollback triggers)</td>
+</tr>
+<tr>
+<td><strong>Specification Writing</strong></td>
+<td>20 min</td>
+<td>Feature Spec (acceptance criteria by type, edge cases, QA scenarios, auto-rollback conditions)</td>
+</tr>
+<tr>
+<td><strong>Narrative Building</strong></td>
+<td>25 min</td>
+<td>Executive Brief (reframes problem, shows ROI, gets approval for 2-sprint build)</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>110 min</strong></td>
+<td><strong>5 artifacts</strong> → problem decomposed, validated, designed, spec'd, approved, shipped</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Reality check:</strong> This is condensed. In the wild, these steps take 1 week (not 110 min). But the TIME SAVINGS vs. doing this manually: - No forgotten counter-metrics (Metric Design skill enforces this) - No underpowered experiments (power analysis auto-generated) - No vague specs (Specification skill forces edge case enumeration) - No rambling exec narratives (Narrative skill enforces arc: problem → insight → solution → ROI → ask)</p>
+
+<p><strong>The skills don't replace PM judgment. They AUTOMATE the rigor so you can focus on strategy.</strong></p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Files Referenced (For Transparency)</h3>
+<p>This case study is synthesized from realistic Growth PM patterns, not a real company. Numbers are plausible: - <strong>DAU/MAU 0.27-0.31:</strong> Industry benchmark for meditation apps (Calm ~0.33, Headspace ~0.29) - <strong>D7 retention 41%:</strong> Typical for meditation/habit apps (retention cliff at week 1 is well-documented) - <strong>D7→D30 retention 68%:</strong> High but realistic (users who cross habit formation threshold have strong retention) - <strong>NPS 72:</strong> Healthy for consumer subscription apps - <strong>Session duration 7.2 min:</strong> Matches Calm's reported average session length</p>
+
+<p><strong>If you're a Growth PM and these numbers feel wrong for YOUR app, adjust them.</strong> The skill chain structure (Problem → Discovery → Metric → Spec → Narrative) is universal. The specific metrics are context-dependent.</p>
+
+<hr class="section-divider">
+
+<p><strong>Next steps for PM Skills Arsenal users:</strong> 1. Clone this case study structure for YOUR product 2. Replace meditation app context with your domain (e.g., fintech onboarding, SaaS trial conversion, marketplace liquidity) 3. Run the 5-skill chain on a real problem 4. Compare your output to this benchmark (are you hitting the same level of rigor?)</p>
+
+<p><strong>Feedback loop:</strong> If your real-world run surfaces gaps in the skills (e.g., "I needed to model CAC payback but Metric Design didn't guide me"), file an issue. The skills evolve based on PM needs.</p>
+</div>
+
+<div class="section" id="resources">
+  <h2>Evidence Synthesis (4 sources)</h2>
+<h3>Source 1: Cohort Retention Analysis (Tier 1 — SQL, 90-day lookback)</h3>
+
+<h3>Source 2: Churned User Interviews (Tier 2 — 12 interviews, conducted week of Feb 10)</h3>
+
+<p><strong>Pattern:</strong> Onboarding sets wrong expectations OR fails to create habit scaffolding.</p>
+
+<h3>Source 3: Session Recordings (Tier 2 — Fullstory, 50 random D0-D6 churners)</h3>
+
+<h3>Source 4: NPS Survey (Tier 2 — quarterly, n=4,200, Feb)</h3>
+</div>
+
+<footer class="page-footer">
+  <span>Meditation App Engagement Recovery · PM Skills Arsenal</span>
+  <span>Built with GitHub Copilot</span>
+</footer>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('nav button').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

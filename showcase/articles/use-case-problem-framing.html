@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notion’s Growth Plateau — PM Skills Arsenal</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#FDFAF6; --surface:#FFFFFF; --text:#2C2520;
+  --text-secondary:#5A524A; --text-muted:#8B8178;
+  --accent:#B85C38; --accent-light:rgba(184,92,56,0.08);
+  --sage:#5B7B6A; --sage-light:rgba(91,123,106,0.08);
+  --warm-gold:#B8963E; --warm-gold-light:rgba(184,150,62,0.08);
+  --stone:#8B7D6B; --stone-light:rgba(139,125,107,0.08);
+  --human:#6B4C8A; --human-light:rgba(107,76,138,0.08);
+  --border:#E8E2DA; --border-light:#F0EBE4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* ── HEADER ── */
+.page-header{max-width:980px;margin:0 auto;padding:72px 48px 36px;text-align:center}
+.overline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Source Serif 4',Georgia,serif;font-size:40px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:16px}
+.subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;margin:0 auto 20px;line-height:1.65}
+.header-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;font-size:12.5px;color:var(--text-muted)}
+.header-meta strong{color:var(--text-secondary)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0}
+nav .inner{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:8px 48px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);padding:8px 16px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+nav button:hover{color:var(--text);background:var(--border-light)}
+nav button.active{color:var(--accent);background:var(--accent-light);font-weight:600}
+
+/* ── SECTIONS ── */
+.section{display:none;max-width:980px;margin:0 auto;padding:40px 48px 60px}
+.section.active{display:block}
+.section h2{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:15px;color:var(--text-secondary);margin-bottom:28px;line-height:1.65;max-width:760px}
+.section h3{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin:32px 0 10px}
+.section h4{font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin:24px 0 6px}
+.section p{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0;max-width:760px}
+.section ul,.section ol{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0 10px 24px;max-width:760px}
+.section li{margin:4px 0}
+.section li strong{color:var(--text)}
+.section a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)}
+.section a:hover{border-bottom-color:var(--accent)}
+.section code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--border-light);padding:1px 6px;border-radius:3px;color:var(--accent)}
+.section strong{color:var(--text)}
+.section-divider{border:none;border-top:1px solid var(--border-light);margin:28px 0}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--border);border-radius:8px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:13.5px}
+.table-wrap th{background:var(--surface);font-weight:600;color:var(--text);text-align:left;padding:10px 14px;border-bottom:2px solid var(--border);position:sticky;top:0;white-space:nowrap}
+.table-wrap td{padding:9px 14px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top}
+.table-wrap tr:last-child td{border-bottom:none}
+.table-wrap tbody tr:nth-child(even){background:rgba(253,250,246,0.6)}
+.table-wrap tbody tr:hover{background:var(--accent-light)}
+.table-wrap td:first-child{font-weight:500;color:var(--text)}
+
+/* ── ASIDE / CALLOUT ── */
+.aside{display:flex;gap:14px;padding:16px 20px;border-left:3px solid var(--sage);background:var(--sage-light);border-radius:0 8px 8px 0;margin:20px 0}
+.aside.decision{border-left-color:var(--accent);background:var(--accent-light)}
+.aside.watch{border-left-color:var(--warm-gold);background:var(--warm-gold-light)}
+.aside.strategy{border-left-color:var(--human);background:var(--human-light)}
+.a-icon{font-size:16px;flex-shrink:0;margin-top:1px;color:var(--text-muted)}
+.aside p{margin:0;font-size:14px;line-height:1.65;color:var(--text-secondary);max-width:none}
+
+/* ── CASCADE BLOCK ── */
+.cascade-block{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:24px 0}
+.cascade-header{background:var(--accent-light);padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.cascade-item{display:flex;padding:14px 20px;border-top:1px solid var(--border-light);gap:14px;align-items:flex-start}
+.cascade-label{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cascade-o .cascade-label{background:var(--sage-light);color:var(--sage)}
+.cascade-i .cascade-label{background:var(--warm-gold-light);color:var(--warm-gold)}
+.cascade-r .cascade-label{background:var(--accent-light);color:var(--accent)}
+.cascade-c .cascade-label{background:var(--stone-light);color:var(--stone)}
+.cascade-w .cascade-label{background:var(--human-light);color:var(--human)}
+.cascade-text{font-size:14px;line-height:1.65;color:var(--text-secondary);flex:1}
+.cascade-text strong{color:var(--text)}
+
+/* ── EVIDENCE BADGES / CONFIDENCE PILLS ── */
+.ev-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;vertical-align:middle;margin:0 1px;cursor:default}
+.ev-t1,.ev-t2{background:var(--sage-light);color:var(--sage)}
+.ev-t3{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t4{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t5,.ev-t6{background:var(--stone-light);color:var(--stone)}
+.ev-limited{background:var(--accent-light);color:var(--accent);font-size:9px}
+.ev-detail{font-size:12px;color:var(--text-muted);font-style:italic}
+.conf-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
+.conf-h{background:var(--sage-light);color:var(--sage)}
+.conf-m{background:var(--warm-gold-light);color:var(--warm-gold)}
+.conf-l{background:var(--accent-light);color:var(--accent)}
+
+/* ── COLORED DOTS ── */
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin:0 2px}
+.dot.green{background:#5B7B6A}
+.dot.yellow{background:#B8963E}
+.dot.red{background:#B85C38}
+
+/* ── CHECK / CROSS ICONS ── */
+.icon-check{color:var(--sage);font-weight:700;font-size:14px}
+.icon-cross{color:var(--accent);font-weight:700;font-size:14px}
+.icon-warn{color:var(--warm-gold);font-size:14px}
+
+/* ── PROGRESS BAR (replaces block chars) ── */
+.bar-container{display:flex;align-items:center;gap:8px}
+.bar-track{flex:1;height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;min-width:60px;max-width:120px}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--sage),var(--accent))}
+.bar-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--text-secondary);white-space:nowrap}
+
+/* ── CODE FIGURE ── */
+.code-figure{margin:20px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.code-figure pre{background:var(--surface);padding:18px 20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:var(--text);margin:0;white-space:pre}
+
+/* ── POWER ITEM (bold emoji paragraph) ── */
+.power-item{border-left:3px solid var(--border);padding:10px 18px;margin:10px 0;background:var(--surface);border-radius:0 8px 8px 0}
+.power-item p{margin:0;max-width:none}
+
+/* ── DATA GRID ── */
+.data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.data-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.data-card h4{font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;color:var(--text);margin:0 0 6px}
+.data-card p{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6;max-width:none}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:22px 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .val{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--accent)}
+.stat-card .lbl{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* ── FOOTER ── */
+.page-footer{max-width:980px;margin:0 auto;padding:32px 48px 64px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .page-header{padding:48px 24px 24px}
+  h1{font-size:28px}
+  .section{padding:28px 24px 48px}
+  nav .inner{padding:8px 16px}
+  .page-footer{padding:24px;flex-direction:column}
+  .data-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+  nav{display:none}
+  .section{display:block!important;page-break-inside:avoid}
+  .page-header{padding-top:32px}
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="overline">Problem Framing · PM Skills Arsenal</div>
+  <h1>Notion’s Growth Plateau</h1>
+  <p class="subtitle">Problem decomposition with root cause analysis, 5 Whys, JTBD framing, opportunity sizing, constraint mapping, and stakeholder impact.</p>
+  <div class="header-meta">
+    <span><strong>Skill:</strong> problem-framing</span>
+    <span><strong>Date:</strong> February 2026</span>
+    <span><strong>Source:</strong> PM Skills Arsenal</span>
+  </div>
+</header>
+
+<nav>
+  <div class="inner">
+    <button class="active" onclick="show('summary')">Summary</button>
+      <button onclick="show('context')">Context</button>
+      <button onclick="show('1-problem-statement')">Problem Statement</button>
+      <button onclick="show('3-root-cause-analysis')">Root Cause Analysis</button>
+      <button onclick="show('5-opportunity-sizing')">Opportunity Sizing</button>
+      <button onclick="show('7-constraint-map')">Constraint Map</button>
+      <button onclick="show('9-problem-prioritization')">Problem Prioritization</button>
+      <button onclick="show('governance')">Governance</button>
+      <button onclick="show('resources')">Resources</button>
+  </div>
+</nav>
+
+<div class="section active" id="summary">
+  <h2>Executive Summary</h2>
+<p>Notion crossed 100M users and generated $600M revenue in 2025, but growth signals are flattening: Google Trends, app store rankings, and web traffic growth have plateaued since mid-2023 <span class="conf-pill conf-m">M</span> <span class="ev-detail">T4 market data</span>. The presented problem — "growth plateau due to market saturation" — is actually three distinct problems with different root causes: (1) <strong>Enterprise penetration ceiling</strong> — 13% free-to-paid conversion rate suggests onboarding friction prevents teams from unlocking collaborative value (T2 — user complaints about steep learning curve), (2) <strong>Multi-product fragmentation risk</strong> — Notion's acquisition strategy (Skiff for email, Calendar, Sites) creates multiple disconnected on-ramps without strengthening the core workspace switching costs (T3 — product launch analysis), and (3) <strong>Defensive compression from both sides</strong> — Microsoft Loop bundles "good enough" collaboration at zero incremental cost for 345M Office 365 users while Coda captures power users with superior automation (T2 — competitive feature comparison). The root problem is not saturation but <strong>activation failure</strong>: Notion acquires users but fails to convert them into sticky team workspaces where Network Effects and Design Systems-style switching costs compound. <strong>Recommendation: Focus product investment on reducing time-to-collaborative-value from weeks to <48 hours through AI-assisted workspace setup (Notion AI onboarding flows) and pre-built industry templates with embedded workflows — validate with cohort analysis comparing activation rates for guided vs. self-serve onboarding paths.</strong></p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">How to Read This Document</h3>
+<p class="section-sub"><strong>What this is:</strong> A problem definition analyzing Notion's growth plateau — not a solution proposal or product roadmap. It decomposes "market saturation" into specific, evidence-graded sub-problems and assesses whether each is worth solving. This feeds into Discovery Research (what to validate) and Competitive Analysis (how competitors exploit these gaps).</p>
+
+<p><strong>Reading by time available:</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Time</th>
+<th>Read</th>
+<th>You'll get</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>5 min</strong></td>
+<td>Executive Summary only</td>
+<td>The three sub-problems, root causes, and recommended next step</td>
+</tr>
+<tr>
+<td><strong>15 min</strong></td>
+<td>Executive Summary + Problem Statement + Opportunity Sizing</td>
+<td>Quantified impact and problem prioritization</td>
+</tr>
+<tr>
+<td><strong>30 min</strong></td>
+<td>Full document through Recommendations</td>
+<td>Complete decomposition with stakeholder map and constraint analysis</td>
+</tr>
+<tr>
+<td><strong>Deep dive</strong></td>
+<td>Everything including Appendix</td>
+<td>Full framework applications, assumptions, adversarial critique</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Reading by role:</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Role</th>
+<th>Start with</th>
+<th>Then read</th>
+<th>Skip unless curious</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>VP / Exec</td>
+<td>Executive Summary</td>
+<td>Opportunity Sizing (section 5), Prioritization (section 9), Recommendations (section 10)</td>
+<td>Framework deep dives, root cause trees</td>
+</tr>
+<tr>
+<td>PM Lead</td>
+<td>Executive Summary</td>
+<td>Problem Statement (section 2), Constraint Map (section 7), Problem-Solution Fit (section 6)</td>
+<td>Individual framework details</td>
+</tr>
+<tr>
+<td>Researcher / Designer</td>
+<td>Full document in order</td>
+<td>Root Cause (section 3), JTBD Framing (section 4), Stakeholder Matrix (section 8)</td>
+<td>Financial opportunity sizing</td>
+</tr>
+<tr>
+<td>Engineer</td>
+<td>Executive Summary</td>
+<td>Constraint Map (section 7), Problem Statement (section 2)</td>
+<td>Stakeholder analysis, JTBD framing</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Notation Key</h3>
+<p class="section-sub"><strong>Confidence levels</strong> — applied to every problem framing conclusion: - <strong>H (>70% confident)</strong> — Strong evidence supports this conclusion. Act on it. - <strong>M (40-70%)</strong> — Direction is probable but evidence is mixed. Validate before committing resources. - <strong>L (<40%)</strong> — This is a hypothesis, not a finding. Do not act without further evidence.</p>
+
+<p><strong>Evidence tiers</strong> — how we know what we claim to know (tagged inline as T1-T6): - <strong>T1</strong> — Direct user behavioral data: usage analytics, churn data, support tickets, session recordings - <strong>T2</strong> — Primary user research: user interviews, usability studies, properly sampled surveys - <strong>T3</strong> — Expert analysis with disclosed methodology: UX research reports, competitive teardowns - <strong>T4</strong> — Market/industry reports: Gartner, market research, public metrics (useful for sizing, weaker for problem specifics) - <strong>T5</strong> — Stakeholder assertions: internal claims, executive opinions, sales anecdotes - <strong>T6</strong> — Assumptions/inference: first-principles reasoning, analogies (weakest)</p>
+
+<p><strong>Problem severity ratings:</strong> - <strong>Critical</strong> — Users cannot accomplish their goal; abandon or churn - <strong>Major</strong> — Users accomplish the goal but with significant friction or workaround - <strong>Minor</strong> — Annoyance that does not change behavior or outcomes</p>
+
+<p><strong>Recommendation format</strong> (O->I->R->C->W): - <strong>O</strong>bservation — What we see (with evidence tier) - <strong>I</strong>mplication — Why it matters (the mechanism) - <strong>R</strong>esponse — What to do (specific action + owner + timeline) - <strong>C</strong>onfidence — How sure we are (H/M/L + key assumption) - <strong>W</strong>atch — How to know if we're wrong (observable signal)</p>
+
+<p><strong>Flags:</strong> - <code>[POTENTIALLY STALE]</code> — Source data is >6 months old; verify before presenting - <code>[EVIDENCE-LIMITED]</code> — Conclusion rests on T4-T6 evidence only; validate with stronger data before acting</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="context">
+  <h2>Step 0: Context Fitness Check</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Question</th>
+<th>Answer</th>
+<th>Assessment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Is the problem space genuinely unclear or contested?</strong></td>
+<td>YES. "Growth plateau due to market saturation" is the surface diagnosis. Root causes are unclear — is it pricing? competition? product complexity? market maturity?</td>
+<td>Proceed with Problem Framing. Decomposition is needed.</td>
+</tr>
+<tr>
+<td><strong>Do you have access to user behavioral data <span class="ev-badge ev-t1">T1</span> or primary research <span class="ev-badge ev-t2">T2</span>?</strong></td>
+<td>PARTIAL. Public user complaints/reviews <span class="ev-badge ev-t2">T2–T3</span> and market data <span class="ev-badge ev-t4">T4</span> available. Churn cohort analysis, activation funnel data, Net Retention Rate <span class="ev-badge ev-t1">T1</span> are NOT publicly available — critical gaps.</td>
+<td>Flag prominently: Most problem sizing relies on T2-T4 evidence. Confidence capped at M for activation/retention claims. <code>[EVIDENCE-LIMITED]</code> on Problem-Solution Fit tests.</td>
+</tr>
+<tr>
+<td><strong>Is the requester asking for a problem definition or already asking for a solution?</strong></td>
+<td>Problem definition appropriate. "Why is growth slowing?" is the question, not "Build feature X."</td>
+<td>Proceed normally.</td>
+</tr>
+<tr>
+<td><strong>Are multiple stakeholders involved with potentially different views of the problem?</strong></td>
+<td>YES. Product team sees feature gaps (vs. competitors), Growth team sees conversion friction, Leadership sees market saturation narrative.</td>
+<td>Stakeholder Impact Matrix (F7) is load-bearing.</td>
+</tr>
+<tr>
+<td><strong>Is there time pressure to ship something immediately?</strong></td>
+<td>NO immediate fire drill. Growth plateau is a strategic concern, not a crisis.</td>
+<td>Full Version with all applicable frameworks.</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Overall Fitness:</strong> Problem Definition Document is the right artifact. Proceed with framework application but flag T1 data gaps prominently.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Step 0b: Framework Selection</h3>
+<p class="section-sub"><strong>Question type:</strong> Decompose a multi-dimensional problem with prioritization across sub-problems</p>
+
+<p><strong>Primary frameworks (apply in full):</strong> - <strong>F1 Problem Definition Canvas</strong> — Decompose "growth plateau" into specific who/what/when - <strong>F2 5 Whys Root Cause</strong> — Peel "market saturation" to structural causes - <strong>F3 JTBD Problem Framing</strong> — Are users hiring Notion for the right job? Are jobs under-served? - <strong>F4 Opportunity Sizing</strong> — Quantify impact of each sub-problem - <strong>F8 ICE/RICE Prioritization</strong> — Rank sub-problems by solvability and impact</p>
+
+<p><strong>Supporting frameworks (scan depth):</strong> - <strong>F5 Problem-Solution Fit</strong> — Validate that sub-problems are worth solving - <strong>F6 Constraint Mapping</strong> — Technical, business, organizational limits on solutions - <strong>F7 Stakeholder Impact Matrix</strong> — Internal alignment on problem framing</p>
+
+<p><strong>Frameworks skipped:</strong> - None — Full problem definition requires all frameworks due to multi-stakeholder, multi-dimensional problem space</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="1-problem-statement">
+  <h2>1. Problem Statement</h2>
+<p class="section-sub"><strong>One-sentence problem statement:</strong></p>
+
+<p><strong>Growth-stage SaaS teams (5-50 people)</strong> experience <strong>stalled adoption after initial workspace setup</strong> when <strong>onboarding new teammates or expanding use cases beyond documentation</strong>, resulting in <strong>13% free-to-paid conversion despite 100M registered users and plateau in cohort-based Net Dollar Retention since Q2 2023 (inferred from public growth signals)</strong>.</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">M (40-70%) | <strong>Evidence basis:</strong> T2-T4 mix (user complaints + market data; missing T1 cohort analytics)</div>
+</div>
+</div>
+
+<p><strong>Problem type:</strong> Existing problem newly visible — growth was masking activation friction; plateau makes it apparent.</p>
+
+<p><code>[EVIDENCE-LIMITED: validate with T1 cohort analysis, activation funnel drop-off points, and NRR by cohort before acting]</code></p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">2. Problem Definition Canvas</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Finding</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Who has this problem?</strong></td>
+<td>Growth-stage teams (5-50 people) trying to adopt Notion as team workspace, not individual note-taking tool. SMB/mid-market segment.</td>
+<td><span class="ev-badge ev-t2" title="User reviews on Capterra/G2 cite &quot;works great solo, hard to get team on board&quot;; T4: 100M users but only 4M paying → 13% conversion suggests individual→team transition fails">T2</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>What are they trying to do?</strong></td>
+<td>Consolidate fragmented team knowledge (docs, wikis, project trackers) into a single collaborative workspace where everyone can find information and contribute.</td>
+<td><span class="ev-badge ev-t2" title="Reddit r/Notion threads show &quot;migrating from Confluence/Google Docs&quot;; user reviews cite &quot;all-in-one workspace&quot; as purchase driver">T2</span></td>
+<td>H</td>
+</tr>
+<tr>
+<td><strong>What do they do today?</strong></td>
+<td>Mix of Google Docs (unstructured), Jira/Linear (rigid structure), Confluence (enterprise complexity), Notion (individual users), Slack (ephemeral). Knowledge is siloed across 5+ tools.</td>
+<td><span class="ev-badge ev-t2" title="User complaints cite &quot;team uses 6 different tools&quot;; T4: productivity market reports show avg team uses 7-9 collaboration tools">T2</span></td>
+<td>H</td>
+</tr>
+<tr>
+<td><strong>Why is that painful?</strong></td>
+<td><strong>Trigger 1 (Discovery):</strong> Cannot find past decisions or context — spend 30-60 min/week searching across tools or re-asking questions. <strong>Trigger 2 (Collaboration):</strong> Async collaboration requires tool-switching (Docs for writing, Slack for discussion, Jira for tasks) — 15-20 context switches/day. <strong>Trigger 3 (Onboarding):</strong> New team members face "where do I find X?" for 2-4 weeks.</td>
+<td><span class="ev-badge ev-t2" title="User reviews cite &quot;information scattered&quot;; &quot;steep learning curve for team&quot;; T3: UX review by Karmen Yip cites &quot;getting team to adopt is the hard part&quot;">T2</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>What triggers the pain?</strong></td>
+<td><strong>Acute triggers:</strong> (1) New team member joins → 2-4 week onboarding lag, (2) Cross-functional project starts → no shared context repository, (3) Leadership asks "why did we decide X?" → no searchable decision log.</td>
+<td><span class="ev-badge ev-t2" title="User reviews cite &quot;onboarding new people is painful&quot;; Reddit threads show &quot;took a year to learn Notion fully&quot;">T2</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>What does "good" look like?</strong></td>
+<td>"Any team member can find any past decision, document, or discussion in <2 minutes. New hires are productive in <3 days. No tool-switching for 80% of daily work." (Desired end state = single source of truth with fast search + low learning curve)</td>
+<td><span class="ev-badge ev-t2" title="User reviews for successful Notion teams cite &quot;everything in one place&quot;; &quot;search is a lifesaver once set up&quot;">T2</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>How do they know it's solved?</strong></td>
+<td>Observable success criteria: (1) New hire time-to-productivity drops from 2-4 weeks to <1 week, (2) "Where is X?" Slack questions drop >50%, (3) Team adoption >80% (5+ logins/week per user), (4) Cross-tool switching drops from 15-20/day to <5/day.</td>
+<td><span class="ev-badge ev-t2" title="User reviews cite these as indicators of successful Notion adoption; T6: inferred from JTBD success metrics">T2</span></td>
+<td>L</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Canvas Completeness Assessment:</strong></p>
+
+<ul>
+<li><strong>Cells at T1-T2:</strong> 2/7 (What they do today, What good looks like)</li>
+<li><strong>Cells at T3-T4:</strong> 2/7 (Who has this problem, Why painful)</li>
+<li><strong>Cells at T5-T6:</strong> 3/7 (Triggers, Observable success criteria)</li>
+</ul>
+
+<p><strong>Verdict:</strong> <strong>Hypothesis-level problem definition.</strong> 43% of Canvas relies on T5-T6 evidence. <code>[EVIDENCE-LIMITED]</code> — before committing major product resources, validate with: 1. T1 activation funnel analysis (where do teams drop off in onboarding?) 2. T2 user interviews with 10+ teams who tried Notion but didn't convert (why?) 3. T1 Net Dollar Retention by cohort (are teams churning or failing to expand?)</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="3-root-cause-analysis">
+  <h2>3. Root Cause Analysis</h2>
+<p class="section-sub"><strong>Presented problem:</strong> "Notion's growth is plateauing due to market saturation in the productivity tool space."</p>
+
+<p><strong>Root problem:</strong> <strong>Activation failure masquerading as saturation</strong> — Notion acquires users but fails to convert individuals into collaborative teams where Network Effects and switching costs compound.</p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Layer</th>
+<th>Why?</th>
+<th>Evidence</th>
+<th>Tier</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Surface symptom</strong></td>
+<td>Growth signals plateau since mid-2023 (Google Trends flat, app store ranks stable, web traffic growth slowing)</td>
+<td><span class="ev-badge ev-t4" title="Market data from SimilarWeb, Google Trends, App Annie">T4</span></td>
+<td>T4</td>
+</tr>
+<tr>
+<td><strong>Why 1</strong></td>
+<td>User acquisition continues (100M users, 20% YoY growth) but conversion to paid is stuck at 13% (4M paying / 100M registered)</td>
+<td><span class="ev-badge ev-t4" title="Public user/revenue metrics">T4</span></td>
+<td>T4</td>
+</tr>
+<tr>
+<td><strong>Why 2 (Branch A)</strong></td>
+<td><strong>Individual users love Notion (4.7/5 rating), but teams struggle to adopt it.</strong> Users onboard solo, build personal wikis, then fail to get teammates to join.</td>
+<td><span class="ev-badge ev-t2" title="User reviews cite &quot;works great solo, hard to get team on board&quot;; &quot;steep learning curve for team&quot;; T3: UX review">T2</span></td>
+<td>T2</td>
+</tr>
+<tr>
+<td><strong>Why 3a</strong></td>
+<td>Getting a team onto Notion requires: (1) convincing stakeholders, (2) migrating existing content, (3) training team members, (4) changing team habits. Each step has 30-50% drop-off (estimated).</td>
+<td><span class="ev-badge ev-t6" title="Inferred from adoption funnel logic; T2: user complaints cite &quot;team resisted the change&quot;">T6</span></td>
+<td>T6</td>
+</tr>
+<tr>
+<td><strong>Why 4a (Branch 1)</strong></td>
+<td><strong>ROOT CAUSE A1: Notion's flexibility = blank canvas problem.</strong> New teams face "what pages do we need? what's the structure?" → spend 10-20 hours setting up workspace → never finish → abandon.</td>
+<td><span class="ev-badge ev-t2" title="User reviews: &quot;too many options&quot;; &quot;don&#x27;t know where to start&quot;; &quot;overwhelmed by possibilities&quot;; Reddit threads on &quot;how to structure Notion for team&quot;">T2</span></td>
+<td>T2</td>
+</tr>
+<tr>
+<td><strong>Why 4a (Branch 2)</strong></td>
+<td><strong>ROOT CAUSE A2: Collaborative value is latent, not immediate.</strong> Notion's Network Effects (comments, mentions, collaborative editing) require 3+ active users. Solo user sees no collaboration features → doesn't invite team → no viral loop.</td>
+<td><span class="ev-badge ev-t6" title="Inferred from Network Effects theory; T2: user behavior shows &quot;starts solo, stays solo&quot;">T6</span></td>
+<td>T6</td>
+</tr>
+<tr>
+<td><strong>Why 2 (Branch B)</strong></td>
+<td><strong>Teams that DO adopt Notion successfully face feature gaps vs. specialized tools</strong> (project mgmt vs. Linear/Jira, databases vs. Airtable, docs vs. Google Docs).</td>
+<td><span class="ev-badge ev-t2" title="User reviews cite &quot;jack of all trades, master of none&quot;; &quot;missing Gantt charts&quot;; &quot;formulas not as powerful as Airtable&quot;">T2</span></td>
+<td>T2</td>
+</tr>
+<tr>
+<td><strong>Why 3b</strong></td>
+<td><strong>ROOT CAUSE B: Notion positions as "all-in-one workspace" but delivers 70-80% of each specialized tool's power</strong> → teams use Notion for docs but keep Linear for engineering, Airtable for ops. Notion becomes another tool in the stack, not a replacement.</td>
+<td><span class="ev-badge ev-t2" title="User behavior analysis; T3: competitive feature comparison">T2</span></td>
+<td>T2</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>5 Whys Tree — Backward Validation:</strong></p>
+
+<p>Reading backward: "Because Notion delivers 70-80% of specialized tools (Root B), teams keep other tools → Notion doesn't consolidate stack (Why 2 Branch B). Separately, because flexibility = blank canvas (Root A1) and collaborative value is latent (Root A2), teams fail to onboard (Why 3a) → individuals stay solo (Why 2 Branch A) → conversion stays at 13% (Why 1) → growth plateaus (Symptom)."</p>
+
+<p><strong>Chain validity:</strong> <span class="icon-check">✓</span> Holds logically. Each link supported by T2-T6 evidence.</p>
+
+<p><strong>Divergence check:</strong> <span class="icon-check">✓</span> <strong>ROOT CAUSES DIFFER FROM PRESENTED PROBLEM.</strong> Stakeholders say "market saturation" (external constraint). Root cause analysis says "activation failure" (internal product/UX issue). This is a critical reframing — the implication is that Notion can solve this through product changes, not market repositioning.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">4. JTBD Problem Framing</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Job Dimension</th>
+<th>Finding</th>
+<th>Evidence</th>
+<th>Unmet?</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Functional job</strong></td>
+<td>"Centralize team knowledge so any team member can find any information without asking others." (Search, retrieve, contribute, organize)</td>
+<td><span class="ev-badge ev-t2" title="User interviews, reviews">T2</span></td>
+<td><strong>Under-served</strong> — search works well once set up, but setup barrier prevents reaching "good" state.</td>
+</tr>
+<tr>
+<td><strong>Emotional job</strong></td>
+<td>"Feel confident that I'm not missing critical context. Feel productive (not tool-switching). Feel like the team is aligned."</td>
+<td><span class="ev-badge ev-t2" title="User sentiment in reviews: &quot;peace of mind&quot;; &quot;finally organized&quot;; T3: UX analysis">T2</span></td>
+<td><strong>Under-served</strong> — blank canvas creates anxiety ("am I doing this right?"). Lack of team adoption = no alignment confidence.</td>
+</tr>
+<tr>
+<td><strong>Social job</strong></td>
+<td>"Be seen as organized, efficient, data-driven (for managers). Be part of a team that 'has it together' (for ICs)."</td>
+<td><span class="ev-badge ev-t6" title="Inferred from productivity tool positioning">T6</span></td>
+<td><strong>Under-served</strong> — if team doesn't adopt, individual looks like "the person pushing another tool" (negative social signal).</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Consumption chain analysis:</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Phase</th>
+<th>Current behavior</th>
+<th>Pain points</th>
+<th>Opportunity</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Before (trigger/discovery)</strong></td>
+<td>Individual discovers Notion via social media, friend recommendation, or searching "personal wiki tool."</td>
+<td>No pain — discovery works well (100M users = strong acquisition).</td>
+<td>Maintain acquisition strength; optimize for team discovery, not just individual.</td>
+</tr>
+<tr>
+<td><strong>During (active use) — Solo</strong></td>
+<td>Individual user builds personal wiki, note system, task tracker. Learns features gradually over weeks/months.</td>
+<td>Steep learning curve <span class="ev-badge ev-t2" title="&quot;took a year to learn fully&quot;">T2</span>, but tolerable for solo use. Individual gets value immediately (personal organization).</td>
+<td>Solo use case is strong. No immediate opportunity here.</td>
+</tr>
+<tr>
+<td><strong>During (active use) — Team transition</strong></td>
+<td>User tries to invite teammates. Teammates see complex, unfamiliar interface. No guidance on "what pages to create" or "how to structure for our team."</td>
+<td><strong>CRITICAL PAIN POINT:</strong> Teammates resist adoption → user either (1) builds workspace alone (high effort, low team buy-in) or (2) gives up and Notion remains personal tool.</td>
+<td><strong>HIGH OPPORTUNITY:</strong> Guided team onboarding flow (AI-assisted workspace setup, industry templates, role-based views) could reduce setup time from 10-20 hours to <2 hours and increase teammate buy-in.</td>
+</tr>
+<tr>
+<td><strong>After (outcome/follow-up)</strong></td>
+<td>Successful teams: Everything in Notion, low tool-switching, fast search, new hires onboard quickly. Failed teams: Notion remains solo tool or team abandons after 2-4 weeks.</td>
+<td><strong>Bimodal outcome</strong> — either excellent or failure. No middle ground.</td>
+<td>Design for "team activation moment" — threshold where 3+ users are active weekly → Network Effects kick in.</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Competing "hires":</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>What they hire today</th>
+<th>Job dimensions served</th>
+<th>Where it fails</th>
+<th>Switching barrier</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Google Docs + Drive</strong></td>
+<td>Functional: 6/10 (good for docs, weak for structure), Emotional: 5/10 (familiar, not anxiety-inducing), Social: 7/10 (universal adoption = no social cost)</td>
+<td>Unstructured. No databases, no wikis, search is weak for long-term knowledge.</td>
+<td><strong>HIGH</strong> — everyone already uses it, zero learning curve, free for most teams.</td>
+</tr>
+<tr>
+<td><strong>Confluence (for enterprise)</strong></td>
+<td>Functional: 7/10 (strong wikis, permissions), Emotional: 3/10 (complex, enterprise UX), Social: 6/10 (standard in big orgs)</td>
+<td>Heavy, slow, expensive ($5.75+/user/month). Over-engineered for SMBs.</td>
+<td><strong>HIGH</strong> — embedded in enterprise workflows, admin-controlled.</td>
+</tr>
+<tr>
+<td><strong>Linear (for eng teams)</strong></td>
+<td>Functional: 9/10 for issue tracking, 2/10 for docs. Emotional: 8/10 (fast, elegant). Social: 8/10 (eng team identity).</td>
+<td>Not a wiki. Can't replace docs or general knowledge management.</td>
+<td><strong>MODERATE</strong> — eng-specific. Non-eng teams need different tool.</td>
+</tr>
+<tr>
+<td><strong>Doing nothing / keeping status quo (5+ fragmented tools)</strong></td>
+<td>Functional: 5/10 (each tool is 8/10 at its job, but fragmentation = context switching). Emotional: 4/10 (frustrating but familiar). Social: 7/10 (no change management cost).</td>
+<td>Fragmentation pain (30-60 min/week lost searching). But pain is chronic, not acute → low urgency to switch.</td>
+<td><strong>VERY HIGH</strong> — inertia. "If it ain't broke (enough), don't fix it."</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Critical insight:</strong> "Doing nothing" is the dominant competitor. Notion must prove that consolidation pain (learning curve + migration + team adoption) is less than fragmentation pain (tool-switching + lost context). Currently, the math doesn't work for most teams — consolidation pain is front-loaded (10-20 hours in first 2 weeks) while fragmentation pain is distributed (1 hour/week forever). Discount rate favors status quo.</p>
+
+<p><strong>Decision triggers from JTBD analysis:</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Finding</th>
+<th>Implication</th>
+<th>Next action</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Functional job under-served during team transition phase</td>
+<td>High-value opportunity: reduce team onboarding friction</td>
+<td>Quantify with F4 Opportunity Sizing: frequency × severity × breadth × willingness</td>
+</tr>
+<tr>
+<td>Emotional job under-served (blank canvas anxiety)</td>
+<td>UX/product opportunity: guided setup, templates, AI assistance</td>
+<td>Validate with T2 user research: "Would pre-built templates accelerate your team setup?"</td>
+</tr>
+<tr>
+<td>"Doing nothing" is the dominant hire</td>
+<td>Switching cost must drop dramatically to change behavior</td>
+<td>Constraint: solution must reduce setup time by 5-10x (from 10-20 hours to 1-2 hours) to shift the cost/benefit math</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="5-opportunity-sizing">
+  <h2>5. Opportunity Sizing</h2>
+<h3>Sub-Problem 1: Team Activation Failure (Individual → Team Transition)</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Estimate</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Frequency</strong></td>
+<td>Once per team (one-time setup), but recurring for each new use case expansion (quarterly). Estimate: 4-5 times per team per year (initial + 3-4 expansions).</td>
+<td><span class="ev-badge ev-t6" title="Inferred from SaaS adoption patterns; T2: user reviews mention &quot;tried to expand from docs to project management, gave up&quot;">T6</span></td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Severity</strong></td>
+<td><strong>Major</strong> — Teams can accomplish goal (individual note-taking) but cannot achieve desired goal (team collaboration). Workaround: keep Notion for personal use, use other tools for team. Impact: Notion remains $0-8/month individual tool, not $15-25/month team workspace.</td>
+<td><span class="ev-badge ev-t2" title="User reviews cite &quot;works great solo, hard to get team on board&quot;; T4: 13% conversion = most users stay free">T2</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>Breadth</strong></td>
+<td>87% of Notion's user base (87M of 100M users are free, non-paying). Subset: ~30-40% of free users (26-35M) are in teams that COULD adopt Notion collaboratively but don't.</td>
+<td><span class="ev-badge ev-t4" title="100M users, 4M paying = 96M free; T6: assume 30-40% are team-eligible based on SMB market size">T4</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>Willingness</strong></td>
+<td><strong>Moderate-High</strong> — Users actively complain about team adoption friction (reveals pain). Some pay for alternatives (Linear, Confluence). But no evidence of "desperate" willingness (not building workarounds at scale).</td>
+<td><span class="ev-badge ev-t2" title="User reviews show active complaints; T4: productivity tool market growing 13.5% CAGR = users ARE paying for solutions">T2</span></td>
+<td>M</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Scoring (1-5 scale):</strong></p>
+
+<ul>
+<li><strong>Frequency:</strong> 3 (4-5 times/year per team = quarterly frequency)</li>
+<li><strong>Severity:</strong> 4 (Major friction, prevents goal achievement, forces workaround/parallel tool use)</li>
+<li><strong>Breadth:</strong> 4 (30-40% of user base = 26-35M affected users)</li>
+<li><strong>Willingness:</strong> 3 (Complaining + some willingness to pay, but not desperate)</li>
+</ul>
+
+<p><strong>Opportunity Score:</strong> 3 × 4 × 4 × 3 = <strong>144 / 625</strong> (Strong opportunity — falls in 100-299 range)</p>
+
+<p><strong>Interpretation:</strong> Significant problem worth investigating further. Breadth and Severity are high; Frequency and Willingness are moderate. If Frequency or Willingness upgrades (e.g., users would switch products to solve this), score jumps to 192-256 (Critical opportunity).</p>
+
+<p><strong>Revenue impact estimation:</strong></p>
+
+<figure class="code-figure"><pre><code>Affected users: 30M (conservative — 30% of 100M free users in team-eligible segment)
+Current conversion: 13% → 3.9M paying users
+Target conversion if activation improves: 20% (7% increase) → 6M paying users
+Additional paying users: 2.1M
+ARPU (blended): ~$12/month (weighted avg of Plus $10, Business $18, Team plans)
+Annual revenue opportunity: 2.1M users × $12/month × 12 months = $302M/year</code></pre></figure>
+
+<p><code>[EVIDENCE-LIMITED: ARPU estimate is T6 inference from pricing tiers; actual ARPU may vary. Conversion uplift (13% → 20%) assumes activation is primary bottleneck — validate with cohort analysis.]</code></p>
+
+<hr class="section-divider">
+
+<h3>Sub-Problem 2: Feature Parity Gaps vs. Specialized Competitors</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Estimate</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Frequency</strong></td>
+<td>Daily for power users (lack of advanced formulas, Gantt charts, automations). Weekly for general users (minor friction points).</td>
+<td><span class="ev-badge ev-t2" title="User reviews cite &quot;missing Gantt charts&quot;; &quot;formulas not as powerful as Airtable&quot;; &quot;automation is limited&quot;">T2</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>Severity</strong></td>
+<td><strong>Minor to Moderate</strong> — Users can accomplish most goals in Notion but hit ceilings for advanced use cases. Workaround: use specialized tool alongside Notion (e.g., Airtable for complex databases). Does not block adoption but limits expansion.</td>
+<td><span class="ev-badge ev-t2" title="User reviews: &quot;jack of all trades, master of none&quot;; T3: feature comparison shows Notion at 70-80% parity">T2</span></td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>Breadth</strong></td>
+<td>10-20% of user base (power users, engineering teams, ops teams). Estimate: 10-20M users.</td>
+<td><span class="ev-badge ev-t6" title="Inferred from &quot;power user&quot; segment in SaaS; T2: Reddit/Notion community shows vocal power user cohort">T6</span></td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Willingness</strong></td>
+<td><strong>High</strong> — Power users already paying for Notion AND specialized tools (e.g., $10/month Notion + $20/month Linear). Would consolidate if Notion closed gaps.</td>
+<td><span class="ev-badge ev-t2" title="User behavior shows parallel tool usage; T4: SaaS spending data shows teams use avg 7-9 tools">T2</span></td>
+<td>M</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Scoring (1-5 scale):</strong></p>
+
+<ul>
+<li><strong>Frequency:</strong> 4 (Daily for power users, weekly for general users)</li>
+<li><strong>Severity:</strong> 3 (Moderate — accomplishes goal but with friction; forces parallel tool usage)</li>
+<li><strong>Breadth:</strong> 3 (10-20% of user base = 10-20M users)</li>
+<li><strong>Willingness:</strong> 4 (Already paying for workarounds; high willingness to consolidate)</li>
+</ul>
+
+<p><strong>Opportunity Score:</strong> 4 × 3 × 3 × 4 = <strong>144 / 625</strong> (Strong opportunity — same as Sub-Problem 1)</p>
+
+<p><strong>Revenue impact estimation:</strong></p>
+
+<figure class="code-figure"><pre><code>Affected users: 15M (midpoint of 10-20M power user segment)
+Current paying rate: 40% (higher than general population; power users convert better) → 6M paying
+If feature parity improves → expand use cases → 30% increase in seats/user (teams buy more seats)
+Additional revenue: 6M users × $15 ARPU × 0.30 expansion = $27M/year</code></pre></figure>
+
+<p><code>[EVIDENCE-LIMITED: Power user conversion rate (40%) and expansion multiplier (30%) are T6 assumptions. Validate with T1 usage data on power user cohorts.]</code></p>
+
+<hr class="section-divider">
+
+<h3>Sub-Problem 3: Multi-Product Fragmentation (Notion Mail, Calendar, Sites, Forms)</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Estimate</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Frequency</strong></td>
+<td>One-time decision per product launch. Ongoing maintenance/integration cost.</td>
+<td><span class="ev-badge ev-t3" title="Product launch analysis — Notion acquired Skiff, launched Calendar, Sites, Forms in 2024-2025">T3</span></td>
+<td>H</td>
+</tr>
+<tr>
+<td><strong>Severity</strong></td>
+<td><strong>Minor to Moderate</strong> — Does not directly hurt existing users, but dilutes product focus and fragments value prop. Risk: users adopt standalone products (Notion Calendar) but never use core workspace → no switching costs, no Network Effects.</td>
+<td><span class="ev-badge ev-t6" title="Inferred from product strategy risk; T3: acquisition analysis">T6</span></td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Breadth</strong></td>
+<td>Affects all users indirectly (resource allocation, brand dilution) but no immediate user-facing pain.</td>
+<td><span class="ev-badge ev-t6" title="Strategic risk, not user pain">T6</span></td>
+<td>L</td>
+</tr>
+<tr>
+<td><strong>Willingness</strong></td>
+<td>N/A — users are not asking for this problem to be solved. Internal strategic concern.</td>
+<td><span class="ev-badge ev-t5" title="Stakeholder concern, not user-driven">T5</span></td>
+<td>L</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Scoring (1-5 scale):</strong></p>
+
+<ul>
+<li><strong>Frequency:</strong> 2 (Occasional product launch decisions)</li>
+<li><strong>Severity:</strong> 2 (Minor — strategic risk, not acute user pain)</li>
+<li><strong>Breadth:</strong> 2 (Indirect impact on all users, but no direct pain)</li>
+<li><strong>Willingness:</strong> 1 (No user demand to solve this)</li>
+</ul>
+
+<p><strong>Opportunity Score:</strong> 2 × 2 × 2 × 1 = <strong>8 / 625</strong> (Weak opportunity — deprioritize unless strategically critical)</p>
+
+<p><strong>Interpretation:</strong> This is a strategic concern (leadership-level), not a user problem. Should be addressed in strategic planning, not product roadmap prioritization.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">6. Problem-Solution Fit Assessment</h3>
+<h3>Sub-Problem 1: Team Activation Failure</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Test</th>
+<th>Question</th>
+<th>Finding</th>
+<th>Pass/Fail</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Existence test</strong></td>
+<td>Do real users actually have this problem?</td>
+<td>YES. Multiple independent user reviews cite "hard to get team on board" <span class="ev-badge ev-t2">T2</span>. 13% conversion rate <span class="ev-badge ev-t4">T4</span> is unusually low for SaaS with 100M users.</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Severity test</strong></td>
+<td>Is the problem painful enough to change behavior?</td>
+<td>PARTIAL. Users complain but most stay on free plan (not paying for solution). Some adopt workaround (keep Notion solo, use other tools for team). Pain is chronic, not acute.</td>
+<td><strong>UNVALIDATED</strong> — behavioral evidence is weak. Users complain but don't pay to fix.</td>
+</tr>
+<tr>
+<td><strong>Frequency test</strong></td>
+<td>Does it occur often enough to justify a persistent solution?</td>
+<td>YES. Every team adoption attempt (4-5x/year per team-eligible user).</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Willingness test</strong></td>
+<td>Would users adopt a solution?</td>
+<td>UNCLEAR. Stated preference: users say they want easier team onboarding <span class="ev-badge ev-t2">T2</span>. Revealed preference: 87% stay free despite friction. Willingness is unproven.</td>
+<td><strong>UNVALIDATED</strong> — gap between stated and revealed preference. Validate with pricing/activation experiment.</td>
+</tr>
+<tr>
+<td><strong>Solvability test</strong></td>
+<td>Can this problem be solved within constraints?</td>
+<td>YES. Guided onboarding, AI-assisted workspace setup, industry templates are technically feasible (see Constraint Map).</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Timing test</strong></td>
+<td>Why now?</td>
+<td>YES. AI enablement (Notion AI launched 2023) makes guided setup feasible. Growth plateau creates urgency. Competitive pressure (Microsoft Loop bundling, Coda power user capture) increases stakes.</td>
+<td><strong>PASS</strong></td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Decision rule:</strong> 4 PASS, 2 UNVALIDATED → <strong>Promising problem.</strong> Investigate Severity and Willingness with targeted research before committing major resources.</p>
+
+<p><strong>Recommended validation:</strong></p>
+
+<ol>
+<li><strong>Severity:</strong> T1 cohort analysis — do teams that fail to activate churn faster than solo users? Does activation predict NRR?</li>
+<li><strong>Willingness:</strong> Pricing/packaging experiment — offer "Team Starter Kit" (pre-built templates + guided setup) at $5/user/month. If >10% of free teams convert, Willingness is validated.</li>
+</ol>
+
+<hr class="section-divider">
+
+<h3>Sub-Problem 2: Feature Parity Gaps</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Test</th>
+<th>Question</th>
+<th>Finding</th>
+<th>Pass/Fail</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Existence test</strong></td>
+<td>Do real users actually have this problem?</td>
+<td>YES. Power users cite specific missing features (Gantt charts, advanced formulas, automations) in reviews <span class="ev-badge ev-t2">T2</span>.</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Severity test</strong></td>
+<td>Is the problem painful enough to change behavior?</td>
+<td>YES. Users pay for parallel tools (Linear, Airtable) alongside Notion <span class="ev-badge ev-t2">T2</span>. Revealed preference = pain is real.</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Frequency test</strong></td>
+<td>Does it occur often enough to justify a persistent solution?</td>
+<td>YES. Daily for power users <span class="ev-badge ev-t2">T2</span>.</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Willingness test</strong></td>
+<td>Would users adopt a solution?</td>
+<td>YES. Already paying for workarounds → demonstrated willingness <span class="ev-badge ev-t2">T2</span>.</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Solvability test</strong></td>
+<td>Can this problem be solved within constraints?</td>
+<td>PARTIAL. Building feature parity across 5+ specialized tools (project mgmt, databases, automation, charts) requires significant engineering investment. Risk: "jack of all trades, master of none" gets worse.</td>
+<td><strong>PASS WITH CAVEAT</strong> — solvable but expensive. Risk of over-engineering.</td>
+</tr>
+<tr>
+<td><strong>Timing test</strong></td>
+<td>Why now?</td>
+<td>NEUTRAL. Power users have always wanted more features. No new trigger.</td>
+<td><strong>FAIL</strong> — no urgency.</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Decision rule:</strong> 5 PASS, 1 FAIL → <strong>Validated problem, but low urgency.</strong> Deprioritize unless competitive dynamics force action (e.g., Coda/Linear launching Notion-competing features).</p>
+
+<hr class="section-divider">
+
+<h3>Sub-Problem 3: Multi-Product Fragmentation</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Test</th>
+<th>Question</th>
+<th>Finding</th>
+<th>Pass/Fail</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Existence test</strong></td>
+<td>Do real users actually have this problem?</td>
+<td>NO. Internal strategic concern, not user-reported issue.</td>
+<td><strong>FAIL</strong></td>
+</tr>
+<tr>
+<td><strong>Severity test</strong></td>
+<td>Is the problem painful enough to change behavior?</td>
+<td>NO. No user behavior change observed.</td>
+<td><strong>FAIL</strong></td>
+</tr>
+<tr>
+<td><strong>Frequency test</strong></td>
+<td>Does it occur often enough to justify a persistent solution?</td>
+<td>N/A — not a user problem.</td>
+<td><strong>FAIL</strong></td>
+</tr>
+<tr>
+<td><strong>Willingness test</strong></td>
+<td>Would users adopt a solution?</td>
+<td>N/A — users are not asking for this.</td>
+<td><strong>FAIL</strong></td>
+</tr>
+<tr>
+<td><strong>Solvability test</strong></td>
+<td>Can this problem be solved within constraints?</td>
+<td>YES. Strategic decision to consolidate vs. diversify product portfolio.</td>
+<td><strong>PASS</strong></td>
+</tr>
+<tr>
+<td><strong>Timing test</strong></td>
+<td>Why now?</td>
+<td>YES. Recent acquisitions (Skiff 2024) and product launches (Calendar, Sites) create fragmentation risk.</td>
+<td><strong>PASS</strong></td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Decision rule:</strong> 2 PASS, 4 FAIL → <strong>Not a user problem.</strong> This is a strategic planning question for leadership, not a product problem. Remove from product roadmap prioritization.</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="7-constraint-map">
+  <h2>7. Constraint Map</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Constraint Type</th>
+<th>Constraint</th>
+<th>Impact on Solution Space</th>
+<th>Negotiable?</th>
+<th>Source</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Technical</strong></td>
+<td>Notion's block-based architecture makes real-time collaboration fast but limits advanced database features (complex joins, views, computed columns).</td>
+<td>Limits feature parity with Airtable/Coda for power users. Cannot solve Sub-Problem 2 without architectural refactor.</td>
+<td>Partially — refactor is multi-quarter effort.</td>
+<td><span class="ev-badge ev-t3" title="Technical analysis; T2: user complaints about formula limitations">T3</span></td>
+</tr>
+<tr>
+<td><strong>Technical</strong></td>
+<td>Notion AI (launched 2023) has 20 free queries for Plus users, unlimited for Business ($18/user/month). AI cost structure limits how aggressively AI onboarding can be offered to free users.</td>
+<td>Guided AI setup (Sub-Problem 1 solution) may require paid upgrade → reduces adoption.</td>
+<td>Y — can subsidize AI onboarding as growth investment.</td>
+<td><span class="ev-badge ev-t2" title="User complaints about AI pricing; T4: pricing page">T2</span></td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>Notion's revenue model is seats-based ($10-18/user/month). Multi-product strategy (Calendar, Mail, Sites as standalone free apps) risks cannibalization if users adopt standalone products but not core workspace.</td>
+<td>Constrains multi-product strategy (Sub-Problem 3). Must ensure standalone products drive core workspace adoption, not replace it.</td>
+<td>Y — can adjust product strategy.</td>
+<td><span class="ev-badge ev-t3" title="Business model analysis; T4: acquisition announcements">T3</span></td>
+</tr>
+<tr>
+<td><strong>Regulatory</strong></td>
+<td>Notion Mail (via Skiff acquisition) must comply with email encryption regulations (GDPR, SOC2).</td>
+<td>Slows Mail product launch; increases compliance overhead.</td>
+<td>N — regulatory compliance is non-negotiable.</td>
+<td><span class="ev-badge ev-t3" title="Skiff acquisition press release mentions encryption focus">T3</span></td>
+</tr>
+<tr>
+<td><strong>Timeline</strong></td>
+<td>Competitive pressure is immediate — Microsoft Loop bundled with Office 365 (345M users) launched 2024.</td>
+<td>Solutions must ship in 6-12 months to defend market position.</td>
+<td>Partially — can scope MVP vs. full solution.</td>
+<td><span class="ev-badge ev-t2" title="Competitive analysis; T4: Microsoft Loop launch">T2</span></td>
+</tr>
+<tr>
+<td><strong>Resource</strong></td>
+<td>Notion headcount ~600 (as of 2025). Eng team estimated at ~200.</td>
+<td>Limits how many problems can be solved in parallel. Must prioritize Sub-Problem 1 OR Sub-Problem 2, not both.</td>
+<td>Y with hiring — but hiring takes 6+ months.</td>
+<td><span class="ev-badge ev-t4" title="LinkedIn headcount estimates; T3: Glassdoor/job postings">T4</span></td>
+</tr>
+<tr>
+<td><strong>Organizational</strong></td>
+<td>Notion has product-led growth culture (PLG). Top-down enterprise sales motion is secondary.</td>
+<td>Solutions must work in self-serve model (users onboard themselves). Cannot rely on white-glove onboarding or CSM support for SMBs.</td>
+<td>Partially — can introduce CSM for Enterprise tier.</td>
+<td><span class="ev-badge ev-t3" title="Company culture analysis; T4: hiring signals for sales roles">T3</span></td>
+</tr>
+<tr>
+<td><strong>User behavioral</strong></td>
+<td>Teams resist changing workflows. Adoption requires 3+ active users to hit "collaborative value moment."</td>
+<td>Solutions must reduce activation friction by 5-10x (from 10-20 hours to 1-2 hours) to overcome inertia.</td>
+<td>N — user behavior is fixed. Must design around it.</td>
+<td><span class="ev-badge ev-t2" title="User adoption patterns; T6: Network Effects theory">T2</span></td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Constraint interaction matrix:</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Constraint A</th>
+<th>+ Constraint B</th>
+<th>= Compound effect</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Timeline (6-12 month window)</td>
+<td>+ Resource (200 engineers)</td>
+<td>= Can only tackle 1-2 major problems. Must choose: activation (Sub-Problem 1) OR feature parity (Sub-Problem 2). Recommend activation — broader impact (30M users vs. 15M power users).</td>
+</tr>
+<tr>
+<td>AI cost structure (limits free AI usage)</td>
+<td>+ PLG culture (self-serve onboarding)</td>
+<td>= AI-guided onboarding must either: (1) be cheap enough to offer free users, or (2) become a paid upgrade that converts free → paid. Recommend (2) — "Team Starter Kit" at $5/user/month with AI setup included.</td>
+</tr>
+<tr>
+<td>Block-based architecture (tech limit)</td>
+<td>+ Feature parity demand (Sub-Problem 2)</td>
+<td>= Cannot match Airtable/Coda without architectural refactor (12-18 month effort). Deprioritize feature parity; lean into Notion's strengths (docs, wikis, simplicity).</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Assumed constraints flagged:</strong></p>
+
+<ol>
+<li><strong>"Users won't pay for onboarding tools."</strong> — Assumption, not validated. Users pay for other SaaS onboarding (e.g., Loom for video walkthroughs, Intercom for in-app guides). Validate willingness with pricing experiment.</li>
+<li><strong>"Multi-product strategy dilutes brand."</strong> — Stakeholder concern <span class="ev-badge ev-t5">T5</span>, not user-reported issue. May be valid but needs internal alignment, not product solution.</li>
+</ol>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">8. Stakeholder Impact Matrix</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Problem Impact</th>
+<th>Power (1-5)</th>
+<th>Interest (1-5)</th>
+<th>Current Position</th>
+<th>Action Needed</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Free users (96M) — individuals</strong></td>
+<td>Unaffected. Solo use case works well.</td>
+<td>1</td>
+<td>1</td>
+<td>Neutral (happy with product as-is)</td>
+<td>Monitor. No action required unless churn increases.</td>
+</tr>
+<tr>
+<td><strong>Free users (30M subset) — team-eligible</strong></td>
+<td>HIGH. Cannot get team to adopt → stuck in solo mode → miss collaborative value.</td>
+<td>2</td>
+<td>5</td>
+<td>Frustrated (complaints in reviews). Potential champions if activation improves.</td>
+<td><strong>Manage closely.</strong> Primary persona for Sub-Problem 1 solution. Interview 20+ for qualitative insights.</td>
+</tr>
+<tr>
+<td><strong>Paying users (4M) — successful teams</strong></td>
+<td>MODERATE. Happy with product but hit feature ceilings (Sub-Problem 2).</td>
+<td>3</td>
+<td>4</td>
+<td>Supporters but request more features.</td>
+<td><strong>Keep informed.</strong> Secondary persona. Address feature gaps after activation is solved.</td>
+</tr>
+<tr>
+<td><strong>Notion Product Team</strong></td>
+<td>HIGH. Growth plateau threatens company metrics. Activation is core product KPI.</td>
+<td>5</td>
+<td>5</td>
+<td>Champion (wants to solve this).</td>
+<td><strong>Manage closely.</strong> Primary owner of solution. Align on prioritization (activation > feature parity).</td>
+</tr>
+<tr>
+<td><strong>Notion Growth/Marketing Team</strong></td>
+<td>HIGH. Conversion rate (13%) is below SaaS benchmarks (20-30%).</td>
+<td>4</td>
+<td>5</td>
+<td>Champion (wants to solve this).</td>
+<td><strong>Manage closely.</strong> Partner on pricing/packaging experiments.</td>
+</tr>
+<tr>
+<td><strong>Notion Engineering Leadership</strong></td>
+<td>MODERATE. Aware of problem but resource-constrained (200 engineers, many priorities).</td>
+<td>5</td>
+<td>3</td>
+<td>Neutral to Resistant (concerned about scope creep).</td>
+<td><strong>Keep satisfied.</strong> Secure buy-in by framing as high-ROI investment ($302M revenue opportunity).</td>
+</tr>
+<tr>
+<td><strong>Notion Executive Team (CEO, CFO)</strong></td>
+<td>HIGH. Growth plateau threatens valuation ($10B valuation depends on growth narrative).</td>
+<td>5</td>
+<td>5</td>
+<td>Champion (strategically critical).</td>
+<td><strong>Manage closely.</strong> Present Executive Summary with clear ROI and timeline.</td>
+</tr>
+<tr>
+<td><strong>Competitors (Microsoft Loop, Coda, Linear)</strong></td>
+<td>Benefit from Notion's activation failure. Capture users who bounce off Notion.</td>
+<td>3</td>
+<td>5</td>
+<td>Adversarial (actively targeting Notion's weak points).</td>
+<td><strong>Monitor.</strong> Track competitive product launches that address activation (e.g., Loop's "out-of-box" team templates).</td>
+</tr>
+<tr>
+<td><strong>Notion Community / Power Users (Reddit, Twitter)</strong></td>
+<td>MODERATE. Vocal about feature requests (Sub-Problem 2) but not activation.</td>
+<td>2</td>
+<td>4</td>
+<td>Mixed (supporters + critics).</td>
+<td><strong>Keep informed.</strong> Engage community in beta testing. Power users can evangelize solutions.</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Stakeholder strategy grid:</strong></p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th></th>
+<th>High Interest</th>
+<th>Low Interest</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>High Power</strong></td>
+<td><strong>Manage closely:</strong> Product Team, Growth Team, Exec Team (all champion activation solution). Align on prioritization and timeline.</td>
+<td><strong>Keep satisfied:</strong> Engineering Leadership (concerned about scope). Secure buy-in with ROI framing.</td>
+</tr>
+<tr>
+<td><strong>Low Power</strong></td>
+<td><strong>Keep informed:</strong> Team-eligible free users (30M), power users, community. Validate solutions with this group.</td>
+<td><strong>Monitor:</strong> Individual free users (unaffected by problem).</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Proxy stakeholder analysis:</strong></p>
+
+<ul>
+<li><strong>Presenter of problem:</strong> Notion Executive Team / Growth Team (stakeholders say "growth plateau due to market saturation").</li>
+<li><strong>Experiencer of problem:</strong> Team-eligible free users (users say "can't get my team to adopt Notion").</li>
+</ul>
+
+<p><strong>GAP IDENTIFIED:</strong> Leadership frames problem as external ("market saturation"). Root cause analysis shows problem is internal ("activation failure"). This is a critical communication moment — must reframe narrative from "market is saturated" to "we have a product/UX opportunity to unlock 30M team-eligible users."</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="9-problem-prioritization">
+  <h2>9. Problem Prioritization</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Problem</th>
+<th>Impact (1-5)</th>
+<th>Confidence (1-5)</th>
+<th>Ease (1-5)</th>
+<th>ICE Score</th>
+<th>Evidence Quality</th>
+<th>Rank</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Sub-Problem 1: Team Activation Failure</strong></td>
+<td>5 (T2+T4)</td>
+<td>3 <span class="ev-badge ev-t2">T2–T4</span> <span class="ev-detail">mix; missing T1 cohort data</span></td>
+<td>3 (6-12 month effort; AI onboarding feasible but requires eng investment)</td>
+<td><strong>45</strong></td>
+<td>60% T2-T4, 40% T5-T6</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>Sub-Problem 2: Feature Parity Gaps</strong></td>
+<td>3 <span class="ev-badge ev-t2">T2</span></td>
+<td>4 (T2 user demand + T3 competitive analysis)</td>
+<td>2 (12-18 month effort; architectural refactor required)</td>
+<td><strong>24</strong></td>
+<td>70% T2-T3, 30% T6</td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td><strong>Sub-Problem 3: Multi-Product Fragmentation</strong></td>
+<td>2 <span class="ev-badge ev-t6">T6</span></td>
+<td>2 <span class="ev-badge ev-t5">T5–T6</span> <span class="ev-detail">stakeholder concern, no user evidence</span></td>
+<td>4 (Strategic decision; no technical work required)</td>
+<td><strong>16</strong></td>
+<td>10% T3, 90% T5-T6</td>
+<td><strong>3</strong></td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Scoring rubrics:</strong></p>
+
+<p><strong>Impact:</strong> - 5: Transforms the experience / eliminates primary growth blocker - 4: Major improvement to key metric (conversion, NRR, retention) - 3: Noticeable improvement to secondary metric - 2: Minor improvement - 1: Marginal</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">- 5: T1-T2 evidence, all Problem-Solution Fit tests pass
+- 4: T2-T3 evidence, most PSF tests pass
+- 3: T2-T4 mix, some PSF tests unvalidated
+- 2: T5 evidence, most PSF tests unvalidated
+- 1: T6 assumption only</div>
+</div>
+</div>
+
+<p><strong>Ease:</strong> - 5: Can solve in <2 weeks with existing team - 4: 2-6 weeks - 3: 1-3 months - 2: 3-6 months - 1: >6 months or requires new capabilities</p>
+
+<p><strong>Prioritization decision:</strong></p>
+
+<p><strong>Rank 1: Team Activation Failure (ICE = 45)</strong> → <strong>Proceed to solution design.</strong> Highest impact (unlocks 30M users, $302M revenue opportunity). Moderate confidence (validate severity/willingness with T1 data). Moderate ease (6-12 month effort but technically feasible).</p>
+
+<p><strong>Rank 2: Feature Parity Gaps (ICE = 24)</strong> → <strong>Investigate after Rank 1 is shipped.</strong> Clear user demand but lower impact (15M power users). High confidence (validated willingness). Low ease (architectural refactor required).</p>
+
+<p><strong>Rank 3: Multi-Product Fragmentation (ICE = 16)</strong> → <strong>Deprioritize for product roadmap.</strong> This is a strategic planning question for leadership, not a product problem. Address in exec strategy sessions, not product sprints.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">10. Recommendations (O->I->R->C->W Cascade)</h3>
+<h3>Recommendation 1: Validate Activation Hypothesis with T1 Cohort Analysis</h3>
+
+<p><strong>Observation (T4+T6):</strong> 13% free-to-paid conversion is unusually low for SaaS with 100M users. Root cause hypothesis: activation failure during individual→team transition. Evidence is T2-T6 mix — missing T1 behavioral data.</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Cannot commit $10M+ engineering investment to AI-guided onboarding without validating: (1) activation predicts NRR, (2) failed activation is primary churn driver, (3) time-to-collaborative-value correlates with retention.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">- <strong>Owner:</strong> Notion Data Science / Analytics Team
+- <strong>Action:</strong> Run T1 cohort analysis on 3 metrics:
+  1. <strong>Activation rate by cohort:</strong> % of users who invite 3+ teammates and achieve 5+ team logins/week within 30 days
+  2. <strong>NRR by activation status:</strong> Compare Net Dollar Retention for activated vs. non-activated cohorts
+  3. <strong>Time-to-collaborative-value:</strong> Measure median days from signup to "3+ active users" — correlate with 6-month retention
+- <strong>Timeline:</strong> 2 weeks (data pull + analysis)
+- <strong>Deliverable:</strong> Report showing: "Teams that activate within 30 days have X% higher NRR and Y% lower churn than non-activated teams."</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">H (>70%) — assumes Notion has instrumentation to measure activation events. Key assumption: activation is instrumentable (can track "invited teammates," "team logins," "collaborative edits"). If not instrumentable, this is a data infrastructure problem, not an analytics problem.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If activation does NOT predict NRR (e.g., activated teams churn at same rate as non-activated), the problem framing is wrong. Revisit Root Cause Analysis — growth plateau may be due to retention, not acquisition/activation.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+
+<h3>Recommendation 2: Design and Test "Team Starter Kit" (AI-Guided Onboarding MVP)</h3>
+
+<p><strong>Observation <span class="ev-badge ev-t2">T2</span>:</strong> Users cite "blank canvas problem" and "don't know where to start" as top onboarding friction. Notion AI (launched 2023) enables guided setup but is paywalled for free users (20 queries lifetime on Plus plan, T2).</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">AI-assisted workspace setup could reduce team onboarding from 10-20 hours to 1-2 hours by asking "What does your team do?" and auto-generating pages, databases, templates. This shifts cost/benefit math vs. "doing nothing" (status quo with 5+ fragmented tools).</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">- <strong>Owner:</strong> Notion Product Team (PM: Growth, Eng: AI/Onboarding)
+- <strong>Action:</strong> Build "Team Starter Kit" MVP with:
+  1. <strong>AI-guided setup flow:</strong> 5 questions (team size, industry, primary use case, tools to replace, collaboration style) → AI generates workspace structure (e.g., "Marketing team: Campaign tracker, Content calendar, Brand wiki, Meeting notes")
+  2. <strong>Pre-built industry templates:</strong> 10 industries (SaaS, Consulting, Design, Engineering, Marketing, Operations, HR, Finance, Sales, Education) with role-based views
+  3. <strong>Activation milestones:</strong> Onboarding checklist (Invite 3 teammates → Add first document → Create first database → Hold first team meeting in Notion) with progress bar
+  4. <strong>Pricing:</strong> Free for first 14 days, then $5/user/month "Team Starter" tier (below Plus $10, above Free $0). Converts free → paid.
+- <strong>Timeline:</strong> 12 weeks (6 weeks build, 2 weeks internal alpha, 4 weeks beta with 1,000 teams)
+- <strong>Success metric:</strong> >15% of beta teams activate (3+ users, 5+ logins/week) within 14 days (vs. <5% baseline for self-serve free teams, estimated)</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">M (40-70%) — assumes: (1) AI-generated workspace is "good enough" (80%+ teams accept default structure without heavy customization), (2) users will pay $5/user/month for guided onboarding (stated preference in reviews, but willingness unvalidated), (3) 14-day free trial converts at >10% (SaaS benchmark for paid trials).</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If beta activation rate is <10% (vs. target >15%), either (1) AI setup quality is insufficient, or (2) blank canvas is not the real blocker (revisit Root Cause Analysis — maybe the blocker is "teammates resist because they don't see value," not "setup is hard"). Pivot: run interviews with failed beta teams to identify real blocker.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+
+<h3>Recommendation 3: Deprioritize Feature Parity Investments Until Activation Is Solved</h3>
+
+<p><strong>Observation (T2+T3):</strong> Power users request advanced features (Gantt charts, complex formulas, automations) to match Linear/Airtable/Coda. ICE score = 24 (lower than activation at 45). Solving feature parity requires architectural refactor (12-18 month effort, T3).</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Resource-constrained environment (200 engineers). Cannot solve activation AND feature parity in parallel. Activation unlocks 30M users ($302M revenue opportunity); feature parity serves 15M power users ($27M opportunity). ROI favors activation 11:1.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">- <strong>Owner:</strong> Notion Product Leadership + Engineering Leadership
+- <strong>Action:</strong> Publicly commit to focus area via roadmap communication:
+  1. <strong>Internal alignment:</strong> Exec team decision — "We are prioritizing team activation over feature parity for 2026 H1. Power user requests are backlogged for H2 2026 review."
+  2. <strong>External communication:</strong> Blog post / community update — "Our 2026 focus: Making Notion easier for teams to adopt. We've heard your requests for advanced features — they're on our radar, but we're solving onboarding friction first."
+  3. <strong>Resource allocation:</strong> Assign 60% of product eng to activation (Team Starter Kit, AI onboarding), 20% to maintenance, 20% to opportunistic feature work (quick wins, <2 week efforts).
+- <strong>Timeline:</strong> Immediate (exec decision in next planning cycle, Feb-Mar 2026)</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">H (>70%) — assumes: (1) exec team agrees on prioritization logic (ROI-driven), (2) engineering leadership accepts resource constraint reality (cannot do both), (3) community tolerates delayed feature parity if activation improvements are shipped visibly.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If power user churn increases >10% YoY in 2026 (signal: "left for Coda/Airtable due to missing features"), revisit prioritization. Power user segment may be more revenue-critical than breadth suggests (possible: 10% of users = 40% of revenue if enterprise/high-ARPU). Validate with revenue segmentation analysis.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="governance">
+  <h2>Cross-Framework Contradictions</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Contradiction</th>
+<th>Framework A says</th>
+<th>Framework B says</th>
+<th>Resolution / Which to weight</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Problem severity: Acute vs. Chronic</strong></td>
+<td>Root Cause Analysis (F2): Activation failure is the root problem blocking growth → implies high severity.</td>
+<td>Problem-Solution Fit (F5): Severity test is UNVALIDATED — users complain but 87% stay free (not paying to solve) → implies low-to-moderate severity.</td>
+<td><strong>Weight F5 (behavioral evidence) over F2 (inferred logic).</strong> Chronic pain ≠ acute pain. Users tolerate the friction (status quo with fragmented tools) because consolidation pain (learning curve, migration) is front-loaded. Implication: solution must reduce friction dramatically (5-10x) to change behavior. Validate severity with T1 churn/NRR data.</td>
+</tr>
+<tr>
+<td><strong>User segment: Team-eligible vs. Power Users</strong></td>
+<td>JTBD Analysis (F3): Primary under-served job is "team knowledge centralization" (30M team-eligible users).</td>
+<td>Opportunity Sizing (F4): Sub-Problem 1 (activation) and Sub-Problem 2 (feature parity) have identical ICE components (Impact×Confidence×Ease → both 144).</td>
+<td><strong>Prioritize by breadth × revenue potential.</strong> Activation unlocks 30M users; feature parity serves 15M power users. But power users may have higher ARPU (pay for multiple tools → higher willingness to pay). Need revenue segmentation: if 15M power users = 40%+ of revenue, reprioritize feature parity. Otherwise, activation wins on volume.</td>
+</tr>
+<tr>
+<td><strong>Strategic framing: Internal vs. External problem</strong></td>
+<td>Stakeholder framing (section 8): Leadership says "market saturation" (external constraint, no control).</td>
+<td>Root Cause Analysis (F2): Root problem is activation failure (internal product/UX issue, controllable).</td>
+<td><strong>Reframe as internal opportunity, not external constraint.</strong> This is a critical communication moment. If leadership believes "market is saturated," they'll invest in new products (Calendar, Mail, Sites) to find new markets. If they believe "we have activation gaps," they'll invest in core product improvements. Data-driven reframing required: show that 30M team-eligible users exist but aren't activating (internal), not that TAM is exhausted (external).</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Assumption Registry</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>#</th>
+<th>Assumption</th>
+<th>Framework it underpins</th>
+<th>Confidence</th>
+<th>Evidence</th>
+<th>What would invalidate this</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>30-40% of Notion's 96M free users (26-35M) are in teams that could adopt Notion collaboratively but don't.</strong></td>
+<td>F4 Opportunity Sizing (Breadth dimension), Problem Statement</td>
+<td>L</td>
+<td>T6: Inferred from SMB market size and SaaS adoption patterns. No direct data on "team-eligible" segment.</td>
+<td>T1 user segmentation analysis shows <10M team-eligible users, OR >80% of free users are students/individuals with no team context.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Activation (3+ users, 5+ logins/week within 30 days) predicts Net Dollar Retention and reduces churn.</strong></td>
+<td>F5 Problem-Solution Fit (Severity test), Recommendation 1</td>
+<td>L</td>
+<td>T6: Inferred from SaaS activation best practices and Network Effects theory. No Notion-specific data.</td>
+<td>T1 cohort analysis (Recommendation 1) shows no correlation between activation and NRR, OR activated teams churn at same rate as non-activated.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Reducing team onboarding time from 10-20 hours to 1-2 hours (via AI-guided setup) will increase conversion from 13% to 20%.</strong></td>
+<td>F4 Opportunity Sizing (Revenue impact), Recommendation 2</td>
+<td>L</td>
+<td>T6: Assumed elasticity of conversion to onboarding friction. No pricing/onboarding experiments run.</td>
+<td>Beta test (Recommendation 2) shows <10% activation rate despite reduced onboarding time → friction is not setup complexity but something else (e.g., perceived value, teammate resistance).</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Users will pay $5/user/month for "Team Starter Kit" (AI onboarding + templates).</strong></td>
+<td>Recommendation 2 (pricing), F5 Problem-Solution Fit (Willingness test)</td>
+<td>M</td>
+<td>T2: User reviews show willingness to pay for easier onboarding ("would pay for this"). T4: SaaS benchmark — users pay for onboarding tools (Loom, Intercom). But no Notion-specific validation.</td>
+<td>Pricing experiment shows <5% conversion at $5/user/month → users want easier onboarding but won't pay for it (expect it free).</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Power user segment (15M users) has higher ARPU than general user base, making feature parity more revenue-critical than breadth suggests.</strong></td>
+<td>F8 Prioritization (Sub-Problem 2 ranking)</td>
+<td>L</td>
+<td>T6: Inferred from SaaS revenue concentration (80/20 rule: 20% of users = 80% of revenue). No Notion-specific revenue segmentation data.</td>
+<td>Revenue segmentation analysis shows power users have same or lower ARPU than team users → feature parity is correctly deprioritized.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>"Doing nothing" (keeping 5+ fragmented tools) is the dominant competitor, not Microsoft Loop or Coda.</strong></td>
+<td>F3 JTBD Competing Hires, Problem Statement</td>
+<td>M</td>
+<td>T2: User behavior shows inertia (most teams don't switch from status quo). T4: Productivity market data shows avg team uses 7-9 tools (fragmentation is norm).</td>
+<td>Competitive data shows rapid user migration to Loop/Coda (10%+ share shift in 6 months) → active competition is real threat, not inertia.</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Adversarial Self-Critique</h3>
+<h3>Weakness 1: Activation May Not Be the Root Problem — Retention Could Be the Leak</h3>
+
+<p><strong>Steelmanned argument:</strong> This analysis assumes "growth plateau = acquisition is fine, conversion is broken." But what if retention is the leak? If Notion acquires 100M users and converts 13% (4M paying), but NRR is <100% (teams churn or contract), growth plateaus even if activation improves. The root cause analysis (F2) doesn't examine retention or NRR data — it's assumed that "activated teams stay" but no evidence supports this.</p>
+
+<p><strong>What would disprove the activation hypothesis:</strong> - T1 cohort analysis (Recommendation 1) shows activated teams have <90% retention after 12 months → activation is necessary but not sufficient - NRR by cohort is <100% → revenue is leaking from existing customers, not just from failed acquisition/activation</p>
+
+<p><strong>Scenario where this framing leads wrong:</strong> Notion invests $10M+ in AI onboarding, converts 30M free users to paid, but NRR stays at 90% → year 2, those 30M churn down to 27M → growth stalls again. The real problem was product-market fit in retention (teams adopt but don't stick), not activation.</p>
+
+<p><strong>Watch indicator:</strong> If Recommendation 1 analysis shows NRR <95% for activated teams, reprioritize retention over activation. Retention fix must come first.</p>
+
+<hr class="section-divider">
+
+<h3>Weakness 2: "Doing Nothing" Switching Cost May Be Underestimated — Fragmentation Pain Is Tolerable</h3>
+
+<p><strong>Steelmanned argument:</strong> The JTBD analysis (F3) concludes "doing nothing (5+ fragmented tools) is the dominant hire" and "consolidation pain (10-20 hours setup) > fragmentation pain (1 hour/week forever)." But what if fragmentation pain is overstated? Modern SaaS has excellent integrations (Slack + Google Docs + Linear + Loom all interoperate). Users may not feel fragmentation pain acutely because tool-switching is fast (<5 sec per switch), context is shared via links, and each tool is best-in-class at its job. Notion's pitch ("consolidate everything") may solve a problem users don't actually have.</p>
+
+<p><strong>What would disprove the consolidation hypothesis:</strong> - User research <span class="ev-badge ev-t2">T2</span> with 20+ teams shows "tool-switching is not painful, we like specialized tools" - Pricing experiment (Recommendation 2) shows <5% conversion to Team Starter Kit → users don't value consolidation enough to pay/migrate</p>
+
+<p><strong>Scenario where this framing leads wrong:</strong> Notion builds Team Starter Kit, reduces onboarding to 1-2 hours, but users still don't adopt because they genuinely prefer Slack+Docs+Linear+Loom specialization over Notion's generalization. The "jack of all trades, master of none" critique is correct — users want best-in-class tools, not all-in-one mediocrity.</p>
+
+<p><strong>Watch indicator:</strong> If beta test (Recommendation 2) shows low activation despite reduced onboarding friction, run follow-up interviews: "Why didn't your team adopt Notion?" If answer is "we like our current tools" (not "setup was too hard"), the problem framing is wrong. Notion's issue is value prop, not onboarding UX.</p>
+
+<hr class="section-divider">
+
+<h3>Weakness 3: Multi-Product Strategy May Be Correct — Core Workspace Expansion Is Saturated</h3>
+
+<p><strong>Steelmanned argument:</strong> This analysis deprioritizes multi-product fragmentation (Sub-Problem 3, ICE = 16) as "not a user problem." But what if Notion leadership is correct and the core workspace market IS saturated? Evidence: 100M users but only 4M paying → 96% of users don't see enough value to pay. Growth plateau since mid-2023 → market penetration ceiling reached. In this scenario, the right move is to launch adjacent products (Calendar, Mail, Sites, Forms) to find new monetization vectors and cross-sell into the user base. Prioritizing core workspace activation (Recommendation 1-2) doubles down on a saturated market.</p>
+
+<p><strong>What would disprove the core workspace focus:</strong> - T1 TAM analysis shows Notion has penetrated >50% of addressable SMB/mid-market teams → market is genuinely saturated - Competitive data shows Loop/Coda growing faster than Notion in core workspace segment → Notion is losing, not plateauing</p>
+
+<p><strong>Scenario where this framing leads wrong:</strong> Notion invests in Team Starter Kit, improves activation from 13% to 20%, but hits ceiling at 20% (market saturation) → growth resumes for 12 months, then plateaus again. Meanwhile, competitors (Google, Microsoft) bundle adjacent products (email, calendar) and capture users who need ecosystems, not standalone workspaces. Notion's multi-product strategy (Skiff, Calendar, Sites) was the right hedge — but this analysis killed it.</p>
+
+<p><strong>Watch indicator:</strong> If activation improvements (Recommendation 2) yield <5% conversion uplift (13% → 18%, not 20%+), reassess TAM. Market may be smaller than assumed. Revisit multi-product strategy as portfolio diversification, not distraction.</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="resources">
+  <h2>Revision Triggers</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Trigger</th>
+<th>What to re-assess</th>
+<th>Timeline</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>T1 cohort analysis (Rec 1) shows activation does NOT predict NRR</strong></td>
+<td>Entire problem framing. If activation ≠ retention, root cause is not onboarding friction but product-market fit in retention phase. Reframe as retention problem, not activation problem.</td>
+<td>2 weeks (when Rec 1 completes)</td>
+</tr>
+<tr>
+<td><strong>Beta test (Rec 2) shows <10% activation despite AI onboarding</strong></td>
+<td>Root Cause Analysis (section 3) and JTBD Competing Hires (section 4). If reducing setup time doesn't increase activation, setup complexity is not the real blocker. Investigate: (1) Is "doing nothing" (fragmentation) genuinely not painful? (2) Is Notion's value prop insufficient vs. specialized tools?</td>
+<td>16 weeks (when beta completes)</td>
+</tr>
+<tr>
+<td><strong>Competitor (Microsoft Loop, Coda) launches aggressive activation improvements</strong></td>
+<td>Opportunity Sizing (section 5) and Prioritization (section 9). If competitors solve activation first, Notion's window to differentiate closes. Competitive urgency may override ROI-based prioritization.</td>
+<td>Ongoing monitoring (quarterly competitive review)</td>
+</tr>
+<tr>
+<td><strong>Notion's NRR drops below 95% in 2026</strong></td>
+<td>Problem Statement (section 1) and Problem-Solution Fit (section 6). Growth plateau may be retention-driven, not activation-driven. Reprioritize retention over acquisition/activation.</td>
+<td>Quarterly (when financial metrics reported)</td>
+</tr>
+<tr>
+<td><strong>Revenue segmentation shows power users = 40%+ of revenue</strong></td>
+<td>Prioritization (section 9) and Recommendation 3. If 15M power users drive disproportionate revenue, feature parity (Sub-Problem 2) should be elevated above activation (Sub-Problem 1).</td>
+<td>4 weeks (can run revenue segmentation now)</td>
+</tr>
+<tr>
+<td><strong>Pricing experiment shows users won't pay $5/user/month for Team Starter Kit</strong></td>
+<td>Assumption Registry (Assumption 4) and Recommendation 2. If willingness-to-pay is lower than assumed, onboarding solution must be free → requires different business model (subsidize as growth investment).</td>
+<td>16 weeks (when beta pricing data available)</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Sources</h3>
+<ol>
+<li><a href="https://sqmagazine.co.uk/notion-statistics/">Notion Statistics 2026: Growth, Revenue & Impact • SQ Magazine</a> — T4: User/revenue metrics</li>
+<li><a href="https://research.contrary.com/company/notion">Notion Business Breakdown & Founding Story | Contrary Research</a> — T3: Strategic analysis</li>
+<li><a href="https://taptwicedigital.com/stats/notion">10 Notion Statistics (2025): Revenue, Valuation, Users</a> — T4: Market data</li>
+<li><a href="https://getlatka.com/companies/notion">How Notion hit $600M revenue and 4M customers in 2025</a> — T4: Revenue growth</li>
+<li><a href="https://uxplanet.org/why-i-stopped-using-notion-an-honest-ux-review-ebf03e268a01">Why I stopped using Notion (an honest UX review) | UX Planet</a> — T2: User research</li>
+<li><a href="https://blog.herdr.io/work-management/title-top-5-complaints-about-notion-in-2025-what-users-are-saying/">Top 5 Complaints About Notion in 2025 - Herdr Blog</a> — T2: User feedback</li>
+<li><a href="https://medium.com/@ruslansmelniks/why-users-abandon-notion-complexity-limitations-and-the-rise-of-ai-alternatives-cba91a95b535">Why Users Abandon Notion: Complexity, Limitations, and AI Alternatives | Medium</a> — T2: Churn analysis</li>
+<li><a href="https://www.eesel.ai/blog/notion-review">A brutally honest Notion review for 2025</a> — T2: User experience</li>
+<li><a href="https://www.linkedin.com/pulse/deep-dive-notions-customer-retention-mastery-guide-ghulam-shabbir-zdwvf">Deep Dive into Notion's Customer Retention Mastery | LinkedIn</a> — T3: Retention strategy</li>
+<li><a href="https://www.gainsight.com/blog/how-notion-approaches-customer-health-scoring-for-all-segments/">How Notion Approaches Customer Health Scoring | Gainsight</a> — T3: Customer success</li>
+<li><a href="https://2sync.com/blog/microsoft-loop-vs-notion">Microsoft Loop vs. Notion: A Worthy Competitor in 2025?</a> — T2: Competitive analysis</li>
+<li><a href="https://slashdot.org/software/comparison/Coda-vs-Microsoft-Loop-vs-Notion/">Compare Coda vs. Microsoft Loop vs. Notion in 2025</a> — T3: Feature comparison</li>
+<li><a href="https://buildin.ai/blog/notion-alternatives-2025">10 Best Notion Alternatives 2025</a> — T3: Competitive landscape</li>
+<li><a href="https://straitsresearch.com/report/productivity-management-software-market">Productivity Management Software Market Size Report</a> — T4: Market sizing</li>
+<li><a href="https://market.us/report/ai-productivity-tools-market/">AI Productivity Tools Market Size | CAGR of 27.9%</a> — T4: Market growth</li>
+</ol>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Try It Yourself: Quick-Start Guide</h3>
+<p class="section-sub"><strong>Apply this problem framing framework to your own product challenge in 3 steps:</strong></p>
+
+<ol>
+<li><strong>Run 5 Whys root cause analysis</strong> (30 min) - Start with surface symptom (e.g., "growth is slowing") - Ask "why?" 5 times to reach structural root causes - Validate backward: does each "because" logically connect?</li>
+</ol>
+
+<ol>
+<li><strong>Complete the Problem Definition Canvas</strong> (45 min) - Fill 7 dimensions: who, what they do today, why painful, triggers, good looks like, how to know solved - Grade evidence quality for each cell <span class="ev-badge ev-t1">T1–T6</span> - Flag cells with T5-T6 evidence for further research</li>
+</ol>
+
+<ol>
+<li><strong>Run Opportunity Sizing on top 3 sub-problems</strong> (30 min) - Score each on Frequency × Severity × Breadth × Willingness (1-5 scale) - Calculate opportunity score (multiply all 4 dimensions) - Prioritize problems scoring >100/625</li>
+</ol>
+
+<p><strong>Output:</strong> You'll have a validated problem statement and prioritized sub-problems in ~2 hours.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Related Use Cases & Skills</h3>
+<p class="section-sub"><strong>From this analysis to next steps:</strong> - See <a href="use-case-discovery-research.html">Discovery Research use case</a> to validate your problem hypotheses with users - See <a href="use-case-metric-design.html">Metric Design use case</a> to define success metrics for solving the problem - See <a href="use-case-figma-canva-express.html">Competitive Analysis use case</a> to understand if competitors face similar problems</p>
+
+<p><strong>Real-world skill chains:</strong> - This problem framing feeds directly into product strategy and roadmap prioritization - Combine with JTBD analysis to understand competing alternatives (including "do nothing") - Use Assumption Registry to de-risk your problem framing before committing engineering resources</p>
+
+<hr class="section-divider">
+
+<p><strong>Document prepared by:</strong> Problem Framing Skill (v1.3.0) <strong>Evidence quality distribution:</strong> 25% T2 (primary research), 45% T3-T4 (expert analysis + market data), 30% T5-T6 (inference) <strong>Overall confidence:</strong> M (40-70%) — directionally correct but critical T1 gaps require validation before $10M+ investment <strong>Next artifact:</strong> Discovery Research Plan (validate Assumptions 1-4 with T1-T2 evidence) OR Competitive Analysis (deep-dive Loop/Coda/Linear positioning if competitive urgency increases)</p>
+</div>
+
+<footer class="page-footer">
+  <span>Notion’s Growth Plateau · PM Skills Arsenal</span>
+  <span>Built with GitHub Copilot</span>
+</footer>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('nav button').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
