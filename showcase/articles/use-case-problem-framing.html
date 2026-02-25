@@ -20,8 +20,15 @@
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.72;-webkit-font-smoothing:antialiased}
 
+/* ── TOP BAR ── */
+.top-bar{max-width:980px;margin:0 auto;padding:16px 48px 0;display:flex;align-items:center;gap:8px}
+.top-bar a{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;border:1px solid var(--border);transition:all .15s}
+.top-bar a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-light)}
+.top-bar .sep{color:var(--border);font-size:14px}
+.top-bar .current{font-size:13px;color:var(--text-secondary);font-weight:500}
+@media(max-width:768px){.top-bar{padding:12px 24px 0}}
 /* ── HEADER ── */
-.page-header{max-width:980px;margin:0 auto;padding:72px 48px 36px;text-align:center}
+.page-header{max-width:980px;margin:0 auto;padding:32px 48px 36px;text-align:center}
 .overline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
 h1{font-family:'Source Serif 4',Georgia,serif;font-size:40px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:16px}
 .subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;margin:0 auto 20px;line-height:1.65}
@@ -156,6 +163,11 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 </head>
 <body>
 
+<div class="top-bar">
+  <a href="/pm-skills-arsenal/">← PM Skills Arsenal</a>
+  <span class="sep">›</span>
+  <span class="current">Notion’s Growth Plateau</span>
+</div>
 <header class="page-header">
   <div class="overline">Problem Framing · PM Skills Arsenal</div>
   <h1>Notion’s Growth Plateau</h1>
