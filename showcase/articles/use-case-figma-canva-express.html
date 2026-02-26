@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma vs Canva vs Adobe Express — PM Skills Arsenal</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#FDFAF6; --surface:#FFFFFF; --text:#2C2520;
+  --text-secondary:#5A524A; --text-muted:#8B8178;
+  --accent:#B85C38; --accent-light:rgba(184,92,56,0.08);
+  --sage:#5B7B6A; --sage-light:rgba(91,123,106,0.08);
+  --warm-gold:#B8963E; --warm-gold-light:rgba(184,150,62,0.08);
+  --stone:#8B7D6B; --stone-light:rgba(139,125,107,0.08);
+  --human:#6B4C8A; --human-light:rgba(107,76,138,0.08);
+  --border:#E8E2DA; --border-light:#F0EBE4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* ── TOP BAR ── */
+.top-bar{max-width:980px;margin:0 auto;padding:16px 48px 0;display:flex;align-items:center;gap:8px}
+.top-bar a{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;border:1px solid var(--border);transition:all .15s}
+.top-bar a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-light)}
+.top-bar .sep{color:var(--border);font-size:14px}
+.top-bar .current{font-size:13px;color:var(--text-secondary);font-weight:500}
+@media(max-width:768px){.top-bar{padding:12px 24px 0}}
+/* ── HEADER ── */
+.page-header{max-width:980px;margin:0 auto;padding:32px 48px 36px;text-align:center}
+.overline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Source Serif 4',Georgia,serif;font-size:40px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:16px}
+.subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;margin:0 auto 20px;line-height:1.65}
+.header-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;font-size:12.5px;color:var(--text-muted)}
+.header-meta strong{color:var(--text-secondary)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0}
+nav .inner{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:8px 48px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);padding:8px 16px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+nav button:hover{color:var(--text);background:var(--border-light)}
+nav button.active{color:var(--accent);background:var(--accent-light);font-weight:600}
+
+/* ── SECTIONS ── */
+.section{display:none;max-width:980px;margin:0 auto;padding:40px 48px 60px}
+.section.active{display:block}
+.section h2{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:15px;color:var(--text-secondary);margin-bottom:28px;line-height:1.65;max-width:760px}
+.section h3{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin:32px 0 10px}
+.section h4{font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin:24px 0 6px}
+.section p{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0;max-width:760px}
+.section ul,.section ol{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0 10px 24px;max-width:760px}
+.section li{margin:4px 0}
+.section li strong{color:var(--text)}
+.section a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)}
+.section a:hover{border-bottom-color:var(--accent)}
+.section code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--border-light);padding:1px 6px;border-radius:3px;color:var(--accent)}
+.section strong{color:var(--text)}
+.section-divider{border:none;border-top:1px solid var(--border-light);margin:28px 0}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--border);border-radius:8px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:13.5px}
+.table-wrap th{background:var(--surface);font-weight:600;color:var(--text);text-align:left;padding:10px 14px;border-bottom:2px solid var(--border);position:sticky;top:0;white-space:nowrap}
+.table-wrap td{padding:9px 14px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top}
+.table-wrap tr:last-child td{border-bottom:none}
+.table-wrap tbody tr:nth-child(even){background:rgba(253,250,246,0.6)}
+.table-wrap tbody tr:hover{background:var(--accent-light)}
+.table-wrap td:first-child{font-weight:500;color:var(--text)}
+
+/* ── ASIDE / CALLOUT ── */
+.aside{display:flex;gap:14px;padding:16px 20px;border-left:3px solid var(--sage);background:var(--sage-light);border-radius:0 8px 8px 0;margin:20px 0}
+.aside.decision{border-left-color:var(--accent);background:var(--accent-light)}
+.aside.watch{border-left-color:var(--warm-gold);background:var(--warm-gold-light)}
+.aside.strategy{border-left-color:var(--human);background:var(--human-light)}
+.a-icon{font-size:16px;flex-shrink:0;margin-top:1px;color:var(--text-muted)}
+.aside p{margin:0;font-size:14px;line-height:1.65;color:var(--text-secondary);max-width:none}
+
+/* ── CASCADE BLOCK ── */
+.cascade-block{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:24px 0}
+.cascade-header{background:var(--accent-light);padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.cascade-item{display:flex;padding:14px 20px;border-top:1px solid var(--border-light);gap:14px;align-items:flex-start}
+.cascade-label{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cascade-o .cascade-label{background:var(--sage-light);color:var(--sage)}
+.cascade-i .cascade-label{background:var(--warm-gold-light);color:var(--warm-gold)}
+.cascade-r .cascade-label{background:var(--accent-light);color:var(--accent)}
+.cascade-c .cascade-label{background:var(--stone-light);color:var(--stone)}
+.cascade-w .cascade-label{background:var(--human-light);color:var(--human)}
+.cascade-text{font-size:14px;line-height:1.65;color:var(--text-secondary);flex:1}
+.cascade-text strong{color:var(--text)}
+
+/* ── EVIDENCE BADGES / CONFIDENCE PILLS ── */
+.ev-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;vertical-align:middle;margin:0 1px;cursor:default}
+.ev-t1,.ev-t2{background:var(--sage-light);color:var(--sage)}
+.ev-t3{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t4{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t5,.ev-t6{background:var(--stone-light);color:var(--stone)}
+.ev-limited{background:var(--accent-light);color:var(--accent);font-size:9px}
+.ev-detail{font-size:12px;color:var(--text-muted);font-style:italic}
+.conf-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
+.conf-h{background:var(--sage-light);color:var(--sage)}
+.conf-m{background:var(--warm-gold-light);color:var(--warm-gold)}
+.conf-l{background:var(--accent-light);color:var(--accent)}
+
+/* ── COLORED DOTS ── */
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin:0 2px}
+.dot.green{background:#5B7B6A}
+.dot.yellow{background:#B8963E}
+.dot.red{background:#B85C38}
+
+/* ── CHECK / CROSS ICONS ── */
+.icon-check{color:var(--sage);font-weight:700;font-size:14px}
+.icon-cross{color:var(--accent);font-weight:700;font-size:14px}
+.icon-warn{color:var(--warm-gold);font-size:14px}
+
+/* ── PROGRESS BAR (replaces block chars) ── */
+.bar-container{display:flex;align-items:center;gap:8px}
+.bar-track{flex:1;height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;min-width:60px;max-width:120px}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--sage),var(--accent))}
+.bar-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--text-secondary);white-space:nowrap}
+
+/* ── CODE FIGURE ── */
+.code-figure{margin:20px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.code-figure pre{background:var(--surface);padding:18px 20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:var(--text);margin:0;white-space:pre}
+
+/* ── POWER ITEM (bold emoji paragraph) ── */
+.power-item{border-left:3px solid var(--border);padding:10px 18px;margin:10px 0;background:var(--surface);border-radius:0 8px 8px 0}
+.power-item p{margin:0;max-width:none}
+
+/* ── DATA GRID ── */
+.data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.data-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.data-card h4{font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;color:var(--text);margin:0 0 6px}
+.data-card p{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6;max-width:none}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:22px 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .val{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--accent)}
+.stat-card .lbl{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* ── FOOTER ── */
+.page-footer{max-width:980px;margin:0 auto;padding:32px 48px 64px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .page-header{padding:48px 24px 24px}
+  h1{font-size:28px}
+  .section{padding:28px 24px 48px}
+  nav .inner{padding:8px 16px}
+  .page-footer{padding:24px;flex-direction:column}
+  .data-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+  nav{display:none}
+  .section{display:block!important;page-break-inside:avoid}
+  .page-header{padding-top:32px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="/pm-skills-arsenal/">← PM Skills Arsenal</a>
+  <span class="sep">›</span>
+  <span class="current">Figma vs Canva vs Adobe Express</span>
+</div>
+<header class="page-header">
+  <div class="overline">Competitive &amp; Market Analysis · PM Skills Arsenal</div>
+  <h1>Figma vs Canva vs Adobe Express</h1>
+  <p class="subtitle">Full strategic synthesis: 7 Powers, Switching Costs, JTBD, Aggregation Theory, and Blue Ocean ERRC — with evidence tiers and confidence scoring.</p>
+  <div class="header-meta">
+    <span><strong>Skill:</strong> competitive-market-analysis</span>
+    <span><strong>Date:</strong> February 2026</span>
+    <span><strong>Source:</strong> PM Skills Arsenal</span>
+  </div>
+</header>
+
+<nav>
+  <div class="inner">
+    <button class="active" onclick="show('summary')">Summary</button>
+      <button onclick="show('context')">Context</button>
+      <button onclick="show('1-7-powers-heat-map')">7 Powers</button>
+      <button onclick="show('3-jobs-to-be-done-analysis')">JTBD</button>
+      <button onclick="show('5-blue-ocean-strategy-errc-grid')">Blue Ocean Strategy</button>
+      <button onclick="show('evidence-summary')">Evidence Summary</button>
+      <button onclick="show('governance')">Governance</button>
+      <button onclick="show('resources')">Resources</button>
+  </div>
+</nav>
+
+<div class="section active" id="summary">
+  <h2>Executive Summary</h2>
+<p>Figma dominates professional product design (80-90% UI/UX market share) through customer-created switching costs (Design Systems accumulation) and real-time collaboration Network Effects, but its $45/editor Organization tier pricing creates counter-positioning opportunities for simpler tools <span class="conf-pill conf-h">H</span> <span class="ev-detail">7 Powers analysis, T2 evidence</span>. Canva owns the mass-market content creation segment (265M MAU vs. Figma's 13M) via new-market disruption — serving non-designers who never bought professional design software — but its template-first model limits upmarket expansion into complex product design workflows <span class="conf-pill conf-h">H</span> <span class="ev-detail">Christensen disruption framework, T2 user metrics</span>. Adobe Express operates asymmetrically: it's not competing for market share but defending Creative Cloud lock-in by commoditizing "quick edits," using Firefly AI + ecosystem integration as a retention moat rather than a standalone business <span class="conf-pill conf-m">M</span> <span class="ev-detail">resource allocation analysis, T3 hiring signals</span>. The strategic inflection point: all three are racing to own AI-native design workflows, but they're fighting different wars — Figma bets on AI-assisted professional collaboration (Figma Make), Canva bets on AI-powered template generation for the masses (Magic Studio), and Adobe bets on AI sophistication for Creative Cloud users (Firefly Model 5) <span class="conf-pill conf-h">H</span> <span class="ev-detail">product launch analysis, T2 company announcements</span>. <strong>Decision: If you're building a design tool, the only contestable space is vertical-specific AI design (e.g., "Figma for architecture," "Canva for medical marketing") — horizontal "better Figma" plays face a 4-Power incumbent; horizontal "better Canva" plays face a 265M MAU aggregator; Adobe's ecosystem moat is structural.</strong></p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="context">
+  <h2>Step 0: Framework Selection</h2>
+<p class="section-sub"><strong>Question Type:</strong> Full strategic synthesis — "who wins, why, and what's the strategic implication?"</p>
+
+<p><strong>Primary Frameworks (Applied in Full):</strong> 1. <strong>7 Powers</strong> — Moat assessment for each player 2. <strong>Switching Cost Decomposition</strong> — What actually locks users in? 3. <strong>JTBD (Jobs-to-be-Done)</strong> — Are they competing for the same job? 4. <strong>Aggregation Theory</strong> — Who owns the user relationship? Who's being commoditized? 5. <strong>Blue Ocean / ERRC Grid</strong> — Are they competing on the same dimensions?</p>
+
+<p><strong>Supporting Frameworks (Applied at Reduced Depth):</strong> - <strong>Christensen Disruption</strong> — Is Canva disrupting Figma, or serving non-consumption? - <strong>Wardley Evolution</strong> — Where are design tool components on the evolution curve?</p>
+
+<p><strong>Frameworks Skipped:</strong> - <strong>Crossing the Chasm</strong> — All three players have crossed; market is post-chasm - <strong>Roger Martin Where to Play</strong> — Resource allocation covered via job posting analysis - <strong>Data Content Loops</strong> — Not applicable (not information disintermediation plays)</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="1-7-powers-heat-map">
+  <h2>1. 7 Powers Heat Map</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Power</th>
+<th>Figma</th>
+<th>Canva</th>
+<th>Adobe Express</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Scale Economies</strong></td>
+<td><span class="dot yellow"></span> Growing <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="dot green"></span> Adobe infra <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Network Effects</strong></td>
+<td><span class="dot green"></span> Collaboration NE <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="dot yellow"></span> Template ecosystem <span class="ev-badge ev-t3">T3</span></td>
+<td><span class="dot red"></span> None <span class="ev-badge ev-t6">T6</span></td>
+</tr>
+<tr>
+<td><strong>Counter-Positioning</strong></td>
+<td><span class="dot red"></span> None <span class="ev-badge ev-t6">T6</span></td>
+<td><span class="dot green"></span> vs. Adobe/Figma <span class="ev-badge ev-t3">T3</span></td>
+<td><span class="dot yellow"></span> vs. Photoshop <span class="ev-badge ev-t4">T4</span></td>
+</tr>
+<tr>
+<td><strong>Switching Costs</strong></td>
+<td><span class="dot green"></span> Design Systems <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="dot yellow"></span> Template/Brand lock-in <span class="ev-badge ev-t3">T3</span></td>
+<td><span class="dot green"></span> Creative Cloud <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Branding</strong></td>
+<td><span class="dot green"></span> Pro design trust <span class="ev-badge ev-t3">T3</span></td>
+<td><span class="dot green"></span> Ease-of-use brand <span class="ev-badge ev-t3">T3</span></td>
+<td><span class="dot yellow"></span> Adobe halo <span class="ev-badge ev-t3">T3</span></td>
+</tr>
+<tr>
+<td><strong>Cornered Resource</strong></td>
+<td><span class="dot red"></span> None <span class="ev-badge ev-t6">T6</span></td>
+<td><span class="dot yellow"></span> Leonardo AI <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="dot green"></span> Firefly AI <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Process Power</strong></td>
+<td><span class="dot yellow"></span> Collaboration culture <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot yellow"></span> Template ops <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot yellow"></span> Creative Cloud integration <span class="ev-badge ev-t4">T4</span></td>
+</tr>
+</tbody></table></div>
+
+<h3>Evidence & Analysis</h3>
+
+<h4>Figma — 4 Powers (<span class="dot green"></span><span class="dot green"></span><span class="dot green"></span><span class="dot yellow"></span>)</h4>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Network Effects (Collaboration)</strong>: Real-time multi-user editing creates same-side positive network effects — value to each designer increases as more teammates join. 540K paid teams <span class="ev-badge ev-t2" title="Q3 2025 earnings">T2</span> shows enterprise adoption; FigJam collaboration features (comments, live cursors) are sticky. <strong>Accruing</strong> — 41% YoY revenue growth <span class="ev-badge ev-t2" title="FY2025 $1.06B">T2</span> driven by team expansion.</p></div>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Switching Costs (Design Systems)</strong>: Customer-created, not vendor-imposed. Design Systems (variables, branching/merging, component libraries) accumulate over time — larger teams have hundreds of components. Migration cost: ~40-80 hours to rebuild a mid-sized design system elsewhere <span class="ev-badge ev-t4" title="industry estimates">T4</span>. <strong>Accruing</strong> — Organization tier ($45/editor) revenue growing as teams scale systems.</p></div>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Branding (Professional Design)</strong>: "Industry standard for UI/UX" positioning <span class="ev-badge ev-t3" title="G2/Capterra reviews">T3</span>. 80-90% market share in UI/UX <span class="ev-badge ev-t3" title="comparative analysis">T3</span>. Reduces customer acquisition cost via word-of-mouth in design community.</p></div>
+
+<div class="power-item"><p><strong><span class="dot yellow"></span> Scale Economies (Growing)</strong>: 13M MAU <span class="ev-badge ev-t2" title="March 2025">T2</span> vs. Canva's 265M — still building scale. Cloud infrastructure costs declining per-user as base grows, but not yet dominant scale advantage. <strong>Accruing</strong> — 43% YoY traffic growth <span class="ev-badge ev-t2" title="Jan 2025">T2</span>.</p></div>
+
+<div class="power-item"><p><strong><span class="dot red"></span> Counter-Positioning</strong>: None identified. Figma doesn't threaten an incumbent's business model.</p></div>
+
+<div class="power-item"><p><strong><span class="dot red"></span> Cornered Resource</strong>: No exclusive IP, data moat, or scarce talent pool that competitors can't access.</p></div>
+
+<div class="aside decision"><span class="a-icon">◈</span><p>Figma holds 4 Powers (<span class="dot green"></span><span class="dot green"></span><span class="dot green"></span><span class="dot yellow"></span> across Network Effects, Switching Costs, Branding, Scale) → <strong>likely long-term winner in professional product design segment</strong>. Attacking Figma head-on in UI/UX requires replicating all 4 Powers — a 3+ year task.</p></div>
+
+<hr class="section-divider">
+
+<h4>Canva — 3 Powers (<span class="dot green"></span><span class="dot green"></span><span class="dot yellow"></span>)</h4>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Scale Economies</strong>: 265M MAU <span class="ev-badge ev-t2" title="2025">T2</span> vs. Figma's 13M = 20x user base. Marginal cost of serving additional user approaches zero (cloud-based SaaS). Template creation costs amortized across massive user base. $3.3B ARR with only 8% conversion (21M paying / 265M MAU) = strong free-tier flywheel. <strong>Accruing</strong> — 20% YoY MAU growth <span class="ev-badge ev-t2" title="220M → 265M">T2</span>.</p></div>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Counter-Positioning (vs. Adobe & Figma)</strong>: Canva's template-first, no-learning-curve model targets non-designers. Adobe can't copy this without cannibalizing Creative Cloud subscriptions ($26M+ subscribers at higher ARPU). Figma can't copy without abandoning professional design systems complexity. <strong>Active</strong> — Visual Suite 2.0 launch (Apr 2025) deepens non-designer positioning.</p></div>
+
+<div class="power-item"><p><strong><span class="dot yellow"></span> Switching Costs (Template/Brand Lock-in)</strong>: Brand Kits (colors, logos, fonts) create mild lock-in for businesses with consistent branding needs. Template customization history provides some migration friction. <strong>But:</strong> these are weaker than Figma's Design Systems — templates are replicable, Brand Kits are exportable. <span class="ev-badge ev-t3" title="user reviews cite &quot;easy to switch if needed&quot;">T3</span>.</p></div>
+
+<div class="power-item"><p><strong><span class="dot yellow"></span> Network Effects (Template Ecosystem)</strong>: Not true network effects — more users don't increase value to existing users. Template marketplace has indirect effects (more users → more template creators), but asymptotic. <span class="ev-badge ev-t4" title="inference from marketplace dynamics">T4</span>.</p></div>
+
+<div class="power-item"><p><strong><span class="dot yellow"></span> Cornered Resource (Leonardo AI)</strong>: $370M acquisition (July 2025, T2) gives foundational AI model capabilities, but not exclusive — competitors (Adobe Firefly, OpenAI) have equivalent or better models. <strong>Moderate</strong> — useful for differentiation, not a structural moat.</p></div>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Branding (Ease-of-Use)</strong>: "Canva" is synonymous with "easy design for non-designers" <span class="ev-badge ev-t3" title="4.7/5 rating, 12,977 Capterra reviews">T3</span>. Reduces CAC; users recommend Canva to peers facing "I need a quick graphic" job.</p></div>
+
+<div class="aside decision"><span class="a-icon">◈</span><p>Canva holds 3 Powers (<span class="dot green"></span><span class="dot green"></span><span class="dot yellow"></span> across Scale, Counter-Positioning, Branding) → <strong>owns mass-market content creation, but limited upmarket mobility</strong> due to template-first architecture.</p></div>
+
+<hr class="section-divider">
+
+<h4>Adobe Express — 2.5 Powers (<span class="dot green"></span><span class="dot green"></span><span class="dot yellow"></span>)</h4>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Cornered Resource (Firefly AI)</strong>: Firefly Image Model 5 (Oct 2025, T2) is Adobe-exclusive, trained on Adobe Stock (legally cleared dataset). Photorealistic generation with anatomic accuracy, multi-layered composition. Competitors lack legal training dataset at Adobe's scale. <strong>Accruing</strong> — Firefly usage grew 3x QoQ <span class="ev-badge ev-t2" title="FY2025 earnings">T2</span>.</p></div>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Switching Costs (Creative Cloud Ecosystem)</strong>: Express users who also use Photoshop, Illustrator, Premiere Pro face high migration cost — workflows span tools, asset libraries are shared. 26M+ Creative Cloud subscribers <span class="ev-badge ev-t2" title="FY2025">T2</span> already locked in. <strong>But:</strong> Express-only users have low switching costs. <span class="ev-badge ev-t3" title="reviews cite &quot;need other Adobe tools for advanced work&quot;">T3</span>.</p></div>
+
+<div class="power-item"><p><strong><span class="dot green"></span> Scale Economies (Adobe Infrastructure)</strong>: Express leverages Adobe's existing cloud infrastructure, Firefly AI compute, stock asset library (200M+ assets). Marginal cost per Express user near zero. <strong>Accruing</strong> — 15%+ YoY growth in Adobe solutions including Express <span class="ev-badge ev-t2" title="FY2025">T2</span>.</p></div>
+
+<div class="power-item"><p><strong><span class="dot yellow"></span> Counter-Positioning (vs. Photoshop)</strong>: Express is simpler than Photoshop, targeting "quick edits" — but Adobe owns both, so this is internal portfolio balance, not external counter-positioning. <strong>Moderate</strong> — useful for market segmentation, but not a moat against external competitors.</p></div>
+
+<div class="power-item"><p><strong><span class="dot red"></span> Network Effects</strong>: None. Express users don't benefit from other Express users.</p></div>
+
+<div class="power-item"><p><strong><span class="dot yellow"></span> Branding (Adobe Halo)</strong>: "Adobe" brand carries professional credibility, but Express-specific brand is weaker than Figma or Canva in their respective segments. <span class="ev-badge ev-t3" title="4.6/5 rating, 1,211 reviews — lowest volume among three">T3</span>.</p></div>
+
+<div class="aside decision"><span class="a-icon">◈</span><p>Adobe Express holds 2.5 Powers (<span class="dot green"></span><span class="dot green"></span><span class="dot yellow"></span> across Cornered Resource, Switching Costs, Scale) → <strong>asymmetric player — not competing for market share, defending Creative Cloud lock-in by offering "good enough" quick edits</strong>. Express's success metric isn't standalone revenue; it's Creative Cloud retention rate.</p></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">2. Switching Cost Decomposition</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Switching Cost Type</th>
+<th>Figma</th>
+<th>Canva</th>
+<th>Adobe Express</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Financial/Contractual</strong></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-label">2/10</span> <span class="ev-badge ev-t1">T1</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="bar-label">1/10</span> <span class="ev-badge ev-t1">T1</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-label">2/10</span> <span class="ev-badge ev-t1">T1</span></div></td>
+</tr>
+<tr>
+<td><strong>Data/Migration</strong></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="bar-label">9/10</span> <span class="ev-badge ev-t2">T2</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-label">4/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-label">6/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+</tr>
+<tr>
+<td><strong>Workflow/Integration</strong></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="bar-label">9/10</span> <span class="ev-badge ev-t2">T2</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-label">3/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="bar-label">8/10</span> <span class="ev-badge ev-t2">T2</span></div></td>
+</tr>
+<tr>
+<td><strong>Identity</strong></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="bar-label">8/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-label">6/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-label">3/10</span> <span class="ev-badge ev-t4">T4</span></div></td>
+</tr>
+<tr>
+<td><strong>Learning/Procedural</strong></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="bar-label">7/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-label">2/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-label">4/10</span> <span class="ev-badge ev-t3">T3</span></div></td>
+</tr>
+<tr>
+<td><strong>Relational/Trust</strong></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-label">6/10</span> <span class="ev-badge ev-t4">T4</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-label">4/10</span> <span class="ev-badge ev-t4">T4</span></div></td>
+<td><div class="bar-container"><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-label">3/10</span> <span class="ev-badge ev-t4">T4</span></div></td>
+</tr>
+</tbody></table></div>
+
+<h3>Key Insights</h3>
+
+<p><strong>Figma's Moat is Customer-Created (Data + Workflow)</strong></p>
+
+<ul>
+<li><strong>Data/Migration (9/10)</strong>: Design Systems with 100+ components take 40-80 hours to rebuild <span class="ev-badge ev-t4" title="industry estimates">T4</span>. Component libraries, variables, branching history are Figma-specific formats. <strong>Durable</strong> — grows with usage.</li>
+</ul>
+
+<ul>
+<li><strong>Workflow/Integration (9/10)</strong>: Dev Mode integration (design-to-code handoff, GitHub sync), Figma → Jira linking, plugin ecosystem (1,000+ plugins). Teams embed Figma in product development workflow. <span class="ev-badge ev-t2" title="Dev Mode user growth cited in Q4 2025 earnings">T2</span>. <strong>Durable</strong> — compounds over time.</li>
+</ul>
+
+<ul>
+<li><strong>Identity (8/10)</strong>: "I'm a Figma designer" community affiliation. Config conference, Twitter design community, portfolio showcase culture. <span class="ev-badge ev-t3" title="user reviews, community participation">T3</span>. <strong>Psychological</strong> — hard to replicate.</li>
+</ul>
+
+<ul>
+<li><strong>Learning/Procedural (7/10)</strong>: Steep learning curve <span class="ev-badge ev-t3" title="user reviews cite &quot;extensive functionality&quot; requires training">T3</span>. Time-to-proficiency ~2-4 weeks for basic competency, 3-6 months for advanced features. <strong>Moderate durability</strong> — degrades as UX improves, but complex features maintain barrier.</li>
+</ul>
+
+<p><strong>Canva's Switching Costs are Low (Intentionally)</strong></p>
+
+<ul>
+<li><strong>Data/Migration (4/10)</strong>: Templates + Brand Kits exportable. Design history not deeply embedded. ~4-8 hours to recreate brand kit in competitor tool. <span class="ev-badge ev-t3" title="user reviews, product analysis">T3</span>.</li>
+</ul>
+
+<ul>
+<li><strong>Workflow/Integration (3/10)</strong>: Some teams use Canva for "all marketing graphics," but workflows aren't deeply integrated (no API-level automation for most users). <span class="ev-badge ev-t3" title="reviews mention &quot;standalone tool&quot;">T3</span>.</li>
+</ul>
+
+<ul>
+<li><strong>Identity (6/10)</strong>: "Canva made me a designer" affinity among non-designers. Strong brand love (4.7/5 rating, T3), but not professional identity.</li>
+</ul>
+
+<ul>
+<li><strong>Learning/Procedural (2/10)</strong>: Drag-and-drop, no learning curve. This is <em>intentional</em> — low switching costs in both directions (easy to adopt, easy to leave). Canva wins on speed-to-value, not lock-in.</li>
+</ul>
+
+<p><strong>Adobe Express's Moat is Ecosystem (Workflow)</strong></p>
+
+<ul>
+<li><strong>Workflow/Integration (8/10)</strong>: For Creative Cloud users, Express pulls assets from Photoshop, Illustrator libraries. Cross-tool workflows (edit in Photoshop → quick social post in Express) create ecosystem lock-in. <strong>But:</strong> Express-only users have low integration. <span class="ev-badge ev-t2" title="Adobe earnings cite &quot;Creative Cloud + Express workflows&quot;">T2</span>.</li>
+</ul>
+
+<ul>
+<li><strong>Data/Migration (6/10)</strong>: Adobe library assets, Firefly-generated images stored in Creative Cloud. Moderate migration friction for heavy users.</li>
+</ul>
+
+<ul>
+<li><strong>Identity (3/10)</strong>: "Adobe Express user" is not a strong identity marker. "Adobe Creative" is, but that's Photoshop/Illustrator, not Express.</li>
+</ul>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Figma's switching costs are 9/10 on Data + Workflow (customer-created); Canva's are 3-4/10 (intentionally low); Adobe Express's are 8/10 but only for existing Creative Cloud users <span class="ev-badge ev-t2">T2–T3</span> <span class="ev-detail">evidence</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Figma's moat compounds over time as Design Systems grow. Canva's moat is Scale + Branding, not switching costs. Adobe Express's moat is <em>conditional</em> — strong if you're in Creative Cloud, weak if you're not.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">If building a Figma competitor → must generate customer-created switching costs <em>faster</em> than Figma (impossible in direct competition). If building a Canva competitor → compete on speed-to-value and distribution, not lock-in (Canva intentionally keeps switching costs low to accelerate adoption). If building an Adobe Express competitor → target Express-only users (low switching costs) or Creative Cloud refugees (high willingness to switch despite costs).</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">H — switching cost decomposition triangulated across T2 (earnings, product features) and T3 (user reviews, migration estimates).</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Figma churn rate at renewal (if >10% annually, switching costs are eroding). Canva paid conversion rate (if <8%, free tier cannibalization is accelerating). Adobe Express standalone revenue disclosure (if Adobe starts reporting it separately, Express is becoming a standalone business vs. Creative Cloud defense).</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="3-jobs-to-be-done-analysis">
+  <h2>3. Jobs-to-be-Done Analysis</h2>
+<h3>The Fundamental Insight: They're Hired for Different Jobs</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Figma</th>
+<th>Canva</th>
+<th>Adobe Express</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Functional Job</strong></td>
+<td>Design a product interface with pixel-perfect spec for eng handoff</td>
+<td>Create a professional-looking graphic in <10 min without design skills</td>
+<td>Repurpose existing creative assets for social/marketing quickly</td>
+</tr>
+<tr>
+<td><strong>Emotional Job</strong></td>
+<td>Feel confident the design is production-ready and stakeholder-approved</td>
+<td>Feel capable of creating "designer-quality" output without being a designer</td>
+<td>Feel integrated into the Creative Cloud workflow (for CC users)</td>
+</tr>
+<tr>
+<td><strong>Social Job</strong></td>
+<td>Be perceived as a professional product designer by eng team</td>
+<td>Be perceived as resourceful/self-sufficient by manager ("I don't need a designer for this")</td>
+<td>Be perceived as efficient (reuse existing assets vs. starting from scratch)</td>
+</tr>
+<tr>
+<td><strong>Consumption Chain</strong></td>
+<td><strong>Before:</strong> Product requirements, user research → <strong>During:</strong> Iterative design, team collaboration, stakeholder feedback → <strong>After:</strong> Developer handoff, design system update</td>
+<td><strong>Before:</strong> Marketing campaign need, social post idea → <strong>During:</strong> Template selection, quick customization → <strong>After:</strong> Download, publish to social</td>
+<td><strong>Before:</strong> Existing Creative Cloud asset → <strong>During:</strong> Quick edit/resize → <strong>After:</strong> Export for social/web</td>
+</tr>
+</tbody></table></div>
+
+<h3>Competitive Landscape Map (JTBD Version)</h3>
+
+<p><strong>What's hired for Figma's job:</strong> - Figma (dominant) - Sketch (declining, Mac-only) - Adobe XD (sunset announced) - Penpot (open-source alternative) - <strong>"Do nothing"</strong> (wireframes in PowerPoint, design in code)</p>
+
+<p><strong>What's hired for Canva's job:</strong> - Canva (dominant) - Adobe Express (secondary) - PowerPoint/Google Slides (for presentations) - Visme, Venngage (vertical-specific) - <strong>"Do nothing"</strong> (don't create the graphic)</p>
+
+<p><strong>What's hired for Adobe Express's job:</strong> - Adobe Express (for CC users) - Canva (for non-CC users) - Photoshop + templates (for CC power users) - <strong>"Do nothing"</strong> (reuse old assets without editing)</p>
+
+<h3>Over-Served vs. Under-Served Jobs</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Job Dimension</th>
+<th>Assessment</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>"Design a product interface"</strong></td>
+<td>Well-served by Figma</td>
+<td>Figma 80-90% market share <span class="ev-badge ev-t3">T3</span>, 4.7/5 rating <span class="ev-badge ev-t3">T3</span></td>
+</tr>
+<tr>
+<td><strong>"Create marketing graphic quickly"</strong></td>
+<td>Well-served by Canva</td>
+<td>265M MAU <span class="ev-badge ev-t2">T2</span>, 4.7/5 rating <span class="ev-badge ev-t3">T3</span>, "intuitive" cited in reviews</td>
+</tr>
+<tr>
+<td><strong>"Repurpose CC assets for social"</strong></td>
+<td>Adequately served by Express, but <strong>under-served for non-CC users</strong></td>
+<td>T3: reviews cite "need other Adobe tools"; gap = quick asset repurposing without $60/mo CC subscription</td>
+</tr>
+<tr>
+<td><strong>"AI-native design from prompt"</strong></td>
+<td><strong>Under-served across all three</strong></td>
+<td>All three racing to build this (Figma Make, Canva Magic Design, Adobe Firefly), but none are "good enough" yet <span class="ev-badge ev-t2" title="limited beta launches, not GA">T2</span></td>
+</tr>
+</tbody></table></div>
+
+<h3>JTBD Competitive Assessment</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Signal</th>
+<th>Interpretation</th>
+<th>Implication</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Customers hire Figma + Canva for <em>different</em> jobs</td>
+<td>These are not substitutes; they're complements</td>
+<td>Figma users also use Canva for marketing assets; Canva users hire designers for complex product work</td>
+</tr>
+<tr>
+<td>"Non-consumption" is Canva's main competitor</td>
+<td>265M MAU vs. professional design market ~10M → Canva expanded the market 20x</td>
+<td>Canva isn't disrupting Figma; it's serving people who never hired <em>any</em> design tool</td>
+</tr>
+<tr>
+<td>Adobe Express users <em>also</em> use Photoshop/Illustrator</td>
+<td>Express is a workflow step, not a standalone tool</td>
+<td>Express's TAM is bounded by Creative Cloud TAM (~26M subscribers)</td>
+</tr>
+<tr>
+<td>All three cite "AI design from prompt" as roadmap priority</td>
+<td>New job emerging: "generate editable design from text description"</td>
+<td>Whoever wins AI-native design owns the <em>next</em> segment (neither Figma's nor Canva's current users)</td>
+</tr>
+</tbody></table></div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Figma, Canva, and Adobe Express are hired for <strong>non-overlapping jobs</strong> <span class="ev-badge ev-t2">T2–T3</span> <span class="ev-detail">evidence: user bases, reviews, use cases</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">They're not competing in the same arena. Figma owns "professional product design," Canva owns "quick content creation for non-designers," Adobe Express owns "Creative Cloud asset repurposing." Competitive dynamics are <strong>asymmetric</strong> — market share shifts don't indicate "one is winning" but "jobs are being redefined."</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">If building a design tool, <strong>choose a job none of them serve well</strong> — candidates: (1) vertical-specific design (medical marketing, real estate flyers, legal documents), (2) AI-native design from scratch (not templates), (3) collaborative design for non-product teams (sales deck design, HR onboarding materials).</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">H — JTBD framework triangulated across user metrics <span class="ev-badge ev-t2">T2</span>, reviews <span class="ev-badge ev-t3">T3</span>, and product positioning <span class="ev-badge ev-t2" title="company blog posts, pricing pages">T2</span>.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If Figma launches a template marketplace (copying Canva) OR Canva launches Dev Mode (copying Figma), job boundaries are blurring → reassess competitive overlap.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">4. Aggregation Theory: Who Owns the User Relationship?</h3>
+<h3>Aggregator Classification</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Player</th>
+<th>Direct User Relationship?</th>
+<th>Marginal Cost to Serve Users</th>
+<th>Acquisition Cost Trend</th>
+<th>Aggregator Level</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Figma</strong></td>
+<td><span class="icon-check">✓</span> Yes (freemium SaaS)</td>
+<td>~$0 (cloud-based)</td>
+<td>Decreasing (word-of-mouth in design community)</td>
+<td><strong>Level 3</strong> (zero marginal cost, doesn't own supply)</td>
+</tr>
+<tr>
+<td><strong>Canva</strong></td>
+<td><span class="icon-check">✓</span> Yes (freemium SaaS)</td>
+<td>~$0 (cloud-based)</td>
+<td>Decreasing (265M MAU creates network density)</td>
+<td><strong>Level 3</strong> (zero marginal cost, doesn't own supply)</td>
+</tr>
+<tr>
+<td><strong>Adobe Express</strong></td>
+<td><span class="icon-warn"><span class="icon-warn">⚠</span></span> Partial (bundled with Creative Cloud for 26M subscribers)</td>
+<td>~$0 (leverages Adobe infra)</td>
+<td>Mixed (CC users = $0 CAC; standalone users = standard SaaS CAC)</td>
+<td><strong>Not an aggregator</strong> (supply-side tool, not demand aggregation)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Who Gets Commoditized?</h3>
+
+<p><strong>In Figma's ecosystem:</strong> - <strong>Designers</strong> are <em>not</em> commoditized — Figma increases designer productivity and collaboration, but doesn't replace them. - <strong>Design handoff tools</strong> (Zeplin, InVision) <em>were</em> commoditized — Figma's Dev Mode integrated handoff, making standalone tools obsolete. <span class="ev-badge ev-t3" title="InVision shut down 2024, Zeplin usage declining">T3</span>.</p>
+
+<p><strong>In Canva's ecosystem:</strong> - <strong>Template designers</strong> are <em>partially</em> commoditized — Canva's marketplace has 100M+ templates <span class="ev-badge ev-t2">T2</span>, driving template price to near-zero for users. Individual template creators compete on volume, not pricing power. - <strong>Junior graphic designers (for simple tasks)</strong> are <em>partially</em> displaced — small businesses that would have hired a $500 freelance designer for a social graphic now use Canva for $12.99/month. <span class="ev-badge ev-t4" title="inference from Canva&#x27;s SMB positioning">T4</span>.</p>
+
+<p><strong>In Adobe Express's ecosystem:</strong> - <strong>Quick-edit freelancers</strong> are <em>partially</em> displaced — tasks like "resize this image for Instagram" or "remove background" are now $0 in Express (vs. $10-50 freelancer gig). - <strong>Standalone design apps (BeFunky, Pixlr)</strong> are <em>pressured</em> — Adobe's bundling makes standalone "quick edit" apps less attractive. <span class="ev-badge ev-t4" title="inference from pricing competition">T4</span>.</p>
+
+<h3>Where is Value Migrating?</h3>
+
+<p><strong>Pre-2020:</strong> Design value concentrated in <strong>professional tools</strong> (Adobe Creative Suite, Sketch) and <strong>designer labor</strong>.</p>
+
+<p><strong>2020-2025:</strong> Value migrated to <strong>collaboration platforms</strong> (Figma's real-time editing) and <strong>template marketplaces</strong> (Canva's 100M+ assets).</p>
+
+<p><strong>2025-2027 (emerging):</strong> Value migrating to <strong>AI design models</strong> (Figma Make, Canva Magic Studio, Adobe Firefly). <strong>Evidence:</strong> - Figma Make weekly active users +70% sequentially <span class="ev-badge ev-t2" title="Q4 2025 earnings">T2</span> - Canva Magic Studio 16B+ uses <span class="ev-badge ev-t2" title="2025 metrics">T2</span> - Adobe Firefly consumption +3x QoQ <span class="ev-badge ev-t2" title="FY2025 earnings">T2</span></p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">The <strong>new supply</strong> being commoditized is <strong>design labor itself</strong> — AI models reduce need for human designers for commodity tasks (social graphics, templated layouts). Value is shifting to players who own the <strong>AI model + user relationship</strong> (Figma, Canva, Adobe all have both).</div>
+</div>
+</div>
+
+<h3>Aggregation Theory Decision Table</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Question</th>
+<th>Figma</th>
+<th>Canva</th>
+<th>Adobe Express</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Does this player have a direct user relationship?</td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td><span class="icon-warn"><span class="icon-warn">⚠</span></span> Partial (bundled)</td>
+</tr>
+<tr>
+<td>Are marginal costs near zero?</td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td><span class="icon-check">✓</span> Yes</td>
+</tr>
+<tr>
+<td>Are acquisition costs decreasing with scale?</td>
+<td><span class="icon-check">✓</span> Yes (word-of-mouth)</td>
+<td><span class="icon-check">✓</span> Yes (265M MAU flywheel)</td>
+<td><span class="icon-cross">✗</span> No (CC users = free, standalone = paid CAC)</td>
+</tr>
+<tr>
+<td>Can suppliers multi-home?</td>
+<td><span class="icon-cross">✗</span> N/A (no supply side)</td>
+<td><span class="icon-check">✓</span> Yes (template creators multi-home)</td>
+<td><span class="icon-cross">✗</span> N/A (Adobe owns supply)</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Conclusion:</strong> Figma and Canva are both <strong>Level 3 aggregators</strong> — they own the user relationship, have zero marginal costs, and decreasing CAC with scale. Adobe Express is <strong>not an aggregator</strong> — it's a feature of Creative Cloud, not a demand aggregation platform.</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Figma and Canva are aggregators; Adobe Express is not <span class="ev-badge ev-t2">T2–T3</span> <span class="ev-detail">evidence</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Aggregators with >10M MAU and decreasing CAC are <strong>structurally difficult to displace</strong> — you need a 10x better product just to achieve feature parity on distribution. Adobe Express doesn't compete via aggregation; it competes via <strong>ecosystem lock-in</strong> (Creative Cloud).</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">If building a design tool, <strong>don't compete on aggregation</strong> against Figma or Canva — you'll lose on CAC. Instead: (1) <strong>vertical focus</strong> (become the aggregator for a specific industry), (2) <strong>B2B sales</strong> (bypass consumer aggregation with enterprise contracts), or (3) <strong>AI-first</strong> (new technology curve before aggregators own it).</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">H — aggregation framework maps cleanly to observed business models <span class="ev-badge ev-t2" title="pricing, user growth, CAC trends">T2</span>.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If Canva's paid conversion rate drops below 5% (currently 8%) → free tier cannibalization accelerating, aggregation flywheel weakening. If Figma's CAC increases YoY → word-of-mouth slowing, aggregation advantage eroding.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="5-blue-ocean-strategy-errc-grid">
+  <h2>5. Blue Ocean Strategy: ERRC Grid</h2>
+<h3>Are They Competing on the Same Dimensions?</h3>
+
+<p><strong>Short answer: No.</strong> Each player raised/created different factors.</p>
+
+<h3>Strategy Canvas (Simplified)</h3>
+
+<figure class="code-figure"><pre><code>Offering Level (1-10 scale)
+High ─────────────────────────────────────────────────────
+ 10  │     Figma ●────●
+  9  │          │     │                    Adobe ●
+  8  │          │     │            Canva        │
+  7  │          │     │              ●──●       │
+  6  │          │     │              │  │       │
+  5  │     ●────●     │              │  │  ●────●
+  4  │     │          │         ●────●  │  │
+  3  │     │          │         │       │  │
+  2  │     │          │    ●────●       │  │
+  1  │     │          │    │            │  │
+Low  ─┼─────┴──────────┴────┴────────────┴──┴──────────────
+     │  Ease  Collab  Prof  Templates  AI   Ecosystem
+        of     (real- Tools  (volume) Power Integration
+        Use    time)</code></pre></figure>
+
+<p><strong>Interpretation:</strong> - <strong>Figma:</strong> High on Collaboration + Professional Tools, low on Ease of Use + Templates - <strong>Canva:</strong> High on Ease of Use + Templates, low on Collaboration + Professional Tools - <strong>Adobe Express:</strong> High on AI Power + Ecosystem Integration, moderate on Ease of Use</p>
+
+<p>They're playing <strong>different games</strong> on a multi-dimensional strategy canvas. This is <strong>not a Blue Ocean</strong> (uncontested market space) — it's <strong>market segmentation</strong> (each owns a segment).</p>
+
+<h3>ERRC Grid for Each Player</h3>
+
+<h4>Figma's ERRC</h4>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Factor</th>
+<th>Eliminate</th>
+<th>Reduce</th>
+<th>Raise</th>
+<th>Create</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Templates</td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ease of Use (for non-designers)</td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Real-time Collaboration</td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td><span class="icon-check">✓</span> (was novel in 2016)</td>
+</tr>
+<tr>
+<td>Design Systems / Component Libraries</td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td><span class="icon-check">✓</span> (was novel in 2017)</td>
+</tr>
+<tr>
+<td>Dev Handoff (Dev Mode)</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span> (2023)</td>
+</tr>
+<tr>
+<td>AI Prototyping (Figma Make)</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span> (2025)</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Result:</strong> Figma created a new value curve by <strong>eliminating</strong> template-first UX and <strong>creating</strong> real-time collaboration + design systems. This was Blue Ocean in 2016 (vs. Sketch, which was single-user). By 2025, Figma <em>is</em> the ocean — no longer uncontested.</p>
+
+<hr class="section-divider">
+
+<h4>Canva's ERRC</h4>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Factor</th>
+<th>Eliminate</th>
+<th>Reduce</th>
+<th>Raise</th>
+<th>Create</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Professional Design Tools (layers, vector precision)</td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Learning Curve</td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Templates (volume + variety)</td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+</tr>
+<tr>
+<td>AI-Powered Design (Magic Studio)</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span> (2023-2025)</td>
+</tr>
+<tr>
+<td>Free Tier Generosity</td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+</tr>
+<tr>
+<td>Speed to First Output</td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td><span class="icon-check">✓</span> (drag-drop simplicity)</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Result:</strong> Canva created a new value curve by <strong>eliminating</strong> professional design complexity and <strong>creating</strong> template-first + AI-powered simplicity. This <em>was</em> Blue Ocean in 2013 (vs. Adobe Photoshop, which required training). By 2025, Canva is the dominant player in its segment — no longer uncontested.</p>
+
+<hr class="section-divider">
+
+<h4>Adobe Express's ERRC</h4>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Factor</th>
+<th>Eliminate</th>
+<th>Reduce</th>
+<th>Raise</th>
+<th>Create</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Steep Photoshop Learning Curve</td>
+<td><span class="icon-check">✓</span> (vs. Photoshop)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Collaboration Features</td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>AI Sophistication (Firefly Model 5)</td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td></td>
+</tr>
+<tr>
+<td>Creative Cloud Integration</td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span></td>
+<td><span class="icon-check">✓</span> (asset pull from PS/AI)</td>
+</tr>
+<tr>
+<td>Quick Actions (bg removal, resize)</td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="icon-check">✓</span> (2021-2023)</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Result:</strong> Adobe Express created a <strong>partial Blue Ocean</strong> by <strong>eliminating</strong> Photoshop complexity for CC users while <strong>raising</strong> AI sophistication and ecosystem integration. But it's not a standalone Blue Ocean — it's <strong>bundled</strong> with Creative Cloud, making it a <em>feature</em> not a <em>product</em>.</p>
+
+<hr class="section-divider">
+
+<h3>Blue Ocean Assessment</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Player</th>
+<th>Blue Ocean Status</th>
+<th>Current State</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Figma</strong></td>
+<td><strong>Was</strong> Blue Ocean (2016-2020)</td>
+<td>Now Red Ocean — multiple competitors (Penpot, Sketch declining but present)</td>
+</tr>
+<tr>
+<td><strong>Canva</strong></td>
+<td><strong>Was</strong> Blue Ocean (2013-2018)</td>
+<td>Now Red Ocean — Adobe Express, Microsoft Designer, Visme competing</td>
+</tr>
+<tr>
+<td><strong>Adobe Express</strong></td>
+<td><strong>Never</strong> Blue Ocean</td>
+<td>Bundled feature of Creative Cloud; competes via ecosystem, not new value curve</td>
+</tr>
+</tbody></table></div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">All three <strong>started</strong> in Blue Ocean (uncontested space) but have since attracted competition. The <strong>next Blue Ocean</strong> is <strong>AI-native design</strong> (prompt-to-production-ready output) — all three are racing toward it, but none have arrived.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">6. Strategic Recommendations</h3>
+<h3>For Figma</h3>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Figma holds 4 Powers (Network Effects, Switching Costs, Branding, Scale) and 80-90% UI/UX market share <span class="ev-badge ev-t2">T2–T3</span> <span class="ev-detail">evidence</span>, but Adobe Express + Canva are encroaching on "quick design tasks" that don't require Design Systems.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Figma's moat is safe <em>for professional product design</em>, but there's a <strong>wedge opportunity</strong> for simpler tools to capture "designers doing marketing tasks" (social graphics, presentations) — tasks where Figma is overkill.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">1. <strong>Double down on Design Systems + Dev Mode</strong> — deepen the moat where Figma is strongest. Hire more enterprise sales reps <span class="ev-badge ev-t3" title="40 job postings include Enterprise Sales roles">T3</span> to expand Organization tier ($45/editor) penetration.
+2. <strong>Don't chase Canva's market</strong> — Figma Buzz (marketing assets product, launched 2025) is strategic hedging, but shouldn't be core focus. Canva's 265M MAU are non-designers; Figma's brand is professional design. Chasing non-designers dilutes the brand.
+3. <strong>Win AI-native design for <em>professionals</strong></em> — Figma Make (AI prototyping) should target "AI-assisted professional workflows," not "AI-generated consumer templates." Let Canva own the latter.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">H — assumes Figma's professional design moat remains durable (4 Powers analysis, T2 evidence). Invalidated if: Design Systems adoption stalls (watch: Organization tier revenue growth <20% YoY) or AI-native tools replace human designers faster than expected (watch: Figma Make usage plateaus).</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Figma Make weekly active users growth rate. If <10% QoQ for 2 consecutive quarters → AI feature adoption slowing, professional designers resistant to AI assistance.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+
+<h3>For Canva</h3>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Canva holds 3 Powers (Scale, Counter-Positioning, Branding) and 265M MAU (T2 evidence), but <strong>only 8% paid conversion</strong> (21M paying / 265M MAU) — free tier is dominant.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Canva's growth engine is <strong>new user acquisition</strong> (20% YoY MAU growth), not <strong>monetization of existing users</strong>. This is sustainable at current scale, but risks: (1) free tier cannibalization if paid features commoditize, (2) CAC inflation if word-of-mouth slows.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">1. <strong>Defend the free tier</strong> — don't over-monetize. The 265M MAU flywheel depends on generous free tier (5GB storage, 100M+ stock assets). If conversion drops to 5%, that's still $2B+ ARR at scale.
+2. <strong>Expand TAM via verticals</strong> — launch Canva for Medical Marketing, Canva for Real Estate, Canva for Legal (vertical-specific templates + compliance features). This increases ARPU without raising friction for horizontal users.
+3. <strong>AI as a moat, not a feature</strong> — Magic Studio (16B+ uses, T2) is working. Double down on <strong>editable AI output</strong> (Foundational Design Model) — this is Canva's wedge vs. Midjourney (which produces static images, not templates). If Canva can generate <em>editable, layered, brand-consistent</em> designs from prompts, that's a durable advantage.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">M — assumes Canva's free tier flywheel continues (265M → 300M+ MAU by 2027). Invalidated if: MAU growth drops below 10% YoY (market saturation) or paid conversion drops below 5% (free tier cannibalization accelerating).</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Paid conversion rate quarterly. If <6% for 2 consecutive quarters → monetization weakening, reassess pricing model.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+
+<h3>For Adobe Express</h3>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Adobe Express holds 2.5 Powers (Cornered Resource via Firefly, Switching Costs via Creative Cloud, Scale via Adobe infra), but <strong>asymmetric positioning</strong> — it's not competing for standalone market share; it's defending Creative Cloud retention <span class="ev-badge ev-t2">T2–T3</span> <span class="ev-detail">evidence</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Express's success metric is <strong>Creative Cloud churn rate</strong>, not Express standalone revenue. If CC subscribers use Express for "quick edits," they're less likely to churn to Canva. If they don't use Express, they're paying $60/month for Photoshop alone — higher churn risk.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">1. <strong>Integrate Express deeper into CC workflows</strong> — make it <em>impossible</em> to use Photoshop without also using Express for quick tasks. Example: "Export to Instagram" in Photoshop should auto-open Express with optimized sizing/formatting.
+2. <strong>Don't compete standalone</strong> — Express will never beat Canva at 265M MAU aggregation or Figma at professional design. Adobe's advantage is <strong>ecosystem lock-in</strong>. Lean into it.
+3. <strong>Mobile-first strategy</strong> — job postings cite "develop the future of Adobe Express on mobile" <span class="ev-badge ev-t3" title="LinkedIn">T3</span>. This is smart — mobile is where "quick edits" happen. If Express becomes the <em>mobile</em> Creative Cloud, it's a retention wedge Canva/Figma don't have.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text">M — assumes Adobe's primary goal is Creative Cloud retention, not Express standalone revenue <span class="ev-badge ev-t4" title="inference from lack of standalone revenue disclosure">T4</span>. Invalidated if: Adobe starts reporting Express revenue separately → strategic shift to standalone business.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Creative Cloud churn rate (if disclosed). If churn increases despite Express usage growth → Express isn't working as retention tool, reassess strategy.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="evidence-summary">
+  <h2>Evidence Summary</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Tier</th>
+<th>Count</th>
+<th>Examples</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>T1</strong></td>
+<td>12</td>
+<td>Pricing pages, official product pages, public metrics (MAU, revenue from earnings)</td>
+</tr>
+<tr>
+<td><strong>T2</strong></td>
+<td>28</td>
+<td>Earnings calls (via aggregators), company announcements (acquisitions, product launches), user metrics (growth rates)</td>
+</tr>
+<tr>
+<td><strong>T3</strong></td>
+<td>19</td>
+<td>User reviews (G2, Capterra), job postings (LinkedIn), industry analysis, comparative articles</td>
+</tr>
+<tr>
+<td><strong>T4</strong></td>
+<td>8</td>
+<td>Inference from product analysis, industry estimates (migration costs, churn rates), competitive dynamics</td>
+</tr>
+<tr>
+<td><strong>T5</strong></td>
+<td>0</td>
+<td>Not used</td>
+</tr>
+<tr>
+<td><strong>T6</strong></td>
+<td>4</td>
+<td>Pure inference (no public data) — flagged as <code>[EVIDENCE-LIMITED]</code></td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total evidence points:</strong> 71 <span class="ev-badge ev-t1">T1–T4</span> <span class="ev-detail">: 67; T6: 4</span></p>
+
+<p><strong>Triangulation:</strong> All strategic conclusions cite minimum 2 evidence tiers (T2+T3 most common).</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="governance">
+  <h2>7. Assumption Registry</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Assumption</th>
+<th>Framework It Underpins</th>
+<th>Confidence</th>
+<th>Evidence</th>
+<th>What Would Invalidate This</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Figma's Design Systems moat is durable for 24+ months</strong></td>
+<td>7 Powers (Switching Costs)</td>
+<td>H</td>
+<td>T2: Organization tier revenue growing 41% YoY; T3: user reviews cite Design Systems as lock-in</td>
+<td>If AI-native tools can <em>auto-generate</em> Design Systems from existing products → migration cost drops to near-zero</td>
+</tr>
+<tr>
+<td><strong>Canva's free tier flywheel continues (MAU growth >10% YoY)</strong></td>
+<td>Aggregation Theory</td>
+<td>M</td>
+<td>T2: 265M MAU, 20% YoY growth (2024-2025)</td>
+<td>If TikTok/Instagram add native "design templates" feature → Canva's free tier value proposition weakens</td>
+</tr>
+<tr>
+<td><strong>Adobe Express is primarily a Creative Cloud retention tool, not standalone business</strong></td>
+<td>Asymmetric Competition</td>
+<td>M</td>
+<td>T4: inference from lack of standalone revenue disclosure; T3: hiring for CC integration roles</td>
+<td>If Adobe starts reporting Express revenue separately in earnings → Express becoming standalone P&L, not bundled feature</td>
+</tr>
+<tr>
+<td><strong>AI-native design (prompt-to-editable-output) is under-served today but will be table stakes by 2027</strong></td>
+<td>JTBD, Blue Ocean</td>
+<td>L</td>
+<td>T2: all three launching AI features (Figma Make, Canva Magic Studio, Adobe Firefly) but none GA/mature yet</td>
+<td>If users reject AI-generated designs due to quality/trust issues → AI-native design remains niche, not mainstream</td>
+</tr>
+<tr>
+<td><strong>Professional product designers will continue using human-driven workflows (not AI-generated) for complex projects</strong></td>
+<td>7 Powers (Figma's moat)</td>
+<td>M</td>
+<td>T3: Figma Make is "AI-assisted" not "AI-replacement"; user reviews cite need for designer judgment</td>
+<td>If GPT-6 (or equivalent) can generate production-ready Figma files from PRDs → Figma's user base (designers) faces displacement risk</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">8. Adversarial Self-Critique</h3>
+<h3>Weakness #1: Over-Indexing on Public Metrics, Under-Indexing on Churn</h3>
+
+<p><strong>What I assumed:</strong> Figma's 41% YoY revenue growth <span class="ev-badge ev-t2">T2</span> = strong moat.</p>
+
+<p><strong>What could be wrong:</strong> Revenue growth can mask high churn if new customer acquisition is faster than churn. If Figma is adding 100K teams/year but churning 30K teams/year, net growth looks healthy but moat is eroding.</p>
+
+<p><strong>Evidence that would disprove this analysis:</strong> Figma's gross retention rate (if <90% annually, switching costs are weaker than assessed). Canva's paid subscriber churn rate (if >25% annually, free tier cannibalization is worse than estimated).</p>
+
+<p><strong>Invalidation trigger:</strong> If Figma discloses churn metrics in future earnings and gross retention <85% → switching cost analysis overstated moat strength.</p>
+
+<hr class="section-divider">
+
+<h3>Weakness #2: AI Disruption Timeline May Be Faster Than Expected</h3>
+
+<p><strong>What I assumed:</strong> AI-native design is "emerging" (2025-2027 timeline), giving incumbents time to build AI features and defend moats.</p>
+
+<p><strong>What could be wrong:</strong> If a new entrant launches a <strong>10x better AI design tool</strong> in 2026 (e.g., "Figma killer" that generates production-ready designs from PRDs), the Technology Adoption Lifecycle could compress — early adopters could switch en masse before incumbents respond.</p>
+
+<p><strong>Evidence that would disprove this analysis:</strong> GPT-6 or equivalent launches with <strong>design-native multimodal reasoning</strong> (can generate Figma-compatible files, not just images). Canva's Magic Studio usage growth decelerates (users don't want AI-generated templates).</p>
+
+<p><strong>Invalidation trigger:</strong> If a new AI-native design tool reaches 1M MAU within 12 months of launch → AI disruption is faster than expected, reassess all three players' moat durability.</p>
+
+<hr class="section-divider">
+
+<h3>Weakness #3: Asymmetric Competition Analysis May Underestimate Adobe's Ambition</h3>
+
+<p><strong>What I assumed:</strong> Adobe Express is a Creative Cloud retention tool, not a standalone business (based on T4 inference from lack of revenue disclosure).</p>
+
+<p><strong>What could be wrong:</strong> Adobe may be <strong>intentionally under-positioning Express</strong> to avoid spooking Creative Cloud subscribers, while building Express into a standalone competitor. If Adobe launches "Express Pro" at $20/month (outside Creative Cloud bundle), this analysis would be invalidated.</p>
+
+<p><strong>Evidence that would disprove this analysis:</strong> Adobe starts reporting Express revenue separately. Express launches a "Professional" tier with Figma-like features (Design Systems, Dev Mode). Adobe acquires a design collaboration startup (signaling move into Figma's territory).</p>
+
+<p><strong>Invalidation trigger:</strong> Adobe Express standalone revenue disclosure in earnings → Express is a P&L, not a feature.</p>
+
+<hr class="section-divider">
+</div>
+
+<div class="section" id="resources">
+  <h2>Conclusion</h2>
+<p>Figma, Canva, and Adobe Express are <strong>not competing</strong> — they're serving different jobs, optimizing for different metrics, and fighting different wars. Figma dominates professional product design via customer-created switching costs (Design Systems) and collaboration network effects. Canva dominates mass-market content creation via scale economies and counter-positioning (serving non-designers Adobe/Figma can't target without cannibalizing core businesses). Adobe Express defends Creative Cloud lock-in by offering "good enough" quick edits, leveraging Firefly AI and ecosystem integration.</p>
+
+<p>The <strong>strategic inflection point</strong> is AI-native design — whoever builds the best "prompt-to-editable-production-ready-output" tool will own the next segment. All three are racing toward it, but none have arrived. The market is open for a <strong>vertical-specific AI design tool</strong> or an <strong>AI-first horizontal player</strong> that isn't burdened by existing user expectations.</p>
+
+<p><strong>If you're building a design tool:</strong> Don't attack Figma in UI/UX (4-Power incumbent), don't attack Canva in mass-market templates (265M MAU aggregator), and don't attack Adobe Express without owning the Creative Cloud ecosystem. Instead, <strong>find a job they don't serve</strong> — vertical design, AI-native workflows, or B2B collaboration for non-product teams.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Appendix: Quick-Reference Checklist</h3>
+<ul>
+<li>[x] Competitive set defined: primary (Figma, Canva, Adobe Express) + secondary (Sketch, Penpot, Microsoft Designer) + non-obvious (AI-native design tools)</li>
+<li>[x] Executive summary: 5 sentences a VP could act on alone</li>
+<li>[x] 7 Powers scored for each primary competitor with evidence</li>
+<li>[x] Switching costs decomposed by type (not high/medium/low)</li>
+<li>[x] Aggregation Theory applied — who owns user relationship? Who's commoditized?</li>
+<li>[x] JTBD mapped — what jobs hired for? Over-served vs. under-served?</li>
+<li>[x] Blue Ocean check: Strategy Canvas plotted; ERRC Grid completed</li>
+<li>[x] Evidence triangulated — no conclusion on single tier (67/71 are T1-T4)</li>
+<li>[x] Per-cell evidence tier annotation in all comparison matrices</li>
+<li>[x] O→I→R→C→W cascade applied to all recommendations</li>
+<li>[x] H/M/L confidence levels explicit on every strategic conclusion</li>
+<li>[x] <code>[EVIDENCE-LIMITED]</code> flag applied to T6 inferences</li>
+<li>[x] Assumption Registry present with 5 load-bearing assumptions</li>
+<li>[x] Adversarial Self-Critique present with 3 genuine weaknesses</li>
+<li>[x] Quantified where possible (265M MAU, $3.3B ARR, 8% conversion rate, etc.)</li>
+</ul>
+
+<hr class="section-divider">
+
+<p><strong>Analysis Date:</strong> February 2026 <strong>Word Count:</strong> 7,842 <strong>Evidence Points:</strong> 71 <span class="ev-badge ev-t1">T1–T4</span> <span class="ev-detail">: 67; T6: 4</span> <strong>Frameworks Applied:</strong> 7 Powers, Switching Costs, JTBD, Aggregation Theory, Blue Ocean, Christensen Disruption (supporting) <strong>License:</strong> MIT <strong>PM Skills Arsenal:</strong> <a href="https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/competitive-market-analysis/SKILL.md">competitive-market-analysis</a></p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Try It Yourself: Quick-Start Guide</h3>
+<p class="section-sub"><strong>Apply this framework to your own competitive analysis in 3 steps:</strong></p>
+
+<ol>
+<li><strong>Pick your competitive set</strong> (30 min) - List 3-5 primary competitors, 2-3 adjacent players - Gather public evidence: pricing pages, user reviews, job postings</li>
+</ol>
+
+<ol>
+<li><strong>Run 7 Powers assessment</strong> (60 min) - Score each competitor on all 7 Powers using the rubric - Document evidence tier for each rating</li>
+</ol>
+
+<ol>
+<li><strong>Build switching cost decomposition</strong> (30 min) - Rate each of 6 switching cost types (1-10 scale) - Identify customer-created vs vendor-imposed costs</li>
+</ol>
+
+<p><strong>Output:</strong> You'll have a board-ready competitive war map in ~2 hours.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Related Use Cases & Skills</h3>
+<p class="section-sub"><strong>From this analysis to next steps:</strong> - See <a href="use-case-narrative-building.html">Narrative Building use case</a> for positioning strategy based on competitive moats - See <a href="use-case-specification.html">Specification Writing use case</a> for translating competitive insights into feature specs - See <a href="use-case-problem-framing.html">Problem Framing use case</a> for identifying gaps competitors aren't solving</p>
+
+<p><strong>Real-world skill chains:</strong> - This analysis feeds directly into product strategy decisions (where to compete vs. cooperate) - Combine with Discovery Research to validate which Powers actually matter to users - Use with Metric Design to measure your own moat strength over time</p>
+</div>
+
+<footer class="page-footer">
+  <span>Figma vs Canva vs Adobe Express · PM Skills Arsenal</span>
+  <span>Built with GitHub Copilot</span>
+</footer>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('nav button').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
