@@ -1,14 +1,14 @@
 {
   "name": "pm-skills-dev",
-  "description": "Local development marketplace for PM Skills codex: Competitive Analysis and Metric Design",
+  "description": "PM Skills Arsenal: 6 elite-tier product management skills for Claude Code — competitive analysis, metric design, specification writing, problem framing, discovery research, and narrative building",
   "owner": {
     "name": "Parth Sangani"
   },
   "plugins": [
     {
       "name": "pm-skills",
-      "description": "Elite-tier PM knowledge codex: Competitive & Market Analysis (7 Powers, Aggregation Theory, Wardley, JTBD, Blue Ocean, Crossing the Chasm, Win/Loss) and Metric Design & Experimentation (NSM, Goodhart, MAB, HEART, PMF Measurement)",
-      "version": "1.2.0",
+      "description": "Product management decision codex: competitive analysis (9 frameworks including 7 Powers, Aggregation Theory, Wardley Mapping), metric design and experimentation (NSM, Goodhart countermeasures, A/B design, retention cohorts), specification writing (zero-question specs), problem framing, discovery research, and narrative building. Evidence-tiered, confidence-calibrated, adversarially self-critiqued.",
+      "version": "1.3.0",
       "source": "./",
       "author": {
         "name": "Parth Sangani"

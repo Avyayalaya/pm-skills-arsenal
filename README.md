@@ -26,7 +26,7 @@ The gap isn't model quality — it's encoded knowledge. Raw prompting produces g
 
 ```bash
 claude plugin marketplace add avyayalaya/pm-skills-arsenal
-claude plugin install pm-skills@avyayalaya
+claude plugin install pm-skills@pm-skills-dev
 ```
 
 Skills auto-activate when you ask Claude to do anything in their domain. No slash commands needed.
