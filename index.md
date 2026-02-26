@@ -92,15 +92,13 @@ Product positioning · launch narratives · internal alignment · stakeholder pi
 
 Interactive showcases — full skill outputs with tabbed navigation, evidence tiers, and framework analysis.
 
-- **[Figma vs Canva vs Adobe Express](showcase/articles/use-case-figma-canva-express.html)** — Who wins the design tools war and why Canva's enterprise play changes the answer
-- **[M365 Copilot Adoption](showcase/articles/use-case-metric-design.html)** — How to measure whether a $30/user AI copilot is actually delivering value
+- **[M365 Copilot Adoption](showcase/articles/use-case-metric-design.html)**— How to measure whether a $30/user AI copilot is actually delivering value
 - **[AI Chat Interface Spec](showcase/articles/use-case-specification.html)** — A spec for a ChatGPT-style interface complete enough that an engineer starts building without questions
 - **[Notion's Growth Plateau](showcase/articles/use-case-problem-framing.html)** — Why Notion's growth stalled and which of 12 root causes actually matter
 - **[Superhuman vs Gmail](showcase/articles/use-case-discovery-research.html)** — What users say they want from email vs what their behavior reveals
 - **[Cursor's Positioning](showcase/articles/use-case-narrative-building.html)** — How Cursor positioned itself against GitHub Copilot and VS Code in a market Microsoft owns
 
 **Multi-skill case studies:**
-- **[Art Gallery Expansion](showcase/articles/case-study-art-gallery.html)** — A solopreneur decides whether to open a second location, from problem framing through final spec
 - **[Meditation App Engagement](showcase/articles/case-study-meditation-app.html)** — A growth PM diagnoses why 30-day retention is falling, across 5 skills end-to-end
 
 ---
