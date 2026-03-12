@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PriceScope AI — Go-to-Market Strategy · PM Skills Arsenal</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#FDFAF6; --surface:#FFFFFF; --text:#2C2520;
+  --text-secondary:#5A524A; --text-muted:#8B8178;
+  --accent:#B85C38; --accent-light:rgba(184,92,56,0.08);
+  --sage:#5B7B6A; --sage-light:rgba(91,123,106,0.08);
+  --warm-gold:#B8963E; --warm-gold-light:rgba(184,150,62,0.08);
+  --stone:#8B7D6B; --stone-light:rgba(139,125,107,0.08);
+  --human:#6B4C8A; --human-light:rgba(107,76,138,0.08);
+  --border:#E8E2DA; --border-light:#F0EBE4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* ── TOP BAR ── */
+.top-bar{max-width:980px;margin:0 auto;padding:16px 48px 0;display:flex;align-items:center;gap:8px}
+.top-bar a{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;border:1px solid var(--border);transition:all .15s}
+.top-bar a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-light)}
+.top-bar .sep{color:var(--border);font-size:14px}
+.top-bar .current{font-size:13px;color:var(--text-secondary);font-weight:500}
+@media(max-width:768px){.top-bar{padding:12px 24px 0}}
+/* ── HEADER ── */
+.page-header{max-width:980px;margin:0 auto;padding:32px 48px 36px;text-align:center}
+.overline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Source Serif 4',Georgia,serif;font-size:40px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:16px}
+.subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;margin:0 auto 20px;line-height:1.65}
+.header-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;font-size:12.5px;color:var(--text-muted)}
+.header-meta strong{color:var(--text-secondary)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0}
+nav .inner{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:8px 48px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);padding:8px 16px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+nav button:hover{color:var(--text);background:var(--border-light)}
+nav button.active{color:var(--accent);background:var(--accent-light);font-weight:600}
+
+/* ── SECTIONS ── */
+.section{display:none;max-width:980px;margin:0 auto;padding:40px 48px 60px}
+.section.active{display:block}
+.section h2{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:15px;color:var(--text-secondary);margin-bottom:28px;line-height:1.65;max-width:760px}
+.section h3{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin:32px 0 10px}
+.section h4{font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin:24px 0 6px}
+.section p{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0;max-width:760px}
+.section ul,.section ol{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0 10px 24px;max-width:760px}
+.section li{margin:4px 0}
+.section li strong{color:var(--text)}
+.section a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)}
+.section a:hover{border-bottom-color:var(--accent)}
+.section code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--border-light);padding:1px 6px;border-radius:3px;color:var(--accent)}
+.section strong{color:var(--text)}
+.section-divider{border:none;border-top:1px solid var(--border-light);margin:28px 0}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--border);border-radius:8px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:13.5px}
+.table-wrap th{background:var(--surface);font-weight:600;color:var(--text);text-align:left;padding:10px 14px;border-bottom:2px solid var(--border);position:sticky;top:0;white-space:nowrap}
+.table-wrap td{padding:9px 14px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top}
+.table-wrap tr:last-child td{border-bottom:none}
+.table-wrap tbody tr:nth-child(even){background:rgba(253,250,246,0.6)}
+.table-wrap tbody tr:hover{background:var(--accent-light)}
+.table-wrap td:first-child{font-weight:500;color:var(--text)}
+
+/* ── ASIDE / CALLOUT ── */
+.aside{display:flex;gap:14px;padding:16px 20px;border-left:3px solid var(--sage);background:var(--sage-light);border-radius:0 8px 8px 0;margin:20px 0}
+.aside.decision{border-left-color:var(--accent);background:var(--accent-light)}
+.aside.watch{border-left-color:var(--warm-gold);background:var(--warm-gold-light)}
+.aside.strategy{border-left-color:var(--human);background:var(--human-light)}
+.a-icon{font-size:16px;flex-shrink:0;margin-top:1px;color:var(--text-muted)}
+.aside p{margin:0;font-size:14px;line-height:1.65;color:var(--text-secondary);max-width:none}
+
+/* ── CASCADE BLOCK ── */
+.cascade-block{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:24px 0}
+.cascade-header{background:var(--accent-light);padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.cascade-item{display:flex;padding:14px 20px;border-top:1px solid var(--border-light);gap:14px;align-items:flex-start}
+.cascade-label{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cascade-o .cascade-label{background:var(--sage-light);color:var(--sage)}
+.cascade-i .cascade-label{background:var(--warm-gold-light);color:var(--warm-gold)}
+.cascade-r .cascade-label{background:var(--accent-light);color:var(--accent)}
+.cascade-c .cascade-label{background:var(--stone-light);color:var(--stone)}
+.cascade-w .cascade-label{background:var(--human-light);color:var(--human)}
+.cascade-text{font-size:14px;line-height:1.65;color:var(--text-secondary);flex:1}
+.cascade-text strong{color:var(--text)}
+
+/* ── EVIDENCE BADGES / CONFIDENCE PILLS ── */
+.ev-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;vertical-align:middle;margin:0 1px;cursor:default}
+.ev-t1,.ev-t2{background:var(--sage-light);color:var(--sage)}
+.ev-t3{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t4{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t5,.ev-t6{background:var(--stone-light);color:var(--stone)}
+.ev-limited{background:var(--accent-light);color:var(--accent);font-size:9px}
+.ev-detail{font-size:12px;color:var(--text-muted);font-style:italic}
+.conf-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
+.conf-h{background:var(--sage-light);color:var(--sage)}
+.conf-m{background:var(--warm-gold-light);color:var(--warm-gold)}
+.conf-l{background:var(--accent-light);color:var(--accent)}
+
+/* ── COLORED DOTS ── */
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin:0 2px}
+.dot.green{background:#5B7B6A}
+.dot.yellow{background:#B8963E}
+.dot.red{background:#B85C38}
+
+/* ── CHECK / CROSS ICONS ── */
+.icon-check{color:var(--sage);font-weight:700;font-size:14px}
+.icon-cross{color:var(--accent);font-weight:700;font-size:14px}
+.icon-warn{color:var(--warm-gold);font-size:14px}
+
+/* ── PROGRESS BAR (replaces block chars) ── */
+.bar-container{display:flex;align-items:center;gap:8px}
+.bar-track{flex:1;height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;min-width:60px;max-width:120px}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--sage),var(--accent))}
+.bar-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--text-secondary);white-space:nowrap}
+
+/* ── CODE FIGURE ── */
+.code-figure{margin:20px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.code-figure pre{background:var(--surface);padding:18px 20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:var(--text);margin:0;white-space:pre}
+
+/* ── POWER ITEM (bold emoji paragraph) ── */
+.power-item{border-left:3px solid var(--border);padding:10px 18px;margin:10px 0;background:var(--surface);border-radius:0 8px 8px 0}
+.power-item p{margin:0;max-width:none}
+
+/* ── DATA GRID ── */
+.data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.data-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.data-card h4{font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;color:var(--text);margin:0 0 6px}
+.data-card p{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6;max-width:none}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:22px 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .val{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--accent)}
+.stat-card .lbl{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* ── FOOTER ── */
+.page-footer{max-width:980px;margin:0 auto;padding:32px 48px 64px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .page-header{padding:48px 24px 24px}
+  h1{font-size:28px}
+  .section{padding:28px 24px 48px}
+  nav .inner{padding:8px 16px}
+  .page-footer{padding:24px;flex-direction:column}
+  .data-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+  nav{display:none}
+  .section{display:block!important;page-break-inside:avoid}
+  .page-header{padding-top:32px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="/pm-skills-arsenal/">← PM Skills Arsenal</a>
+  <span class="sep">›</span>
+  <span class="current">PriceScope AI — Go-to-Market Strategy</span>
+</div>
+<header class="page-header">
+  <div class="overline">Go-to-Market Strategy · PM Skills Arsenal</div>
+  <h1>PriceScope AI — Go-to-Market Strategy for E-Commerce Pricing Analytics</h1>
+  <p class="subtitle">A GTM strategy for launching an AI-powered pricing analytics tool targeting mid-market e-commerce brands, with wedge identification, segment selection, channel economics, and launch sequencing.</p>
+  <div class="header-meta">
+    <span><strong>Skill:</strong> go-to-market-strategy</span>
+    <span><strong>Stage:</strong> New Market Entry</span>
+    <span><strong>Date:</strong> March 2026</span>
+    <span><strong>Source:</strong> PM Skills Arsenal</span>
+  </div>
+</header>
+
+<nav>
+  <div class="inner">
+    <button class="active" onclick="show('summary')">Executive Summary</button>
+    <button onclick="show('entry-thesis')">Market Entry Thesis</button>
+    <button onclick="show('segment-selection')">Segment Selection</button>
+    <button onclick="show('channel-strategy')">Channel Strategy</button>
+    <button onclick="show('launch-sequence')">Launch Sequence</button>
+    <button onclick="show('competitive-positioning')">Competitive Positioning</button>
+    <button onclick="show('success-metrics')">Success Metrics</button>
+    <button onclick="show('growth-mechanics')">Growth Mechanics</button>
+    <button onclick="show('assumptions-critique')">Assumptions &amp; Critique</button>
+    <button onclick="show('resources')">Try It Yourself</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- EXECUTIVE SUMMARY                           -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section active" id="summary">
+  <h2>Executive Summary</h2>
+
+<p>PriceScope is an AI-powered pricing analytics tool for online retail brands. It watches competitor prices, predicts the best price points, and recommends when and how to adjust pricing — automatically. The company has 12 paying beta customers, all mid-market direct-to-consumer brands doing $5-50M in annual revenue. The product works. The question is how to get the next 200 customers in 6 months on a $500K budget with a team of four.</p>
+
+<p>The first customers should be mid-market DTC brands in the fashion and beauty vertical with 500-5,000 SKUs who currently manage pricing in spreadsheets. These brands lose 8-15% of potential margin annually because they react to competitor price changes days late <span class="conf-pill conf-h">H</span> <span class="ev-detail">beta customer data, 12 accounts</span>. PriceScope closes that gap to under 4 hours. No existing tool serves this segment well — enterprise solutions like Competera cost $50K+/year (too expensive), and point tools like Prisync lack AI-driven recommendations (just monitoring).</p>
+
+<p>The timing is right: AI inference costs dropped 85% in 18 months, making real-time pricing recommendations viable at $299/month instead of the $4K+/month that was required two years ago <span class="conf-pill conf-h">H</span> <span class="ev-detail">infrastructure cost data</span>. The entry point is a free 14-day trial with one competitor tracked, expanding to paid plans based on SKU count and competitor coverage.</p>
+
+<p>Success in 6 months means 200 paying customers, $50K monthly recurring revenue, and net revenue retention above 110%. If PriceScope cannot convert 50 trial users to paid within the first 10 weeks, or if customer acquisition cost exceeds $1,500 after 100 conversions, the strategy should be stopped and redesigned. <strong>Recommended action: approve the $500K GTM budget and launch the waitlist by Week 2, with the first gate review at Week 6.</strong></p>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="val">$500K</div><div class="lbl">6-Month Budget</div></div>
+  <div class="stat-card"><div class="val">200</div><div class="lbl">Target Customers</div></div>
+  <div class="stat-card"><div class="val">$50K</div><div class="lbl">MRR Target</div></div>
+  <div class="stat-card"><div class="val">12</div><div class="lbl">Beta Customers</div></div>
+  <div class="stat-card"><div class="val">110%+</div><div class="lbl">NRR Target</div></div>
+</div>
+
+<hr class="section-divider">
+
+<h3>How to Read This Document</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Time Available</th>
+<th>What to Read</th>
+<th>What You'll Get</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>5 minutes</strong></td>
+<td>Executive Summary + Segment Selection table + Failure Criteria table</td>
+<td>Go/no-go signal, who to target first, when to stop</td>
+</tr>
+<tr>
+<td><strong>15 minutes</strong></td>
+<td>Above + Market Entry Thesis + Channel Strategy + Launch Sequence</td>
+<td>Full strategic logic: why this market, how to reach customers, what order</td>
+</tr>
+<tr>
+<td><strong>30 minutes</strong></td>
+<td>Full document</td>
+<td>Complete GTM strategy with all frameworks, unit economics, positioning, and self-critique</td>
+</tr>
+</tbody></table></div>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Your Role</th>
+<th>Start Here</th>
+<th>Focus On</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>VP/GM</strong></td>
+<td>Executive Summary → Failure Criteria → Assumption Registry</td>
+<td>Decision: fund this GTM or not. Kill criteria tell you when to pull the plug.</td>
+</tr>
+<tr>
+<td><strong>PM</strong></td>
+<td>Full document, sequentially</td>
+<td>You own execution. Every section has specific actions, timelines, and gates.</td>
+</tr>
+<tr>
+<td><strong>Marketing Lead</strong></td>
+<td>Positioning section → Channel Strategy → Launch Sequence</td>
+<td>Positioning statement, channel selection, launch phases and messaging per phase.</td>
+</tr>
+<tr>
+<td><strong>Sales Lead</strong></td>
+<td>Segment Selection → Channel Strategy (outbound row) → Battlecards</td>
+<td>Who to call, what to say, how to handle objections.</td>
+</tr>
+<tr>
+<td><strong>Finance/Ops</strong></td>
+<td>Channel Unit Economics → Launch Sequence (budget per phase) → Failure Criteria</td>
+<td>CAC, payback period, budget gates, kill thresholds.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Notation Key</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr></thead>
+<tbody>
+<tr><td><span class="conf-pill conf-h">H</span> / <span class="conf-pill conf-m">M</span> / <span class="conf-pill conf-l">L</span></td><td>Confidence level: H = >70% confident, M = 40-70%, L = <40%</td></tr>
+<tr><td><span class="ev-badge ev-t1">T1</span>-<span class="ev-badge ev-t6">T6</span></td><td>Evidence tier: T1 = behavioral data, T2 = primary research, T3 = expert analysis, T4 = industry reports, T5 = executive statements, T6 = inference</td></tr>
+<tr><td><strong>O→I→R→C→W</strong></td><td>Observation → Implication → Response → Confidence → Watch indicator (mandatory cascade for all recommendations)</td></tr>
+<tr><td><code>[POTENTIALLY STALE]</code></td><td>Claim based on data >6 months old — verify before acting</td></tr>
+<tr><td><code>[EVIDENCE-LIMITED]</code></td><td>Key conclusion rests on T4-T6 evidence only — validate with T1-T2 before committing budget</td></tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- MARKET ENTRY THESIS                         -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="entry-thesis">
+  <h2>Step 0: Framework Selection &amp; Market Entry Thesis</h2>
+  <p class="section-sub"><strong>Stage:</strong> New Market Entry — first public launch after closed beta</p>
+
+<h3>Context Gate (Step -1)</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Check</th>
+<th>Status</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Problem validated?</strong></td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td>12 beta customers paying $249-$499/mo; avg. margin improvement of 11.3% in first 90 days <span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>Product exists?</strong></td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td>Production product with 12 active accounts, 99.2% uptime over 6 months <span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>Market is external?</strong></td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td>External e-commerce brands — not internal adoption play</td>
+</tr>
+<tr>
+<td><strong>Competitive landscape known?</strong></td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td>Prisync, Competera, Intelligence Node, manual spreadsheets identified <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Decision authority exists?</strong></td>
+<td><span class="icon-check">✓</span> Yes</td>
+<td>CEO + founding PM own GTM; $500K budget approved pending strategy</td>
+</tr>
+</tbody></table></div>
+
+<div class="aside"><span class="a-icon">◈</span><p><strong>All 5 context checks pass.</strong> A GTM strategy is the correct artifact. Proceeding to framework selection.</p></div>
+
+<h3>Framework Selection (Step 0)</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Stage</th>
+<th>Primary Frameworks (apply in full)</th>
+<th>Supporting Frameworks (scan only)</th>
+<th>Skipped (why)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>New market entry</strong></td>
+<td>Market Entry Thesis, Segment Selection & ICP Scoring, Channel Strategy with Unit Economics, Launch Sequencing & Gating</td>
+<td>Distribution & Growth Mechanics, Competitive Positioning</td>
+<td>Pricing Model Design (pricing already validated in beta at $249-$499/mo range)</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Why This Market</h3>
+
+<p><strong>E-commerce pricing analytics is a $2.8B market growing at 24% CAGR</strong> <span class="ev-badge ev-t4">T4</span> <span class="ev-detail">Grand View Research, 2025</span>. But the raw TAM is not the argument. The structural opportunity is that <strong>mid-market DTC brands ($5-50M revenue) are systematically underserved</strong>:</p>
+
+<ul>
+<li><strong>Enterprise tools are too expensive.</strong> Competera charges $50K+/year with 6-month implementation timelines. Intelligence Node starts at $36K/year. For a brand doing $15M revenue, that is 0.3% of revenue before seeing results <span class="ev-badge ev-t2">T2</span> <span class="ev-detail">pricing pages, sales conversations</span>.</li>
+<li><strong>SMB tools are too simple.</strong> Prisync ($99-$399/mo) offers price monitoring but no AI-driven recommendations — it tells you what competitors charge, not what you should charge <span class="ev-badge ev-t2">T2</span> <span class="ev-detail">product comparison, feature matrices</span>.</li>
+<li><strong>Spreadsheets are the real competitor.</strong> 68% of mid-market e-commerce brands manage pricing in Excel or Google Sheets <span class="ev-badge ev-t3">T3</span> <span class="ev-detail">Forrester survey, 2025</span>. They update prices weekly or monthly, missing competitor price changes that happen hourly.</li>
+</ul>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>The gap:</strong> No tool offers AI-driven pricing recommendations at a mid-market price point ($200-$500/mo). PriceScope sits in this structural gap — more intelligent than Prisync, 10x cheaper than Competera.</p></div>
+
+<h3>Why Now (Timing Thesis)</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Timing Signal</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>AI inference cost collapse</strong></td>
+<td>GPT-4 class inference costs dropped from $0.06/1K tokens (Jan 2024) to $0.008/1K tokens (Mar 2026) — 85% reduction. Real-time pricing recommendations now viable at $299/mo unit economics <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="conf-pill conf-h">H</span></td>
+</tr>
+<tr>
+<td><strong>E-commerce margin compression</strong></td>
+<td>Average DTC gross margins declined from 62% (2022) to 54% (2025) due to rising CAC and shipping costs <span class="ev-badge ev-t3">T3</span> <span class="ev-detail">Shopify Partner ecosystem report</span>. Pricing optimization is now a survival issue, not a nice-to-have.</td>
+<td><span class="conf-pill conf-h">H</span></td>
+</tr>
+<tr>
+<td><strong>Competera distracted by enterprise pivot</strong></td>
+<td>Competera raised $20M Series B (Sep 2025) to expand into grocery/CPG pricing — shifting engineering resources away from DTC mid-market <span class="ev-badge ev-t2">T2</span> <span class="ev-detail">Crunchbase, press release</span>. 18-month window before they refocus.</td>
+<td><span class="conf-pill conf-m">M</span></td>
+</tr>
+<tr>
+<td><strong>Shopify ecosystem maturation</strong></td>
+<td>Shopify app ecosystem now has 13,000+ apps with standardized APIs, making integration a 2-week project instead of 2-month <span class="ev-badge ev-t2">T2</span> <span class="ev-detail">Shopify developer docs, API changelog</span>. Distribution via Shopify App Store is a viable channel.</td>
+<td><span class="conf-pill conf-h">H</span></td>
+</tr>
+</tbody></table></div>
+
+<h3>The Wedge</h3>
+
+<p><strong>PriceScope's wedge is AI-driven recommendations at a mid-market price point.</strong> This is not "our product is better." It is a structural advantage built on two facts:</p>
+
+<ol>
+<li><strong>AI cost curve crossing:</strong> Real-time pricing inference (analyzing competitor prices + demand signals + margin constraints per SKU per hour) required $4K+/mo in compute 24 months ago. Today it costs $180/mo <span class="ev-badge ev-t1">T1</span>. PriceScope can offer full AI recommendations at $299/mo and maintain 75%+ gross margins. Competera cannot match this price without cannibalizing their enterprise contracts <span class="conf-pill conf-h">H</span>.</li>
+<li><strong>Shopify-native integration:</strong> 72% of mid-market DTC brands use Shopify or Shopify Plus <span class="ev-badge ev-t3">T3</span>. PriceScope integrates in 15 minutes via Shopify app install — zero IT involvement. Enterprise tools require 6-month implementations with dedicated onboarding teams.</li>
+</ol>
+
+<h3>Wedge Defensibility Assessment</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Assessment</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Time to replicate</strong></td>
+<td>12-18 months for an enterprise player to build a mid-market product with comparable AI recommendations</td>
+<td><span class="ev-badge ev-t4">T4</span> engineering estimates based on team size</td>
+</tr>
+<tr>
+<td><strong>Capital to replicate</strong></td>
+<td>$2-5M (engineering + go-to-market for a new segment)</td>
+<td><span class="ev-badge ev-t4">T4</span></td>
+</tr>
+<tr>
+<td><strong>Structural barrier</strong></td>
+<td>Counter-positioning: Competera cannot offer $299/mo product without devaluing $50K/year enterprise contracts. Prisync lacks AI/ML team to build recommendation engine.</td>
+<td><span class="ev-badge ev-t3">T3</span> <span class="ev-detail">hiring analysis, product roadmaps</span></td>
+</tr>
+<tr>
+<td><strong>Verdict</strong></td>
+<td><strong>Speed-dependent moat</strong> — 12-18 month window to establish brand and switching costs before enterprise players adapt</td>
+<td><span class="conf-pill conf-m">M</span></td>
+</tr>
+</tbody></table></div>
+
+<h3>Go/Wait/Pivot Decision</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Signal</th>
+<th>Market Ready</th>
+<th>Market NOT Ready</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Product ready</strong></td>
+<td><span class="dot green"></span> <strong>GO</strong> — PriceScope is here. 12 paying beta customers, product in production.</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Product NOT ready</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Verdict: GO.</strong> Product is ready (12 beta customers, production quality). Market is ready (margin compression + AI cost collapse + competitor distraction). The window is 12-18 months before enterprise players adapt. Move now.</p></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SEGMENT SELECTION                           -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="segment-selection">
+  <h2>Segment Selection &amp; ICP Scoring</h2>
+  <p class="section-sub">The most consequential GTM decision: who to target first. A beachhead segment (the first market niche you dominate completely before expanding) must be specific enough to find 100 prospects by name.</p>
+
+<h3>Beachhead Candidates</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Segment</th>
+<th>Description</th>
+<th>Size (est.)</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>A: Mid-market DTC Fashion &amp; Beauty</strong></td>
+<td>DTC brands in fashion/beauty/apparel, $5-50M revenue, 500-5,000 SKUs, Shopify/Shopify Plus, 2+ person e-commerce team</td>
+<td>~4,200 brands in US <span class="ev-badge ev-t3">T3</span></td>
+<td>12/12 beta customers are in this segment. Highest price sensitivity due to seasonal inventory + fast fashion competition.</td>
+</tr>
+<tr>
+<td><strong>B: Mid-market DTC Consumer Electronics</strong></td>
+<td>Consumer electronics/gadgets brands, $10-100M revenue, 100-1,000 SKUs, mixed platforms</td>
+<td>~1,800 brands in US <span class="ev-badge ev-t4">T4</span></td>
+<td>Higher ACV potential ($499+/mo) but longer sales cycles. Less price volatility than fashion — pricing changes monthly, not daily.</td>
+</tr>
+<tr>
+<td><strong>C: Shopify Plus Agencies</strong></td>
+<td>Shopify Plus agencies managing pricing for 10+ client brands, seeking white-label or partner solution</td>
+<td>~350 agencies <span class="ev-badge ev-t2">T2</span></td>
+<td>Channel partner, not end customer. Each agency = 10-50 brand accounts. Slower to close but higher LTV multiplier.</td>
+</tr>
+</tbody></table></div>
+
+<h3>ICP Scoring Matrix</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Criterion</th>
+<th>Weight</th>
+<th>A: DTC Fashion/Beauty</th>
+<th>B: Consumer Electronics</th>
+<th>C: Shopify Plus Agencies</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Acute pain (validated)</strong></td>
+<td>25%</td>
+<td><strong>5</strong> — 12 beta customers validated; avg. 11.3% margin improvement <span class="ev-badge ev-t1">T1</span></td>
+<td><strong>3</strong> — Pain inferred from pricing frequency; no direct validation <span class="ev-badge ev-t4">T4</span></td>
+<td><strong>3</strong> — Pain is indirect (agency margin, not brand margin) <span class="ev-badge ev-t3">T3</span></td>
+</tr>
+<tr>
+<td><strong>Willingness to pay</strong></td>
+<td>20%</td>
+<td><strong>5</strong> — 12 customers paying $249-$499/mo already <span class="ev-badge ev-t1">T1</span></td>
+<td><strong>4</strong> — Higher budgets; comparable tools at $500+/mo exist <span class="ev-badge ev-t2">T2</span></td>
+<td><strong>3</strong> — Would pay per-client ($99/client), but procurement through agency adds complexity <span class="ev-badge ev-t4">T4</span></td>
+</tr>
+<tr>
+<td><strong>Accessibility</strong></td>
+<td>20%</td>
+<td><strong>5</strong> — Reachable via Shopify App Store, DTC Twitter/LinkedIn community, e-commerce Slack groups <span class="ev-badge ev-t2">T2</span></td>
+<td><strong>3</strong> — Less concentrated channels; trade shows (CES, CE Week) are expensive <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>4</strong> — Shopify Partner directory; concentrated community (350 agencies total) <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Reference-ability</strong></td>
+<td>15%</td>
+<td><strong>5</strong> — DTC founders are vocal on Twitter/LinkedIn; case studies are a currency in this community <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>2</strong> — CE brands are more private; competitive sensitivity around pricing <span class="ev-badge ev-t4">T4</span></td>
+<td><strong>4</strong> — Agencies promote tool partnerships publicly for credibility <span class="ev-badge ev-t3">T3</span></td>
+</tr>
+<tr>
+<td><strong>Expansion potential</strong></td>
+<td>10%</td>
+<td><strong>4</strong> — Adjacent: home goods DTC, supplements, food & bev (3x larger combined) <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>3</strong> — Adjacent segments exist but different buying dynamics <span class="ev-badge ev-t4">T4</span></td>
+<td><strong>5</strong> — Each agency = 10-50 brands; built-in expansion multiplier <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Competitive vacuum</strong></td>
+<td>10%</td>
+<td><strong>5</strong> — No incumbent serves this segment at this price with AI recommendations <span class="ev-badge ev-t2">T2</span></td>
+<td><strong>3</strong> — Intelligence Node has some presence in CE <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>4</strong> — No white-label pricing analytics for agencies exists <span class="ev-badge ev-t3">T3</span></td>
+</tr>
+<tr>
+<td><strong>Weighted Score</strong></td>
+<td></td>
+<td><strong>4.85</strong></td>
+<td><strong>3.10</strong></td>
+<td><strong>3.70</strong></td>
+</tr>
+</tbody></table></div>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Segment A (DTC Fashion & Beauty) is the beachhead.</strong> Score of 4.85 — strong across every criterion. Already validated with 12 paying beta customers. Segment C (Shopify Plus Agencies) is the Phase 2 expansion play — each agency multiplies customer count 10-50x. Segment B (Consumer Electronics) is Phase 3.</p></div>
+
+<h3>Expansion Path</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Transition</th>
+<th>Trigger to Expand</th>
+<th>What Carries Over</th>
+<th>What Changes</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Beachhead (Fashion/Beauty DTC) → Shopify Plus Agencies</strong></td>
+<td>100+ fashion/beauty customers; 5+ referenceable case studies with margin improvement data</td>
+<td>Product features, Shopify integration, case studies proving ROI</td>
+<td>White-label/partner pricing; agency onboarding flow; per-client billing model</td>
+</tr>
+<tr>
+<td><strong>Agencies → Consumer Electronics</strong></td>
+<td>20+ agency partners; product supports multi-platform (BigCommerce, WooCommerce)</td>
+<td>AI recommendation engine, brand trust from fashion/agency success</td>
+<td>Longer sales cycle; different pricing cadence (monthly vs. daily); CE-specific competitive intelligence</td>
+</tr>
+<tr>
+<td><strong>CE → Mainstream Mid-Market</strong></td>
+<td>500+ total customers; inbound exceeds outbound 2:1</td>
+<td>Product maturity, multi-vertical case studies, agency channel</td>
+<td>Everything — broader positioning, enterprise features, potential direct sales motion</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- CHANNEL STRATEGY                            -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="channel-strategy">
+  <h2>Channel Strategy with Unit Economics</h2>
+  <p class="section-sub">Channels are the economic engine of GTM. A channel without viable unit economics is a way to lose money efficiently. PriceScope's $500K budget demands channel discipline — one primary channel proven before adding a second.</p>
+
+<h3>Channel Selection Matrix</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Channel</th>
+<th>Segment Fit</th>
+<th>CAC (est.)</th>
+<th>Payback (mo.)</th>
+<th>LTV/CAC</th>
+<th>Scalability</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Content + SEO</strong></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>$380 <span class="ev-badge ev-t3">T3</span></td>
+<td>1.3 mo. <span class="ev-badge ev-t4">T4</span></td>
+<td>23:1 <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>DTC brands actively search "pricing strategy," "competitor pricing tool," "dynamic pricing e-commerce" — 14K+ monthly search volume <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Product-Led Growth (PLG)</strong></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>$220 <span class="ev-badge ev-t4">T4</span></td>
+<td>0.8 mo. <span class="ev-badge ev-t4">T4</span></td>
+<td>39:1 <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>14-day free trial with 1 competitor tracked; Shopify app install = instant activation. Beta trial-to-paid conversion: 34% <span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>Outbound (targeted email + LinkedIn)</strong></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>$850 <span class="ev-badge ev-t3">T3</span></td>
+<td>2.8 mo. <span class="ev-badge ev-t3">T3</span></td>
+<td>10:1 <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>1 sales rep; can send 200 personalized emails/week. Effective for $499/mo+ plans targeting Head of E-commerce.</td>
+</tr>
+<tr>
+<td><strong>Shopify App Store</strong></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>$150 <span class="ev-badge ev-t4">T4</span></td>
+<td>0.5 mo. <span class="ev-badge ev-t4">T4</span></td>
+<td>57:1 <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>Shopify takes 20% rev share on first year; organic discovery via app store search. Rank depends on reviews + installs (chicken-and-egg). <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Paid acquisition (Google/Meta)</strong></td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td>$1,200 <span class="ev-badge ev-t3">T3</span></td>
+<td>4.0 mo. <span class="ev-badge ev-t3">T3</span></td>
+<td>7:1 <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>"Pricing tool" keywords are $8-12 CPC <span class="ev-badge ev-t2">T2</span>. Not viable until unit economics proven organically. Phase 3 channel.</td>
+</tr>
+<tr>
+<td><strong>Partnerships (Shopify Plus agencies)</strong></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>$400 <span class="ev-badge ev-t4">T4</span></td>
+<td>1.3 mo. <span class="ev-badge ev-t4">T4</span></td>
+<td>21:1 <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>Phase 2 channel. Requires 5+ case studies and partner program infrastructure. Each agency = 10-50 brands.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Primary Channel Deep-Dive: PLG + Content (Combined)</h3>
+
+<p><strong>Product-led growth</strong> (users adopt the product through self-serve trial before any sales contact) is the primary acquisition engine. <strong>Content/SEO</strong> drives awareness into the PLG funnel. Together, they create a flywheel where content attracts prospects who self-serve into trials.</p>
+
+<h4>Conversion Funnel (PLG Channel)</h4>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Funnel Stage</th>
+<th>Volume (monthly, Month 3)</th>
+<th>Conversion</th>
+<th>Cost/Stage</th>
+<th>Cumulative CAC</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Awareness</strong> (blog visits + Shopify App Store)</td>
+<td>12,000</td>
+<td>—</td>
+<td>$2,800 (content production)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Interest</strong> (trial signups)</td>
+<td>480 (4% of visits)</td>
+<td>4.0% <span class="ev-badge ev-t4">T4</span></td>
+<td>$0 (self-serve)</td>
+<td>$5.83</td>
+</tr>
+<tr>
+<td><strong>Activation</strong> (connect Shopify store + track 1 competitor)</td>
+<td>312 (65% of signups)</td>
+<td>65% <span class="ev-badge ev-t1">T1</span></td>
+<td>$0 (automated onboarding)</td>
+<td>$8.97</td>
+</tr>
+<tr>
+<td><strong>Paid conversion</strong> (upgrade to paid plan)</td>
+<td>106 (34% of activated)</td>
+<td>34% <span class="ev-badge ev-t1">T1</span></td>
+<td>$0</td>
+<td>$26.42</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Blended CAC:</strong> $220 (including content production costs amortized over 6 months) <span class="ev-badge ev-t4">T4</span></p>
+<p><strong>Payback period:</strong> 0.8 months ($220 CAC / $285 avg. monthly revenue) <span class="ev-badge ev-t1">T1</span></p>
+<p><strong>LTV:</strong> $8,550 (avg. $285/mo x 30-month avg. lifetime at 96.7% monthly retention from beta) <span class="ev-badge ev-t1">T1</span></p>
+<p><strong>LTV/CAC:</strong> 39:1 <span class="ev-badge ev-t4">T4</span> — extremely healthy; invest aggressively in this channel.</p>
+
+<div class="aside watch"><span class="a-icon">◈</span><p><strong>Watch:</strong> The 34% trial-to-paid conversion is from 12 beta customers who were pre-qualified. Expect this to drop to 18-25% at scale. Even at 18%, LTV/CAC remains >15:1 — still profitable. If it drops below 12%, re-evaluate onboarding flow and activation criteria.</p></div>
+
+<h3>Channel Sequencing</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Phase</th>
+<th>Channel</th>
+<th>Budget</th>
+<th>Success Criteria to Add Next Channel</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Phase 1 (Weeks 1-8)</strong></td>
+<td>PLG (free trial) + Content/SEO</td>
+<td>$80K</td>
+<td>50+ paid conversions with CAC <$500 and trial-to-paid >15%</td>
+</tr>
+<tr>
+<td><strong>Phase 2 (Weeks 6-16)</strong></td>
+<td>Add: Outbound (sales rep) + Shopify App Store optimization</td>
+<td>$120K</td>
+<td>Outbound: 10+ deals closed at >$399/mo. Shopify: top 10 ranking in "pricing" category.</td>
+</tr>
+<tr>
+<td><strong>Phase 3 (Weeks 12-24)</strong></td>
+<td>Add: Agency partnerships + Paid acquisition (limited)</td>
+<td>$300K</td>
+<td>3+ agency partners signed; paid CAC <$1,000 on 30+ conversions</td>
+</tr>
+</tbody></table></div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Beta data shows 34% trial-to-paid conversion and 65% activation rate via Shopify app install <span class="ev-badge ev-t1">T1</span>. Content keywords ("e-commerce pricing strategy," "competitor price monitoring") have 14K+ monthly searches with moderate competition <span class="ev-badge ev-t2">T2</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">PLG + Content is the highest-ROI channel combination. Self-serve trial removes sales friction; content drives qualified traffic. The $500K budget supports this for 6 months with room for channel experimentation in Phase 2-3.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Allocate 60% of budget to PLG infrastructure + content production in first 8 weeks. Founding PM owns content strategy (2 articles/week, SEO-optimized). Sales rep starts outbound in Week 6 targeting $499/mo prospects. Delay paid acquisition until Month 4 minimum. <strong>Owner: Founding PM + Marketing Lead.</strong></div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-h">H</span> — PLG channel validated with 12 beta conversions. Content channel based on keyword research (T2) but not yet validated with organic traffic. Confidence drops to M if first 4 blog posts generate <500 organic visits in 30 days.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Trial-to-paid conversion rate weekly. If <12% for 3 consecutive weeks on 50+ trials, onboarding flow is broken — investigate activation barriers before scaling spend.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- LAUNCH SEQUENCE                             -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="launch-sequence">
+  <h2>Launch Sequencing &amp; Gating</h2>
+  <p class="section-sub">Every phase has gates (must ALL be true to proceed) and kill criteria (if ANY true, stop). Gates prevent premature scaling. Kill criteria prevent good money chasing bad.</p>
+
+<h3>Phase Plan</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Phase</th>
+<th>Duration</th>
+<th>Audience</th>
+<th>Gate Criteria (all must be true)</th>
+<th>Kill Criteria (any one stops launch)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Beta → Waitlist</strong></td>
+<td>Weeks 1-2</td>
+<td>Existing 12 beta customers + waitlist signups</td>
+<td>NPS >40 from beta cohort; 0 critical bugs in 14 days; 200+ waitlist signups from landing page</td>
+<td>NPS <20 from beta cohort; any data accuracy issue (wrong price recommendations)</td>
+</tr>
+<tr>
+<td><strong>Waitlist → Open Beta</strong></td>
+<td>Weeks 3-6</td>
+<td>First 100 waitlist users (fashion/beauty DTC only)</td>
+<td>Activation rate >50%; trial-to-paid >15%; median time-to-value <48 hours; zero Shopify API incidents</td>
+<td><50 trial signups after 4 weeks of content + outreach; activation rate <30%; any pricing recommendation causes customer revenue loss >$500</td>
+</tr>
+<tr>
+<td><strong>Open Beta → GA</strong></td>
+<td>Weeks 7-12</td>
+<td>All fashion/beauty DTC brands, Shopify App Store listing</td>
+<td>50+ paying customers; CAC <$500; monthly churn <5%; 3+ case studies with quantified ROI</td>
+<td>CAC >$1,500 after 100 conversions; monthly churn >10%; NPS <30</td>
+</tr>
+<tr>
+<td><strong>GA → Scale</strong></td>
+<td>Weeks 13-24</td>
+<td>Full mid-market DTC + agency partners</td>
+<td>200+ paying customers; $50K MRR; NRR >110%; agency partner program live</td>
+<td>MRR growth <10% MoM for 2 consecutive months; LTV/CAC <5:1 at scale</td>
+</tr>
+</tbody></table></div>
+
+<h3>Launch Risk Register</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Risk</th>
+<th>Phase</th>
+<th>Severity (1-5)</th>
+<th>Probability</th>
+<th>Mitigation</th>
+<th>Owner</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Shopify API rate limiting during peak hours</strong></td>
+<td>Open Beta</td>
+<td>4</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>Implement request queuing + off-peak batch processing; negotiate higher API limits with Shopify partner team</td>
+<td>Engineering Lead</td>
+</tr>
+<tr>
+<td><strong>AI recommendation accuracy degrades at scale</strong></td>
+<td>GA</td>
+<td>5</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td>Establish accuracy SLA (>92% within 5% of optimal price); automated accuracy monitoring dashboard; human review for anomalies >10%</td>
+<td>Founding PM</td>
+</tr>
+<tr>
+<td><strong>Competera launches mid-market product</strong></td>
+<td>Scale</td>
+<td>3</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td>Accelerate Shopify App Store ranking and case study production; lock in agency partnerships before competitor enters</td>
+<td>Marketing Lead</td>
+</tr>
+<tr>
+<td><strong>Trial-to-paid conversion drops below 12% at scale</strong></td>
+<td>Open Beta → GA</td>
+<td>4</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>A/B test onboarding flows; add "pricing audit" as free activation hook; implement 7-day follow-up email sequence</td>
+<td>Founding PM</td>
+</tr>
+<tr>
+<td><strong>Customer data breach / pricing data leak</strong></td>
+<td>All</td>
+<td>5</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td>SOC 2 Type II certification by GA; encryption at rest + transit; customer data isolation per tenant</td>
+<td>Engineering Lead</td>
+</tr>
+</tbody></table></div>
+
+<h3>Budget Allocation by Phase</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Phase</th>
+<th>Budget</th>
+<th>Primary Spend</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Beta → Waitlist</td>
+<td>$15K</td>
+<td>Landing page, waitlist tool, beta customer success</td>
+</tr>
+<tr>
+<td>Waitlist → Open Beta</td>
+<td>$65K</td>
+<td>Content production (8 articles), Shopify App Store listing, onboarding automation</td>
+</tr>
+<tr>
+<td>Open Beta → GA</td>
+<td>$120K</td>
+<td>Content + SEO (ongoing), outbound tooling (Apollo/LinkedIn Sales Nav), 3 case study videos</td>
+</tr>
+<tr>
+<td>GA → Scale</td>
+<td>$300K</td>
+<td>Agency partner program, paid acquisition tests, conference sponsorship (1 event), additional marketing hire</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>$500K</strong></td>
+<td></td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- COMPETITIVE POSITIONING                     -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="competitive-positioning">
+  <h2>Competitive Positioning for Launch</h2>
+  <p class="section-sub">Positioning defines what category you own in the buyer's mind. Done right, prospects self-select into your funnel. Done wrong, you spend the entire sales conversation explaining what you are.</p>
+
+<h3>Positioning Statement</h3>
+
+<div class="aside strategy"><span class="a-icon">◈</span><p>For <strong>mid-market DTC e-commerce brands</strong> who <strong>lose margin because they react to competitor price changes days late</strong>, <strong>PriceScope</strong> is an <strong>AI pricing analytics platform</strong> that <strong>monitors competitor prices and recommends optimal pricing in real time</strong>. Unlike <strong>Prisync</strong> (monitoring only, no recommendations) and <strong>Competera</strong> (enterprise pricing, $50K+/year), PriceScope delivers <strong>AI-driven pricing recommendations at $299/month with 15-minute Shopify setup</strong>.</p></div>
+
+<h3>Competitive Landscape</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Player</th>
+<th>Segment</th>
+<th>Price</th>
+<th>AI Recommendations?</th>
+<th>Integration Speed</th>
+<th>Weakness vs. PriceScope</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Prisync</strong></td>
+<td>SMB-Mid</td>
+<td>$99-$399/mo <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="icon-cross">✗</span> Monitoring only</td>
+<td>1-2 days <span class="ev-badge ev-t2">T2</span></td>
+<td>No AI recommendations — shows what competitors charge but not what you should charge. Users still need spreadsheet analysis.</td>
+</tr>
+<tr>
+<td><strong>Competera</strong></td>
+<td>Enterprise</td>
+<td>$50K+/yr <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="icon-check">✓</span> Full AI engine</td>
+<td>3-6 months <span class="ev-badge ev-t3">T3</span></td>
+<td>Price and implementation time are 10x PriceScope. Cannot serve $15M DTC brand economically.</td>
+</tr>
+<tr>
+<td><strong>Intelligence Node</strong></td>
+<td>Enterprise</td>
+<td>$36K+/yr <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="icon-check">✓</span> Rule-based + ML</td>
+<td>2-4 months <span class="ev-badge ev-t3">T3</span></td>
+<td>Enterprise sales cycle (3-6 months); no Shopify-native integration; rule-based engine, not modern LLM-powered.</td>
+</tr>
+<tr>
+<td><strong>Manual Spreadsheets</strong></td>
+<td>All</td>
+<td>$0 (labor cost)</td>
+<td><span class="icon-cross">✗</span> Human analysis</td>
+<td>N/A</td>
+<td>2-5 hours/week of manual work; updates weekly or monthly; misses intra-day competitor changes entirely.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Battlecards</h3>
+
+<h4>vs. Prisync</h4>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>They'll Say</th>
+<th>You Say</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>"We're cheaper ($99/mo for basic plan)"</td>
+<td>"Prisync tells you what competitors charge. PriceScope tells you what YOU should charge — and why. The $200/mo difference pays for itself in one pricing decision. Our beta customers see 11.3% margin improvement on average."</td>
+<td>Beta customer data <span class="ev-badge ev-t1">T1</span>; avg. $1,700/mo additional margin for $20M revenue brand</td>
+</tr>
+<tr>
+<td>"We track more competitors (50+ data sources)"</td>
+<td>"Tracking 50 competitors is useless without knowing which price changes matter. PriceScope's AI filters noise and recommends actions on the 3-5 competitor moves that actually impact your margin."</td>
+<td>Beta NPS feedback <span class="ev-badge ev-t1">T1</span>; users cite "actionability" as top value driver</td>
+</tr>
+</tbody></table></div>
+
+<h4>vs. Competera</h4>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>They'll Say</th>
+<th>You Say</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>"We serve Fortune 500 retailers with proven ROI"</td>
+<td>"Competera is built for Walmart-scale problems. You're a $20M DTC brand — you don't need a 6-month implementation and a $50K/year contract. PriceScope delivers the same AI-driven recommendations, purpose-built for your scale, at 1/10th the cost, live in 15 minutes."</td>
+<td>Competera pricing <span class="ev-badge ev-t2">T2</span>; PriceScope setup time <span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td>"Our AI has been trained on billions of pricing decisions"</td>
+<td>"Training data quantity matters less than relevance. Competera's model was trained on grocery and CPG pricing patterns. PriceScope's model is trained specifically on DTC e-commerce dynamics — seasonal drops, influencer-driven demand spikes, and competitor flash sales that Competera's model doesn't account for."</td>
+<td>Model architecture analysis <span class="ev-badge ev-t3">T3</span>; beta accuracy comparison <span class="ev-badge ev-t1">T1</span></td>
+</tr>
+</tbody></table></div>
+
+<h4>vs. "We'll keep using spreadsheets"</h4>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>They'll Say</th>
+<th>You Say</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>"Spreadsheets work fine, they're free"</td>
+<td>"Your Head of E-commerce spends 3-5 hours/week on pricing analysis — that's $300-$600/week in labor cost for a process that checks competitor prices once. PriceScope checks every hour and recommends actions automatically. It costs less than the labor it replaces."</td>
+<td>Beta customer interviews <span class="ev-badge ev-t2">T2</span>; labor cost estimates at $60-$120/hr for e-commerce manager</td>
+</tr>
+<tr>
+<td>"We update prices quarterly, that's enough"</td>
+<td>"Your top competitor changed prices 47 times last quarter. You changed once. That's 46 opportunities to either match and protect volume, or hold price and capture margin — and you missed all of them."</td>
+<td>Competitor price change frequency data from beta accounts <span class="ev-badge ev-t1">T1</span></td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SUCCESS METRICS                             -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="success-metrics">
+  <h2>Success Metrics &amp; Failure Criteria</h2>
+  <p class="section-sub">Metrics without failure criteria are vanity reporting. Every metric below has a "good" target and a "stop" threshold. The failure criteria are HARD stops — not "reassess" but "stop spending and figure out what's broken."</p>
+
+<h3>Leading Indicators (Weekly Review)</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Goodhart Countermeasure</th>
+<th>Antidote Metric</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Trial signups</strong></td>
+<td>>80/week by Month 3</td>
+<td>Could be inflated by bot signups or low-quality traffic from clickbait content</td>
+<td>Activation rate (did they connect Shopify store?)</td>
+</tr>
+<tr>
+<td><strong>Activation rate</strong> (Shopify connected + 1 competitor tracked)</td>
+<td>>50%</td>
+<td>Could be gamed by making activation too easy (auto-connecting demo data)</td>
+<td>Time-to-first-recommendation (should be <24 hours)</td>
+</tr>
+<tr>
+<td><strong>Trial-to-paid conversion</strong></td>
+<td>>18%</td>
+<td>Could be inflated by offering steep discounts at trial end</td>
+<td>Average revenue per account (ARPA should be >$250/mo)</td>
+</tr>
+<tr>
+<td><strong>Time-to-value</strong></td>
+<td><48 hours from signup to first pricing recommendation acted on</td>
+<td>Could be gamed by auto-implementing recommendations (risky for customer)</td>
+<td>Customer-initiated price changes (not auto-applied)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Lagging Indicators (Monthly Review)</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Metric</th>
+<th>Target (6-mo)</th>
+<th>Target (12-mo)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Paying customers</strong></td>
+<td>200</td>
+<td>600</td>
+</tr>
+<tr>
+<td><strong>MRR</strong></td>
+<td>$50K</td>
+<td>$180K</td>
+</tr>
+<tr>
+<td><strong>Net Revenue Retention (NRR)</strong></td>
+<td>>110%</td>
+<td>>120%</td>
+</tr>
+<tr>
+<td><strong>Monthly logo churn</strong></td>
+<td><4%</td>
+<td><3%</td>
+</tr>
+<tr>
+<td><strong>Blended CAC</strong></td>
+<td><$600</td>
+<td><$400</td>
+</tr>
+<tr>
+<td><strong>NPS</strong></td>
+<td>>40</td>
+<td>>50</td>
+</tr>
+</tbody></table></div>
+
+<h3>Failure Criteria (HARD Stops)</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Condition</th>
+<th>Timeframe</th>
+<th>Action</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong><50 trial signups after 4 weeks of content + outreach</strong></td>
+<td>By Week 6</td>
+<td><strong>STOP:</strong> Channel strategy is broken. Re-evaluate positioning, keyword targeting, and whether the segment is reachable via content. Consider pivoting to outbound-first motion.</td>
+</tr>
+<tr>
+<td><strong>Trial-to-paid conversion <10% after 100 trials</strong></td>
+<td>By Week 10</td>
+<td><strong>STOP:</strong> Product-market fit is weaker than beta indicated. Conduct exit interviews with churned trial users. Likely cause: activation flow too complex, or free tier delivers enough value (no upgrade incentive).</td>
+</tr>
+<tr>
+<td><strong>CAC >$1,500 after 100 paid conversions</strong></td>
+<td>By Week 14</td>
+<td><strong>STOP:</strong> Unit economics don't work at this price point. Either raise prices (test $399/mo minimum) or cut channel spending and go outbound-only until CAC stabilizes.</td>
+</tr>
+<tr>
+<td><strong>Monthly churn >8% for 2 consecutive months</strong></td>
+<td>Any period post-GA</td>
+<td><strong>STOP:</strong> Product is not retaining. Conduct churn analysis: is it pricing recommendations are inaccurate? Is it price (value perception at $299/mo)? Is it integration reliability? Fix root cause before acquiring more customers.</td>
+</tr>
+<tr>
+<td><strong>AI recommendation accuracy <85%</strong> (customer-reported)</td>
+<td>Any period</td>
+<td><strong>STOP:</strong> Core value proposition is broken. Pause new customer acquisition. Redirect engineering to model accuracy. This is existential — inaccurate pricing recommendations destroy customer trust permanently.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Review Cadence</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Cadence</th>
+<th>What's Reviewed</th>
+<th>Decision Authority</th>
+<th>Escalation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Weekly</strong></td>
+<td>Leading indicators (trials, activation, conversion)</td>
+<td>Founding PM</td>
+<td>Flag to CEO if 2+ metrics miss for 2+ weeks</td>
+</tr>
+<tr>
+<td><strong>Monthly</strong></td>
+<td>Lagging indicators + gate criteria for current phase</td>
+<td>Founding PM + CEO</td>
+<td>Kill/pivot decision if failure criteria met</td>
+</tr>
+<tr>
+<td><strong>Quarterly</strong></td>
+<td>Full GTM strategy review — channel mix, segment expansion, competitive response</td>
+<td>CEO</td>
+<td>Strategy re-architecture if market conditions shift</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- GROWTH MECHANICS                            -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="growth-mechanics">
+  <h2>Distribution &amp; Growth Mechanics</h2>
+  <p class="section-sub">Growth models determine how customer acquisition compounds (or doesn't). A flywheel is a self-reinforcing loop where each new customer makes the next customer easier to acquire.</p>
+
+<h3>Growth Model Applicability</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Model</th>
+<th>Applicability</th>
+<th>Evidence</th>
+<th>Investment Required</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Product-led (PLG)</strong></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>14-day trial with instant Shopify setup validated with 12 beta customers; 34% trial-to-paid <span class="ev-badge ev-t1">T1</span></td>
+<td>$50K (onboarding automation, trial infrastructure)</td>
+</tr>
+<tr>
+<td><strong>Content (SEO/thought leadership)</strong></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>14K+ monthly searches for pricing-related keywords; DTC community actively consumes content <span class="ev-badge ev-t2">T2</span></td>
+<td>$80K (6 months content production: 2 articles/week + 3 case study videos)</td>
+</tr>
+<tr>
+<td><strong>Viral (user invites user)</strong></td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td>Pricing analytics is competitive intelligence — brands don't want competitors using the same tool. Anti-viral dynamics. <span class="ev-badge ev-t3">T3</span></td>
+<td>N/A — do not invest</td>
+</tr>
+<tr>
+<td><strong>Sales-led</strong></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>1 sales rep can run 200 outbound emails/week; effective for $499+/mo plans <span class="ev-badge ev-t3">T3</span></td>
+<td>$120K (rep salary + tooling for 6 months)</td>
+</tr>
+<tr>
+<td><strong>Platform/marketplace</strong></td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>Shopify App Store drives organic discovery for e-commerce tools; 20% rev share Year 1 but $0 CAC <span class="ev-badge ev-t2">T2</span></td>
+<td>$15K (App Store listing, review generation)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Flywheel Design</h3>
+
+<figure class="code-figure"><pre><code>  ┌─────────────────────────────────────────────────────────┐
+  │                  PriceScope Flywheel                    │
+  │                                                         │
+  │   More Customers ──→ More Pricing Data Across Market    │
+  │         ↑                        │                      │
+  │         │                        ↓                      │
+  │   Case Studies &          Better AI Recommendations     │
+  │   Word-of-Mouth               (more training data)      │
+  │         ↑                        │                      │
+  │         │                        ↓                      │
+  │   Higher Customer         Higher Margin Improvement     │
+  │   Satisfaction                for Each Customer          │
+  │         ↑                        │                      │
+  │         └────────────────────────┘                      │
+  │                                                         │
+  │   FLYWHEEL ECONOMICS:                                   │
+  │   • 50 customers → AI sees 50 brands' pricing moves     │
+  │   • 200 customers → AI sees 200 brands + cross-segment  │
+  │     patterns (fashion discounting predicts beauty)       │
+  │   • 500+ customers → AI becomes the market pricing      │
+  │     intelligence layer (network effect)                  │
+  └─────────────────────────────────────────────────────────┘</code></pre></figure>
+
+<div class="aside"><span class="a-icon">◈</span><p><strong>The data flywheel is PriceScope's long-term moat.</strong> At 500+ customers, PriceScope sees enough pricing signals across the mid-market DTC ecosystem to predict market-wide trends — something no individual brand can do alone, and something competitors without the customer base cannot replicate. This is a <strong>data network effect</strong> <span class="conf-pill conf-m">M</span> — confidence increases as customer base grows.</p></div>
+
+<h3>Reference Customer Strategy</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Slot</th>
+<th>Target Profile</th>
+<th>Selection Criteria</th>
+<th>Storytelling Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>$20-30M DTC fashion brand, 2,000+ SKUs</td>
+<td>Largest beta customer; highest margin improvement (14.2%); willing to do video case study</td>
+<td>"How [Brand] recovered $340K in annual margin with PriceScope" — anchor story for content + sales</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>$8-12M DTC beauty brand, 500 SKUs</td>
+<td>Fastest time-to-value (first recommendation acted on in 6 hours); relatable size for target segment</td>
+<td>"From spreadsheets to AI pricing in 15 minutes" — activation story for PLG conversion</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Shopify Plus agency managing 15+ brands</td>
+<td>First agency beta partner; validates channel partner strategy; multiplier effect</td>
+<td>"How [Agency] added pricing analytics as a service line — $15K additional MRR from one tool" — agency recruitment story</td>
+</tr>
+<tr>
+<td><strong>4-5</strong></td>
+<td>$30-50M DTC brands in different verticals (supplements, home goods)</td>
+<td>Proves cross-vertical applicability; expansion segment validation</td>
+<td>"PriceScope works across verticals" — addresses objection that tool is fashion-only</td>
+</tr>
+</tbody></table></div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">PriceScope's data improves with each customer added — more pricing signals → better recommendations → higher customer satisfaction → more referrals <span class="ev-badge ev-t1">T1</span> <span class="ev-detail">beta recommendation accuracy improved from 87% to 93% as customer base grew from 4 to 12</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">The flywheel creates a <strong>compounding advantage</strong> that accelerates with scale. At 200+ customers, PriceScope's AI has a structural data advantage over any new entrant. At 500+, the data network effect becomes a genuine moat — competitors cannot replicate the pricing intelligence without the customer base.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text"><strong>Prioritize customer acquisition speed over revenue optimization in the first 6 months.</strong> The goal is 200 customers, not maximum ARPA. Consider aggressive introductory pricing ($199/mo for first 100 customers) to accelerate flywheel spin. Revenue optimization comes after the data moat is established. <strong>Owner: CEO + Founding PM.</strong></div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-m">M</span> — The data flywheel is theoretically sound and supported by beta data (accuracy improvement with scale), but 12 customers is not proof the effect holds at 200+. Confidence upgrades to H when accuracy improvement continues at 50+ customers.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">AI recommendation accuracy at each customer milestone (50, 100, 200). If accuracy plateaus or declines at 100+ customers (data noise exceeding signal), the flywheel thesis is wrong — pivot to per-customer model tuning instead of aggregate learning.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- ASSUMPTIONS & CRITIQUE                      -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="assumptions-critique">
+  <h2>Assumption Registry &amp; Adversarial Self-Critique</h2>
+  <p class="section-sub">Every strategy rests on assumptions. Listing them explicitly converts hidden risks into observable triggers. The self-critique is adversarial — these are real weaknesses, not token disclaimers.</p>
+
+<h3>Assumption Registry</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>#</th>
+<th>Assumption</th>
+<th>Framework It Underpins</th>
+<th>Confidence</th>
+<th>Evidence</th>
+<th>What Would Invalidate This</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Beta trial-to-paid conversion (34%) will hold above 18% at scale</strong></td>
+<td>Channel Strategy, Unit Economics</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>12 beta customers (pre-qualified, high intent) converted at 34% <span class="ev-badge ev-t1">T1</span></td>
+<td>If conversion drops below 12% on 100+ trials — beta customers were an unrepresentative sample; PLG channel economics collapse</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Mid-market DTC brands will pay $299/mo for AI pricing recommendations</strong></td>
+<td>Segment Selection, Revenue Model</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>12 paying customers at $249-$499/mo; avg. 11.3% margin improvement justifies 10-20x ROI <span class="ev-badge ev-t1">T1</span></td>
+<td>If >30% of trial users cite price as reason for not converting — pricing is above willingness to pay for this segment</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Competera will not launch a mid-market product in the next 12 months</strong></td>
+<td>Competitive Positioning, Wedge Thesis</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>Competera's $20M Series B focused on grocery/CPG expansion <span class="ev-badge ev-t2">T2</span>; no mid-market product signals in job postings <span class="ev-badge ev-t3">T3</span></td>
+<td>Competera announces "Competera Lite" or mid-market product — wedge closes, race to brand + switching costs</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Shopify App Store will be a viable discovery channel</strong></td>
+<td>Channel Strategy (Phase 2)</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>Shopify App Store drives 40%+ of installs for comparable tools <span class="ev-badge ev-t3">T3</span>; "pricing" category has low competition</td>
+<td>Shopify changes App Store algorithm or increases rev share from 20% to 30%+ — channel economics worsen</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>AI recommendation accuracy will improve with more customers (data network effect)</strong></td>
+<td>Growth Mechanics, Long-term Moat</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>Accuracy improved from 87% to 93% as customer base grew 4→12 <span class="ev-badge ev-t1">T1</span></td>
+<td>Accuracy plateaus at 50+ customers — cross-brand pricing signals are too noisy to improve per-customer recommendations</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Adversarial Self-Critique</h3>
+
+<h4>Weakness #1: Beta Data Is Not Statistical Proof</h4>
+
+<p><strong>What I assumed:</strong> 12 beta customers with 34% conversion, 11.3% margin improvement, and 96.7% retention are representative of the broader market.</p>
+
+<p><strong>What could be wrong:</strong> 12 is not a sample — it is anecdote. Beta customers were hand-picked by the founding PM from his DTC network. They had high intent, personal relationship with the founder, and above-average e-commerce sophistication. The general population of mid-market DTC brands may be less sophisticated, harder to activate, and more price-sensitive. The 34% conversion rate, 11.3% margin improvement, and 96.7% retention are all likely to regress toward lower values at scale.</p>
+
+<p><strong>Evidence that would disprove this strategy:</strong> Trial-to-paid conversion <15% on the first 100 non-beta trials. Time-to-value >7 days for brands who don't have a personal relationship with the PM. Customer-reported margin improvement <5% at the 90-day mark.</p>
+
+<p><strong>Invalidation trigger:</strong> If the first 50 non-beta trials convert at <12%, the entire unit economics model is wrong — not just the conversion rate, but the assumptions about pain severity and product-market fit.</p>
+
+<hr class="section-divider">
+
+<h4>Weakness #2: The "Spreadsheet" Competitor May Be Good Enough</h4>
+
+<p><strong>What I assumed:</strong> Mid-market DTC brands lose 8-15% of potential margin by managing pricing in spreadsheets, and they know it and care enough to pay $299/mo to fix it.</p>
+
+<p><strong>What could be wrong:</strong> Most mid-market DTC brands don't measure margin loss from suboptimal pricing because they don't know what "optimal" looks like. The pain is latent, not acute. A brand doing $20M revenue at 54% gross margins may feel "that's how e-commerce works" — they don't benchmark against an AI-optimized counterfactual. Selling a solution to a problem people don't know they have is fundamentally harder and more expensive than selling to acknowledged pain. CAC could be 3-5x higher than estimated because education-selling is slower than solution-selling.</p>
+
+<p><strong>Evidence that would disprove this strategy:</strong> >50% of trial users never connect their Shopify store (low activation = low perceived urgency). Outbound response rate <2% (cold prospects don't recognize the problem). Blog content about "pricing optimization" gets <100 visits/month (no search demand for the solution category).</p>
+
+<p><strong>Invalidation trigger:</strong> If activation rate drops below 30% on the first 200 trial signups, the pain is not acute enough for self-serve discovery. Pivot to outbound sales with ROI calculators (prove the pain before selling the solution).</p>
+
+<hr class="section-divider">
+
+<h4>Weakness #3: Shopify Platform Risk Is Existential</h4>
+
+<p><strong>What I assumed:</strong> Shopify will remain a neutral platform that allows third-party pricing tools to operate via API.</p>
+
+<p><strong>What could be wrong:</strong> Shopify has a pattern of building features that replace third-party apps (Shopify Email replaced Klaviyo for basic email, Shopify Markets replaced some localization tools). If Shopify launches "Shopify Pricing Intelligence" as a built-in feature — even at 60% of PriceScope's quality — the distribution advantage is existential. Shopify's 20% rev share is also a signal: they know what's being built on their platform, and they take the most profitable categories in-house.</p>
+
+<p><strong>Evidence that would disprove this strategy:</strong> Shopify acquires a pricing analytics startup. Shopify job postings include "pricing intelligence" or "dynamic pricing" roles. Shopify deprecates or restricts the price-change API endpoints PriceScope depends on.</p>
+
+<p><strong>Invalidation trigger:</strong> Any of the above. Mitigation: diversify to BigCommerce and WooCommerce integrations by Month 9 — do not let Shopify represent >70% of customer base.</p>
+
+<hr class="section-divider">
+
+<h3>Cross-Framework Contradictions</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Contradiction</th>
+<th>Framework A Says</th>
+<th>Framework B Says</th>
+<th>Resolution</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Segment scoring vs. channel economics</strong></td>
+<td>Segment Selection: DTC Fashion/Beauty scores highest (4.85) — target them exclusively</td>
+<td>Channel Economics: Shopify Plus Agencies have highest LTV multiplier (each agency = 10-50 brands) — target agencies for faster revenue scaling</td>
+<td><strong>Weight segment scoring higher.</strong> Agencies are a distribution channel, not an end customer. Without 100+ direct customers and case studies, agencies won't partner. Sequence: direct customers first (proof), agencies second (scale).</td>
+</tr>
+<tr>
+<td><strong>PLG motion vs. competitive positioning</strong></td>
+<td>Channel Strategy: PLG (self-serve trial) is highest-ROI channel — invest 60% of budget here</td>
+<td>Competitive Positioning: PriceScope's differentiation is "AI recommendations" — a complex value prop that may need sales-assisted explanation, not self-serve discovery</td>
+<td><strong>Weight PLG higher for initial acquisition; add sales-assist for conversion.</strong> Trial gets users in the door (low friction). In-app "pricing audit" demonstrates AI value during trial. Sales rep follows up with high-value prospects ($499/mo+ plans) at Day 7 of trial. Hybrid: PLG acquisition + sales-assisted conversion.</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Revision Triggers</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Trigger</th>
+<th>What to Re-Assess</th>
+<th>Timeline</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Competera or Prisync announces mid-market AI pricing product</td>
+<td>Competitive Positioning, Wedge Thesis, pricing strategy</td>
+<td>Within 2 weeks of announcement</td>
+</tr>
+<tr>
+<td>Shopify changes App Store terms (rev share >25% or API restrictions)</td>
+<td>Channel Strategy, unit economics, platform diversification timeline</td>
+<td>Within 1 week of announcement</td>
+</tr>
+<tr>
+<td>Trial-to-paid conversion <12% on 100+ trials</td>
+<td>Product-market fit, segment selection, pricing</td>
+<td>Immediately — stop acquisition spend</td>
+</tr>
+<tr>
+<td>OpenAI or Anthropic launches pricing analytics product/feature</td>
+<td>Entire GTM strategy — AI-native competitor with massive distribution advantage</td>
+<td>Within 1 week</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- TRY IT YOURSELF                             -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="resources">
+  <h2>Conclusion</h2>
+
+<p>PriceScope has a <strong>validated product</strong> (12 beta customers, 11.3% avg. margin improvement), a <strong>structural wedge</strong> (AI recommendations at mid-market pricing, enabled by 85% cost reduction in AI inference), and a <strong>well-defined beachhead</strong> (mid-market DTC fashion/beauty brands with 500-5,000 SKUs on Shopify). The $500K budget supports a PLG + content-first GTM motion with clear gates at every phase and hard kill criteria that prevent wasting capital on a strategy that isn't working.</p>
+
+<p>The primary risk is that beta performance doesn't generalize — 12 pre-qualified customers are not proof of scalable product-market fit. The mitigation is aggressive gating: if the first 100 non-beta trials don't convert at >15%, the strategy stops. No good money after bad.</p>
+
+<p>The long-term moat is the <strong>data flywheel</strong>: more customers generate more pricing signals, which improve AI recommendations for every customer. At 500+ customers, PriceScope becomes the pricing intelligence layer for mid-market DTC — a position that compounds and is structurally difficult for competitors to replicate.</p>
+
+<p><strong>Decision: Launch. The window is 12-18 months before enterprise players adapt. Move now.</strong></p>
+
+<hr class="section-divider">
+
+<h3 style="margin-top:40px">Evidence Summary</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Tier</th>
+<th>Count</th>
+<th>Examples</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>T1</strong> <span class="ev-badge ev-t1">T1</span></td>
+<td>14</td>
+<td>Beta customer data (conversion rates, margin improvement, retention, activation), competitor pricing pages, AI inference cost data</td>
+</tr>
+<tr>
+<td><strong>T2</strong> <span class="ev-badge ev-t2">T2</span></td>
+<td>11</td>
+<td>Shopify developer docs, competitor product analysis, keyword research data, Crunchbase funding data, beta customer interviews</td>
+</tr>
+<tr>
+<td><strong>T3</strong> <span class="ev-badge ev-t3">T3</span></td>
+<td>16</td>
+<td>Industry reports (Forrester, Grand View Research), competitor job postings, community sentiment, DTC industry benchmarks</td>
+</tr>
+<tr>
+<td><strong>T4</strong> <span class="ev-badge ev-t4">T4</span></td>
+<td>12</td>
+<td>Unit economics estimates, LTV projections, channel CAC modeling, segment size estimates, competitor response timelines</td>
+</tr>
+<tr>
+<td><strong>T5</strong></td>
+<td>0</td>
+<td>Not used</td>
+</tr>
+<tr>
+<td><strong>T6</strong> <span class="ev-badge ev-t6">T6</span></td>
+<td>0</td>
+<td>Not used — all conclusions grounded in T1-T4 evidence</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total evidence points:</strong> 53 <span class="ev-badge ev-t1">T1–T4</span></p>
+<p><strong>Triangulation:</strong> All strategic conclusions cite minimum 2 evidence tiers. Critical decisions (segment selection, channel strategy) cite T1 data from beta.</p>
+
+<hr class="section-divider">
+
+<h3 style="margin-top:40px">Quick-Reference Checklist</h3>
+<ul>
+<li>[x] Context Gate: all 5 checks passed before framework application</li>
+<li>[x] Executive Summary: zero jargon, VP can act on it alone</li>
+<li>[x] Market Entry Thesis: why this market (structural gap), why now (4 timing signals), what's the wedge (AI cost curve + Shopify native)</li>
+<li>[x] Segment Selection: 3 candidates scored on 6-criterion ICP matrix with evidence tiers per cell</li>
+<li>[x] Channel Strategy: 6 channels evaluated with CAC, payback, LTV/CAC, and evidence</li>
+<li>[x] Launch Sequencing: 4 phases with gates and kill criteria</li>
+<li>[x] Competitive Positioning: positioning statement + 3 battlecard sets (vs. Prisync, vs. Competera, vs. spreadsheets)</li>
+<li>[x] Success Metrics: leading + lagging indicators with Goodhart countermeasures</li>
+<li>[x] Failure Criteria: 5 hard stops with specific thresholds and timelines</li>
+<li>[x] Growth Mechanics: flywheel design with data network effect thesis</li>
+<li>[x] Assumption Registry: 5 load-bearing assumptions with invalidation triggers</li>
+<li>[x] Adversarial Self-Critique: 3 genuine weaknesses with evidence thresholds</li>
+<li>[x] Cross-Framework Contradictions: 2 contradictions surfaced with resolution logic</li>
+<li>[x] O→I→R→C→W cascade applied to all strategic recommendations</li>
+<li>[x] Per-cell evidence tier annotation in all comparison matrices</li>
+<li>[x] H/M/L confidence levels explicit on every strategic conclusion</li>
+</ul>
+
+<hr class="section-divider">
+
+<p><strong>Analysis Date:</strong> March 2026 <strong>Word Count:</strong> ~8,200 <strong>Evidence Points:</strong> 53 <span class="ev-badge ev-t1">T1–T4</span> <strong>Frameworks Applied:</strong> Market Entry Thesis, Segment Selection, Channel Strategy with Unit Economics, Launch Sequencing & Gating, Competitive Positioning, Distribution & Growth Mechanics <strong>License:</strong> MIT <strong>PM Skills Arsenal:</strong> <a href="https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/go-to-market-strategy/SKILL.md">go-to-market-strategy</a></p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Try It Yourself: Quick-Start Guide</h3>
+<p class="section-sub"><strong>Apply this framework to your own go-to-market strategy in 4 steps:</strong></p>
+
+<ol>
+<li><strong>Run the Context Gate</strong> (15 min) — Verify your problem is validated, product exists, market is external, competitive landscape is known, and decision authority exists. If 3+ checks fail, you need a different artifact (Problem Framing or Specification Writing).</li>
+</ol>
+
+<ol>
+<li><strong>Score your beachhead segments</strong> (60 min) — List 3 candidate segments specific enough to name 100 prospects. Score each on 6 criteria (acute pain, willingness to pay, accessibility, reference-ability, expansion potential, competitive vacuum) using the ICP Scoring Matrix. Pick the highest scorer.</li>
+</ol>
+
+<ol>
+<li><strong>Build channel unit economics</strong> (45 min) — For your top 2 channels, estimate: CAC, payback period, LTV/CAC. Start with ONE channel. If unit economics don't work on paper, the strategy doesn't work in practice.</li>
+</ol>
+
+<ol>
+<li><strong>Define kill criteria</strong> (30 min) — Write 3-5 specific, time-bound conditions that would cause you to stop this GTM motion entirely. These are not "reassess" triggers — they are hard stops. If you can't name kill criteria, you don't have a strategy; you have a hope.</li>
+</ol>
+
+<p><strong>Output:</strong> You'll have a fundable GTM strategy document in ~2.5 hours.</p>
+
+<hr class="section-divider">
+  <h3 style="margin-top:40px">Related Use Cases & Skills</h3>
+<p class="section-sub"><strong>From this GTM strategy to next steps:</strong>
+- See <a href="use-case-figma-canva-express.html">Competitive Market Analysis use case</a> for deep competitive moat analysis that feeds into positioning
+- See <a href="use-case-metric-design.html">Metric Design use case</a> for designing the metrics that track GTM success
+- See <a href="use-case-specification.html">Specification Writing use case</a> for turning the product into a buildable spec
+- See <a href="use-case-problem-framing.html">Problem Framing use case</a> for validating the problem before committing to a GTM strategy</p>
+
+<p><strong>Real-world skill chains:</strong>
+- Problem Framing → GTM Strategy → Specification Writing (validate problem → plan market entry → build the product)
+- Competitive Market Analysis → GTM Strategy → Narrative Building (understand landscape → plan entry → craft positioning narrative)
+- GTM Strategy → Metric Design (plan launch → design the measurement system that tracks whether it's working)</p>
+</div>
+
+<footer class="page-footer">
+  <span>PriceScope AI — Go-to-Market Strategy · PM Skills Arsenal</span>
+  <span>Built with Claude Code</span>
+</footer>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('nav button').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

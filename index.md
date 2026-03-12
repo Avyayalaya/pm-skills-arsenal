@@ -50,41 +50,39 @@ Copy the relevant `SKILL.md` directly into your context window.
 
 ## Skills
 
-### [Competitive & Market Analysis](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/competitive-market-analysis/SKILL.md)
+12 codex skills covering the full PM lifecycle — from analysis through strategy, communication, and influence.
 
-Structural assessment of who wins, why, and what to do about it. Scores competitive advantages by durability, decomposes switching costs by type, flags disruption vectors, and surfaces contradictions between frameworks instead of papering over them. Every recommendation carries an evidence tier and a confidence level.
+### Analysis & Research
 
-Market entry · competitive response · moat assessment · build/buy/partner
+**[Competitive & Market Analysis](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/competitive-market-analysis/SKILL.md)** — Structural assessment of who wins, why, and what to do about it. 7 Powers, Aggregation Theory, Christensen Disruption, JTBD, Wardley Mapping, Blue Ocean, Crossing the Chasm, Win/Loss.
 
-### [Metric Design & Experimentation](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/metric-design-experimentation/SKILL.md)
+**[Discovery & Research](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/discovery-research/SKILL.md)** — Research synthesis that separates what users say from what they do. Evidence Triangulation, Interview Analysis, Signal vs Noise, Demand-Side Analysis, Research Gap Mapping.
 
-Measurement systems that hold up under pressure. Builds metric hierarchies with leading/lagging pairs and counter-metrics, designs experiments with statistical rigor, and diagnoses the four ways metrics get gamed before it happens to yours.
+**[Problem Framing](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/problem-framing/SKILL.md)** — Decomposes vague problem areas into evidence-graded problem statements. Problem Definition Canvas, 5 Whys, JTBD Problem Framing, Opportunity Sizing, Constraint Mapping, ICE/RICE.
 
-North Star selection · experiment design · retention cohorts · metric gaming diagnosis
+### Definition & Measurement
 
-### [Specification Writing](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/specification-writing/SKILL.md)
+**[Specification Writing](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/specification-writing/SKILL.md)** — Specs so complete the executor starts building without asking a single clarifying question. Outcome-First Methodology, Acceptance Criteria Taxonomy, Scope Boundary Protocol, Failure Condition Design.
 
-Specs complete enough that the executor — engineer, AI agent, contractor — starts building without asking a single clarifying question. Outcome-anchored, with explicit scope boundaries, acceptance criteria by type, and failure conditions designed in from the start.
+**[Metric Design & Experimentation](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/metric-design-experimentation/SKILL.md)** — Measurement systems that hold up under pressure. NSM + Decomposition Tree, Leading/Lagging Indicators, Goodhart's Law, Experiment Design, Retention Cohort Methodology, HEART.
 
-Feature specs · API contracts · agent task specs
+### Strategy & Planning
 
-### [Problem Framing](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/problem-framing/SKILL.md)
+**[Product Strategy](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/product-strategy/SKILL.md)** — Strategic product roadmaps with confidence-rated bets, option-value sequencing, and explicit deprioritization. Vision-to-Roadmap Cascade, Strategic Bet-Sizing, NOT-Doing Section, Resource Allocation.
 
-Decomposes vague problem areas into evidence-graded problem statements before anyone starts building. Root cause analysis, opportunity sizing, constraint mapping, and stakeholder impact — all with confidence levels so you know what's validated and what's still a guess.
+**[Go-to-Market Strategy](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/go-to-market-strategy/SKILL.md)** — GTM strategy with wedge identification, channel unit economics, and launch gating. Market Entry Thesis, ICP Scoring, Channel Strategy, Competitive Positioning (Dunford), Distribution Mechanics.
 
-Problem decomposition · opportunity sizing · stakeholder alignment · prioritization
+**[Pricing & Packaging](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/pricing-packaging/SKILL.md)** — Pricing recommendations with model selection, WTP assessment, and sensitivity analysis. Van Westendorp, Gabor-Granger, Good/Better/Best Architecture, Revenue Impact Modeling, AI/SaaS Patterns.
 
-### [Discovery & Research](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/discovery-research/SKILL.md)
+### Communication & Influence
 
-Research synthesis that separates what users say from what they do. Grades every source by evidence quality, surfaces contradictions between data types, identifies where your evidence is dangerously thin, and maps the gaps that should drive your next research cycle.
+**[Executive Writing](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/executive-writing/SKILL.md)** — Executive-ready documents — strategy one-pagers, board memos, decision briefs — with role-calibrated framing. Minto Pyramid / SCR, Format Routing, Audience Calibration, Decision Architecture, Zero-Jargon Compression.
 
-Interview synthesis · evidence grading · stated vs. revealed · research gap analysis
+**[Narrative Building](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/narrative-building/SKILL.md)** — Strategic narratives that make a product feel inevitable. Positioning (Dunford), Why Now, Audience Adaptation, Evidence-Narrative Integration, Objection Anticipation, Competitive Narrative Analysis.
 
-### [Narrative Building](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/narrative-building/SKILL.md)
+**[Multi-Channel Publishing](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/multi-channel-publishing/SKILL.md)** — Channel-specific content derivatives from a source document. 7-Step Compression Protocol, Hook Adaptation, Evidence Density Calibration, Source Fidelity Verification, Spoken Script Derivation.
 
-Strategic narratives that make a product feel inevitable — not by assertion but by structural argument. Positioning analysis, audience-adapted variants, evidence-integrated claims, pre-embedded objection responses, and a testing protocol that validates the story before it goes live.
-
-Product positioning · launch narratives · internal alignment · stakeholder pitches
+**[Stakeholder Alignment](https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/stakeholder-alignment/SKILL.md)** — Stakeholder alignment strategy with influence mapping, coalition analysis, and sequenced alignment plan. Power-Interest-Position Matrix, Decision Archaeology, Objection Pre-emption, Alignment Monitoring & Recovery.
 
 ---
 
@@ -92,12 +90,25 @@ Product positioning · launch narratives · internal alignment · stakeholder pi
 
 Interactive showcases — full skill outputs with tabbed navigation, evidence tiers, and framework analysis.
 
+### Analysis & Research
 - **[Figma vs Canva vs Adobe Express](showcase/articles/use-case-figma-canva-express.html)** — Who wins the design tools war and why Canva's enterprise play changes the answer
-- **[M365 Copilot Adoption](showcase/articles/use-case-metric-design.html)**— How to measure whether a $30/user AI copilot is actually delivering value
-- **[AI Chat Interface Spec](showcase/articles/use-case-specification.html)** — A spec for a ChatGPT-style interface complete enough that an engineer starts building without questions
-- **[Notion's Growth Plateau](showcase/articles/use-case-problem-framing.html)** — Why Notion's growth stalled and which of 12 root causes actually matter
 - **[Superhuman vs Gmail](showcase/articles/use-case-discovery-research.html)** — What users say they want from email vs what their behavior reveals
+- **[Notion's Growth Plateau](showcase/articles/use-case-problem-framing.html)** — Why Notion's growth stalled and which of 12 root causes actually matter
+
+### Definition & Measurement
+- **[AI Chat Interface Spec](showcase/articles/use-case-specification.html)** — A spec for a ChatGPT-style interface complete enough that an engineer starts building without questions
+- **[M365 Copilot Adoption](showcase/articles/use-case-metric-design.html)** — How to measure whether a $30/user AI copilot is actually delivering value
+
+### Strategy & Planning
+- **[Async Video Platform AI Pivot](showcase/articles/use-case-product-strategy.html)** — 6-month roadmap for a Loom-like platform with AI bet-sizing and option-value sequencing
+- **[PriceScope AI GTM](showcase/articles/use-case-go-to-market-strategy.html)** — Go-to-market for an AI pricing tool: ICP scoring, channel unit economics, launch gating
+- **[CodeLens AI Pricing Redesign](showcase/articles/use-case-pricing-packaging.html)** — Flat-rate to usage-based: WTP analysis, Good/Better/Best tiers, migration strategy
+
+### Communication & Influence
+- **[DataVault Investment Brief](showcase/articles/use-case-executive-writing.html)** — Strategy one-pager for a $2M AI platform investment, role-calibrated for VP audience
 - **[Cursor's Positioning](showcase/articles/use-case-narrative-building.html)** — How Cursor positioned itself against GitHub Copilot and VS Code in a market Microsoft owns
+- **[AI Personalization Paradox](showcase/articles/use-case-multi-channel-publishing.html)** — Compressing a 3,200-word Substack into LinkedIn, conference abstract, and spoken script
+- **[Data Platform Migration](showcase/articles/use-case-stakeholder-alignment.html)** — Aligning 4 VPs on a $3M Redshift-to-Databricks migration
 
 ---
 

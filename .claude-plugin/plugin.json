@@ -1,13 +1,10 @@
 {
   "name": "pm-skills",
-  "description": "Product management decision codex: competitive analysis (9 frameworks including 7 Powers, Aggregation Theory, Wardley Mapping), metric design and experimentation (NSM, Goodhart countermeasures, A/B design, retention cohorts), and specification writing (zero-question specs). Evidence-tiered, confidence-calibrated, adversarially self-critiqued.",
-  "version": "1.3.0",
+  "description": "12 PM knowledge codices covering the full PM lifecycle: analysis (Competitive & Market Analysis, Discovery & Research, Problem Framing), definition (Specification Writing, Metric Design & Experimentation), strategy (Product Strategy, Go-to-Market Strategy, Pricing & Packaging), communication (Executive Writing, Narrative Building, Multi-Channel Publishing), and influence (Stakeholder Alignment). Each encodes 1000-1300 lines of scoring rubrics, decision tables, evidence standards, and failure modes.",
+  "version": "2.0.0",
   "author": {
-    "name": "Parth Sangani",
-    "url": "https://github.com/Avyayalaya"
+    "name": "Parth Sangani"
   },
-  "homepage": "https://github.com/Avyayalaya/pm-skills-arsenal",
-  "repository": "https://github.com/Avyayalaya/pm-skills-arsenal",
   "license": "MIT",
-  "keywords": ["product-management", "competitive-analysis", "metrics", "experimentation", "strategy", "specification-writing"]
+  "keywords": ["product-management", "competitive-analysis", "metrics", "experimentation", "strategy", "knowledge-weapon"]
 }

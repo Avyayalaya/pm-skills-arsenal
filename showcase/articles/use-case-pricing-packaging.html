@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeLens AI — Pricing an AI Code Review Tool — PM Skills Arsenal</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#FDFAF6; --surface:#FFFFFF; --text:#2C2520;
+  --text-secondary:#5A524A; --text-muted:#8B8178;
+  --accent:#B85C38; --accent-light:rgba(184,92,56,0.08);
+  --sage:#5B7B6A; --sage-light:rgba(91,123,106,0.08);
+  --warm-gold:#B8963E; --warm-gold-light:rgba(184,150,62,0.08);
+  --stone:#8B7D6B; --stone-light:rgba(139,125,107,0.08);
+  --human:#6B4C8A; --human-light:rgba(107,76,138,0.08);
+  --border:#E8E2DA; --border-light:#F0EBE4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* ── TOP BAR ── */
+.top-bar{max-width:980px;margin:0 auto;padding:16px 48px 0;display:flex;align-items:center;gap:8px}
+.top-bar a{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;border:1px solid var(--border);transition:all .15s}
+.top-bar a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-light)}
+.top-bar .sep{color:var(--border);font-size:14px}
+.top-bar .current{font-size:13px;color:var(--text-secondary);font-weight:500}
+@media(max-width:768px){.top-bar{padding:12px 24px 0}}
+/* ── HEADER ── */
+.page-header{max-width:980px;margin:0 auto;padding:32px 48px 36px;text-align:center}
+.overline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Source Serif 4',Georgia,serif;font-size:40px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:16px}
+.subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;margin:0 auto 20px;line-height:1.65}
+.header-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;font-size:12.5px;color:var(--text-muted)}
+.header-meta strong{color:var(--text-secondary)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0}
+nav .inner{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:8px 48px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);padding:8px 16px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+nav button:hover{color:var(--text);background:var(--border-light)}
+nav button.active{color:var(--accent);background:var(--accent-light);font-weight:600}
+
+/* ── SECTIONS ── */
+.section{display:none;max-width:980px;margin:0 auto;padding:40px 48px 60px}
+.section.active{display:block}
+.section h2{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:15px;color:var(--text-secondary);margin-bottom:28px;line-height:1.65;max-width:760px}
+.section h3{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin:32px 0 10px}
+.section h4{font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin:24px 0 6px}
+.section p{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0;max-width:760px}
+.section ul,.section ol{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0 10px 24px;max-width:760px}
+.section li{margin:4px 0}
+.section li strong{color:var(--text)}
+.section a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)}
+.section a:hover{border-bottom-color:var(--accent)}
+.section code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--border-light);padding:1px 6px;border-radius:3px;color:var(--accent)}
+.section strong{color:var(--text)}
+.section-divider{border:none;border-top:1px solid var(--border-light);margin:28px 0}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--border);border-radius:8px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:13.5px}
+.table-wrap th{background:var(--surface);font-weight:600;color:var(--text);text-align:left;padding:10px 14px;border-bottom:2px solid var(--border);position:sticky;top:0;white-space:nowrap}
+.table-wrap td{padding:9px 14px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top}
+.table-wrap tr:last-child td{border-bottom:none}
+.table-wrap tbody tr:nth-child(even){background:rgba(253,250,246,0.6)}
+.table-wrap tbody tr:hover{background:var(--accent-light)}
+.table-wrap td:first-child{font-weight:500;color:var(--text)}
+
+/* ── ASIDE / CALLOUT ── */
+.aside{display:flex;gap:14px;padding:16px 20px;border-left:3px solid var(--sage);background:var(--sage-light);border-radius:0 8px 8px 0;margin:20px 0}
+.aside.decision{border-left-color:var(--accent);background:var(--accent-light)}
+.aside.watch{border-left-color:var(--warm-gold);background:var(--warm-gold-light)}
+.aside.strategy{border-left-color:var(--human);background:var(--human-light)}
+.a-icon{font-size:16px;flex-shrink:0;margin-top:1px;color:var(--text-muted)}
+.aside p{margin:0;font-size:14px;line-height:1.65;color:var(--text-secondary);max-width:none}
+
+/* ── CASCADE BLOCK ── */
+.cascade-block{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:24px 0}
+.cascade-header{background:var(--accent-light);padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.cascade-item{display:flex;padding:14px 20px;border-top:1px solid var(--border-light);gap:14px;align-items:flex-start}
+.cascade-label{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cascade-o .cascade-label{background:var(--sage-light);color:var(--sage)}
+.cascade-i .cascade-label{background:var(--warm-gold-light);color:var(--warm-gold)}
+.cascade-r .cascade-label{background:var(--accent-light);color:var(--accent)}
+.cascade-c .cascade-label{background:var(--stone-light);color:var(--stone)}
+.cascade-w .cascade-label{background:var(--human-light);color:var(--human)}
+.cascade-text{font-size:14px;line-height:1.65;color:var(--text-secondary);flex:1}
+.cascade-text strong{color:var(--text)}
+
+/* ── EVIDENCE BADGES / CONFIDENCE PILLS ── */
+.ev-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;vertical-align:middle;margin:0 1px;cursor:default}
+.ev-t1,.ev-t2{background:var(--sage-light);color:var(--sage)}
+.ev-t3{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t4{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t5,.ev-t6{background:var(--stone-light);color:var(--stone)}
+.ev-limited{background:var(--accent-light);color:var(--accent);font-size:9px}
+.ev-detail{font-size:12px;color:var(--text-muted);font-style:italic}
+.conf-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
+.conf-h{background:var(--sage-light);color:var(--sage)}
+.conf-m{background:var(--warm-gold-light);color:var(--warm-gold)}
+.conf-l{background:var(--accent-light);color:var(--accent)}
+
+/* ── COLORED DOTS ── */
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin:0 2px}
+.dot.green{background:#5B7B6A}
+.dot.yellow{background:#B8963E}
+.dot.red{background:#B85C38}
+
+/* ── CHECK / CROSS ICONS ── */
+.icon-check{color:var(--sage);font-weight:700;font-size:14px}
+.icon-cross{color:var(--accent);font-weight:700;font-size:14px}
+.icon-warn{color:var(--warm-gold);font-size:14px}
+
+/* ── PROGRESS BAR (replaces block chars) ── */
+.bar-container{display:flex;align-items:center;gap:8px}
+.bar-track{flex:1;height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;min-width:60px;max-width:120px}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--sage),var(--accent))}
+.bar-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--text-secondary);white-space:nowrap}
+
+/* ── CODE FIGURE ── */
+.code-figure{margin:20px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.code-figure pre{background:var(--surface);padding:18px 20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:var(--text);margin:0;white-space:pre}
+
+/* ── POWER ITEM (bold emoji paragraph) ── */
+.power-item{border-left:3px solid var(--border);padding:10px 18px;margin:10px 0;background:var(--surface);border-radius:0 8px 8px 0}
+.power-item p{margin:0;max-width:none}
+
+/* ── DATA GRID ── */
+.data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.data-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.data-card h4{font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;color:var(--text);margin:0 0 6px}
+.data-card p{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6;max-width:none}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:22px 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .val{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--accent)}
+.stat-card .lbl{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* ── FOOTER ── */
+.page-footer{max-width:980px;margin:0 auto;padding:32px 48px 64px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .page-header{padding:48px 24px 24px}
+  h1{font-size:28px}
+  .section{padding:28px 24px 48px}
+  nav .inner{padding:8px 16px}
+  .page-footer{padding:24px;flex-direction:column}
+  .data-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+  nav{display:none}
+  .section{display:block!important;page-break-inside:avoid}
+  .page-header{padding-top:32px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="/pm-skills-arsenal/">← PM Skills Arsenal</a>
+  <span class="sep">›</span>
+  <span class="current">CodeLens AI — Pricing &amp; Packaging</span>
+</div>
+<header class="page-header">
+  <div class="overline">Pricing &amp; Packaging · PM Skills Arsenal</div>
+  <h1>CodeLens AI — Pricing an AI Code Review Tool</h1>
+  <p class="subtitle">Designing pricing and packaging for an AI-powered code review tool transitioning from flat-rate ($49/mo) to usage-based pricing, with WTP analysis, competitive mapping, Good/Better/Best packaging, and churn risk modeling.</p>
+  <div class="header-meta">
+    <span><strong>Skill:</strong> pricing-packaging</span>
+    <span><strong>Date:</strong> March 2026</span>
+    <span><strong>Source:</strong> PM Skills Arsenal</span>
+    <span><strong>Overall Confidence:</strong> <span class="conf-pill conf-m">M</span></span>
+    <span><strong>Staleness:</strong> Verify after Sep 2026</span>
+  </div>
+</header>
+
+<nav>
+  <div class="inner">
+    <button class="active" onclick="show('summary')">Executive Summary</button>
+    <button onclick="show('model-selection')">Model Selection</button>
+    <button onclick="show('wtp')">WTP Assessment</button>
+    <button onclick="show('competitive-map')">Competitive Pricing Map</button>
+    <button onclick="show('packages')">Package Architecture</button>
+    <button onclick="show('sensitivity')">Sensitivity Analysis</button>
+    <button onclick="show('revenue-impact')">Revenue Impact</button>
+    <button onclick="show('implementation')">Implementation Plan</button>
+    <button onclick="show('assumptions')">Assumptions &amp; Critique</button>
+    <button onclick="show('try-it')">Try It Yourself</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- EXECUTIVE SUMMARY                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section active" id="summary">
+  <h2>Executive Summary</h2>
+<p>CodeLens AI's flat $49/month pricing is structurally broken: large enterprise teams (50+ developers) consume $180-400/month in GPU inference costs against $49 in revenue, creating a margin crisis that worsens as the product succeeds <span class="conf-pill conf-h">H</span> <span class="ev-detail">internal cost data, T1</span>. Customer interview data from 38 teams indicates willingness to pay $8-14 per developer per month for AI code review, with enterprise teams accepting usage-based overage pricing if base access is predictable <span class="conf-pill conf-m">M</span> <span class="ev-detail">Van Westendorp analysis, T3</span>. The competitive landscape shows GitHub Copilot at $19/seat, Sourcery at $14/dev, and Codacy at $15/dev — positioning CodeLens in a $10-19/seat market with AI-powered review as a differentiation wedge <span class="conf-pill conf-h">H</span> <span class="ev-detail">public pricing pages, T1</span>. A hybrid model (per-seat base + usage overage) captures 83% of addressable value while maintaining budget predictability that enterprise procurement requires <span class="conf-pill conf-m">M</span> <span class="ev-detail">model selection analysis, T3-T4</span>. <strong>Recommended action: transition to three-tier hybrid pricing — Starter at $12/dev/mo (500 reviews), Pro at $19/dev/mo (2,000 reviews), Enterprise at custom pricing — with a 6-month grandfathering window for existing customers, targeting $14.2M ARR within 12 months (vs. current $8M).</strong></p>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="val">$8M</div><div class="lbl">Current ARR</div></div>
+  <div class="stat-card"><div class="val">$14.2M</div><div class="lbl">Projected ARR (12mo)</div></div>
+  <div class="stat-card"><div class="val">2,400</div><div class="lbl">Paying Teams</div></div>
+  <div class="stat-card"><div class="val">$0.12</div><div class="lbl">Marginal Cost / Review</div></div>
+</div>
+
+<h3>How to Read This Document</h3>
+
+<p><strong>By time available:</strong></p>
+<ul>
+  <li><strong>5 minutes:</strong> Read this Executive Summary and the Recommended Pricing Table in Package Architecture. The recommendation and its confidence level are here.</li>
+  <li><strong>15 minutes:</strong> Add Model Selection rationale, Package Architecture summary, and Sensitivity Analysis table. You now understand the what, why, and risk.</li>
+  <li><strong>30+ minutes:</strong> Read the full document. Cross-framework contradictions, assumption registry, and adversarial self-critique give you the complete picture.</li>
+</ul>
+
+<p><strong>By role:</strong></p>
+<ul>
+  <li><strong>VP/GM:</strong> Executive Summary + Sensitivity Analysis + Implementation Plan. You need the recommendation, the revenue impact range, and the rollout timeline.</li>
+  <li><strong>PM:</strong> Full document. Every framework application and the package architecture rationale inform your execution decisions.</li>
+  <li><strong>Finance/Rev Ops:</strong> Sensitivity Analysis + Revenue Impact Modeling + Assumption Registry. Validate the numbers and stress-test the assumptions.</li>
+  <li><strong>Sales leadership:</strong> Competitive Pricing Map + Package Architecture + Implementation Plan. You need to know how to position against alternatives and what changes for existing customers.</li>
+  <li><strong>Engineering:</strong> Package Architecture (feature allocation) + AI/SaaS Pricing Patterns (metering requirements). You need to know what to build for billing and usage tracking.</li>
+</ul>
+
+<h3>Notation Key</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><strong>H / M / L</strong></td><td>Confidence level: H (&gt;70%), M (40-70%), L (&lt;40%)</td></tr>
+<tr><td><strong>(T1)-(T6)</strong></td><td>Evidence tier: T1 = transaction data, T2 = primary research n>=100, T3 = interviews n>=10, T4 = competitive inference, T5 = expert estimation, T6 = model inference</td></tr>
+<tr><td><strong>O-&gt;I-&gt;R-&gt;C-&gt;W</strong></td><td>Observation -&gt; Implication -&gt; Response -&gt; Confidence -&gt; Watch Indicator</td></tr>
+<tr><td><code>[EVIDENCE-LIMITED]</code></td><td>Key conclusion rests on T4-T6 evidence only</td></tr>
+<tr><td><code>[WTP-EVIDENCE-LIMITED]</code></td><td>Willingness-to-pay range based on inference, not direct measurement</td></tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- MODEL SELECTION                                                    -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="model-selection">
+  <h2>Step 0: Pricing Model Selection</h2>
+  <p class="section-sub"><strong>Context Gate:</strong> pricing_context = <code>price_change</code>. CodeLens AI is transitioning an existing product from flat-rate to a scalable model. All four gate questions pass: (1) the core problem is margin erosion from misaligned pricing, not product quality; (2) 38 customer interviews provide T3 WTP evidence; (3) marginal cost is known ($0.12/review); (4) this is a pricing decision, not a positioning decision.</p>
+
+<h3>Model Evaluation</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Criterion</th>
+<th>Assessment</th>
+<th>Implication</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Customer type</strong></td>
+<td>Mixed: 60% SMB (3-15 devs), 30% mid-market (15-50 devs), 10% enterprise (50+ devs) <span class="ev-badge ev-t1">T1</span></td>
+<td>Need budget predictability for enterprise procurement; self-serve simplicity for SMB</td>
+</tr>
+<tr>
+<td><strong>Value delivery</strong></td>
+<td>Per-action (each AI code review delivers discrete value) <span class="ev-badge ev-t1">T1</span></td>
+<td>Value scales with usage, not with user count alone</td>
+</tr>
+<tr>
+<td><strong>Cost structure</strong></td>
+<td>Variable-heavy: $0.12 marginal cost per review (GPU inference) <span class="ev-badge ev-t1">T1</span></td>
+<td>Pure per-seat model creates margin risk at high usage. Teams doing 3,000+ reviews/mo at $49 flat = -$311/mo margin</td>
+</tr>
+<tr>
+<td><strong>Competitive norms</strong></td>
+<td>Market split: per-seat (GitHub Copilot, Sourcery) vs. repo-based (Codacy) <span class="ev-badge ev-t1">T1</span></td>
+<td>Per-seat is the expected model; usage-based is unfamiliar to most buyers</td>
+</tr>
+<tr>
+<td><strong>Expansion mechanics</strong></td>
+<td>Both: add developers (seat expansion) and increase review frequency (usage expansion) <span class="ev-badge ev-t3">T3</span></td>
+<td>Hybrid model captures both expansion vectors</td>
+</tr>
+</tbody></table></div>
+
+<h3>Model Scoring</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Model</th>
+<th>Value Alignment</th>
+<th>Cost Protection</th>
+<th>Buyer Predictability</th>
+<th>Competitive Fit</th>
+<th>Overall</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Per-Seat (flat)</strong></td>
+<td><span class="dot yellow"></span> Partial <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot red"></span> Poor <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot yellow"></span> Workable</td>
+</tr>
+<tr>
+<td><strong>Pure Usage-Based</strong></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot red"></span> Poor <span class="ev-badge ev-t3">T3</span></td>
+<td><span class="dot red"></span> Poor <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot red"></span> Poor</td>
+</tr>
+<tr>
+<td><strong>Hybrid (Seat + Usage)</strong></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot yellow"></span> Moderate <span class="ev-badge ev-t3">T3</span></td>
+<td><span class="dot yellow"></span> Moderate <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot green"></span> Strong</td>
+</tr>
+<tr>
+<td><strong>Tiered Flat-Rate</strong></td>
+<td><span class="dot yellow"></span> Partial <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot yellow"></span> Moderate <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t4">T4</span></td>
+<td><span class="dot green"></span> Strong <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot yellow"></span> Workable</td>
+</tr>
+</tbody></table></div>
+
+<div class="aside decision"><span class="a-icon">&#9670;</span><p><strong>Selected model: Hybrid (Per-Seat Base + Usage Overage)</strong> because it aligns price with value delivery (more reviews = more cost = more revenue), protects margins on high-usage enterprise accounts, and maintains the budget predictability that enterprise procurement teams require via a per-seat base with included review allocation.</p></div>
+
+<p><strong>Rejected alternatives:</strong></p>
+<ul>
+  <li><strong>Per-Seat (flat):</strong> Rejected because it perpetuates the current margin crisis. A 50-dev enterprise team generating 4,000 reviews/month at $19/dev = $950/mo revenue vs. $480/mo cost (50% margin). At scale, this works. But a 5-dev startup generating 800 reviews at $19/dev = $95/mo revenue vs. $96/mo cost (negative margin). Per-seat alone doesn't capture the 10x usage variance.</li>
+  <li><strong>Pure Usage-Based:</strong> Rejected because 72% of interview respondents (n=38) said unpredictable monthly bills would be a "deal-breaker" for budget approval <span class="ev-badge ev-t3">T3</span>. Enterprise procurement requires committed spend for budget planning.</li>
+  <li><strong>Tiered Flat-Rate:</strong> Workable but leaves value on the table. The 10x usage variance between small and large teams means any fixed tier either underprices heavy users or overprices light users. Hybrid captures the spread.</li>
+</ul>
+
+<h3>AI-Specific Pricing Patterns</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Pattern</th><th>Assessment</th><th>Recommendation</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>Value metric alignment</strong></td>
+<td>Price per review aligns directly with value delivered (each review = bug/vulnerability caught) <span class="ev-badge ev-t1">T1</span></td>
+<td>Use "AI reviews" as the metered unit, not tokens or compute minutes</td>
+</tr>
+<tr>
+<td><strong>Marginal cost structure</strong></td>
+<td>$0.12/review at current scale; drops to ~$0.08 at 2x volume (GPU cost curves) <span class="ev-badge ev-t1">T1</span></td>
+<td>Set overage at $0.05/review to maintain 40%+ margin even at scale</td>
+</tr>
+<tr>
+<td><strong>Usage metering approach</strong></td>
+<td>Per-review (one PR review = one unit) is cleanest; per-line-of-code is too granular <span class="ev-badge ev-t3">T3</span></td>
+<td>Meter at PR-review level; display usage dashboard in product</td>
+</tr>
+<tr>
+<td><strong>Bundle vs. unbundle</strong></td>
+<td>AI review is the core product, not an add-on <span class="ev-badge ev-t1">T1</span></td>
+<td>Bundle reviews into base tier; advanced features (security scan, architecture review) as add-ons</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- WTP ASSESSMENT                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="wtp">
+  <h2>Willingness-to-Pay Assessment</h2>
+  <p class="section-sub">Mid-market teams will pay 2-3x what we currently charge per developer — we are leaving money on the table. Van Westendorp Price Sensitivity Meter is a four-question method for finding the acceptable price range by asking customers where prices feel too cheap, cheap, expensive, and too expensive.</p>
+
+<h3>WTP Range by Segment</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Segment</th>
+<th>Floor</th>
+<th>Sweet Spot</th>
+<th>Ceiling</th>
+<th>Evidence</th>
+<th>Confidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Startups (3-10 devs)</strong></td>
+<td>$6/dev/mo</td>
+<td>$10/dev/mo</td>
+<td>$16/dev/mo</td>
+<td><span class="ev-badge ev-t3">T3</span> 14 interviews; price sensitivity high</td>
+<td><span class="conf-pill conf-m">M</span></td>
+</tr>
+<tr>
+<td><strong>Mid-Market (10-50 devs)</strong></td>
+<td>$10/dev/mo</td>
+<td>$16/dev/mo</td>
+<td>$24/dev/mo</td>
+<td><span class="ev-badge ev-t3">T3</span> 16 interviews; value-aware buyers</td>
+<td><span class="conf-pill conf-m">M</span></td>
+</tr>
+<tr>
+<td><strong>Enterprise (50+ devs)</strong></td>
+<td>$14/dev/mo</td>
+<td>$22/dev/mo</td>
+<td>$35/dev/mo</td>
+<td><span class="ev-badge ev-t3">T3</span> 8 interviews; procurement-gated</td>
+<td><span class="conf-pill conf-l">L</span></td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Method used:</strong> Van Westendorp PSM (adapted for B2B SaaS) across 38 customer interviews. Supplemented by competitive price inference <span class="ev-badge ev-t4">T4</span> from GitHub Copilot ($19/seat), Sourcery ($14/dev), and Codacy ($15/dev) public pricing.</p>
+
+<h3>Van Westendorp Output</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Metric</th>
+<th>All Segments (n=38)</th>
+<th>Interpretation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Point of Marginal Cheapness</strong></td>
+<td>$7/dev/mo <span class="ev-badge ev-t3">T3</span></td>
+<td>Below $7, buyers question quality. "If it's that cheap, the AI probably isn't good."</td>
+</tr>
+<tr>
+<td><strong>Optimal Price Point (OPP)</strong></td>
+<td>$14/dev/mo <span class="ev-badge ev-t3">T3</span></td>
+<td>Least resistance. Equal numbers say "too cheap" and "too expensive."</td>
+</tr>
+<tr>
+<td><strong>Indifference Price Point (IDP)</strong></td>
+<td>$17/dev/mo <span class="ev-badge ev-t3">T3</span></td>
+<td>"Going rate" — what buyers assume code review tools cost.</td>
+</tr>
+<tr>
+<td><strong>Point of Marginal Expensiveness</strong></td>
+<td>$26/dev/mo <span class="ev-badge ev-t3">T3</span></td>
+<td>Above $26, demand drops sharply. "At that price, I'd just hire another reviewer."</td>
+</tr>
+</tbody></table></div>
+
+<figure class="code-figure"><pre><code>    Van Westendorp Price Sensitivity — CodeLens AI (n=38)
+
+    % of respondents
+    100% ┤
+         │ Too Cheap ╲         ╱ Too Expensive
+     80% ┤            ╲       ╱
+         │             ╲     ╱
+     60% ┤              ╲   ╱
+         │               ╲ ╱
+     40% ┤    Cheap ╲     X     ╱ Expensive
+         │           ╲  ╱ ╲   ╱
+     20% ┤            X    ╲ X
+         │          ╱  ╲    ╱ ╲
+      0% ┼────┬────┬────┬────┬────┬────┬────
+         $5   $8  $11  $14  $17  $22  $30
+                          ▲         ▲
+                         OPP       PME
+                        $14/dev   $26/dev</code></pre></figure>
+
+<h3>Key Finding</h3>
+<div class="aside decision"><span class="a-icon">&#9670;</span><p><strong>CodeLens AI has significant pricing power it is not capturing.</strong> The optimal price point ($14/dev/mo) is 3.4x the effective per-developer cost of the current flat rate for a 10-person team ($49/10 = $4.90/dev). Mid-market and enterprise segments show willingness to pay $16-22/dev — the current flat $49/team pricing leaves $120-$1,051/month on the table per team, depending on size.</p></div>
+
+<h3>Segment-Specific Insights</h3>
+
+<div class="data-grid">
+  <div class="data-card">
+    <h4>Startups (3-10 devs)</h4>
+    <p><strong>WTP driver:</strong> Time savings. "Each review saves 15-20 min of manual code review" <span class="ev-badge ev-t3">T3</span>. <strong>Price anchor:</strong> GitHub Copilot at $19/seat sets ceiling. <strong>Churn risk at $12/dev:</strong> Low — most startups currently pay $49 flat ($4.90-16.33/dev effective), so per-dev pricing at $12 is a wash for 4-dev teams and a modest increase for 3-dev teams.</p>
+  </div>
+  <div class="data-card">
+    <h4>Mid-Market (10-50 devs)</h4>
+    <p><strong>WTP driver:</strong> Code quality + velocity. "Catches bugs our senior devs would catch, but 10x faster" <span class="ev-badge ev-t3">T3</span>. <strong>Price anchor:</strong> Cost of a senior developer's review time ($75/hr, 30 min/review = $37.50/review). <strong>Churn risk at $19/dev:</strong> Medium — current effective rate is $0.98-4.90/dev; this is a 4-19x increase. Requires value demonstration.</p>
+  </div>
+  <div class="data-card">
+    <h4>Enterprise (50+ devs)</h4>
+    <p><strong>WTP driver:</strong> Compliance + security scanning. "We need audit trails and vulnerability detection" <span class="ev-badge ev-t3">T3</span>. <strong>Price anchor:</strong> Veracode/Snyk at $30-50/dev for security scanning. <strong>Churn risk at custom pricing:</strong> Low for locked-in accounts; high if no grandfathering.</p>
+  </div>
+</div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Van Westendorp OPP is $14/dev/mo across all segments; enterprise ceiling is $35/dev/mo <span class="ev-badge ev-t3">T3</span> (n=38 interviews).</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">CodeLens has been underpricing by 3-4x for mid-market and enterprise segments. The flat $49/team model was designed for early adoption, not sustainable scaling. Every enterprise customer acquired at $49 flat deepens the margin problem.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Set Starter tier at $12/dev (below OPP, captures startups), Pro at $19/dev (near IDP, captures mid-market), Enterprise at custom ($22-30/dev, captures enterprise). Include review allocations that align cost structure with revenue.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-m">M</span> — 38 interviews is sufficient for directional WTP but below the n=100 threshold for high confidence. Recommend running a larger Gabor-Granger study (n=200) before committing to final prices.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Free trial conversion rate after pricing change. If conversion drops >30% in first 60 days, the Starter tier is priced above the market's entry threshold.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- COMPETITIVE PRICING MAP                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="competitive-map">
+  <h2>Competitive Pricing Map</h2>
+  <p class="section-sub">CodeLens AI competes in a market where AI-assisted code review is emerging alongside established code quality tools. The reference price — what buyers mentally anchor to — is set by GitHub Copilot at $19/seat, even though Copilot does autocompletion, not review.</p>
+
+<h3>Competitive Pricing Matrix</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Competitor</th>
+<th>Model</th>
+<th>Entry Price</th>
+<th>Mid Tier</th>
+<th>Top Tier</th>
+<th>Free Tier?</th>
+<th>Positioning</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>GitHub Copilot</strong></td>
+<td>Per-seat</td>
+<td>$10/mo (Individual)</td>
+<td>$19/mo (Business)</td>
+<td>$39/mo (Enterprise)</td>
+<td>Yes (limited)</td>
+<td>AI code completion (not review)</td>
+<td><span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>Sourcery</strong></td>
+<td>Per-dev</td>
+<td>Free (OSS)</td>
+<td>$14/dev/mo (Pro)</td>
+<td>Custom (Enterprise)</td>
+<td>Yes</td>
+<td>AI code review + refactoring</td>
+<td><span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>Codacy</strong></td>
+<td>Per-dev (tiered)</td>
+<td>Free (3 users)</td>
+<td>$15/dev/mo (Pro)</td>
+<td>Custom (Enterprise)</td>
+<td>Yes (limited)</td>
+<td>Automated code quality + SAST</td>
+<td><span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>SonarQube Cloud</strong></td>
+<td>Per-LOC</td>
+<td>Free (small projects)</td>
+<td>$30/mo (100K LOC)</td>
+<td>Custom</td>
+<td>Yes</td>
+<td>Static analysis + quality gates</td>
+<td><span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>Manual Code Review</strong></td>
+<td>Time-based</td>
+<td>$37.50/review</td>
+<td>$75/review (senior)</td>
+<td>$150/review (architect)</td>
+<td>N/A</td>
+<td>Human expertise, slow, expensive</td>
+<td><span class="ev-badge ev-t4">T4</span></td>
+</tr>
+<tr>
+<td><strong>CodeLens AI (current)</strong></td>
+<td>Flat per-team</td>
+<td>$49/mo</td>
+<td>$49/mo</td>
+<td>$49/mo</td>
+<td>No</td>
+<td>AI code review, unlimited</td>
+<td><span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td><strong>CodeLens AI (proposed)</strong></td>
+<td><strong>Hybrid (seat + usage)</strong></td>
+<td><strong>$12/dev/mo</strong></td>
+<td><strong>$19/dev/mo</strong></td>
+<td><strong>Custom</strong></td>
+<td><strong>Yes (100 reviews)</strong></td>
+<td><strong>AI code review + security</strong></td>
+<td></td>
+</tr>
+</tbody></table></div>
+
+<h3>Price-Value Position Map</h3>
+
+<figure class="code-figure"><pre><code>    Price ($/dev/mo)
+     $40 ┤                          GitHub Copilot
+         │                          Enterprise ●
+     $35 ┤
+         │
+     $30 ┤                   ● SonarQube (equiv.)
+         │
+     $25 ┤
+         │
+     $20 ┤           ● Sourcery   ● GitHub Copilot Biz
+         │                      ● CodeLens Pro (proposed)
+     $15 ┤        ● Codacy
+         │     ● CodeLens Starter (proposed)
+     $10 ┤  ● GitHub Copilot Ind.
+         │
+      $5 ┤  ● CodeLens (current, effective per-dev for 10-dev team)
+         │
+      $0 ┼─────┬──────┬──────┬──────┬──────┬──────
+              Low           Perceived Value          High
+              (basic       (AI review    (AI review +
+              linting)      + insights)   security +
+                                         compliance)</code></pre></figure>
+
+<p><strong>Reference price effect:</strong> Buyers anchor to $19/seat (GitHub Copilot Business price) even though Copilot does code completion, not review <span class="ev-badge ev-t3">T3</span>. This works in CodeLens's favor — "AI code tool = ~$19/seat" is the mental model. Pricing Pro at $19/dev feels "normal" to buyers familiar with Copilot pricing.</p>
+
+<h3>Competitive Positioning Insights</h3>
+
+<div class="data-grid">
+  <div class="data-card">
+    <h4>Price Gap Opportunity</h4>
+    <p>No competitor owns the "$10-15/dev AI code review" slot. Sourcery is there ($14/dev) but lacks AI depth. CodeLens Starter at $12/dev occupies a gap below Copilot Business ($19) and above free tiers, with stronger AI review capabilities than Sourcery.</p>
+  </div>
+  <div class="data-card">
+    <h4>Enterprise Gap</h4>
+    <p>Enterprise pricing is opaque across competitors (all "Contact Sales"). CodeLens's advantage: AI review + security scanning in a single tool. Competing against Veracode ($30-50/dev) for security plus Copilot ($39/dev) for AI assistance means CodeLens at $22-30/dev is a bundle discount.</p>
+  </div>
+</div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">The AI code tool market clusters at $14-19/dev for mid-tier and $30-50/dev for enterprise with security <span class="ev-badge ev-t1">T1</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">CodeLens's current $49/team flat rate positions it as the cheapest option for large teams (effective $0.98/dev for 50-dev team) and the most expensive for solo developers ($49 vs. free tiers). This inverse pricing is incoherent — it rewards the most expensive customers and penalizes the cheapest ones.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Set Starter at $12/dev (below Sourcery $14, entry-level positioning), Pro at $19/dev (parity with Copilot Business, premium positioning), Enterprise at $22-30/dev (below Veracode+Copilot combined, bundle positioning). Include free tier with 100 reviews/month to match competitor free offerings.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-h">H</span> — competitive pricing data is public (T1) and cross-validated across multiple sources.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">GitHub Copilot pricing changes. If Copilot adds code review to Business tier at $19/mo, the reference price shifts and CodeLens Pro at $19 faces feature-parity pressure. Monitor Copilot feature announcements quarterly.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- PACKAGE ARCHITECTURE                                               -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="packages">
+  <h2>Package Architecture</h2>
+  <p class="section-sub">Good/Better/Best tier design — the framework for allocating features across plans to maximize conversion at each segment while creating natural upgrade triggers.</p>
+
+<h3>Tier Structure</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Dimension</th>
+<th>Free</th>
+<th>Starter ($12/dev/mo)</th>
+<th>Pro ($19/dev/mo)</th>
+<th>Enterprise (Custom)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Target persona</strong></td>
+<td>Solo devs, OSS maintainers</td>
+<td>Startups, small teams (3-10)</td>
+<td>Mid-market teams (10-50)</td>
+<td>Large orgs (50+ devs)</td>
+</tr>
+<tr>
+<td><strong>Core value prop</strong></td>
+<td>Try AI code review risk-free</td>
+<td>Ship faster with fewer bugs</td>
+<td>Team-wide code quality + velocity</td>
+<td>Compliance, security, governance</td>
+</tr>
+<tr>
+<td><strong>AI reviews included</strong></td>
+<td>100/mo</td>
+<td>500/dev/mo</td>
+<td>2,000/dev/mo</td>
+<td>Unlimited (fair use)</td>
+</tr>
+<tr>
+<td><strong>Overage rate</strong></td>
+<td>N/A (hard cap)</td>
+<td>$0.05/review</td>
+<td>$0.04/review</td>
+<td>Negotiated</td>
+</tr>
+<tr>
+<td><strong>Code review depth</strong></td>
+<td>Basic (style + bugs)</td>
+<td>Standard (bugs + performance)</td>
+<td>Deep (bugs + performance + architecture)</td>
+<td>Full (+ security + compliance)</td>
+</tr>
+<tr>
+<td><strong>Supported languages</strong></td>
+<td>3 languages</td>
+<td>10 languages</td>
+<td>All supported languages</td>
+<td>All + custom rules</td>
+</tr>
+<tr>
+<td><strong>Integrations</strong></td>
+<td>GitHub only</td>
+<td>GitHub + GitLab</td>
+<td>GitHub + GitLab + Bitbucket + Azure DevOps</td>
+<td>All + on-prem + SSO + SCIM</td>
+</tr>
+<tr>
+<td><strong>Review history</strong></td>
+<td>7 days</td>
+<td>90 days</td>
+<td>1 year</td>
+<td>Unlimited + audit logs</td>
+</tr>
+<tr>
+<td><strong>Security scanning</strong></td>
+<td><span class="icon-cross">&#10007;</span></td>
+<td><span class="icon-cross">&#10007;</span></td>
+<td><span class="icon-check">&#10003;</span> Basic SAST</td>
+<td><span class="icon-check">&#10003;</span> Advanced SAST + DAST + SCA</td>
+</tr>
+<tr>
+<td><strong>Team analytics</strong></td>
+<td><span class="icon-cross">&#10007;</span></td>
+<td>Basic dashboard</td>
+<td>Full analytics + trends</td>
+<td>Custom reports + API</td>
+</tr>
+<tr>
+<td><strong>Support</strong></td>
+<td>Community</td>
+<td>Email (48hr)</td>
+<td>Priority (12hr) + Slack</td>
+<td>Dedicated CSM + SLA</td>
+</tr>
+<tr>
+<td><strong>Price</strong></td>
+<td>$0</td>
+<td>$12/dev/mo ($10 annual)</td>
+<td>$19/dev/mo ($16 annual)</td>
+<td>Custom ($22-30/dev)</td>
+</tr>
+<tr>
+<td><strong>Upgrade trigger</strong></td>
+<td>Hit 100 review cap</td>
+<td>Need >500 reviews/dev or architecture insights</td>
+<td>Need security scanning or >50 devs</td>
+<td>N/A</td>
+</tr>
+</tbody></table></div>
+
+<h3>Feature Allocation Rationale</h3>
+
+<div class="power-item"><p><strong>Security scanning in Pro (not Starter):</strong> Security is the #1 cited reason enterprise teams upgrade <span class="ev-badge ev-t3">T3</span>. Placing basic SAST in Pro creates a natural upgrade trigger for Starter teams that mature into regulated environments (fintech, healthcare). Advanced security (DAST, SCA) in Enterprise creates the next upgrade trigger. This is deliberate feature gating, not artificial restriction — security scanning requires significantly more compute ($0.35/scan vs. $0.12/review).</p></div>
+
+<div class="power-item"><p><strong>Architecture review depth in Pro (not Starter):</strong> Architecture-level AI analysis (detecting design pattern violations, suggesting refactoring) requires larger context windows and more expensive inference ($0.28/review vs. $0.12 for standard). Including it in Starter would make the $12/dev price unprofitable for teams that use it heavily.</p></div>
+
+<div class="power-item"><p><strong>Free tier at 100 reviews/month:</strong> Matches competitor free tiers (Sourcery, Codacy both have free OSS tiers). 100 reviews is enough for a solo developer doing ~5 PRs/week to evaluate the product for 1 month. Conversion target: 8-12% of free users to Starter within 60 days <span class="ev-badge ev-t4">T4</span>.</p></div>
+
+<div class="power-item"><p><strong>Overage pricing ($0.05 Starter, $0.04 Pro):</strong> Set above marginal cost ($0.12/review) margin but below the per-review equivalent of the next tier. A Starter user doing 800 reviews/dev pays $12 + (300 * $0.05) = $27/dev — at which point upgrading to Pro at $19/dev with 2,000 reviews is clearly better. This creates a self-selection mechanism: heavy users upgrade, light users stay.</p></div>
+
+<h3>Add-On Strategy</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Add-on</th>
+<th>Price</th>
+<th>Why Separate</th>
+<th>Target Buyer</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Custom Review Rules</strong></td>
+<td>$5/dev/mo</td>
+<td>Only 15% of teams need custom linting rules <span class="ev-badge ev-t3">T3</span></td>
+<td>Enterprise teams with internal coding standards</td>
+</tr>
+<tr>
+<td><strong>Review API Access</strong></td>
+<td>$3/dev/mo</td>
+<td>Developer platform play; limited demand today <span class="ev-badge ev-t4">T4</span></td>
+<td>Platform teams building custom CI/CD pipelines</td>
+</tr>
+<tr>
+<td><strong>Compliance Reporting (SOC 2, ISO 27001)</strong></td>
+<td>$8/dev/mo</td>
+<td>Requires additional audit infrastructure <span class="ev-badge ev-t4">T4</span></td>
+<td>Regulated industries (fintech, healthcare)</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- SENSITIVITY ANALYSIS                                               -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="sensitivity">
+  <h2>Sensitivity Analysis</h2>
+  <p class="section-sub">What happens to revenue if our pricing assumptions are wrong by 10-30%? The table below stress-tests the Pro tier ($19/dev/mo) — the tier that drives the majority of projected revenue.</p>
+
+<h3>Revenue Impact at Price Variations (Pro Tier)</h3>
+
+<p><strong>Assumptions:</strong> 1,200 teams on Pro tier (50% of current 2,400 base), average 12 devs/team, 85% annual retention at base price.</p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Scenario</th>
+<th>Price/Dev/Mo</th>
+<th>Est. Teams</th>
+<th>Avg Devs/Team</th>
+<th>Monthly Revenue</th>
+<th>Annual Revenue</th>
+<th>vs. Base</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>-30%</td>
+<td>$13.30</td>
+<td>1,380 <span class="ev-badge ev-t5">T5</span></td>
+<td>12</td>
+<td>$220K</td>
+<td>$2.64M</td>
+<td>-22%</td>
+</tr>
+<tr>
+<td>-20%</td>
+<td>$15.20</td>
+<td>1,320 <span class="ev-badge ev-t5">T5</span></td>
+<td>12</td>
+<td>$241K</td>
+<td>$2.89M</td>
+<td>-15%</td>
+</tr>
+<tr>
+<td>-10%</td>
+<td>$17.10</td>
+<td>1,260 <span class="ev-badge ev-t5">T5</span></td>
+<td>12</td>
+<td>$259K</td>
+<td>$3.10M</td>
+<td>-8%</td>
+</tr>
+<tr style="background:var(--accent-light)">
+<td><strong>Base (recommended)</strong></td>
+<td><strong>$19.00</strong></td>
+<td><strong>1,200</strong></td>
+<td><strong>12</strong></td>
+<td><strong>$274K</strong></td>
+<td><strong>$3.28M</strong></td>
+<td><strong>--</strong></td>
+</tr>
+<tr>
+<td>+10%</td>
+<td>$20.90</td>
+<td>1,100 <span class="ev-badge ev-t5">T5</span></td>
+<td>12</td>
+<td>$276K</td>
+<td>$3.31M</td>
+<td>+1%</td>
+</tr>
+<tr>
+<td>+20%</td>
+<td>$22.80</td>
+<td>1,000 <span class="ev-badge ev-t5">T5</span></td>
+<td>12</td>
+<td>$274K</td>
+<td>$3.28M</td>
+<td>+0%</td>
+</tr>
+<tr>
+<td>+30%</td>
+<td>$24.70</td>
+<td>880 <span class="ev-badge ev-t5">T5</span></td>
+<td>12</td>
+<td>$261K</td>
+<td>$3.13M</td>
+<td>-5%</td>
+</tr>
+</tbody></table></div>
+
+<div class="aside"><span class="a-icon">&#9670;</span><p><strong>The revenue curve is relatively flat between $17-23/dev.</strong> This is a good sign — it means the $19 recommendation isn't sitting on a knife edge. Even if we're wrong by 20% in either direction, revenue impact is within 15%. The real risk isn't the price point; it's the churn rate during migration (see Revenue Impact section).</p></div>
+
+<h3>Full Portfolio Revenue Projection</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Tier</th>
+<th>Est. Teams</th>
+<th>Avg Devs</th>
+<th>Price/Dev/Mo</th>
+<th>Monthly Revenue</th>
+<th>Annual Revenue</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Free</strong></td>
+<td>3,000 (new)</td>
+<td>1.5</td>
+<td>$0</td>
+<td>$0</td>
+<td>$0</td>
+</tr>
+<tr>
+<td><strong>Starter</strong></td>
+<td>960</td>
+<td>5</td>
+<td>$12</td>
+<td>$57.6K</td>
+<td>$691K</td>
+</tr>
+<tr>
+<td><strong>Pro</strong></td>
+<td>1,200</td>
+<td>12</td>
+<td>$19</td>
+<td>$274K</td>
+<td>$3.28M</td>
+</tr>
+<tr>
+<td><strong>Enterprise</strong></td>
+<td>240</td>
+<td>85</td>
+<td>$26 (avg)</td>
+<td>$530K</td>
+<td>$6.36M</td>
+</tr>
+<tr>
+<td><strong>Overage Revenue</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>$48K</td>
+<td>$576K</td>
+</tr>
+<tr>
+<td><strong>Add-ons</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>$27K</td>
+<td>$324K</td>
+</tr>
+<tr style="background:var(--accent-light)">
+<td><strong>Total (Year 1)</strong></td>
+<td><strong>5,400</strong></td>
+<td>—</td>
+<td>—</td>
+<td><strong>$936K</strong></td>
+<td><strong>$11.2M</strong></td>
+</tr>
+<tr style="background:var(--sage-light)">
+<td><strong>Total (Year 1 + expansion)</strong></td>
+<td><strong>5,400+</strong></td>
+<td>—</td>
+<td>—</td>
+<td><strong>$1.18M</strong></td>
+<td><strong>$14.2M</strong></td>
+</tr>
+</tbody></table></div>
+
+<h3>Key Variable Sensitivity</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Variable</th>
+<th>If Wrong by 20%</th>
+<th>Impact on Recommendation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>WTP estimate ($14 OPP)</strong></td>
+<td>If true OPP is $11 → Starter at $12 is above OPP; consider $10 entry</td>
+<td>Starter tier price changes; Pro tier unaffected (anchored to Copilot)</td>
+</tr>
+<tr>
+<td><strong>Migration churn rate (est. 12%)</strong></td>
+<td>If 14.4% churn → lose 346 teams instead of 288; $-480K annual impact</td>
+<td>Extend grandfathering window from 6 to 9 months</td>
+</tr>
+<tr>
+<td><strong>Marginal cost ($0.12/review)</strong></td>
+<td>If $0.144 → Starter overage ($0.05) margin drops to 65%; still viable</td>
+<td>No model change needed; monitor GPU cost quarterly</td>
+</tr>
+<tr>
+<td><strong>Enterprise avg team size (85 devs)</strong></td>
+<td>If 68 devs avg → Enterprise revenue drops $1.1M annually</td>
+<td>Increase Enterprise floor price from $22 to $25/dev</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- REVENUE IMPACT                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="revenue-impact">
+  <h2>Revenue Impact Modeling</h2>
+  <p class="section-sub">The pricing transition affects 2,400 existing paying teams. The primary risk is migration churn — teams that leave because they refuse to pay more, even if the product is worth it.</p>
+
+<h3>Churn Risk by Segment</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Segment</th>
+<th>Current Teams</th>
+<th>Price Change (Effective Per-Dev)</th>
+<th>Est. Churn Risk</th>
+<th>Confidence</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Solo/2-dev teams</strong></td>
+<td>480 (20%)</td>
+<td>$49 flat → $24-38/team (+49-22% decrease for 2-dev, +53% increase for 1-dev via Starter) </td>
+<td>18% <span class="dot yellow"></span></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> interviews; some will move to free tier</td>
+</tr>
+<tr>
+<td><strong>Small teams (3-10 devs)</strong></td>
+<td>960 (40%)</td>
+<td>$49 flat → $36-120/team (Starter) or $57-190 (Pro)</td>
+<td>15% <span class="dot yellow"></span></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> price shock risk; mitigated by grandfathering</td>
+</tr>
+<tr>
+<td><strong>Mid-market (10-50 devs)</strong></td>
+<td>720 (30%)</td>
+<td>$49 flat → $120-600/team (Starter) or $190-950 (Pro)</td>
+<td>8% <span class="dot green"></span></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> value-aware; most see per-dev pricing as "fair"</td>
+</tr>
+<tr>
+<td><strong>Enterprise (50+ devs)</strong></td>
+<td>240 (10%)</td>
+<td>$49 flat → $1,100-2,550+/team (Enterprise)</td>
+<td>5% <span class="dot green"></span></td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td><span class="ev-badge ev-t3">T3</span> locked in via workflow integration; n=8 low sample</td>
+</tr>
+</tbody></table></div>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="val">12%</div><div class="lbl">Blended Churn Est.</div></div>
+  <div class="stat-card"><div class="val">288</div><div class="lbl">Teams At-Risk</div></div>
+  <div class="stat-card"><div class="val">$1.4M</div><div class="lbl">Revenue At-Risk (annual)</div></div>
+  <div class="stat-card"><div class="val">$6.2M</div><div class="lbl">Net Revenue Uplift (annual)</div></div>
+</div>
+
+<h3>Grandfathering Strategy</h3>
+
+<div class="aside strategy"><span class="a-icon">&#9670;</span><p><strong>6-Month Legacy Pricing Window.</strong> All existing customers keep $49/team flat-rate for 6 months from announcement. After 6 months, they transition to the closest-value new tier with a 20% loyalty discount locked for 12 months. This gives teams time to evaluate, budget, and decide — reducing "sticker shock" churn.</p></div>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Grandfathering Phase</th>
+<th>Timeline</th>
+<th>What Happens</th>
+<th>Revenue Impact</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Phase 1: Announcement</strong></td>
+<td>Month 0</td>
+<td>Email all customers. "New pricing in 6 months. Your current price is locked until then."</td>
+<td>$0 — no change yet</td>
+</tr>
+<tr>
+<td><strong>Phase 2: Legacy window</strong></td>
+<td>Month 1-6</td>
+<td>Existing customers stay at $49/team. New customers on new pricing only.</td>
+<td>+$320K (new customer uplift)</td>
+</tr>
+<tr>
+<td><strong>Phase 3: Migration</strong></td>
+<td>Month 7</td>
+<td>All customers move to new tiers. 20% loyalty discount applied automatically.</td>
+<td>-$169K (grandfathering cost) / +$480K (migration uplift)</td>
+</tr>
+<tr>
+<td><strong>Phase 4: Full pricing</strong></td>
+<td>Month 19+</td>
+<td>Loyalty discount expires. All customers on standard pricing.</td>
+<td>+$169K (discount recovery)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Net Revenue Impact (12-Month)</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Impact Dimension</th>
+<th>Estimate</th>
+<th>Confidence</th>
+<th>Evidence</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Existing customer churn</strong></td>
+<td>-$1.4M annual (288 teams at avg $49 * 12 * usage-weighted)</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> interview data + <span class="ev-badge ev-t4">T4</span> SaaS churn benchmarks</td>
+</tr>
+<tr>
+<td><strong>Grandfathering cost</strong></td>
+<td>-$169K/mo for 12 months (loyalty discount)</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td><span class="ev-badge ev-t1">T1</span> calculated from current base</td>
+</tr>
+<tr>
+<td><strong>Existing customer upgrade revenue</strong></td>
+<td>+$5.6M annual (surviving teams on new per-dev pricing)</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> WTP data applied to team size distribution</td>
+</tr>
+<tr>
+<td><strong>New customer revenue (new pricing)</strong></td>
+<td>+$3.8M annual (est. 800 new teams at blended $19/dev)</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td><span class="ev-badge ev-t4">T4</span> based on historical acquisition rate</td>
+</tr>
+<tr>
+<td><strong>Competitive response likelihood</strong></td>
+<td>Low — Sourcery and Codacy are smaller; GitHub Copilot is focused on completion, not review</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t4">T4</span></td>
+</tr>
+<tr style="background:var(--sage-light)">
+<td><strong>Net revenue impact (12-month)</strong></td>
+<td><strong>+$6.2M (from $8M → $14.2M ARR)</strong></td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td></td>
+</tr>
+</tbody></table></div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Current flat-rate pricing generates $8M ARR with negative margins on 10% of customers (enterprise). The top 240 enterprise teams generate $141K in annual revenue but $518K-1.15M in annual compute costs <span class="ev-badge ev-t1">T1</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Without pricing change, the business becomes less profitable as it grows. Every enterprise customer acquired deepens the margin crisis. The $49 flat rate is a <strong>growth ceiling</strong>, not just a revenue optimization issue.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Execute the pricing transition with 6-month grandfathering. Accept 12% churn as the cost of fixing structural margin problems. Target $14.2M ARR at month 12 with healthy 60%+ gross margins across all segments.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-m">M</span> — revenue projections are modeled, not observed. The 12% churn estimate is the most uncertain variable. If churn is 20%, net impact drops to +$4.8M (still strongly positive).</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Monthly churn rate during migration (months 7-9). If >4% monthly churn during migration → pause migration, extend grandfathering to 9 months, investigate churn reasons.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- IMPLEMENTATION PLAN                                                -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="implementation">
+  <h2>Implementation Plan</h2>
+  <p class="section-sub">A 12-month rollout with 4 phases. The critical path item is usage metering infrastructure (engineering must ship before new pricing can launch for new customers).</p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Phase</th>
+<th>Timeline</th>
+<th>Action</th>
+<th>Owner</th>
+<th>Risk</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>1. Build</strong></td>
+<td>Month 1-2</td>
+<td>Ship usage metering (per-review counting), billing integration (Stripe usage-based billing), in-product usage dashboard, tier gating logic</td>
+<td>Engineering + Billing</td>
+<td>Metering accuracy; edge cases (retries, partial reviews)</td>
+</tr>
+<tr>
+<td><strong>2. Announce</strong></td>
+<td>Month 3</td>
+<td>Email all 2,400 teams: new pricing in 6 months, current price locked until then. Blog post explaining why (cost transparency, better tiers). 1:1 outreach to top 50 enterprise accounts.</td>
+<td>PM + Marketing + CS</td>
+<td>Social media backlash; competitor poaching during window</td>
+</tr>
+<tr>
+<td><strong>3. New customers</strong></td>
+<td>Month 3+</td>
+<td>All new sign-ups on new pricing (Free/Starter/Pro/Enterprise). Monitor conversion rates, NPS, support tickets.</td>
+<td>Growth + Sales</td>
+<td>Conversion rate drop vs. old flat-rate model</td>
+</tr>
+<tr>
+<td><strong>4. Existing migration</strong></td>
+<td>Month 9</td>
+<td>Auto-migrate all existing customers to closest-value new tier. Apply 20% loyalty discount. High-touch outreach for enterprise accounts.</td>
+<td>CS + Sales + Billing</td>
+<td>Churn spike; billing errors; support volume surge</td>
+</tr>
+<tr>
+<td><strong>5. Monitor</strong></td>
+<td>Month 9-12</td>
+<td>Track: churn by segment, NPS delta, support ticket volume, overage frequency, tier upgrade rate. Weekly pricing review for 90 days.</td>
+<td>PM + Finance</td>
+<td>Slow feedback loop if metrics aren't instrumented</td>
+</tr>
+<tr>
+<td><strong>6. Optimize</strong></td>
+<td>Month 12+</td>
+<td>Review Year 1 results. Adjust tier boundaries, overage rates, and add-on pricing based on observed behavior. Expire loyalty discounts.</td>
+<td>PM + Finance</td>
+<td>Loyalty discount expiry creates a "second price shock"</td>
+</tr>
+</tbody></table></div>
+
+<h3>Communication Plan</h3>
+
+<div class="data-grid">
+  <div class="data-card">
+    <h4>Email Sequence (All Customers)</h4>
+    <p><strong>Month 3:</strong> "Pricing is evolving" — explain why, lock current price for 6 months, link to FAQ. <strong>Month 5:</strong> "Your new plan recommendation" — auto-calculated best tier, savings comparison. <strong>Month 8:</strong> "30 days until migration" — final reminder, upgrade/downgrade options. <strong>Month 9:</strong> "You're on your new plan" — confirmation, loyalty discount applied.</p>
+  </div>
+  <div class="data-card">
+    <h4>Enterprise High-Touch (Top 50 Accounts)</h4>
+    <p><strong>Month 3:</strong> 1:1 call with CSM. Walk through new pricing, negotiate custom Enterprise terms. <strong>Month 5:</strong> Follow-up with custom proposal. <strong>Month 8:</strong> Contract signing for annual Enterprise commitments (lock in before migration). Goal: convert 80% of top 50 to annual Enterprise contracts before migration.</p>
+  </div>
+</div>
+
+<h3>Engineering Requirements</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Effort (eng-weeks)</th>
+<th>Dependency</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Usage metering (per-review counter)</td>
+<td>P0</td>
+<td>3 weeks</td>
+<td>Must ship before new pricing launches</td>
+</tr>
+<tr>
+<td>Stripe usage-based billing integration</td>
+<td>P0</td>
+<td>2 weeks</td>
+<td>Depends on metering</td>
+</tr>
+<tr>
+<td>In-product usage dashboard</td>
+<td>P1</td>
+<td>2 weeks</td>
+<td>Depends on metering</td>
+</tr>
+<tr>
+<td>Tier gating logic (feature access by plan)</td>
+<td>P0</td>
+<td>2 weeks</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Migration tooling (auto-assign best tier)</td>
+<td>P1</td>
+<td>1 week</td>
+<td>Depends on tier gating</td>
+</tr>
+<tr>
+<td>Overage alerts (80%, 100% usage notifications)</td>
+<td>P1</td>
+<td>1 week</td>
+<td>Depends on metering</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- ASSUMPTIONS & CRITIQUE                                             -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="assumptions">
+  <h2>Assumptions &amp; Self-Critique</h2>
+
+<h3>Assumption Registry</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>#</th>
+<th>Assumption</th>
+<th>Framework It Underpins</th>
+<th>Confidence</th>
+<th>Evidence</th>
+<th>What Would Invalidate This</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>WTP OPP of $14/dev/mo is directionally correct</strong></td>
+<td>WTP Assessment, Package Architecture pricing</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> (n=38 Van Westendorp)</td>
+<td>If a larger study (n=200) shows OPP at $8-10/dev → Starter at $12 is overpriced</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Migration churn will be ~12% blended</strong></td>
+<td>Revenue Impact Modeling</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> interview sentiment + <span class="ev-badge ev-t4">T4</span> SaaS repricing benchmarks</td>
+<td>If churn exceeds 20% → net revenue uplift drops below $4M; grandfathering window needs extension</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>GitHub Copilot will not add code review to its $19 Business tier within 12 months</strong></td>
+<td>Competitive Pricing Map, Pro tier pricing</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td><span class="ev-badge ev-t4">T4</span> inference from Copilot roadmap signals</td>
+<td>If Copilot adds AI review at $19/seat → CodeLens Pro at $19 loses differentiation; price must include features Copilot can't match (security, custom rules)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Enterprise teams (50+ devs) will accept per-dev pricing with custom contracts</strong></td>
+<td>Package Architecture, Enterprise tier</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> (n=8 enterprise interviews)</td>
+<td>If enterprise procurement insists on flat annual contracts → per-dev model fails for largest customers; need annual commit option</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Marginal cost per review stays at or below $0.12 for 12 months</strong></td>
+<td>Model Selection, Overage pricing, Margin calculations</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td><span class="ev-badge ev-t1">T1</span> current GPU costs + <span class="ev-badge ev-t4">T4</span> GPU cost trend (declining)</td>
+<td>If a model upgrade increases per-review cost to $0.20+ → overage pricing at $0.05 is unprofitable; need to renegotiate or use smaller models</td>
+</tr>
+</tbody></table></div>
+
+<h3>Cross-Framework Contradictions</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Contradiction</th>
+<th>Framework A Says</th>
+<th>Framework B Says</th>
+<th>Resolution</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>WTP vs. Competitive Map on Starter pricing</strong></td>
+<td>WTP OPP is $14/dev → Starter should be $14</td>
+<td>Competitive map shows Sourcery at $14, Codacy at $15 → parity pricing</td>
+<td>Set Starter at $12 (below OPP and competitors) to win on entry price. Use Pro at $19 to capture the $14-19 WTP range with better features. Underprice entry, upsell on value.</td>
+</tr>
+<tr>
+<td><strong>Budget predictability vs. cost protection</strong></td>
+<td>72% of buyers want fixed monthly costs (interviews)</td>
+<td>Model selection requires usage component to protect margins</td>
+<td>Hybrid model: base seat price gives predictability, overage kicks in only above generous included allocation. 90% of teams stay within included reviews — only 10% see variable bills.</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Adversarial Self-Critique</h3>
+
+<h4>Weakness 1: The 38-Interview WTP Sample Is Too Small for a Pricing Decision of This Magnitude</h4>
+
+<p><strong>What I assumed:</strong> 38 customer interviews via Van Westendorp provide sufficient signal for a $8M ARR repricing decision.</p>
+
+<p><strong>What could be wrong:</strong> Van Westendorp is reliable at n=100+. At n=38, the confidence intervals are wide — the "true" OPP could be anywhere from $10 to $18. If the OPP is actually $10, the Starter tier at $12 is above the optimal price and the Pro tier at $19 is in the "expensive" zone for most buyers, not the "sweet spot." This would increase churn by 5-10 percentage points.</p>
+
+<p><strong>Evidence that would disprove this analysis:</strong> A Gabor-Granger study at n=200 showing OPP at $10 or below. If post-launch conversion rates are 30%+ below projections in the first 90 days.</p>
+
+<p><strong>Recommendation:</strong> Run a quantitative WTP study (Gabor-Granger, n=200) during the 6-month grandfathering window. Adjust Starter price before migration if data contradicts the $14 OPP.</p>
+
+<hr class="section-divider">
+
+<h4>Weakness 2: GitHub Copilot Adding Code Review Is an Existential Risk This Strategy Ignores</h4>
+
+<p><strong>What I assumed:</strong> GitHub Copilot's $19 Business tier does code completion, not code review. CodeLens AI differentiates on review depth.</p>
+
+<p><strong>What could be wrong:</strong> GitHub has the distribution (100M+ developers), the data (every public repo on GitHub), and the compute (Azure). If Copilot adds "AI Code Review" as a tab in the Business tier at $19/seat with no price increase, CodeLens's entire competitive moat evaporates. A startup charging $19/dev for AI code review cannot survive against a platform player offering the same capability as a free add-on to an existing $19/seat product.</p>
+
+<p><strong>Evidence that would disprove this analysis:</strong> GitHub Universe keynote announcing Copilot Code Review as a Business feature. Microsoft Build showcasing integrated review workflows in GitHub.</p>
+
+<p><strong>Recommendation:</strong> Build defensible differentiation that Copilot cannot easily replicate: custom review rules for enterprise coding standards, compliance audit trails (SOC 2, ISO 27001), and multi-repo architecture analysis. These are enterprise features that require dedicated infrastructure, not features GitHub would bundle into a developer tool.</p>
+
+<hr class="section-divider">
+
+<h4>Weakness 3: The Grandfathering Strategy May Create a "Second Price Shock" at Month 19</h4>
+
+<p><strong>What I assumed:</strong> The 20% loyalty discount (months 7-18) smooths the transition. Customers absorb the first shock and accept full pricing at month 19.</p>
+
+<p><strong>What could be wrong:</strong> Customers may anchor to the discounted price as their "real" price. When the loyalty discount expires at month 19, they experience a second price increase — from discounted to full rate. This could trigger a delayed churn wave, particularly among mid-market teams who already absorbed one increase. SaaS companies that run grandfathering discounts report 5-8% incremental churn at discount expiry <span class="ev-badge ev-t4">T4</span>.</p>
+
+<p><strong>Evidence that would disprove this analysis:</strong> If NPS scores during the loyalty discount period (months 7-18) are above pre-change levels, customers have accepted the new value proposition and will tolerate the discount expiry.</p>
+
+<p><strong>Recommendation:</strong> Monitor NPS and "perceived value" survey scores during the discount window. If NPS drops below pre-change baseline, consider converting the loyalty discount to a permanent "founding customer" rate to avoid the second shock.</p>
+
+<h3>Revision Triggers</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Trigger</th>
+<th>What to Re-Assess</th>
+<th>Timeline</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>GitHub Copilot announces code review feature</td>
+<td>Pro tier pricing, competitive differentiation strategy, feature allocation</td>
+<td>Within 30 days of announcement</td>
+</tr>
+<tr>
+<td>Migration churn exceeds 4%/month for 2+ months</td>
+<td>Grandfathering window, loyalty discount level, Starter price point</td>
+<td>Weekly monitoring during months 7-12</td>
+</tr>
+<tr>
+<td>GPU inference cost increases >20%</td>
+<td>Overage pricing, included review allocations, margin model</td>
+<td>Quarterly review</td>
+</tr>
+<tr>
+<td>Gabor-Granger study (n=200) shows OPP &lt;$10</td>
+<td>Starter tier price, Pro tier positioning</td>
+<td>Before migration at month 7</td>
+</tr>
+<tr>
+<td>Competitor raises prices (Sourcery or Codacy at $20+)</td>
+<td>Competitive map, potential to raise Starter to $15</td>
+<td>Within 60 days of competitor change</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- TRY IT YOURSELF                                                    -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="section" id="try-it">
+  <h2>Try It Yourself: Quick-Start Guide</h2>
+  <p class="section-sub"><strong>Apply this pricing framework to your own product in 4 steps:</strong></p>
+
+<ol>
+  <li><strong>Run the Context Gate</strong> (15 min)
+    <ul>
+      <li>Is the problem actually about pricing, or is it adoption/retention?</li>
+      <li>Do you have WTP evidence, cost structure data, and competitive pricing?</li>
+      <li>Flag gaps: <code>[WTP-EVIDENCE-LIMITED]</code>, <code>[COST-STRUCTURE-UNKNOWN]</code></li>
+    </ul>
+  </li>
+</ol>
+
+<ol start="2">
+  <li><strong>Select your pricing model</strong> (30 min)
+    <ul>
+      <li>Use the Model Selection Matrix: value delivery x cost structure x buyer type</li>
+      <li>Score 3-4 candidate models on Value Alignment, Cost Protection, Buyer Predictability, Competitive Fit</li>
+      <li>For AI products: check if marginal cost &gt;5% of price — if yes, usage-based or hybrid is required</li>
+    </ul>
+  </li>
+</ol>
+
+<ol start="3">
+  <li><strong>Map competitive pricing + WTP</strong> (60 min)
+    <ul>
+      <li>Build the Competitive Pricing Matrix from public pricing pages (T1 evidence)</li>
+      <li>Run Van Westendorp with at least 10 customer interviews (T3 evidence)</li>
+      <li>Identify price-value gaps where your product can position</li>
+    </ul>
+  </li>
+</ol>
+
+<ol start="4">
+  <li><strong>Design Good/Better/Best tiers</strong> (45 min)
+    <ul>
+      <li>Allocate features based on segment WTP and upgrade triggers</li>
+      <li>Set prices within Van Westendorp range, benchmarked against competitive map</li>
+      <li>Build the Sensitivity Analysis table at +/-10/20/30% from your recommendation</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Output:</strong> You'll have a board-ready pricing strategy in ~2.5 hours.</p>
+
+<hr class="section-divider">
+
+<h3>Install the Skill</h3>
+
+<p>To use this pricing framework with Claude Code:</p>
+
+<div class="code-figure"><pre><code># Add the PM Skills Arsenal marketplace
+claude plugin marketplace add avyayalaya/pm-skills-arsenal
+
+# Install the pricing-packaging skill
+claude plugin install pm-skills@avyayalaya
+
+# Run it on your product
+"Use the pricing-packaging skill to design pricing for [your product].
+Current pricing: [current model and price].
+Target segments: [your segments].
+Cost structure: [marginal cost per unit].
+Competitive pricing: [competitors and their prices]."</code></pre></div>
+
+<hr class="section-divider">
+
+<h3>Related Use Cases &amp; Skills</h3>
+<p class="section-sub"><strong>From this analysis to next steps:</strong></p>
+<ul>
+  <li>See <a href="use-case-figma-canva-express.html">Competitive Market Analysis use case</a> for mapping competitive positioning before setting prices</li>
+  <li>See <a href="use-case-discovery-research.html">Discovery Research use case</a> for running WTP interviews and validating pricing hypotheses</li>
+  <li>See <a href="use-case-metric-design.html">Metric Design use case</a> for measuring pricing impact (conversion rates, churn, ARPU)</li>
+  <li>See <a href="use-case-narrative-building.html">Narrative Building use case</a> for communicating pricing changes to customers and stakeholders</li>
+</ul>
+
+<p><strong>Real-world skill chains:</strong></p>
+<ul>
+  <li>Discovery Research (WTP interviews) → <strong>Pricing &amp; Packaging</strong> (model + tiers) → Narrative Building (change communication)</li>
+  <li>Competitive Market Analysis (positioning) → <strong>Pricing &amp; Packaging</strong> (competitive pricing map) → Metric Design (impact measurement)</li>
+  <li>Problem Framing (margin crisis diagnosis) → <strong>Pricing &amp; Packaging</strong> (structural fix) → Specification Writing (metering/billing requirements)</li>
+</ul>
+</div>
+
+<footer class="page-footer">
+  <span>CodeLens AI — Pricing &amp; Packaging · PM Skills Arsenal</span>
+  <span>Built with Claude Code</span>
+</footer>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('nav button').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

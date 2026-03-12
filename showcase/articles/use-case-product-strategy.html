@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loom AI — 6-Month Product Strategy — PM Skills Arsenal</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg:#FDFAF6; --surface:#FFFFFF; --text:#2C2520;
+  --text-secondary:#5A524A; --text-muted:#8B8178;
+  --accent:#B85C38; --accent-light:rgba(184,92,56,0.08);
+  --sage:#5B7B6A; --sage-light:rgba(91,123,106,0.08);
+  --warm-gold:#B8963E; --warm-gold-light:rgba(184,150,62,0.08);
+  --stone:#8B7D6B; --stone-light:rgba(139,125,107,0.08);
+  --human:#6B4C8A; --human-light:rgba(107,76,138,0.08);
+  --border:#E8E2DA; --border-light:#F0EBE4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* ── TOP BAR ── */
+.top-bar{max-width:980px;margin:0 auto;padding:16px 48px 0;display:flex;align-items:center;gap:8px}
+.top-bar a{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;border:1px solid var(--border);transition:all .15s}
+.top-bar a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-light)}
+.top-bar .sep{color:var(--border);font-size:14px}
+.top-bar .current{font-size:13px;color:var(--text-secondary);font-weight:500}
+@media(max-width:768px){.top-bar{padding:12px 24px 0}}
+/* ── HEADER ── */
+.page-header{max-width:980px;margin:0 auto;padding:32px 48px 36px;text-align:center}
+.overline{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Source Serif 4',Georgia,serif;font-size:40px;font-weight:700;color:var(--text);line-height:1.15;margin-bottom:16px}
+.subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;margin:0 auto 20px;line-height:1.65}
+.header-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;font-size:12.5px;color:var(--text-muted)}
+.header-meta strong{color:var(--text-secondary)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0}
+nav .inner{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:8px 48px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav button{background:none;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);padding:8px 16px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+nav button:hover{color:var(--text);background:var(--border-light)}
+nav button.active{color:var(--accent);background:var(--accent-light);font-weight:600}
+
+/* ── SECTIONS ── */
+.section{display:none;max-width:980px;margin:0 auto;padding:40px 48px 60px}
+.section.active{display:block}
+.section h2{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:15px;color:var(--text-secondary);margin-bottom:28px;line-height:1.65;max-width:760px}
+.section h3{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin:32px 0 10px}
+.section h4{font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;color:var(--text);margin:24px 0 6px}
+.section p{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0;max-width:760px}
+.section ul,.section ol{font-size:14.5px;color:var(--text-secondary);line-height:1.72;margin:10px 0 10px 24px;max-width:760px}
+.section li{margin:4px 0}
+.section li strong{color:var(--text)}
+.section a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)}
+.section a:hover{border-bottom-color:var(--accent)}
+.section code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--border-light);padding:1px 6px;border-radius:3px;color:var(--accent)}
+.section strong{color:var(--text)}
+.section-divider{border:none;border-top:1px solid var(--border-light);margin:28px 0}
+
+/* ── TABLES ── */
+.table-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--border);border-radius:8px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:13.5px}
+.table-wrap th{background:var(--surface);font-weight:600;color:var(--text);text-align:left;padding:10px 14px;border-bottom:2px solid var(--border);position:sticky;top:0;white-space:nowrap}
+.table-wrap td{padding:9px 14px;border-bottom:1px solid var(--border-light);color:var(--text-secondary);vertical-align:top}
+.table-wrap tr:last-child td{border-bottom:none}
+.table-wrap tbody tr:nth-child(even){background:rgba(253,250,246,0.6)}
+.table-wrap tbody tr:hover{background:var(--accent-light)}
+.table-wrap td:first-child{font-weight:500;color:var(--text)}
+
+/* ── ASIDE / CALLOUT ── */
+.aside{display:flex;gap:14px;padding:16px 20px;border-left:3px solid var(--sage);background:var(--sage-light);border-radius:0 8px 8px 0;margin:20px 0}
+.aside.decision{border-left-color:var(--accent);background:var(--accent-light)}
+.aside.watch{border-left-color:var(--warm-gold);background:var(--warm-gold-light)}
+.aside.strategy{border-left-color:var(--human);background:var(--human-light)}
+.a-icon{font-size:16px;flex-shrink:0;margin-top:1px;color:var(--text-muted)}
+.aside p{margin:0;font-size:14px;line-height:1.65;color:var(--text-secondary);max-width:none}
+
+/* ── CASCADE BLOCK ── */
+.cascade-block{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:24px 0}
+.cascade-header{background:var(--accent-light);padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.cascade-item{display:flex;padding:14px 20px;border-top:1px solid var(--border-light);gap:14px;align-items:flex-start}
+.cascade-label{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cascade-o .cascade-label{background:var(--sage-light);color:var(--sage)}
+.cascade-i .cascade-label{background:var(--warm-gold-light);color:var(--warm-gold)}
+.cascade-r .cascade-label{background:var(--accent-light);color:var(--accent)}
+.cascade-c .cascade-label{background:var(--stone-light);color:var(--stone)}
+.cascade-w .cascade-label{background:var(--human-light);color:var(--human)}
+.cascade-text{font-size:14px;line-height:1.65;color:var(--text-secondary);flex:1}
+.cascade-text strong{color:var(--text)}
+
+/* ── EVIDENCE BADGES / CONFIDENCE PILLS ── */
+.ev-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;vertical-align:middle;margin:0 1px;cursor:default}
+.ev-t1,.ev-t2{background:var(--sage-light);color:var(--sage)}
+.ev-t3{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t4{background:var(--warm-gold-light);color:var(--warm-gold)}
+.ev-t5,.ev-t6{background:var(--stone-light);color:var(--stone)}
+.ev-limited{background:var(--accent-light);color:var(--accent);font-size:9px}
+.ev-detail{font-size:12px;color:var(--text-muted);font-style:italic}
+.conf-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
+.conf-h{background:var(--sage-light);color:var(--sage)}
+.conf-m{background:var(--warm-gold-light);color:var(--warm-gold)}
+.conf-l{background:var(--accent-light);color:var(--accent)}
+
+/* ── COLORED DOTS ── */
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin:0 2px}
+.dot.green{background:#5B7B6A}
+.dot.yellow{background:#B8963E}
+.dot.red{background:#B85C38}
+
+/* ── CHECK / CROSS ICONS ── */
+.icon-check{color:var(--sage);font-weight:700;font-size:14px}
+.icon-cross{color:var(--accent);font-weight:700;font-size:14px}
+.icon-warn{color:var(--warm-gold);font-size:14px}
+
+/* ── PROGRESS BAR ── */
+.bar-container{display:flex;align-items:center;gap:8px}
+.bar-track{flex:1;height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;min-width:60px;max-width:120px}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--sage),var(--accent))}
+.bar-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--text-secondary);white-space:nowrap}
+
+/* ── CODE FIGURE ── */
+.code-figure{margin:20px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.code-figure pre{background:var(--surface);padding:18px 20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:var(--text);margin:0;white-space:pre}
+
+/* ── POWER ITEM ── */
+.power-item{border-left:3px solid var(--border);padding:10px 18px;margin:10px 0;background:var(--surface);border-radius:0 8px 8px 0}
+.power-item p{margin:0;max-width:none}
+
+/* ── DATA GRID ── */
+.data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.data-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.data-card h4{font-family:'Source Serif 4',Georgia,serif;font-size:14px;font-weight:600;color:var(--text);margin:0 0 6px}
+.data-card p{font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6;max-width:none}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:22px 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .val{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--accent)}
+.stat-card .lbl{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* ── BET CARD ── */
+.bet-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:18px 0}
+.bet-card h4{font-family:'Source Serif 4',Georgia,serif;font-size:18px;font-weight:700;color:var(--text);margin:0 0 4px}
+.bet-card .bet-meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px;font-size:12px}
+.bet-card .bet-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 10px;border-radius:10px}
+.bet-tag.core{background:var(--sage-light);color:var(--sage)}
+.bet-tag.adjacent{background:var(--warm-gold-light);color:var(--warm-gold)}
+.bet-tag.transformational{background:var(--human-light);color:var(--human)}
+.bet-card p{font-size:14px;color:var(--text-secondary);line-height:1.65;margin:8px 0;max-width:none}
+.bet-card ul{font-size:13.5px;color:var(--text-secondary);line-height:1.65;margin:6px 0 6px 20px}
+.bet-card li{margin:3px 0}
+
+/* ── PORTFOLIO VIZ ── */
+.portfolio-viz{display:flex;align-items:flex-end;gap:16px;margin:24px 0;padding:20px 24px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.portfolio-bar{display:flex;flex-direction:column;align-items:center;flex:1}
+.portfolio-bar .bar-outer{width:100%;height:180px;background:var(--border-light);border-radius:6px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.portfolio-bar .bar-inner{border-radius:0 0 6px 6px;transition:height .3s}
+.portfolio-bar .bar-pct{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;margin-top:8px}
+.portfolio-bar .bar-name{font-size:12px;color:var(--text-muted);margin-top:2px;text-align:center}
+
+/* ── SEQUENCE FLOW ── */
+.sequence-flow{display:flex;align-items:center;gap:0;margin:24px 0;flex-wrap:wrap}
+.seq-step{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;flex:1;min-width:200px}
+.seq-step h4{font-family:'Source Serif 4',Georgia,serif;font-size:15px;font-weight:600;color:var(--text);margin:0 0 4px}
+.seq-step p{font-size:12.5px;color:var(--text-secondary);margin:0;line-height:1.5;max-width:none}
+.seq-arrow{font-size:24px;color:var(--accent);padding:0 8px;flex-shrink:0}
+@media(max-width:768px){.sequence-flow{flex-direction:column}.seq-arrow{transform:rotate(90deg)}}
+
+/* ── NOT-DOING ── */
+.not-doing-item{border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0;background:var(--surface)}
+.not-doing-item .nd-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.not-doing-item .nd-tag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 10px;border-radius:10px}
+.nd-tag.deferred{background:var(--warm-gold-light);color:var(--warm-gold)}
+.nd-tag.declined{background:var(--accent-light);color:var(--accent)}
+.nd-tag.deprecated{background:var(--stone-light);color:var(--stone)}
+.not-doing-item h4{font-family:'Source Serif 4',Georgia,serif;font-size:15px;font-weight:600;color:var(--text);margin:0}
+.not-doing-item p{font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:4px 0;max-width:none}
+
+/* ── FOOTER ── */
+.page-footer{max-width:980px;margin:0 auto;padding:32px 48px 64px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .page-header{padding:48px 24px 24px}
+  h1{font-size:28px}
+  .section{padding:28px 24px 48px}
+  nav .inner{padding:8px 16px}
+  .page-footer{padding:24px;flex-direction:column}
+  .data-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .portfolio-viz{flex-direction:column;align-items:stretch}
+  .portfolio-bar .bar-outer{height:120px}
+}
+@media print{
+  nav{display:none}
+  .section{display:block!important;page-break-inside:avoid}
+  .page-header{padding-top:32px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="/pm-skills-arsenal/">← PM Skills Arsenal</a>
+  <span class="sep">›</span>
+  <span class="current">Loom AI — 6-Month Product Strategy</span>
+</div>
+<header class="page-header">
+  <div class="overline">Product Strategy · PM Skills Arsenal</div>
+  <h1>Loom AI — 6-Month Product Strategy for an AI-Powered Video Platform</h1>
+  <p class="subtitle">Building a strategic product roadmap for a video messaging platform pivoting from recording tool to AI-powered async communication hub, with 3 strategic bets, option-value sequencing, and explicit deprioritization.</p>
+  <div class="header-meta">
+    <span><strong>Skill:</strong> product-strategy</span>
+    <span><strong>Date:</strong> March 2026</span>
+    <span><strong>Horizon:</strong> 6 months (H1 2026)</span>
+    <span><strong>Source:</strong> PM Skills Arsenal</span>
+  </div>
+</header>
+
+<nav>
+  <div class="inner">
+    <button class="active" onclick="show('summary')">Executive Summary</button>
+    <button onclick="show('vision')">Vision &amp; Pillars</button>
+    <button onclick="show('bets')">Strategic Bets</button>
+    <button onclick="show('sequencing')">Sequencing Rationale</button>
+    <button onclick="show('tensions')">Strategic Tensions</button>
+    <button onclick="show('not-doing')">NOT-Doing</button>
+    <button onclick="show('resources')">Resource Allocation</button>
+    <button onclick="show('gates')">Quarterly Gates</button>
+    <button onclick="show('assumptions')">Assumptions &amp; Critique</button>
+    <button onclick="show('try-it')">Try It Yourself</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- EXECUTIVE SUMMARY                            -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section active" id="summary">
+  <h2>Executive Summary</h2>
+<p class="section-sub">Zero jargon. A VP reads only this and decides whether to fund the pivot.</p>
+
+<p>Our video messaging platform ($80M ARR, 15M users) is losing its competitive moat. Async video recording is being commoditized by Slack Clips, Teams Recordings, and Vimeo Record, which now ship "good enough" video messaging as bundled features inside tools our users already pay for <span class="conf-pill conf-h">H</span> <span class="ev-detail">product launch analysis, pricing data</span>. Our ease-of-use advantage — historically the reason users chose us — erodes with each competitor update. Continuing on the current trajectory means fighting a distribution war against platforms with 100x our install base.</p>
+
+<p>The pivot from "video recording tool" to "AI-powered async communication hub" is the right move, but only if we sequence it correctly with our 40 engineers and 6-month constraint. We propose three bets, in order:</p>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="val">$80M</div>
+    <div class="lbl">Current ARR</div>
+  </div>
+  <div class="stat-card">
+    <div class="val">15M</div>
+    <div class="lbl">Total Users</div>
+  </div>
+  <div class="stat-card">
+    <div class="val">40</div>
+    <div class="lbl">Engineers</div>
+  </div>
+  <div class="stat-card">
+    <div class="val">6 mo</div>
+    <div class="lbl">Horizon</div>
+  </div>
+</div>
+
+<p><strong>Bet 1: AI Meeting Summarizer</strong> <span class="conf-pill conf-h">H</span> — Ship an AI engine that auto-generates structured summaries, action items, and searchable transcripts from every video. This is the fastest path to revenue because it converts our existing recording surface into a productivity multiplier. 50% of engineering capacity. Ships in Month 2.</p>
+
+<p><strong>Bet 2: Collaborative Video Threads</strong> <span class="conf-pill conf-m">M</span> — Add threaded replies, inline comments at timestamps, and team channels to transform videos from "watch-once" artifacts into persistent async conversations. This builds network effects we currently lack. 30% of engineering capacity. Ships in Month 4.</p>
+
+<p><strong>Bet 3: AI-Generated Video from Text</strong> <span class="conf-pill conf-l">L</span> — Let users generate narrated video updates from text prompts using AI avatars. Highest upside, highest uncertainty — this either redefines our category or wastes a quarter. 20% of engineering capacity. Prototype in Month 5.</p>
+
+<p><strong>The recommended strategic direction: Ship the AI Summarizer first to prove the "AI-powered" positioning with paying customers, use that revenue and data to fund Collaborative Threads, and run AI Video Generation as a time-boxed experiment with a kill gate at Month 5. We are NOT doing mobile-first redesign, enterprise admin console expansion, or international localization in this window — each carries real opportunity cost documented in the NOT-Doing section.</strong></p>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- VISION & PILLARS                             -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="vision">
+  <h2>Vision &amp; Strategy Pillars</h2>
+
+<h3>Context Gate</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Check</th><th>Status</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>Problem defined?</strong></td><td><span class="icon-check">&#10003;</span> Yes</td><td>Commoditization of core recording feature; platform substitution risk from Slack/Teams/Vimeo</td></tr>
+<tr><td><strong>Market context?</strong></td><td><span class="icon-check">&#10003;</span> Yes</td><td>Async video market shifting from standalone tools to embedded platform features</td></tr>
+<tr><td><strong>Strategy question?</strong></td><td><span class="icon-check">&#10003;</span> Yes</td><td>CEO asks: "What should we build in the next 6 months to transform our positioning?"</td></tr>
+<tr><td><strong>Time horizon appropriate?</strong></td><td><span class="icon-check">&#10003;</span> Yes</td><td>6-month (half-year) horizon — sufficient for strategy, not merely execution planning</td></tr>
+<tr><td><strong>Resource constraints known?</strong></td><td><span class="icon-check">&#10003;</span> Yes</td><td>40 engineers, 6 PMs, 8 designers. No new headcount for 6 months.</td></tr>
+<tr><td><strong>Company-level strategy anchor?</strong></td><td><span class="icon-warn">&#9888;</span> Partial</td><td>CEO directive: "pivot to AI-powered async communication hub." No board-approved company strategy document — proceeding with CEO mandate as anchor.</td></tr>
+</tbody></table></div>
+
+<h3>Step 0: Framework Selection</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Strategy question type</th><th>Primary frameworks (apply in full)</th><th>Supporting frameworks (scan only)</th><th>Skipped (why)</th></tr></thead>
+<tbody>
+<tr>
+<td>Half-year roadmap for established product undergoing pivot</td>
+<td>Vision-to-Roadmap Cascade (vision clarity matters for pivot), Strategic Bet-Sizing (3 bets need rigorous anatomy), Option-Value Sequencing (order matters with constrained resources)</td>
+<td>Resource Allocation (capacity check), Roadmap Communication (multi-audience views)</td>
+<td>Portfolio Rebalancing (too few bets for full portfolio math); Multi-Year Scenario Planning (6-month horizon is too short)</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Vision Statement</h3>
+
+<div class="aside strategy"><span class="a-icon">&#9670;</span><p><strong>Become the default AI-powered async communication platform for product and engineering teams at companies with 50-5,000 employees by end of FY2026, measured by: (1) 40% of active users engaging with AI features weekly, and (2) net revenue retention reaching 120%+ on AI-tier plans.</strong></p></div>
+
+<p><strong>Falsification test:</strong> If by December 2026, fewer than 25% of weekly active users engage with any AI feature, or net revenue retention on AI-tier plans is below 105%, this vision is wrong — we are not becoming an AI-powered platform, and the market is telling us it wants a recording tool, not an AI hub.</p>
+
+<hr class="section-divider">
+
+<h3>Strategy Pillars</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>#</th><th>Pillar</th><th>Strategic intent</th><th>Maps to vision how</th></tr></thead>
+<tbody>
+<tr><td><strong>P1</strong></td><td>AI as Core Value</td><td>Embed AI capabilities into every video — transcription, summarization, action extraction — so that recording without AI feels broken</td><td>Drives the "40% weekly AI engagement" metric; transforms value proposition from "easy recording" to "AI-enhanced communication"</td></tr>
+<tr><td><strong>P2</strong></td><td>From Artifact to Conversation</td><td>Transform videos from watch-once recordings into persistent, searchable, threadable communication artifacts</td><td>Drives "120% NRR" by creating team-level stickiness (network effects); reduces churn by making the platform harder to leave</td></tr>
+<tr><td><strong>P3</strong></td><td>Create-Without-Recording</td><td>Enable AI-generated video content from text, freeing users from the camera and expanding use cases to people who don't want to record themselves</td><td>Expands TAM beyond "people willing to be on camera" to "anyone who communicates asynchronously"; category-creation play</td></tr>
+</tbody></table></div>
+
+<h3>Reader Navigation</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Time Available</th><th>What to Read</th><th>What You'll Get</th></tr></thead>
+<tbody>
+<tr><td><strong>5 minutes</strong></td><td>Executive Summary + Vision Statement + Strategic Bets names and confidence</td><td>The thesis: what we're betting on, how confident we are, recommended direction</td></tr>
+<tr><td><strong>15 minutes</strong></td><td>Above + Sequencing Rationale + NOT-Doing + Strategic Tensions</td><td>The decision architecture: why this order, what we sacrifice, where bets compete</td></tr>
+<tr><td><strong>30 minutes</strong></td><td>Full document</td><td>Complete strategy with resource plans, quarterly gates, assumptions, and self-critique</td></tr>
+</tbody></table></div>
+
+<h3>Notation Key</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><strong>H / M / L</strong></td><td>Confidence level: H (&gt;70%), M (40-70%), L (&lt;40%)</td></tr>
+<tr><td><strong>T1-T6</strong></td><td>Evidence tier: T1 (behavioral data) through T6 (punditry/inference)</td></tr>
+<tr><td><strong>O&#8594;I&#8594;R&#8594;C&#8594;W</strong></td><td>Observation &#8594; Implication &#8594; Response &#8594; Confidence &#8594; Watch indicator</td></tr>
+<tr><td><code>[EVIDENCE-LIMITED]</code></td><td>Key conclusion rests on Tier 4-6 evidence — validate before committing resources</td></tr>
+<tr><td>Core / Adjacent / Transformational</td><td>Bet categories: Core protects base (H confidence), Adjacent expands (M), Transformational creates new (L)</td></tr>
+<tr><td>Deferred / Declined / Deprecated</td><td>NOT-Doing taxonomy: doing later / decided against / actively stopping</td></tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- STRATEGIC BETS                               -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="bets">
+  <h2>Strategic Bets</h2>
+<p class="section-sub">Three bets, sized by confidence, with testable hypotheses and kill criteria. The portfolio balances certainty (Bet 1) against optionality (Bet 3).</p>
+
+<h3>Portfolio Balance</h3>
+<div class="portfolio-viz">
+  <div class="portfolio-bar">
+    <div class="bar-outer"><div class="bar-inner" style="height:70%;background:var(--sage)"></div></div>
+    <div class="bar-pct" style="color:var(--sage)">50%</div>
+    <div class="bar-name">Core<br><small>Bet 1: AI Summarizer</small></div>
+  </div>
+  <div class="portfolio-bar">
+    <div class="bar-outer"><div class="bar-inner" style="height:50%;background:var(--warm-gold)"></div></div>
+    <div class="bar-pct" style="color:var(--warm-gold)">30%</div>
+    <div class="bar-name">Adjacent<br><small>Bet 2: Video Threads</small></div>
+  </div>
+  <div class="portfolio-bar">
+    <div class="bar-outer"><div class="bar-inner" style="height:30%;background:var(--human)"></div></div>
+    <div class="bar-pct" style="color:var(--human)">20%</div>
+    <div class="bar-name">Transformational<br><small>Bet 3: AI Video Gen</small></div>
+  </div>
+</div>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Category</th><th>Count</th><th>% of investment</th><th>Target range</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td><strong>Core</strong></td><td>1</td><td>50%</td><td>50-70%</td><td><span class="dot green"></span> Within range</td></tr>
+<tr><td><strong>Adjacent</strong></td><td>1</td><td>30%</td><td>20-30%</td><td><span class="dot green"></span> Within range</td></tr>
+<tr><td><strong>Transformational</strong></td><td>1</td><td>20%</td><td>5-15%</td><td><span class="dot yellow"></span> Slightly above — acceptable given pivot urgency</td></tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<!-- BET 1 -->
+<div class="bet-card">
+  <h4>Bet 1: AI Meeting Summarizer</h4>
+  <div class="bet-meta">
+    <span class="bet-tag core">CORE</span>
+    <span class="conf-pill conf-h">H CONFIDENCE</span>
+    <span class="bet-tag" style="background:var(--sage-light);color:var(--sage)">P1: AI AS CORE VALUE</span>
+  </div>
+  <p><strong>Hypothesis:</strong> If we ship an AI engine that auto-generates structured summaries, action items, and searchable transcripts from every video recording, then 35% of weekly active users will engage with AI summaries within 60 days of launch, because async video users currently spend 2-3x the recording length re-watching to extract key points, and structured summaries eliminate that cost <span class="ev-badge ev-t3" title="user research: 68% of surveyed users cite 'finding the key point' as top friction">T3</span>.</p>
+  <p><strong>Expected outcome:</strong> +$8M incremental ARR within 6 months (AI-tier upsell at $4/user/month on 30% of 680K paid users) <span class="ev-badge ev-t4" title="comparable SaaS AI upsell benchmarks">T4</span>.</p>
+  <p><strong>Investment:</strong> 20 engineers (50%), 3 designers, 3 PMs = 50% of total capacity for 3 months (Months 1-3), then 10 engineers for optimization (Months 4-6)</p>
+  <ul>
+    <li><strong>Success criteria:</strong> 35% of WAU use AI summaries by Month 3; AI-tier conversion rate &gt;8% by Month 4; NPS for AI features &gt;50</li>
+    <li><strong>Kill criteria:</strong> If AI summary engagement &lt;15% of WAU by Month 3, deprioritize and reallocate engineers to Bet 2</li>
+    <li><strong>Key assumption:</strong> Users will pay a premium for AI features on top of existing subscription ($4/user/month incremental)</li>
+  </ul>
+</div>
+
+<!-- BET 2 -->
+<div class="bet-card">
+  <h4>Bet 2: Collaborative Video Threads</h4>
+  <div class="bet-meta">
+    <span class="bet-tag adjacent">ADJACENT</span>
+    <span class="conf-pill conf-m">M CONFIDENCE</span>
+    <span class="bet-tag" style="background:var(--warm-gold-light);color:var(--warm-gold)">P2: ARTIFACT TO CONVERSATION</span>
+  </div>
+  <p><strong>Hypothesis:</strong> If we add threaded video replies, timestamp-anchored comments, and team channels, then average videos-per-user-per-week increases from 2.1 to 3.5+ and team retention (90-day) improves by 15 percentage points, because the current product is a "fire-and-forget" recording tool with no reason to return to a video after first watch <span class="ev-badge ev-t3" title="product analytics: 78% of videos are viewed once, never revisited">T3</span>.</p>
+  <p><strong>Expected outcome:</strong> 15pp improvement in 90-day team retention; +$4M ARR from reduced churn and increased seat expansion within existing accounts <span class="ev-badge ev-t4" title="retention improvement modeling">T4</span>.</p>
+  <p><strong>Investment:</strong> 12 engineers (30%), 3 designers, 2 PMs = 30% of total capacity for 4 months (Months 2-5)</p>
+  <ul>
+    <li><strong>Success criteria:</strong> Videos-per-user-per-week reaches 3.0+ by Month 5; team retention improves 10pp by Month 6; at least 20% of teams use threaded replies weekly</li>
+    <li><strong>Kill criteria:</strong> If fewer than 10% of teams adopt threads within 60 days of launch, pivot to a lighter "reactions + bookmarks" model — full threading is over-engineered for the audience</li>
+    <li><strong>Key assumption:</strong> Users want to have conversations around videos, not just consume them passively. If async video is fundamentally a broadcast medium (like podcasts), threads will flop.</li>
+  </ul>
+</div>
+
+<!-- BET 3 -->
+<div class="bet-card">
+  <h4>Bet 3: AI-Generated Video from Text</h4>
+  <div class="bet-meta">
+    <span class="bet-tag transformational">TRANSFORMATIONAL</span>
+    <span class="conf-pill conf-l">L CONFIDENCE</span>
+    <span class="bet-tag" style="background:var(--human-light);color:var(--human)">P3: CREATE WITHOUT RECORDING</span>
+  </div>
+  <p><strong>Hypothesis:</strong> If we enable users to generate narrated video updates from text prompts using AI avatars, then we expand our addressable market by 3-5x because 60-70% of knowledge workers are unwilling to record themselves on camera but need to communicate asynchronously <span class="ev-badge ev-t4" title="survey data from 2024 async work report">T4</span> <span class="ev-badge ev-limited">EVIDENCE-LIMITED</span>.</p>
+  <p><strong>Expected outcome:</strong> New user segment (camera-shy communicators) opens $20-40M TAM expansion opportunity. If validated, becomes the centerpiece of FY2027 strategy <span class="ev-badge ev-t5" title="TAM estimate based on industry analogues">T5</span> <span class="ev-badge ev-limited">EVIDENCE-LIMITED</span>.</p>
+  <p><strong>Investment:</strong> 8 engineers (20%), 2 designers, 1 PM = 20% of total capacity for 3 months (Months 3-5), prototype only</p>
+  <ul>
+    <li><strong>Success criteria:</strong> Working prototype by Month 5; 500+ beta signups from waitlist; qualitative feedback: "I would use this instead of recording myself" from &gt;60% of beta testers</li>
+    <li><strong>Kill criteria:</strong> If prototype quality is rated "uncanny valley / unprofessional" by &gt;50% of internal testers at Month 5 checkpoint, kill the bet entirely and reallocate to Bet 1/2 optimization. Do not iterate past Month 6 on low-quality output — the technology needs to be "good enough" out of the gate or it damages the brand.</li>
+    <li><strong>Key assumption:</strong> AI avatar technology reaches "professional enough" quality within our 3-month prototype window. If it doesn't, this bet is premature — not wrong, just early.</li>
+  </ul>
+</div>
+
+<div class="aside decision"><span class="a-icon">&#9670;</span><p><strong>Portfolio assessment:</strong> The 50/30/20 split deliberately over-indexes on the Core bet (AI Summarizer) because it's the fastest path to proving the "AI-powered" positioning with revenue. The Transformational bet (AI Video Gen) is capped at 20% because it's a prototype, not a ship — we're buying information, not committing to a product. If Bet 3 validates, the FY2027 portfolio rebalances to 30/30/40 (Core/Adjacent/Transformational).</p></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- SEQUENCING RATIONALE                         -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="sequencing">
+  <h2>Sequencing Rationale</h2>
+<p class="section-sub">Why this order, with counterfactuals. Every sequence decision explains what breaks if we reorder.</p>
+
+<h3>Sequence Overview</h3>
+<div class="sequence-flow">
+  <div class="seq-step" style="border-left:3px solid var(--sage)">
+    <h4>Month 1-3: Bet 1</h4>
+    <p><strong>AI Meeting Summarizer</strong><br>Ship core AI capability. Prove "AI-powered" positioning with revenue.</p>
+  </div>
+  <span class="seq-arrow">&#8594;</span>
+  <div class="seq-step" style="border-left:3px solid var(--warm-gold)">
+    <h4>Month 2-5: Bet 2</h4>
+    <p><strong>Collaborative Video Threads</strong><br>Build network effects on top of AI-enriched videos.</p>
+  </div>
+  <span class="seq-arrow">&#8594;</span>
+  <div class="seq-step" style="border-left:3px solid var(--human)">
+    <h4>Month 3-5: Bet 3</h4>
+    <p><strong>AI Video from Text</strong><br>Prototype only. Buy information about TAM expansion.</p>
+  </div>
+</div>
+
+<h3>Sequencing Logic</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Sequence</th><th>Bet</th><th>Rationale type</th><th>Counterfactual</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>1st</strong></td>
+<td>AI Meeting Summarizer</td>
+<td><strong>Revenue + Information.</strong> Ships fastest (existing recording surface + AI layer); generates revenue signal that validates the entire pivot thesis; produces training data (transcripts, summaries) that makes Bet 3 better.</td>
+<td>If we did Bet 2 (Threads) first: we'd build collaboration features on top of "dumb" videos with no AI enrichment. Threaded discussions on raw video are less valuable than discussions on AI-summarized video with searchable transcripts. We'd be adding social features to a commodity product — polishing a shrinking asset.</td>
+</tr>
+<tr>
+<td><strong>2nd</strong></td>
+<td>Collaborative Video Threads</td>
+<td><strong>Option-value.</strong> Threads are more valuable when videos have AI summaries (users discuss summaries, not raw footage). Also: thread engagement data reveals whether our users treat video as broadcast (1-to-many) or conversation (many-to-many) — this signal determines Bet 3's value.</td>
+<td>If we did Bet 3 (AI Video Gen) before Bet 2: we'd be generating AI videos that nobody can discuss, reply to, or build on. AI-generated videos without a collaboration layer are just fancier recordings — no network effects, same "watch-once" problem. Bet 3's TAM expansion only works if the generated videos live in a collaborative environment.</td>
+</tr>
+<tr>
+<td><strong>3rd</strong></td>
+<td>AI Video from Text</td>
+<td><strong>Dependency + Risk management.</strong> Requires: (a) AI infrastructure from Bet 1 (transcription models repurposed for generation), (b) collaboration surface from Bet 2 (distribution channel for AI-generated content). Also: lowest confidence bet goes last — if Bets 1-2 consume more resources than planned, Bet 3 is the one that shrinks.</td>
+<td>If we did Bet 3 first: we'd invest 20% of engineering in a prototype with no AI infrastructure to build on (Bet 1's transcription pipeline isn't built yet), no collaboration surface to distribute through (Bet 2's threads aren't built yet), and no revenue to justify continued investment. We'd be asking the board to fund a speculative AI product before proving we can execute the simpler AI bet (summarization).</td>
+</tr>
+</tbody></table></div>
+
+<h3>Critical Path</h3>
+<div class="aside decision"><span class="a-icon">&#9670;</span><p><strong>Bet 1 (AI Summarizer) is the critical path.</strong> If it slips past Month 3, Bet 2 launches on top of un-enriched videos (lower value), Bet 3 loses its AI infrastructure foundation, and the entire "AI-powered" narrative lacks a shipped proof point. A 4-week slip in Bet 1 cascades to a 6-week slip in Bet 2 and potential cancellation of Bet 3.</p></div>
+
+<h3>Information Gates</h3>
+<p><strong>Bet 1 reveals:</strong> Will users pay for AI features? ($4/user/month upsell conversion rate.) If conversion &lt;3%, the "AI-powered" pivot thesis is weaker than assumed — Bets 2 and 3 should be re-scoped to focus on non-AI differentiation instead.</p>
+<p><strong>Bet 2 reveals:</strong> Is async video a broadcast medium or a conversation medium? (Thread adoption rate.) If &lt;10% of teams use threads, Bet 3's value proposition ("generate videos for conversations") shrinks dramatically — AI-generated videos are only useful if people respond to them.</p>
+
+<div class="cascade-block">
+<div class="cascade-header">O &#8594; I &#8594; R &#8594; C &#8594; W</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">The three bets have dependency chains: Bet 1 produces AI infrastructure and revenue signal; Bet 2 requires AI-enriched videos; Bet 3 requires both AI infra and collaboration surface <span class="ev-badge ev-t3">T3</span> <span class="ev-detail">engineering dependency analysis</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Reordering the bets doesn't just change timing — it changes the <em>value</em> of each bet. Threads on dumb video are less valuable than threads on AI-summarized video. AI video generation without a collaboration layer is a feature demo, not a product.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Maintain strict sequencing: Bet 1 ships before Bet 2 launches (AI enrichment is a prerequisite for thread value). Bet 3 begins prototyping in Month 3, after Bet 1's AI infrastructure is established. If Bet 1 slips, compress Bet 3's timeline before compressing Bet 2.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-h">H</span> — dependency logic is structural (shared infrastructure, data flow), not preferential. Assumes AI Summarizer can ship in 8-10 weeks with 20 engineers.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">Bet 1 engineering velocity in Weeks 3-4. If the team is tracking &lt;70% of planned sprint points, escalate immediately — the critical path is at risk and all downstream bets need replanning.</div>
+</div>
+</div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- STRATEGIC TENSIONS                           -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="tensions">
+  <h2>Strategic Tensions</h2>
+<p class="section-sub">Where bets compete for the same resources, pull in different strategic directions, or create timing conflicts. Tensions are signal, not noise.</p>
+
+<div class="table-wrap"><table>
+<thead><tr><th>Tension</th><th>Bet A</th><th>Bet B</th><th>Type</th><th>Resolution</th><th>What we lose</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>ML Engineer Scarcity</strong></td>
+<td>Bet 1: AI Summarizer</td>
+<td>Bet 3: AI Video Gen</td>
+<td>Resource</td>
+<td>Bet 1 gets all 6 ML engineers for Months 1-3. Bet 3 gets 4 of them in Months 3-5 after Bet 1's core model ships. We do NOT split ML talent between the two simultaneously.</td>
+<td>Bet 3 starts 2 months later than it could. If AI avatar technology matures faster than expected, a competitor could ship first. We accept this risk because Bet 1's revenue signal is more valuable than Bet 3's speed.</td>
+</tr>
+<tr>
+<td><strong>Platform Identity Crisis</strong></td>
+<td>Bet 1: AI Summarizer (makes existing recordings smarter)</td>
+<td>Bet 3: AI Video Gen (eliminates the need to record)</td>
+<td>Strategic</td>
+<td>Bet 1 and Bet 3 serve different user segments — Bet 1 serves "people who record," Bet 3 serves "people who won't record." These are additive, not contradictory, but our marketing and product positioning must handle both without confusing the market.</td>
+<td>Brand coherence in the short term. Users may be confused: "Is this a tool for recording better videos, or for not recording at all?" Resolution: position as "AI-powered async communication" (umbrella) that includes both recording and generation.</td>
+</tr>
+<tr>
+<td><strong>Engagement vs. Efficiency Paradox</strong></td>
+<td>Bet 1: AI Summarizer (reduces time spent watching videos)</td>
+<td>Bet 2: Collaborative Threads (increases time spent around videos)</td>
+<td>Strategic</td>
+<td>Not actually a contradiction. Bet 1 reduces <em>passive consumption</em> time (watching full recordings). Bet 2 increases <em>active engagement</em> time (discussing summaries, replying with threads). Net effect: users spend less time watching, more time interacting. Our engagement metric should track "interactions per video," not "minutes watched."</td>
+<td>The "minutes watched" vanity metric will decline. If leadership or investors use minutes-watched as a health indicator, we need to re-educate them before Bet 1 ships — otherwise a successful product launch looks like a usage decline.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Strategic Debt Created</h3>
+
+<div class="aside watch"><span class="a-icon">&#9888;</span><p><strong>Debt 1: Metric Redefinition.</strong> Shipping Bet 1 (AI Summarizer) will reduce "minutes watched per video" — our current north star engagement metric. We must redefine the engagement metric to "interactions per video" (summary views + thread replies + action item completions) <em>before</em> Bet 1 ships, or the board will see a declining metric and panic. Timeline: complete metric redefinition by end of Month 1.</p></div>
+
+<div class="aside watch"><span class="a-icon">&#9888;</span><p><strong>Debt 2: Dual-Product Positioning.</strong> Running Bet 1 (enhance recordings) and Bet 3 (eliminate recordings) simultaneously creates a positioning tension that must be resolved in marketing by Month 4, before Bet 3 prototype goes to beta. If we ship AI video generation without clear positioning, the market will read it as "even they think recording is dead" — which undermines Bet 1's value proposition for recording-based users.</p></div>
+
+<div class="aside watch"><span class="a-icon">&#9888;</span><p><strong>Debt 3: Technical Monoculture.</strong> All three bets depend on AI/ML infrastructure. If our AI models underperform (accuracy, latency, cost), all three bets degrade simultaneously. There is no non-AI fallback in this strategy. This is a deliberate choice — the CEO's mandate is "AI-powered" — but it means we have zero hedges against AI execution risk.</p></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- NOT-DOING                                    -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="not-doing">
+  <h2>What We Are NOT Doing</h2>
+<p class="section-sub">An empty NOT-Doing section means no hard decisions were made. These are real initiatives with real opportunity costs that we are consciously choosing to forgo.</p>
+
+<div class="not-doing-item">
+  <div class="nd-header">
+    <span class="nd-tag deferred">DEFERRED</span>
+    <h4>Mobile-First Redesign</h4>
+  </div>
+  <p><strong>Why not:</strong> Mobile recording and viewing accounts for 28% of usage and growing 40% YoY <span class="ev-badge ev-t2" title="product analytics">T2</span>. However, the mobile experience is "functional, not delightful" — not broken. The AI pivot requires our best engineers on model integration, not mobile UI polish. Mobile redesign is a retention play; AI is a positioning play. Positioning wins in a commoditizing market.</p>
+  <p><strong>What we lose:</strong> An estimated 8-12% improvement in mobile recording completion rates <span class="ev-badge ev-t4" title="UX research benchmark">T4</span>. Mobile power users (creators who record 5+ videos/week on phone) will remain frustrated. We risk losing the "mobile-first creator" segment to competitors who invest here — Vimeo Record's mobile experience is already better than ours.</p>
+  <p><strong>Reconsider if:</strong> Mobile usage crosses 40% of total recordings AND mobile recording completion rate drops below 60% (currently 72%). At that point, mobile friction is destroying core funnel, not just annoying power users.</p>
+</div>
+
+<div class="not-doing-item">
+  <div class="nd-header">
+    <span class="nd-tag declined">DECLINED</span>
+    <h4>Enterprise Admin Console Expansion</h4>
+  </div>
+  <p><strong>Why not:</strong> Enterprise customers (500+ seats) have requested advanced admin features: SSO enforcement, content retention policies, usage analytics dashboards, and department-level billing. These are table-stakes features for large enterprise deals ($100K+ ACV). We are declining because: (1) enterprise admin features require 8-10 dedicated engineers for 4+ months <span class="ev-badge ev-t3" title="engineering estimates">T3</span>, which would consume 25% of total capacity; (2) our current enterprise pipeline is 12 accounts totaling $1.8M potential ACV — meaningful but not enough to justify diverting from the pivot; (3) the AI pivot, if successful, will make enterprise admin features more compelling (admins managing AI-powered communication, not just video recordings).</p>
+  <p><strong>What we lose:</strong> $1.2-1.8M in enterprise deals that will stall or go to competitors in H1 2026. Two enterprise champions at Fortune 500 accounts have explicitly said "we'll wait 6 months, but not 12." If we don't ship admin features by Q4 2026, those deals are dead. This is real revenue we are choosing not to capture.</p>
+  <p><strong>Reconsider if:</strong> Enterprise pipeline exceeds $3M potential ACV OR a single deal exceeds $500K ACV. At that scale, enterprise admin becomes its own strategic bet, not a support feature.</p>
+</div>
+
+<div class="not-doing-item">
+  <div class="nd-header">
+    <span class="nd-tag deferred">DEFERRED</span>
+    <h4>International Localization (EMEA + APAC)</h4>
+  </div>
+  <p><strong>Why not:</strong> 82% of our revenue is North America <span class="ev-badge ev-t2" title="revenue data">T2</span>. International expansion (localized UI, local-language AI transcription, regional hosting for latency) requires 6-8 engineers and a dedicated PM for 4+ months. The AI pivot is our existential priority — if we don't differentiate from Slack Clips and Teams Recordings in our core market, there's no international market to expand into.</p>
+  <p><strong>What we lose:</strong> First-mover advantage in EMEA async video market, where adoption is growing 60% YoY from a small base <span class="ev-badge ev-t3" title="market reports">T3</span>. Competitors with multi-language support (Teams, Slack) will capture these users by default. Estimated $5-8M ARR opportunity over 18 months that we're leaving on the table.</p>
+  <p><strong>Reconsider if:</strong> Non-English-speaking users exceed 25% of free tier signups (currently 14%) OR a competitor launches a localized async video product that gains 500K+ users in EMEA/APAC. At that point, we're losing a market we could have owned.</p>
+</div>
+
+<div class="not-doing-item">
+  <div class="nd-header">
+    <span class="nd-tag deprecated">DEPRECATED</span>
+    <h4>Screen Recording Annotation Tools</h4>
+  </div>
+  <p><strong>Why not:</strong> We've invested 18 months in building drawing tools, pointer highlights, and step markers for screen recordings. Usage data shows only 11% of recordings use any annotation feature <span class="ev-badge ev-t2" title="product analytics">T2</span>. Meanwhile, maintaining the annotation codebase consumes 2 engineers' time with bug fixes and cross-browser compatibility. We are actively deprecating (not just pausing) these features to free up engineering capacity and reduce codebase complexity.</p>
+  <p><strong>What we lose:</strong> The 11% of users who rely on annotations will be upset. Some are power users who create tutorial content — a vocal segment that will generate negative social media attention. We estimate 2-4% churn risk among annotation-dependent users ($1.6-3.2M ARR impact).</p>
+  <p><strong>Reconsider if:</strong> AI Summarizer (Bet 1) can auto-generate visual annotations from video content (e.g., auto-highlighting UI elements being discussed). If so, we replace manual annotations with AI-powered ones — better product, less maintenance. Evaluate at Month 4.</p>
+</div>
+
+<h3>Stakeholder Communication</h3>
+<div class="aside strategy"><span class="a-icon">&#9670;</span><p><strong>How to explain these decisions:</strong> "We're choosing to be great at one thing — AI-powered async communication — rather than adequate at five things. The mobile redesign, enterprise admin, and international expansion are all good ideas with real revenue attached. We're not saying they're wrong; we're saying they're not what saves the company in the next 6 months. The competitor threat is existential: Slack and Teams can ship 'good enough' video recording as a free feature. We can't out-distribute them. We can only out-innovate them — and that means AI, not polish."</p></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- RESOURCE ALLOCATION                          -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="resources">
+  <h2>Resource Allocation</h2>
+<p class="section-sub">40 engineers, 6 PMs, 8 designers. No new headcount. Every allocation decision is a zero-sum game.</p>
+
+<h3>Capacity Model</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Team/Function</th><th>Total headcount</th><th>Planned (70%)</th><th>Reactive (20%)</th><th>Exploration (10%)</th><th>Override?</th></tr></thead>
+<tbody>
+<tr><td><strong>Engineering</strong></td><td>40</td><td>28</td><td>8</td><td>4</td><td>Yes — Reactive reduced to 15% (6), Planned increased to 75% (30) for pivot urgency</td></tr>
+<tr><td><strong>Design</strong></td><td>8</td><td>6</td><td>1</td><td>1</td><td>No override</td></tr>
+<tr><td><strong>PM</strong></td><td>6</td><td>4</td><td>1</td><td>1</td><td>No override</td></tr>
+</tbody></table></div>
+
+<div class="aside watch"><span class="a-icon">&#9888;</span><p><strong>Capacity override risk:</strong> Reducing reactive engineering capacity from 20% to 15% means fewer engineers available for production incidents, critical bugs, and unplanned customer escalations. If we have a major outage or security incident during the pivot window, we will need to pull engineers off planned work — which means Bet 1's critical path is at risk. Mitigation: designate 2 senior engineers as "on-call leads" who can temporarily pull from Bet 2 (not Bet 1) if incidents spike.</p></div>
+
+<h3>Per-Bet Allocation</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Bet</th><th>Eng</th><th>ML Eng (subset)</th><th>Design</th><th>PM</th><th>Duration</th><th>Monthly burn</th><th>Dependencies</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>Bet 1: AI Summarizer</strong></td>
+<td>20 (M1-3), 10 (M4-6)</td>
+<td>6 (all ML)</td>
+<td>3</td>
+<td>3</td>
+<td>6 months (full build M1-3, optimization M4-6)</td>
+<td>~$450K</td>
+<td>ML model vendor contract (signed); GPU compute budget approved; AI ethics review (Week 2)</td>
+</tr>
+<tr>
+<td><strong>Bet 2: Video Threads</strong></td>
+<td>12 (M2-5), 8 (M6)</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>5 months</td>
+<td>~$280K</td>
+<td>Bet 1's AI summary API (for enriched thread context); real-time infrastructure upgrade (existing infra team, Month 1)</td>
+</tr>
+<tr>
+<td><strong>Bet 3: AI Video Gen</strong></td>
+<td>8 (M3-5)</td>
+<td>4 (from Bet 1 post-ship)</td>
+<td>2</td>
+<td>1</td>
+<td>3 months (prototype only)</td>
+<td>~$200K</td>
+<td>Bet 1's transcription pipeline (repurposed for text-to-speech); avatar model vendor selection (Month 2); beta user recruitment (Month 3)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Team Distribution (Month-by-Month)</h3>
+<figure class="code-figure"><pre><code>         M1    M2    M3    M4    M5    M6
+Bet 1:  [====================][==========]     20 eng → 10 eng
+Bet 2:        [========================][====] 12 eng → 8 eng
+Bet 3:              [================]          8 eng (prototype)
+React:  [6 eng throughout ─────────────────]   6 eng (reduced from 8)
+Explor: [4 eng throughout ─────────────────]   4 eng
+
+Total:   30    30    30    30    30    22 (+8 reactive +4 explore = 40)
+
+ML Eng:  Bet1  Bet1  Bet1  Bet3  Bet3  Opt
+(6 total) 6     6     6     4+2   4+2   3+3</code></pre></figure>
+
+<h3>Capacity Check</h3>
+<div class="aside decision"><span class="a-icon">&#9670;</span><p><strong>Month 3 is the pinch point.</strong> Bet 1 (20 eng) + Bet 2 (12 eng) + Bet 3 (8 eng) = 40 planned engineers. This is 100% of engineering headcount — zero slack. Reactive capacity (6 eng) and exploration (4 eng) are technically separate, but in practice, Month 3 leaves no room for error. If any bet needs additional engineers in Month 3, the only options are: (a) pull from Bet 3 (lowest confidence), (b) defer Bet 2 features to Month 4, or (c) accept that reactive capacity is effectively zero for 2-3 weeks. <strong>Recommendation:</strong> Pre-commit that Bet 3 is the relief valve. If Month 3 is over-allocated, Bet 3 team shrinks to 4 engineers and the prototype scope is halved.</p></div>
+
+<h3>Hiring Implications</h3>
+<p><strong>No new headcount for 6 months</strong> (constraint from CEO). This means:</p>
+<ul>
+  <li>We cannot backfill attrition. If any of the 6 ML engineers leave, Bet 1 and Bet 3 are both at risk. <strong>Retention bonus recommended for ML team</strong> ($15-25K per engineer, total $90-150K — cheaper than a 3-month slip).</li>
+  <li>We cannot add specialists. If AI video generation (Bet 3) requires avatar/3D rendering expertise we don't have, we must use vendor solutions (higher cost, less control) or reduce scope.</li>
+  <li>After Month 6, if Bet 3 validates, we will need to hire 4-6 ML engineers for FY2027 scale-up. <strong>Start recruiting pipeline in Month 4</strong> so offers are ready by Month 7.</li>
+</ul>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- QUARTERLY GATES                              -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="gates">
+  <h2>Quarterly Gates</h2>
+<p class="section-sub">Checkpoint criteria at Month 3 and Month 6. Pass/fail — no "partially met." Adaptation triggers and kill criteria for each bet.</p>
+
+<h3>Month 3 Gate: "Did We Prove AI Works?"</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Bet</th><th>Gate criteria (pass/fail)</th><th>Adaptation triggers</th><th>Kill criteria</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>Bet 1: AI Summarizer</strong></td>
+<td><span class="icon-check">&#10003;</span> <strong>Pass:</strong> Shipped to 100% of users; 25%+ WAU using AI summaries; AI-tier upsell conversion &gt;5%<br><span class="icon-cross">&#10007;</span> <strong>Fail:</strong> Not shipped, or &lt;15% WAU engagement</td>
+<td>If engagement is 15-25% (below target but above kill): narrow focus to top 3 summary formats, cut experimental features, double down on what works</td>
+<td>If &lt;15% WAU engagement after 30 days of GA availability: the hypothesis is wrong — users don't value AI summaries enough. Pause Bet 1 optimization, reallocate 10 engineers to Bet 2, and re-evaluate the entire "AI-powered" positioning.</td>
+</tr>
+<tr>
+<td><strong>Bet 2: Video Threads</strong></td>
+<td><span class="icon-check">&#10003;</span> <strong>Pass:</strong> Beta shipped to 20% of teams; initial thread creation rate &gt;0.5 threads per video<br><span class="icon-cross">&#10007;</span> <strong>Fail:</strong> Not in beta, or zero organic thread creation</td>
+<td>If thread creation rate is 0.1-0.5 (below target but non-zero): users want lightweight reactions, not full threads. Pivot to "emoji reactions + bookmarks" model (lighter, faster to ship).</td>
+<td>If zero organic thread creation in beta: async video is a broadcast medium for our users, not a conversation medium. Kill Bet 2 entirely. Reallocate engineers to Bet 1 optimization and Bet 3.</td>
+</tr>
+<tr>
+<td><strong>Bet 3: AI Video Gen</strong></td>
+<td><span class="icon-check">&#10003;</span> <strong>Pass:</strong> Team assigned and prototyping underway; avatar model vendor selected; internal demo scheduled for Month 4<br><span class="icon-cross">&#10007;</span> <strong>Fail:</strong> No vendor selected, or ML engineers still on Bet 1</td>
+<td>If ML engineers can't transition from Bet 1 by Month 3 (Bet 1 behind schedule): defer Bet 3 start to Month 4, reduce prototype scope to text-to-audio only (no avatar).</td>
+<td>N/A at Month 3 — Bet 3 is just starting. Kill decision deferred to Month 5.</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Month 6 Gate: "Did We Transform the Product?"</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>Bet</th><th>Gate criteria (pass/fail)</th><th>Adaptation triggers</th><th>Kill criteria</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>Bet 1: AI Summarizer</strong></td>
+<td><span class="icon-check">&#10003;</span> <strong>Pass:</strong> 35%+ WAU using AI features; AI-tier conversion &gt;8%; +$6M incremental ARR (run-rate)<br><span class="icon-cross">&#10007;</span> <strong>Fail:</strong> &lt;20% WAU or &lt;$3M incremental ARR</td>
+<td>If engagement is 20-35%: the feature works but hasn't reached full potential. Invest in onboarding, prompts, and integrations (Slack/Teams summary delivery) for H2.</td>
+<td>If &lt;20% WAU after 4+ months of availability: users don't value AI summaries. The "AI-powered" positioning needs fundamental rethinking for FY2027.</td>
+</tr>
+<tr>
+<td><strong>Bet 2: Video Threads</strong></td>
+<td><span class="icon-check">&#10003;</span> <strong>Pass:</strong> GA shipped; 20%+ of teams using threads weekly; 90-day team retention improved 10pp<br><span class="icon-cross">&#10007;</span> <strong>Fail:</strong> &lt;10% team adoption or no measurable retention impact</td>
+<td>If adoption is 10-20%: threads work for power users but haven't crossed mainstream. Invest in thread templates (standup threads, project update threads) to lower activation barrier.</td>
+<td>If &lt;10% team adoption after 60 days of GA: threads are a feature, not a behavior change. Deprioritize and shift to lightweight social features (reactions, @mentions, video playlists).</td>
+</tr>
+<tr>
+<td><strong>Bet 3: AI Video Gen</strong></td>
+<td><span class="icon-check">&#10003;</span> <strong>Pass:</strong> Working prototype; 500+ beta signups; &gt;60% of beta testers say "I would use this instead of recording"<br><span class="icon-cross">&#10007;</span> <strong>Fail:</strong> Prototype quality rated "unprofessional" by &gt;50% of testers</td>
+<td>If beta feedback is mixed (40-60% positive): technology is promising but needs refinement. Extend prototype into H2 with 4 engineers, but do NOT commit to GA until quality bar is met.</td>
+<td>If &gt;50% of testers rate output as "uncanny / unprofessional": kill the bet entirely. The technology is not ready. Revisit in 12 months when avatar models improve. Do not ship low-quality AI video — it damages the brand permanently.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Replanning Protocol</h3>
+<ul>
+  <li><strong>Weekly:</strong> Engineering velocity check (sprint points delivered vs. planned) for all three bets. PM leads flag blockers in Monday standup.</li>
+  <li><strong>Bi-weekly:</strong> Cross-bet dependency review. Are Bet 2 teams blocked waiting for Bet 1 APIs? Is ML transition from Bet 1 to Bet 3 on track?</li>
+  <li><strong>Monthly:</strong> Strategy check-in with CEO. Review engagement metrics, revenue signals, and competitive landscape changes. No full replan unless a kill criteria is triggered.</li>
+  <li><strong>Month 3:</strong> Full replan. Gate criteria evaluated. Resource allocation adjusted for Months 4-6 based on results.</li>
+  <li><strong>Emergency trigger:</strong> If a competitor (Slack, Teams, Zoom) ships an AI summarization feature before our Month 2 launch, convene emergency strategy session within 48 hours to evaluate: (a) accelerate Bet 1 ship date, (b) differentiate on quality/depth, or (c) pivot Bet 1 scope to a feature competitors haven't built.</li>
+</ul>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- ASSUMPTIONS & CRITIQUE                       -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="assumptions">
+  <h2>Assumptions &amp; Adversarial Self-Critique</h2>
+
+<h3>Assumption Registry</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>#</th><th>Assumption</th><th>Bets it underpins</th><th>Confidence</th><th>Evidence</th><th>What would invalidate this</th></tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Users will pay $4/month extra for AI features on top of existing subscription</strong></td>
+<td>Bet 1 (AI Summarizer) — entire revenue case</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t4">T4</span> — comparable SaaS AI upsell benchmarks (Notion AI: ~15% conversion; Grammarly Premium: ~10% conversion)</td>
+<td>If AI-tier conversion &lt;3% after 60 days, users see AI summaries as "nice-to-have, not worth paying for." Fallback: bundle AI into existing tiers (no incremental revenue but improves core product stickiness).</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Async video is a conversation medium, not a broadcast medium</strong></td>
+<td>Bet 2 (Collaborative Threads) — entire value proposition</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> — user research interviews (N=24): 65% say "I wish I could reply to a video without recording a new one." But stated preferences don't always equal behavior.</td>
+<td>If thread adoption &lt;10% of teams after 60 days, users treat videos as one-way communication (like emails or podcasts), not conversations. This is a fundamental product-market insight, not a feature failure.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>AI avatar technology reaches "professional enough" quality in 2026</strong></td>
+<td>Bet 3 (AI Video Gen) — prototype viability</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td><span class="ev-badge ev-t4">T4</span> — current avatar models (HeyGen, Synthesia, D-ID) are improving rapidly but still trigger "uncanny valley" responses in 30-40% of viewers <span class="ev-badge ev-limited">EVIDENCE-LIMITED</span></td>
+<td>If beta testers rate AI avatar output as "unprofessional" in Month 5, the technology is premature. This doesn't invalidate the strategy — it means Bet 3 is 12-18 months early.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Slack Clips and Teams Recordings will remain "good enough" features, not standalone products</strong></td>
+<td>All bets — the entire pivot assumes competitors won't invest heavily in async video</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td><span class="ev-badge ev-t3">T3</span> — Slack and Microsoft's product roadmaps show clips/recordings as features within messaging, not dedicated products. Resource allocation signals (hiring, acquisitions) show no pivot to async video as core.</td>
+<td>If Slack or Microsoft acquires an async video company (like us) or launches a standalone video product with AI features, our competitive window closes from 12 months to 3 months. Emergency replan required.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Our 6 ML engineers can ship production-grade AI summarization in 8-10 weeks</strong></td>
+<td>Bet 1 (timeline) — cascades to all bets via critical path</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td><span class="ev-badge ev-t3">T3</span> — engineering estimates based on existing transcription pipeline + fine-tuning LLM for summarization. Team has shipped ML features before (auto-captions) in similar timeframes.</td>
+<td>If summarization accuracy is &lt;85% (measured by human eval) at Week 8, we need 4-6 more weeks of model iteration. This pushes Bet 1 ship date to Month 4, compresses Bet 2's window, and likely cancels Bet 3.</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Adversarial Self-Critique</h3>
+
+<h4>Weakness 1: "AI-Powered" May Be a Feature, Not a Positioning</h4>
+<p><strong>What I assumed:</strong> Adding AI features (summarization, threads, video generation) transforms our positioning from "recording tool" to "AI-powered communication hub" and creates a defensible moat against platform bundling.</p>
+<p><strong>What could be wrong:</strong> AI features are commoditizing faster than any other software capability in history. If OpenAI, Google, or Microsoft ships a general-purpose "summarize any video" API in 2026 (plausible), then any recording tool can add AI summaries in weeks, not months. Our Bet 1 moat evaporates. We'd have invested 50% of engineering capacity in a feature that becomes table stakes within a quarter of shipping.</p>
+<p><strong>Evidence that would disprove this strategy:</strong> A major AI lab launches a "video understanding" API that any developer can integrate. Slack Clips adds AI summaries as a free feature. Microsoft Copilot auto-summarizes Teams Recordings (already partially happening).</p>
+<p><strong>Invalidation trigger:</strong> If a competitor ships AI video summarization within 90 days of our launch, evaluate: is our implementation meaningfully better, or is it parity? If parity, the "AI-powered" positioning is not defensible — we need to find a different moat (collaboration network effects, enterprise features, or category creation via Bet 3).</p>
+
+<hr class="section-divider">
+
+<h4>Weakness 2: The 6-Month Horizon May Be Too Short for a Pivot</h4>
+<p><strong>What I assumed:</strong> We can meaningfully transform the product's positioning from "recording tool" to "AI-powered async communication hub" in 6 months with 40 engineers.</p>
+<p><strong>What could be wrong:</strong> Positioning changes take 12-18 months to register with the market. Even if we ship all three bets perfectly, customers and analysts may still categorize us as "a recording tool with AI features" — not "an AI communication platform." Category creation requires sustained marketing, sales enablement, and market education that extends well beyond the build window.</p>
+<p><strong>Evidence that would disprove this strategy:</strong> After Month 6, if NPS surveys show users still describe the product as "video recording tool" (not "communication platform"), the positioning change hasn't landed. If sales conversations still lead with "easy recording," the pivot hasn't penetrated go-to-market.</p>
+<p><strong>Invalidation trigger:</strong> If month-6 user surveys show &lt;30% of users can articulate what makes us different from "any other recording tool," the pivot needs a marketing investment as large as the product investment — budget for it in FY2027.</p>
+
+<hr class="section-divider">
+
+<h4>Weakness 3: We're Betting Everything on AI Without a Non-AI Hedge</h4>
+<p><strong>What I assumed:</strong> The CEO's "AI-powered" mandate is correct, and the path to differentiation runs through AI capabilities.</p>
+<p><strong>What could be wrong:</strong> All three bets depend on AI/ML infrastructure. If our models underperform (accuracy, latency, cost-per-inference), or if users experience "AI fatigue" (a growing sentiment in 2026), all three bets degrade simultaneously. We have no non-AI differentiation play in this strategy. This is a portfolio concentration risk — we're not diversified.</p>
+<p><strong>Evidence that would disprove this strategy:</strong> AI feature engagement follows a "novelty curve" — high adoption in Week 1, declining 40%+ by Week 4 as users revert to non-AI workflows. This would mean AI is a demo feature, not a habit. Early signals: if AI summary usage drops &gt;30% between Week 1 and Week 4 of launch, we have a novelty problem, not an engagement engine.</p>
+<p><strong>Invalidation trigger:</strong> If AI feature retention (Week 4 / Week 1 usage) is &lt;60% for Bet 1, the "AI-powered" positioning is not sustainable. Bet 2 (Collaborative Threads) becomes the de facto lead bet, and the strategy pivots from "AI platform" to "collaboration platform" — a less differentiated but more durable positioning.</p>
+
+<hr class="section-divider">
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- TRY IT YOURSELF                              -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section" id="try-it">
+  <h2>Try It Yourself</h2>
+<p class="section-sub"><strong>Apply this framework to your own product strategy in 5 steps:</strong></p>
+
+<div class="data-grid">
+  <div class="data-card">
+    <h4>Step 1: Context Gate (30 min)</h4>
+    <p>Verify: Is a strategy document the right artifact? Do you have a defined problem, market context, resource constraints, and a strategy question (not a feature request)? If 2+ checks fail, gather inputs before proceeding.</p>
+  </div>
+  <div class="data-card">
+    <h4>Step 2: Vision + Pillars (60 min)</h4>
+    <p>Write a 1-2 sentence vision that is aspirational and falsifiable. Define 3 strategy pillars that bridge vision to execution. Test: remove one pillar — if the vision is still reachable, the pillar isn't load-bearing.</p>
+  </div>
+  <div class="data-card">
+    <h4>Step 3: Size Your Bets (90 min)</h4>
+    <p>Define 2-4 strategic bets, each with: hypothesis (if/then/because), confidence level (H/M/L), investment size (engineers, designers, months), success criteria, and kill criteria. Check portfolio balance: Core (50-70%), Adjacent (20-30%), Transformational (5-15%).</p>
+  </div>
+  <div class="data-card">
+    <h4>Step 4: Sequence + NOT-Doing (60 min)</h4>
+    <p>Order your bets with explicit counterfactuals ("if we did B first, [consequence]"). Then list 3+ things you are NOT doing — with opportunity costs. An empty NOT-Doing section means you haven't made hard decisions.</p>
+  </div>
+  <div class="data-card">
+    <h4>Step 5: Gates + Self-Critique (45 min)</h4>
+    <p>Set quarterly gates with pass/fail criteria (no "partially met"). Write 3+ genuine weaknesses in your own strategy. If you can't find weaknesses, you haven't thought hard enough.</p>
+  </div>
+</div>
+
+<p><strong>Output:</strong> You'll have a board-ready product strategy document in ~5 hours.</p>
+
+<hr class="section-divider">
+
+<h3>Sample Prompt</h3>
+<div class="code-figure"><pre><code>Use the product-strategy skill to build a 6-month strategy for [your product].
+
+Context:
+- Product: [name, current ARR, user count, team size]
+- Problem: [why the current trajectory is insufficient]
+- Constraints: [headcount, budget, dependencies]
+- CEO mandate: [if any strategic directive exists]
+
+I need:
+1. A falsifiable vision statement
+2. 3 strategic bets with hypotheses, confidence levels, and investment sizing
+3. Sequencing rationale with counterfactuals
+4. An explicit NOT-Doing section with opportunity costs
+5. Quarterly gates with kill criteria
+6. Adversarial self-critique (what could be wrong with this strategy)</code></pre></div>
+
+<hr class="section-divider">
+
+<h3>Related Use Cases &amp; Skills</h3>
+<p class="section-sub"><strong>From this strategy to next steps:</strong></p>
+<ul>
+  <li>See <a href="use-case-figma-canva-express.html">Competitive Market Analysis use case</a> for the upstream competitive intelligence that feeds strategy decisions</li>
+  <li>See <a href="use-case-specification.html">Specification Writing use case</a> for translating strategic bets into feature specifications</li>
+  <li>See <a href="use-case-metric-design.html">Metric Design use case</a> for defining success metrics and experimentation plans for each bet</li>
+  <li>See <a href="use-case-problem-framing.html">Problem Framing use case</a> for defining the problem before building the strategy</li>
+</ul>
+
+<p><strong>Real-world skill chains:</strong></p>
+<ul>
+  <li><strong>Problem Framing</strong> (define the problem) &#8594; <strong>Discovery Research</strong> (validate with users) &#8594; <strong>Competitive Analysis</strong> (understand the market) &#8594; <strong>Product Strategy</strong> (this skill: decide what to build) &#8594; <strong>Specification Writing</strong> (specify each bet) &#8594; <strong>Metric Design</strong> (measure outcomes)</li>
+  <li>This analysis was produced using the <a href="https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/product-strategy/SKILL.md">product-strategy</a> skill from PM Skills Arsenal</li>
+</ul>
+
+<hr class="section-divider">
+
+<p><strong>Analysis Date:</strong> March 2026 <strong>Word Count:</strong> ~6,800 <strong>Evidence Points:</strong> 34 <span class="ev-badge ev-t2">T2-T4</span> <span class="ev-detail">: 30; T5-T6: 4</span> <strong>Frameworks Applied:</strong> Vision-to-Roadmap Cascade, Strategic Bet-Sizing, Option-Value Sequencing, Resource Allocation <strong>License:</strong> MIT <strong>PM Skills Arsenal:</strong> <a href="https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/product-strategy/SKILL.md">product-strategy</a></p>
+
+</div>
+
+<footer class="page-footer">
+  <span>Loom AI — 6-Month Product Strategy · PM Skills Arsenal</span>
+  <span>Built with Claude Code</span>
+</footer>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('nav button').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
