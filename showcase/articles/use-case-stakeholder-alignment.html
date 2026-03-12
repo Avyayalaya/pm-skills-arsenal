@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Platform Migration: Aligning 4 VPs on a $3M Decision — PM Skills Arsenal</title>
+  <title>Stakeholder Alignment: Data Platform Migration — PM Skills Arsenal</title>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 :root {
@@ -115,7 +115,7 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 .icon-cross{color:var(--accent);font-weight:700;font-size:14px}
 .icon-warn{color:var(--warm-gold);font-size:14px}
 
-/* ── PROGRESS BAR ── */
+/* ── PROGRESS BAR (replaces block chars) ── */
 .bar-container{display:flex;align-items:center;gap:8px}
 .bar-track{flex:1;height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;min-width:60px;max-width:120px}
 .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--sage),var(--accent))}
@@ -125,7 +125,7 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 .code-figure{margin:20px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .code-figure pre{background:var(--surface);padding:18px 20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:var(--text);margin:0;white-space:pre}
 
-/* ── POWER ITEM ── */
+/* ── POWER ITEM (bold emoji paragraph) ── */
 .power-item{border-left:3px solid var(--border);padding:10px 18px;margin:10px 0;background:var(--surface);border-radius:0 8px 8px 0}
 .power-item p{margin:0;max-width:none}
 
@@ -140,33 +140,6 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
 .stat-card .val{font-family:'Source Serif 4',Georgia,serif;font-size:28px;font-weight:700;color:var(--accent)}
 .stat-card .lbl{font-size:12px;color:var(--text-muted);margin-top:4px}
-
-/* ── POSITION BADGES ── */
-.pos-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
-.pos-champion{background:var(--sage-light);color:var(--sage)}
-.pos-supporter{background:rgba(184,150,62,0.15);color:#8B7420}
-.pos-neutral{background:var(--border-light);color:var(--text-muted)}
-.pos-skeptic{background:rgba(184,150,62,0.12);color:var(--warm-gold)}
-.pos-blocker{background:var(--accent-light);color:var(--accent)}
-
-/* ── POWER BADGES ── */
-.pow-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
-.pow-high{background:var(--accent-light);color:var(--accent)}
-.pow-medium{background:var(--warm-gold-light);color:var(--warm-gold)}
-.pow-low{background:var(--stone-light);color:var(--stone)}
-
-/* ── INTEREST BADGES ── */
-.int-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;vertical-align:middle;margin:0 2px}
-.int-high{background:var(--sage-light);color:var(--sage)}
-.int-medium{background:var(--warm-gold-light);color:var(--warm-gold)}
-.int-low{background:var(--stone-light);color:var(--stone)}
-
-/* ── DOMINO SEQUENCE ── */
-.domino-step{display:flex;gap:16px;margin:16px 0;align-items:flex-start}
-.domino-num{font-family:'Source Serif 4',Georgia,serif;font-size:32px;font-weight:700;color:var(--accent);line-height:1;min-width:40px}
-.domino-content{flex:1;border-left:2px solid var(--border);padding-left:16px}
-.domino-content h4{margin-top:0}
-.domino-arrow{text-align:center;color:var(--text-muted);font-size:20px;margin:4px 0 4px 16px}
 
 /* ── FOOTER ── */
 .page-footer{max-width:980px;margin:0 auto;padding:32px 48px 64px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -197,8 +170,8 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 </div>
 <header class="page-header">
   <div class="overline">Stakeholder Alignment · PM Skills Arsenal</div>
-  <h1>Data Platform Migration — Aligning 4 VPs on a $3M Infrastructure Decision</h1>
-  <p class="subtitle">Building alignment for migrating from a legacy data warehouse to a modern lakehouse architecture when Engineering is supportive, Finance is skeptical, Product is neutral, and the CDO has been burned by the last migration.</p>
+  <h1>Aligning 4 VPs on a $3M Redshift-to-Databricks Migration</h1>
+  <p class="subtitle">Full alignment strategy: Power-Interest-Position mapping, Coalition Analysis, Decision Archaeology, Sequenced Alignment Plan, Objection Pre-emption, and Communication Playbooks — with evidence tiers and confidence scoring.</p>
   <div class="header-meta">
     <span><strong>Skill:</strong> stakeholder-alignment</span>
     <span><strong>Date:</strong> March 2026</span>
@@ -208,374 +181,509 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 
 <nav>
   <div class="inner">
-    <button class="active" onclick="show('summary')">Executive Summary</button>
-    <button onclick="show('stakeholder-map')">Stakeholder Map</button>
-    <button onclick="show('coalition-analysis')">Coalition Analysis</button>
-    <button onclick="show('decision-archaeology')">Decision Archaeology</button>
-    <button onclick="show('alignment-sequence')">Alignment Sequence</button>
-    <button onclick="show('communication-strategies')">Communication Strategies</button>
-    <button onclick="show('objection-playbook')">Objection Playbook</button>
+    <button class="active" onclick="show('summary')">Summary</button>
+    <button onclick="show('context')">Context (Step 0)</button>
+    <button onclick="show('power-interest')">Power-Interest Matrix</button>
+    <button onclick="show('coalition')">Coalition Analysis</button>
+    <button onclick="show('archaeology')">Decision Archaeology</button>
+    <button onclick="show('sequencing')">Alignment Sequencing</button>
+    <button onclick="show('objections')">Objection Pre-emption</button>
+    <button onclick="show('communication')">Communication Strategy</button>
     <button onclick="show('monitoring')">Monitoring &amp; Recovery</button>
-    <button onclick="show('assumptions')">Assumptions &amp; Critique</button>
-    <button onclick="show('try-it')">Try It Yourself</button>
+    <button onclick="show('evidence-summary')">Evidence Summary</button>
+    <button onclick="show('governance')">Governance</button>
   </div>
 </nav>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Executive Summary                                      -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════ SUMMARY ═══════════════ -->
 <div class="section active" id="summary">
   <h2>Executive Summary</h2>
 
-<p>A $3M migration from Redshift to Databricks lakehouse requires alignment from four VPs at a Series D SaaS company ($120M ARR). The current alignment landscape: VP Engineering is a champion who wants modern tooling and will spend political capital, VP Finance is a skeptic burned by last year's Snowflake migration that went $1.2M over budget, VP Product is neutral but cares about data availability for product analytics, and the CDO is cautious because she led the failed Snowflake migration and is politically exposed <span class="conf-pill conf-h">H</span> <span class="ev-detail">direct observation + secondhand reports</span>. The biggest risk is not the Finance skeptic — it is the CDO, whose caution is rational and whose political exposure means she needs this migration to succeed more than anyone but cannot afford to champion it publicly until she has cover <span class="conf-pill conf-h">H</span> <span class="ev-detail">incentive analysis + decision archaeology</span>. The correct alignment sequence is: (1) lock in VP Engineering's active sponsorship, (2) convert VP Product with data availability guarantees, (3) use Engineering + Product coalition to give the CDO political cover, (4) approach VP Finance last with a phased budget proposal that explicitly addresses the Snowflake precedent. <strong>Recommended first move: Schedule a 1:1 with VP Engineering this week to formalize her championship and co-design the phased migration plan she can present to the CDO.</strong></p>
+<p>Four VPs must agree to a $3M data platform migration from Amazon Redshift to Databricks Lakehouse within the next 8 weeks, and only one is currently supportive. The Engineering VP (Chen) champions the move for technical modernization; the Finance VP (Ramirez) is the primary blocker because the ROI narrative relies on 18-month payback projections she considers speculative; the Product VP (Okafor) is genuinely neutral but will follow Finance's lead if no analytics uptime guarantee is provided; and the Design VP (Park) has not engaged because no one has explained why a data platform migration affects her team's access to user research analytics <span class="conf-pill conf-h">H</span> <span class="ev-detail">direct stakeholder interviews, T1-T2 evidence</span>. The biggest risk is not Finance's skepticism — it's the Product VP interpreting silence from Design as opposition and joining the "let's delay" camp, which would give Finance a blocking coalition of 2 <span class="conf-pill conf-m">M</span> <span class="ev-detail">coalition dynamics inference, T3</span>. <strong>Recommended first move: brief the Design VP on the UX research pipeline dependency before any group meeting — her neutral-to-supportive shift prevents a blocking coalition from forming and gives the Engineering VP a second ally before engaging Finance.</strong></p>
 
 <div class="stats-row">
-  <div class="stat-card">
-    <div class="val">4</div>
-    <div class="lbl">Stakeholders</div>
-  </div>
-  <div class="stat-card">
-    <div class="val">$3M</div>
-    <div class="lbl">18-Month Budget</div>
-  </div>
-  <div class="stat-card">
-    <div class="val">1</div>
-    <div class="lbl">Champion</div>
-  </div>
-  <div class="stat-card">
-    <div class="val">2</div>
-    <div class="lbl">Must Convert</div>
-  </div>
+  <div class="stat-card"><div class="val">4</div><div class="lbl">VP Stakeholders</div></div>
+  <div class="stat-card"><div class="val">$3M</div><div class="lbl">Migration Budget</div></div>
+  <div class="stat-card"><div class="val">8 wk</div><div class="lbl">Decision Deadline</div></div>
+  <div class="stat-card"><div class="val">1 of 4</div><div class="lbl">Currently Aligned</div></div>
 </div>
 
-<h3>How to Read This Document</h3>
-
-<div class="table-wrap"><table>
-<thead><tr><th>Time</th><th>Read</th><th>You'll Get</th></tr></thead>
-<tbody>
-<tr><td><strong>5 min</strong></td><td>Executive Summary only</td><td>The alignment situation, biggest risk, and recommended first move</td></tr>
-<tr><td><strong>15 min</strong></td><td>Summary + Stakeholder Map + Alignment Sequence</td><td>Who matters, where they stand, and the order to approach them</td></tr>
-<tr><td><strong>30 min</strong></td><td>Full document</td><td>Complete political map, historical context, per-stakeholder playbooks, and objection pre-emption</td></tr>
-</tbody></table></div>
-
-<div class="table-wrap"><table>
-<thead><tr><th>Role</th><th>Start Here</th><th>Focus On</th></tr></thead>
-<tbody>
-<tr><td><strong>Executive sponsor</strong></td><td>Summary → Alignment Sequence → Assumptions</td><td>Whether the coalition path is viable and what risks exist</td></tr>
-<tr><td><strong>PM (alignment owner)</strong></td><td>Full document, sequentially</td><td>Every section — this is your operational playbook</td></tr>
-<tr><td><strong>Chief of staff</strong></td><td>Alignment Sequence → Communication Strategies → Monitoring</td><td>Logistics of executing the alignment campaign</td></tr>
-</tbody></table></div>
-
-<h3>Notation Key</h3>
-
-<p><strong>Confidence levels</strong> — <span class="conf-pill conf-h">H</span> &gt;70% confident, act on it &nbsp; <span class="conf-pill conf-m">M</span> 40-70%, validate before critical moves &nbsp; <span class="conf-pill conf-l">L</span> &lt;40%, hypothesis only</p>
-
-<p><strong>Evidence tiers</strong> — <span class="ev-badge ev-t1">T1</span> Direct observation &nbsp; <span class="ev-badge ev-t2">T2</span> Credible secondhand &nbsp; <span class="ev-badge ev-t3">T3</span> Structural inference &nbsp; <span class="ev-badge ev-t4">T4</span> Pattern matching &nbsp; <span class="ev-badge ev-t5">T5</span> Peripheral signals &nbsp; <span class="ev-badge ev-t6">T6</span> Pure assumption</p>
-
-<p><strong>Position ratings</strong> — <span class="pos-badge pos-champion">CHAMPION</span> Actively advocates &nbsp; <span class="pos-badge pos-supporter">SUPPORTER</span> Favorable but passive &nbsp; <span class="pos-badge pos-neutral">NEUTRAL</span> No position formed &nbsp; <span class="pos-badge pos-skeptic">SKEPTIC</span> Persuadable with conditions &nbsp; <span class="pos-badge pos-blocker">BLOCKER</span> Actively opposes</p>
-
-<hr class="section-divider">
-
-<h3>Context Gate Results</h3>
-
-<div class="table-wrap"><table>
-<thead><tr><th>Question</th><th>Answer</th><th>Implication</th></tr></thead>
-<tbody>
-<tr><td><strong>Multiple stakeholders required?</strong></td><td><span class="icon-check">✓</span> Yes — 4 VPs must align</td><td>Proceed with full alignment strategy</td></tr>
-<tr><td><strong>Stakeholder positions known?</strong></td><td>Mixed — 2 direct (Eng, Finance), 2 inferred (Product, CDO)</td><td>CDO and Product positions capped at M confidence until validated</td></tr>
-<tr><td><strong>Previous alignment attempt?</strong></td><td><span class="icon-check">✓</span> Yes — Snowflake migration failed 14 months ago</td><td>Decision Archaeology is load-bearing. Past failure shapes every current position.</td></tr>
-<tr><td><strong>Hard deadline?</strong></td><td>Soft — current Redshift contract renews in 4 months</td><td>Time-box alignment to 6 weeks; after that, Redshift renewal locks in another 12 months</td></tr>
-</tbody></table></div>
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Critical insight:</strong> This is not a 4-person alignment problem — it's a 2-coalition problem. Engineering + Design (technical modernization + research access) vs. Finance + potentially Product (cost concern + uptime risk). The alignment sequence must build the first coalition before the second one forms.</p></div>
 
 <hr class="section-divider">
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Stakeholder Map                                        -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="stakeholder-map">
-  <h2>Stakeholder Map: Power-Interest-Position Matrix</h2>
-  <p class="section-sub">The foundational mapping — who has power, who cares, and where they currently stand. Every cell is scored with evidence tiers.</p>
+<!-- ═══════════════ CONTEXT ═══════════════ -->
+<div class="section" id="context">
+  <h2>Step 0: Context Gate &amp; Framework Selection</h2>
+
+<p class="section-sub"><strong>Verifying this is the right artifact before investing in full analysis.</strong> A Context Gate checks whether a stakeholder alignment strategy is the right tool — sometimes the answer is "just write a brief for one decision-maker."</p>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Question</th>
+<th>Answer</th>
+<th>Implication</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Multiple stakeholders required?</strong></td>
+<td>Yes — 4 VPs with budget authority; no single approver <span class="ev-badge ev-t1">T1</span></td>
+<td>Full alignment strategy warranted. Consensus model (all 4 must agree or 3 + CEO override).</td>
+</tr>
+<tr>
+<td><strong>Stakeholder positions known?</strong></td>
+<td>Mixed — Engineering direct (T1), Finance direct (T1), Product inferred from behavior (T2), Design unknown (T5)</td>
+<td>Finance and Engineering are H-confidence assessments. Product is M. Design is L — position assessment is a hypothesis until direct conversation.</td>
+</tr>
+<tr>
+<td><strong>Previous alignment attempt?</strong></td>
+<td>Yes — a similar migration was proposed 18 months ago and shelved after Finance raised cost concerns <span class="ev-badge ev-t2">T2</span></td>
+<td>Decision Archaeology is load-bearing. The 2024 failure shapes current positions — especially Finance's "I've seen this before" frame.</td>
+</tr>
+<tr>
+<td><strong>Hard deadline?</strong></td>
+<td>Yes — Redshift contract renewal in 8 weeks. Auto-renews for 2 years if no migration decision by then <span class="ev-badge ev-t1">T1</span></td>
+<td>Sequence must compress. Cannot afford a multi-month alignment campaign. Time-box each step to 1-2 weeks max.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Framework Selection</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Question Type</th>
+<th>Primary Frameworks (Apply in Full)</th>
+<th>Supporting Frameworks (Scan Only)</th>
+<th>Skipped (Why)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Cross-functional VP alignment for $3M infrastructure investment with 8-week deadline</td>
+<td><strong>F1</strong> Power-Interest-Position Matrix, <strong>F3</strong> Decision Archaeology, <strong>F4</strong> Alignment Sequencing, <strong>F5</strong> Objection Pre-emption</td>
+<td><strong>F2</strong> Coalition Analysis, <strong>F6</strong> Communication Strategy</td>
+<td><strong>F7</strong> Alignment Monitoring — applied at reduced depth (alignment campaign is compressed to 8 weeks, not a multi-quarter effort)</td>
+</tr>
+</tbody></table></div>
+
+<div class="aside"><span class="a-icon">◈</span><p><strong>Context Gate result:</strong> Full stakeholder alignment strategy is the right artifact. This is a multi-stakeholder decision with a hard deadline, a failed prior attempt, and mixed evidence quality on stakeholder positions. A simple brief or RACI would not address the political dynamics at play.</p></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════ POWER-INTEREST MATRIX ═══════════════ -->
+<div class="section" id="power-interest">
+  <h2>1. Power-Interest-Position Matrix</h2>
+
+<p class="section-sub"><strong>Power-Interest-Position mapping</strong> scores each stakeholder on formal authority, engagement level, and current stance — then identifies the gap between where they are and where they need to be for the decision to proceed.</p>
 
 <h3>1a. Stakeholder Identification</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>#</th><th>Stakeholder</th><th>Role</th><th>Relevance to Decision</th><th>Source</th></tr></thead>
+<thead><tr>
+<th>#</th>
+<th>Stakeholder</th>
+<th>Role</th>
+<th>Relevance to Decision</th>
+<th>Source</th>
+</tr></thead>
 <tbody>
-<tr><td>1</td><td><strong>Sarah Chen</strong></td><td>VP Engineering</td><td>Owns the data engineering team that will execute the migration; controls 60% of the required headcount</td><td><span class="ev-badge ev-t1">T1</span></td></tr>
-<tr><td>2</td><td><strong>David Okafor</strong></td><td>VP Finance</td><td>Must approve the $3M capital expenditure; owns the budget allocation process</td><td><span class="ev-badge ev-t1">T1</span></td></tr>
-<tr><td>3</td><td><strong>Priya Sharma</strong></td><td>VP Product</td><td>Largest consumer of data platform — product analytics, A/B testing, and ML features depend on it</td><td><span class="ev-badge ev-t2">T2</span></td></tr>
-<tr><td>4</td><td><strong>Maria Torres</strong></td><td>Chief Data Officer</td><td>Led the failed Snowflake migration; technically the decision owner for data infrastructure; politically exposed</td><td><span class="ev-badge ev-t2">T2</span></td></tr>
+<tr>
+<td>1</td>
+<td><strong>VP Engineering — Lisa Chen</strong></td>
+<td>VP Engineering, Data Infrastructure</td>
+<td>Owns the engineering team that will execute the migration. Budget co-sponsor. Technical authority on architecture decisions.</td>
+<td><span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>VP Finance — Maria Ramirez</strong></td>
+<td>VP Finance, Technology Investments</td>
+<td>Approves all technology spend >$1M. Owns the ROI model. Killed the 2024 proposal.</td>
+<td><span class="ev-badge ev-t1">T1</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>VP Product — James Okafor</strong></td>
+<td>VP Product, Analytics &amp; Insights</td>
+<td>Primary consumer of the data platform. His team's analytics dashboards and A/B testing depend on platform uptime. Has 14 analysts running daily queries.</td>
+<td><span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>VP Design — Soo-Jin Park</strong></td>
+<td>VP Design, UX Research &amp; Systems</td>
+<td>UX research team runs behavioral analytics pipelines (Amplitude + Redshift joins) for usability studies. Migration would temporarily disrupt research data access. Has not been consulted.</td>
+<td><span class="ev-badge ev-t3">T3</span></td>
+</tr>
 </tbody></table></div>
 
 <h3>1b. Power-Interest-Position Scoring</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Stakeholder</th><th>Power</th><th>Interest</th><th>Current Position</th><th>Desired Position</th><th>Gap</th><th>Confidence</th></tr></thead>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Power</th>
+<th>Interest</th>
+<th>Current Position</th>
+<th>Desired Position</th>
+<th>Gap</th>
+<th>Confidence</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Sarah Chen</strong><br>VP Engineering</td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="int-badge int-high">HIGH</span> <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="pos-badge pos-champion">CHAMPION</span> <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="pos-badge pos-champion">CHAMPION</span></td>
-  <td>None — maintain</td>
-  <td><span class="conf-pill conf-h">H</span></td>
+<td><strong>Chen (Engineering)</strong></td>
+<td>H <span class="ev-badge ev-t1">T1</span></td>
+<td>H <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot green"></span> Champion <span class="ev-badge ev-t1">T1</span></td>
+<td>Champion</td>
+<td>None — maintain</td>
+<td><span class="conf-pill conf-h">H</span></td>
 </tr>
 <tr>
-  <td><strong>David Okafor</strong><br>VP Finance</td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="int-badge int-high">HIGH</span> <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="pos-badge pos-skeptic">SKEPTIC</span> <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="pos-badge pos-supporter">SUPPORTER</span></td>
-  <td>Large — needs budget safeguards</td>
-  <td><span class="conf-pill conf-h">H</span></td>
+<td><strong>Ramirez (Finance)</strong></td>
+<td>H <span class="ev-badge ev-t1">T1</span></td>
+<td>H <span class="ev-badge ev-t1">T1</span></td>
+<td><span class="dot red"></span> Skeptic <span class="ev-badge ev-t1">T1</span></td>
+<td>Supporter</td>
+<td>Large — skeptic to supporter requires ROI proof + risk mitigation</td>
+<td><span class="conf-pill conf-h">H</span></td>
 </tr>
 <tr>
-  <td><strong>Priya Sharma</strong><br>VP Product</td>
-  <td><span class="pow-badge pow-medium">MEDIUM</span> <span class="ev-badge ev-t2">T2</span></td>
-  <td><span class="int-badge int-medium">MEDIUM</span> <span class="ev-badge ev-t2">T2</span></td>
-  <td><span class="pos-badge pos-neutral">NEUTRAL</span> <span class="ev-badge ev-t2">T2</span></td>
-  <td><span class="pos-badge pos-supporter">SUPPORTER</span></td>
-  <td>Moderate — needs data availability guarantees</td>
-  <td><span class="conf-pill conf-m">M</span></td>
+<td><strong>Okafor (Product)</strong></td>
+<td>H <span class="ev-badge ev-t2">T2</span></td>
+<td>M <span class="ev-badge ev-t2">T2</span></td>
+<td><span class="dot yellow"></span> Neutral <span class="ev-badge ev-t2">T2</span></td>
+<td>Supporter</td>
+<td>Medium — needs analytics uptime guarantee to move from neutral to supportive</td>
+<td><span class="conf-pill conf-m">M</span></td>
 </tr>
 <tr>
-  <td><strong>Maria Torres</strong><br>CDO</td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="int-badge int-high">HIGH</span> <span class="ev-badge ev-t2">T2</span></td>
-  <td><span class="pos-badge pos-skeptic">SKEPTIC</span> <span class="ev-badge ev-t3">T3</span></td>
-  <td><span class="pos-badge pos-champion">CHAMPION</span></td>
-  <td>Large — needs political cover + phased approach</td>
-  <td><span class="conf-pill conf-m">M</span></td>
+<td><strong>Park (Design)</strong></td>
+<td>M <span class="ev-badge ev-t3">T3</span></td>
+<td>L <span class="ev-badge ev-t5">T5</span></td>
+<td><span class="dot yellow"></span> Unengaged <span class="ev-badge ev-t5">T5</span></td>
+<td>Supporter</td>
+<td>Unknown — hasn't been briefed; position is a hypothesis</td>
+<td><span class="conf-pill conf-l">L</span></td>
 </tr>
 </tbody></table></div>
+
+<div class="aside watch"><span class="a-icon">◈</span><p><span class="ev-badge ev-limited">EVIDENCE-LIMITED</span> Park's position assessment is T5 (peripheral signals: absence from data platform Slack channel, no comments on architecture RFC). Validate with direct conversation before executing alignment strategy for her.</p></div>
 
 <h3>1c. Power Source Decomposition</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Stakeholder</th><th>Formal Authority</th><th>Informal Influence</th><th>Resource Control</th><th>Veto Capability</th><th>Net Power</th></tr></thead>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Formal Authority</th>
+<th>Informal Influence</th>
+<th>Resource Control</th>
+<th>Veto Capability</th>
+<th>Net Power</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Sarah Chen</strong></td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span><br>Controls eng allocation</td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t2">T2</span><br>Trusted by CEO on tech</td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span><br>60% of migration headcount</td>
-  <td>Yes <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="pow-badge pow-high">HIGH</span></td>
+<td><strong>Chen (Engineering)</strong></td>
+<td>H <span class="ev-badge ev-t1">T1</span> — owns engineering capacity</td>
+<td>H <span class="ev-badge ev-t2">T2</span> — respected technical authority, CEO trusts her judgment on infrastructure</td>
+<td>H <span class="ev-badge ev-t1">T1</span> — controls engineering headcount for migration</td>
+<td>Yes <span class="ev-badge ev-t1">T1</span></td>
+<td><strong>H</strong></td>
 </tr>
 <tr>
-  <td><strong>David Okafor</strong></td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span><br>Budget approval authority</td>
-  <td><span class="pow-badge pow-medium">MEDIUM</span> <span class="ev-badge ev-t3">T3</span><br>Respected but not a tech voice</td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span><br>Controls capital allocation</td>
-  <td>Yes <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="pow-badge pow-high">HIGH</span></td>
+<td><strong>Ramirez (Finance)</strong></td>
+<td>H <span class="ev-badge ev-t1">T1</span> — budget approval authority >$1M</td>
+<td>H <span class="ev-badge ev-t2">T2</span> — CFO's trusted lieutenant; her "no" carries weight with the CEO</td>
+<td>H <span class="ev-badge ev-t1">T1</span> — controls the funding allocation</td>
+<td>Yes <span class="ev-badge ev-t1">T1</span></td>
+<td><strong>H</strong></td>
 </tr>
 <tr>
-  <td><strong>Priya Sharma</strong></td>
-  <td><span class="pow-badge pow-low">LOW</span> <span class="ev-badge ev-t2">T2</span><br>No formal decision rights on infra</td>
-  <td><span class="pow-badge pow-medium">MEDIUM</span> <span class="ev-badge ev-t2">T2</span><br>Product voice carries weight</td>
-  <td><span class="pow-badge pow-low">LOW</span> <span class="ev-badge ev-t2">T2</span><br>No infra resources</td>
-  <td>No <span class="ev-badge ev-t2">T2</span></td>
-  <td><span class="pow-badge pow-medium">MEDIUM</span></td>
+<td><strong>Okafor (Product)</strong></td>
+<td>H <span class="ev-badge ev-t1">T1</span> — owns product analytics roadmap</td>
+<td>M <span class="ev-badge ev-t3">T3</span> — respected for product sense but less politically active</td>
+<td>M <span class="ev-badge ev-t2">T2</span> — controls analytics team but not infrastructure budget</td>
+<td>Soft veto <span class="ev-badge ev-t2">T2</span> — can delay by raising concerns</td>
+<td><strong>H</strong></td>
 </tr>
 <tr>
-  <td><strong>Maria Torres</strong></td>
-  <td><span class="pow-badge pow-high">HIGH</span> <span class="ev-badge ev-t1">T1</span><br>Decision owner for data infra</td>
-  <td><span class="pow-badge pow-medium">MEDIUM</span> <span class="ev-badge ev-t3">T3</span><br>Diminished after Snowflake failure</td>
-  <td><span class="pow-badge pow-medium">MEDIUM</span> <span class="ev-badge ev-t2">T2</span><br>Data team + vendor relationships</td>
-  <td>Yes <span class="ev-badge ev-t1">T1</span></td>
-  <td><span class="pow-badge pow-high">HIGH</span></td>
+<td><strong>Park (Design)</strong></td>
+<td>M <span class="ev-badge ev-t2">T2</span> — owns design and UX research</td>
+<td>M <span class="ev-badge ev-t3">T3</span> — well-liked but not politically active on infrastructure decisions</td>
+<td>L <span class="ev-badge ev-t3">T3</span> — no budget authority for infrastructure</td>
+<td>No <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>M</strong></td>
 </tr>
 </tbody></table></div>
-
-<div class="aside decision"><span class="a-icon">◈</span><p><strong>Key insight:</strong> Three of four stakeholders have HIGH power and veto capability. This is not a "convince one decision-maker" situation — it's a coalition-building challenge where any single veto kills the initiative. The CDO is formally the decision owner, but her political exposure means she will not act alone. She needs visible coalition support before she can champion this.</p></div>
 
 <h3>Engagement Strategy Matrix</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Power \ Interest</th><th>High Interest</th><th>Low Interest</th></tr></thead>
+<thead><tr>
+<th>Power \ Interest</th>
+<th>High Interest</th>
+<th>Low Interest</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>High Power</strong></td>
-  <td><strong>Manage closely:</strong> Sarah Chen (champion — activate), David Okafor (skeptic — convert), Maria Torres (cautious — give cover)</td>
-  <td>—</td>
+<td><strong>High Power</strong></td>
+<td><strong>Manage closely</strong> — Chen (champion, maintain), Ramirez (skeptic, convert), Okafor (neutral, convert)</td>
+<td>—</td>
 </tr>
 <tr>
-  <td><strong>Medium/Low Power</strong></td>
-  <td><strong>Keep informed → elevate:</strong> Priya Sharma (neutral — her support strengthens the coalition for the CDO)</td>
-  <td>—</td>
+<td><strong>Medium Power</strong></td>
+<td>—</td>
+<td><strong>Keep satisfied</strong> — Park (unengaged, brief and convert)</td>
 </tr>
 </tbody></table></div>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Decision point:</strong> 2 of 3 high-power stakeholders are currently skeptic or neutral. Coalition building must precede direct engagement with Finance. Convert Product and Design first — approaching Finance with a 3-person coalition shifts the dynamic from "1 VP wants this" to "the organization wants this."</p></div>
 
 <hr class="section-divider">
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Coalition Analysis                                     -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="coalition-analysis">
-  <h2>Coalition Analysis: Engineering and Product Are Natural Allies — Finance Is the Swing Vote</h2>
-  <p class="section-sub">Understanding group dynamics — who needs whom, which alliances are durable, and where the tipping point is.</p>
+<!-- ═══════════════ COALITION ANALYSIS ═══════════════ -->
+<div class="section" id="coalition">
+  <h2>2. Coalition Analysis</h2>
+
+<p class="section-sub"><strong>Coalition Analysis</strong> maps natural allies, opponents, swing voters, and power brokers — identifying who influences whom, what alliances are durable, and what tips the balance.</p>
 
 <h3>2a. Coalition Map</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Coalition Type</th><th>Members</th><th>Basis of Alliance</th><th>Durability</th><th>Defection Risk</th></tr></thead>
+<thead><tr>
+<th>Coalition Type</th>
+<th>Members</th>
+<th>Basis of Alliance</th>
+<th>Durability</th>
+<th>Defection Risk</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Natural allies</strong></td>
-  <td>Sarah Chen (Eng) + Priya Sharma (Product)</td>
-  <td>Both benefit from faster queries, better data availability, and reduced maintenance burden <span class="ev-badge ev-t2">T2</span></td>
-  <td><span class="conf-pill conf-h">H</span></td>
-  <td>Low — Priya defects only if migration causes >2 weeks of product analytics downtime <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>Natural allies</strong></td>
+<td>Chen (Engineering)</td>
+<td>Wants modern tooling; Databricks enables ML pipelines her team has been blocked on for 2 years <span class="ev-badge ev-t1">T1</span></td>
+<td>H</td>
+<td>Only if migration scope balloons and threatens her team's Q3 product commitments</td>
 </tr>
 <tr>
-  <td><strong>Marriage of convenience</strong></td>
-  <td>Sarah Chen (Eng) + Maria Torres (CDO)</td>
-  <td>Both want modern data infra, but Maria carries the political scar of the Snowflake failure. She needs Sarah's credibility to de-risk <span class="ev-badge ev-t3">T3</span></td>
-  <td><span class="conf-pill conf-m">M</span></td>
-  <td>Medium — Maria defects if the migration plan looks too similar to the Snowflake approach (big-bang, underscoped) <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>Latent allies</strong></td>
+<td>Park (Design)</td>
+<td>UX research team's behavioral analytics pipeline will improve with Lakehouse architecture — but she doesn't know this yet <span class="ev-badge ev-t3">T3</span></td>
+<td>M</td>
+<td>If migration creates any research data access downtime during Q2 usability studies</td>
 </tr>
 <tr>
-  <td><strong>Swing voter</strong></td>
-  <td>David Okafor (Finance)</td>
-  <td>Undecided — waiting for a credible budget proposal with safeguards. His position depends on whether the Snowflake precedent is explicitly addressed <span class="ev-badge ev-t1">T1</span></td>
-  <td>N/A</td>
-  <td>Tips to opposition if the proposal doesn't include phase gates with kill switches <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>Swing voters</strong></td>
+<td>Okafor (Product)</td>
+<td>Genuinely undecided — needs analytics uptime guarantee and understands Redshift's scaling limitations, but won't risk his team's quarterly metrics <span class="ev-badge ev-t2">T2</span></td>
+<td>N/A</td>
+<td>Tips to support if uptime guarantee is credible; tips to oppose if Finance frames it as "unnecessary risk"</td>
 </tr>
 <tr>
-  <td><strong>Potential blocker</strong></td>
-  <td>Maria Torres (CDO) — not currently blocking, but caution could calcify into opposition</td>
-  <td>Political self-preservation. If she senses this migration will fail like Snowflake, she will quietly kill it through delay <span class="ev-badge ev-t3">T3</span></td>
-  <td><span class="conf-pill conf-m">M</span></td>
-  <td>High if approached without coalition cover. Low if approached with Eng + Product + Finance already aligned <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>Stable opponents</strong></td>
+<td>Ramirez (Finance)</td>
+<td>$3M spend without guaranteed 12-month ROI violates her investment framework; burned by 2024 cloud migration that went 40% over budget <span class="ev-badge ev-t2">T2</span></td>
+<td>H</td>
+<td>Converts only with: (a) phased spending with kill gates, (b) Redshift renewal cost comparison showing inaction also costs money, (c) peer company evidence</td>
 </tr>
 </tbody></table></div>
 
 <h3>2b. Critical Mass Analysis</h3>
 
 <div class="stats-row">
-  <div class="stat-card">
-    <div class="val">4</div>
-    <div class="lbl">Total Stakeholders</div>
-  </div>
-  <div class="stat-card">
-    <div class="val">3</div>
-    <div class="lbl">Needed for Approval</div>
-  </div>
-  <div class="stat-card">
-    <div class="val">1</div>
-    <div class="lbl">Current Champions</div>
-  </div>
-  <div class="stat-card">
-    <div class="val">2</div>
-    <div class="lbl">Gap to Critical Mass</div>
-  </div>
+  <div class="stat-card"><div class="val">4</div><div class="lbl">Total Stakeholders</div></div>
+  <div class="stat-card"><div class="val">3</div><div class="lbl">Needed for Approval</div></div>
+  <div class="stat-card"><div class="val">1</div><div class="lbl">Current Champions</div></div>
+  <div class="stat-card"><div class="val">2</div><div class="lbl">Gap to Critical Mass</div></div>
 </div>
 
-<p><strong>Decision governance:</strong> The CDO (Maria) is the formal decision owner, but she will not sign off without VP Finance budget approval and visible VP Engineering sponsorship. This is a <em>de facto</em> consensus decision — any single VP's active opposition stalls it <span class="ev-badge ev-t2">T2</span>.</p>
-
-<p><strong>Most convertible targets:</strong> (1) Priya Sharma — neutral, low conversion cost, her support adds product voice to the coalition. (2) David Okafor — skeptic but persuadable if the Snowflake precedent is addressed with phase gates and budget caps <span class="ev-badge ev-t3">T3</span>.</p>
+<p><strong>Most convertible targets:</strong> <strong>Okafor</strong> (needs uptime guarantee — addressable) and <strong>Park</strong> (needs relevance explanation — addressable). Both are lower-effort conversions than Ramirez.</p>
 
 <h3>2c. Power Broker Identification</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Power Broker</th><th>Who They Influence</th><th>Mechanism</th><th>Current Position</th><th>Conversion Priority</th></tr></thead>
+<thead><tr>
+<th>Power Broker</th>
+<th>Who They Influence</th>
+<th>Mechanism</th>
+<th>Current Position</th>
+<th>Conversion Priority</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Sarah Chen</strong><br>VP Engineering</td>
-  <td>Maria Torres (CDO), Priya Sharma (Product)</td>
-  <td>Technical credibility — when Sarah says "this architecture is sound," both Maria and Priya's teams trust it. Sarah's endorsement is the CDO's cover story. <span class="ev-badge ev-t2">T2</span></td>
-  <td><span class="pos-badge pos-champion">CHAMPION</span></td>
-  <td><span class="pow-badge pow-high">HIGH</span> — activating Sarah as a visible champion unlocks 2 other stakeholders</td>
+<td><strong>Ramirez (Finance)</strong></td>
+<td>Okafor (Product) — Okafor defers to Finance on cost-related decisions <span class="ev-badge ev-t2">T2</span></td>
+<td>Okafor's analytics investments have been funded through Ramirez's budget process; he avoids opposing her publicly</td>
+<td><span class="dot red"></span> Skeptic</td>
+<td>H — but approach <em>last</em>, not first</td>
+</tr>
+<tr>
+<td><strong>Chen (Engineering)</strong></td>
+<td>Park (Design) — Chen and Park collaborate on design-engineering handoff; Park trusts Chen's technical judgment <span class="ev-badge ev-t3">T3</span></td>
+<td>Prior positive collaboration on design system migration (2024); Park expressed "I trust Lisa's team to handle technical changes"</td>
+<td><span class="dot green"></span> Champion</td>
+<td>Leverage — use Chen to brief Park</td>
 </tr>
 </tbody></table></div>
 
-<div class="aside decision"><span class="a-icon">◈</span><p><strong>Coalition strategy:</strong> Sarah Chen is the linchpin. Her visible championship gives Maria Torres political cover (another credible executive vouched for this). Her technical credibility reassures Priya Sharma. Converting VP Finance is the last domino — approached with a 3-VP coalition, Finance's skepticism becomes isolated rather than representative.</p></div>
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Decision point:</strong> Ramirez is both the primary blocker and the primary power broker (influences Okafor). If Ramirez frames this as "unnecessary $3M risk" before Okafor has formed his own view, Okafor will default to Finance's position. The alignment sequence must reach Okafor with a credible uptime guarantee <em>before</em> Ramirez frames the conversation for him.</p></div>
+
+<h3>Influence Network</h3>
+
+<figure class="code-figure"><pre><code>    CHEN (Engineering)                    RAMIREZ (Finance)
+    Champion [H Power]                    Skeptic [H Power]
+         |                                      |
+         | trusts technical                     | defers on
+         | judgment                             | cost decisions
+         v                                     v
+    PARK (Design)          &lt;- - - - - -   OKAFOR (Product)
+    Unengaged [M Power]    if Park opposes  Neutral [H Power]
+                           Okafor follows
+
+    ________ = strong influence
+    - - - -  = conditional influence
+
+    GOAL: Build Chen -&gt; Park -&gt; Okafor chain BEFORE
+          Ramirez -&gt; Okafor chain activates</code></pre></figure>
 
 <hr class="section-divider">
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Decision Archaeology                                   -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="decision-archaeology">
-  <h2>Decision Archaeology: The Snowflake Shadow</h2>
-  <p class="section-sub">Why stakeholders hold their current positions — uncovering the history, incentives, and trust dynamics that shape today's alignment landscape. This section is load-bearing: you cannot align these stakeholders without understanding what happened 14 months ago.</p>
+<!-- ═══════════════ DECISION ARCHAEOLOGY ═══════════════ -->
+<div class="section" id="archaeology">
+  <h2>3. Decision Archaeology</h2>
 
-<h3>3a. The Snowflake Migration Story</h3>
+<p class="section-sub"><strong>Decision Archaeology</strong> excavates why stakeholders hold their current positions by examining past decisions, incentive structures, and trust relationships. Current positions are rarely about the current proposal — they're about what happened last time.</p>
 
-<div class="power-item"><p><strong>14 months ago,</strong> the company attempted to migrate from Redshift to Snowflake. Maria Torres (CDO) led the initiative. The original budget was $1.8M over 12 months. It went $1.2M over budget ($3M total), took 18 months instead of 12, caused 3 weeks of partial data outage during the cutover, and was ultimately abandoned at 60% completion when the board questioned the ROI. Maria's quarterly performance review cited "poor vendor management and underscoped migration planning." <span class="ev-badge ev-t2">T2</span> <span class="ev-detail">secondhand from Maria's direct report + Finance post-mortem document</span></p></div>
-
-<div class="power-item"><p><strong>What actually went wrong:</strong> The Snowflake migration failed for three specific reasons — (1) big-bang cutover strategy with no parallel-run period, (2) the vendor's SOW underestimated schema complexity by 3x (400 tables with cross-dependencies vs. 150 estimated), and (3) no phase gates — the team committed the full $3M before validating that the first 50-table migration worked. These were scoping and project management failures, not technology failures. <span class="ev-badge ev-t2">T2</span> <span class="ev-detail">post-mortem document + engineering retrospective</span></p></div>
-
-<div class="power-item"><p><strong>Maria's political exposure:</strong> Maria was the public face of the Snowflake migration. When it failed, she bore the blame even though the scoping was done by an external consulting firm. Her credibility with the board is damaged. She cannot afford another infrastructure failure. But here is the paradox: she also cannot afford to keep Redshift, because the 3x query time degradation is now visible to the CEO, and the data team spending 40% of time on maintenance is a metric the board tracks. Maria needs to move, but she needs cover. <span class="ev-badge ev-t3">T3</span> <span class="ev-detail">incentive analysis + T2 secondhand report from CDO's chief of staff</span></p></div>
-
-<h3>3b. How the Snowflake Failure Shapes Every Position</h3>
+<h3>3a. Relevant Past Decisions</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Stakeholder</th><th>Their Goals/Metrics</th><th>How Snowflake Failure Affects Them</th><th>Hidden Agenda Risk</th></tr></thead>
+<thead><tr>
+<th>Past Decision</th>
+<th>Date</th>
+<th>Outcome</th>
+<th>Who Was Involved</th>
+<th>How It Shapes Current Positions</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Sarah Chen</strong><br>VP Engineering</td>
-  <td>Engineering velocity, platform reliability, talent retention <span class="ev-badge ev-t1">T1</span></td>
-  <td>Vindicated — she raised concerns about the Snowflake vendor's SOW before the migration. Her team also didn't own the migration (data team did). She can champion this without baggage. <span class="ev-badge ev-t2">T2</span></td>
-  <td>Low — her agenda is transparent: she wants modern tooling to retain senior engineers who are frustrated with Redshift <span class="ev-badge ev-t2">T2</span></td>
+<td><strong>Redshift-to-Snowflake proposal</strong></td>
+<td>Sep 2024</td>
+<td>Shelved — Finance flagged unclear ROI; Engineering couldn't produce a migration timeline under 9 months <span class="ev-badge ev-t2">T2</span></td>
+<td>Chen (proposed), Ramirez (killed), Okafor (abstained)</td>
+<td><strong>Ramirez:</strong> "I was right to kill it — we would have been mid-migration during the Q1 crunch." <strong>Chen:</strong> Learned to bring a tighter plan. <strong>Okafor:</strong> Sat out last time and regretted it — his team suffered Redshift scaling issues in Q1 2025.</td>
 </tr>
 <tr>
-  <td><strong>David Okafor</strong><br>VP Finance</td>
-  <td>Budget accuracy, capital efficiency, board confidence in financial planning <span class="ev-badge ev-t1">T1</span></td>
-  <td>Directly burned — he approved the $1.8M Snowflake budget that became $3M. The board questioned his diligence. He will not approve another infra project without ironclad budget controls. <span class="ev-badge ev-t1">T1</span></td>
-  <td>Medium — his objection is rational (protect budget credibility), but he may also be using Snowflake as a blanket excuse to block all large infra spend, even justified spend <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>Cloud cost overrun (SaaS consolidation)</strong></td>
+<td>Mar 2024</td>
+<td>A cloud migration project (different team) went 40% over budget — $1.2M overrun <span class="ev-badge ev-t1">T1</span></td>
+<td>Ramirez (discovered the overrun), CEO (was frustrated)</td>
+<td><strong>Ramirez:</strong> This is the core of her skepticism. Not anti-technology but anti-uncontrolled-spend. She was publicly blamed for insufficient financial oversight. Her professional reputation is attached to preventing another overrun.</td>
 </tr>
 <tr>
-  <td><strong>Priya Sharma</strong><br>VP Product</td>
-  <td>Product velocity, data-driven decision quality, ML feature delivery <span class="ev-badge ev-t2">T2</span></td>
-  <td>Collateral damage — the 3-week outage during Snowflake cutover delayed two product launches. She's wary of any migration that could disrupt product analytics again. But she's also frustrated with current Redshift query times slowing her analytics team. <span class="ev-badge ev-t2">T2</span></td>
-  <td>Low — her concern is genuine (data availability), not political <span class="ev-badge ev-t2">T2</span></td>
+<td><strong>Design system migration to Figma</strong></td>
+<td>Jun 2024</td>
+<td>Successful — Park and Chen collaborated; completed under budget and ahead of schedule <span class="ev-badge ev-t2">T2</span></td>
+<td>Chen (engineering lead), Park (design lead)</td>
+<td><strong>Park:</strong> Positive experience with Chen's team on a technology migration. Trusts Chen's ability to scope and execute. This is an asset — Chen briefing Park on the data migration carries credibility weight.</td>
 </tr>
 <tr>
-  <td><strong>Maria Torres</strong><br>CDO</td>
-  <td>Data platform reliability, team credibility, personal reputation recovery <span class="ev-badge ev-t2">T2</span></td>
-  <td>The central figure. She knows Redshift is failing. She knows migration is necessary. She cannot champion it because one more failure ends her tenure. She also cannot block it because Redshift's decline is increasingly visible. Her optimal move: let someone else champion it, ensure the plan addresses every Snowflake failure mode, then join the coalition once momentum is irreversible. <span class="ev-badge ev-t3">T3</span></td>
-  <td>High — her unstated interest is "I need this to succeed but I cannot be the one who fails again." Any approach that puts her name first as the champion will trigger avoidance behavior. <span class="ev-badge ev-t3">T3</span></td>
+<td><strong>Redshift scaling incident</strong></td>
+<td>Jan 2025</td>
+<td>3 analytics dashboards went down for 4 hours during peak reporting. Okafor's team missed a board report deadline <span class="ev-badge ev-t1">T1</span></td>
+<td>Okafor (impacted), Chen (resolved)</td>
+<td><strong>Okafor:</strong> Knows Redshift has scaling problems. Would support migration but needs a guarantee the cure isn't worse than the disease. His Q1 experience is his emotional anchor — "I can't go through that again."</td>
+</tr>
+</tbody></table></div>
+
+<h3>3b. Incentive Alignment Analysis</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Their Goals / Metrics</th>
+<th>How Migration Affects Them</th>
+<th>Alignment</th>
+<th>Hidden Agenda Risk</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Chen</strong></td>
+<td>Technical modernization roadmap; team retention; SLA improvement <span class="ev-badge ev-t1">T1</span></td>
+<td><strong>Positive</strong> — Databricks enables ML pipelines, improves team morale, reduces on-call incidents</td>
+<td>Strongly aligned</td>
+<td>Low — may overestimate migration speed to build support <span class="ev-badge ev-t4">T4</span></td>
+</tr>
+<tr>
+<td><strong>Ramirez</strong></td>
+<td>Technology ROI discipline; budget accuracy; no cost surprises <span class="ev-badge ev-t1">T1</span></td>
+<td><strong>Mixed</strong> — $3M outlay is negative; long-term Redshift cost avoidance is positive but speculative</td>
+<td>Conflicting on timeline</td>
+<td>Medium — protecting her reputation after the 2024 overrun is a stronger driver than the numbers <span class="ev-badge ev-t3">T3</span></td>
+</tr>
+<tr>
+<td><strong>Okafor</strong></td>
+<td>Analytics uptime; A/B test velocity; board reporting accuracy <span class="ev-badge ev-t1">T1</span></td>
+<td><strong>Mixed</strong> — post-migration performance is better, but migration itself risks downtime</td>
+<td>Mixed — wants the destination, fears the journey</td>
+<td>Low — his concern is genuine (the Q1 incident was real) <span class="ev-badge ev-t2">T2</span></td>
+</tr>
+<tr>
+<td><strong>Park</strong></td>
+<td>UX research velocity; design system adoption metrics <span class="ev-badge ev-t2">T2</span></td>
+<td><strong>Slightly positive</strong> — Lakehouse enables faster behavioral analytics joins; risk = temporary access disruption</td>
+<td>Weakly aligned — but doesn't know it</td>
+<td>Low — no political agenda; simply hasn't been consulted <span class="ev-badge ev-t5">T5</span></td>
 </tr>
 </tbody></table></div>
 
 <h3>3c. Trust Network</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Stakeholder A</th><th>Stakeholder B</th><th>Trust Level</th><th>History</th><th>Implication</th></tr></thead>
+<thead><tr>
+<th>Stakeholder A</th>
+<th>Stakeholder B</th>
+<th>Trust Level</th>
+<th>History</th>
+<th>Implication</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td>Sarah Chen</td>
-  <td>Maria Torres</td>
-  <td><strong>Medium-High</strong> <span class="ev-badge ev-t2">T2</span></td>
-  <td>Sarah raised Snowflake concerns pre-migration; Maria listened but didn't act. Post-failure, Maria acknowledged Sarah was right. Mutual respect, but Maria associates Sarah with "I told you so." </td>
-  <td>Sarah is the right messenger for technical credibility, but must frame the new proposal as collaborative, not "see, I was right"</td>
+<td>Chen</td>
+<td>Ramirez</td>
+<td>Medium <span class="ev-badge ev-t2">T2</span></td>
+<td>Ramirez killed Chen's 2024 proposal. No personal animosity, but institutional scar tissue.</td>
+<td>Chen approaching Ramirez directly will trigger "here we go again." Need different framing for Finance.</td>
 </tr>
 <tr>
-  <td>David Okafor</td>
-  <td>Maria Torres</td>
-  <td><strong>Low</strong> <span class="ev-badge ev-t2">T2</span></td>
-  <td>David blames Maria for the Snowflake budget overrun. Maria blames David for not flagging the vendor's thin SOW during due diligence. Unresolved tension.</td>
-  <td>Do NOT have David and Maria negotiate the migration budget bilaterally. Insert Sarah as a neutral technical bridge.</td>
+<td>Chen</td>
+<td>Park</td>
+<td>High <span class="ev-badge ev-t2">T2</span></td>
+<td>Successful Figma migration collaboration in 2024. Park has said "I trust Lisa's team."</td>
+<td>Chen is the ideal messenger to brief Park. Park will take Chen's technical assessment at face value.</td>
 </tr>
 <tr>
-  <td>Sarah Chen</td>
-  <td>David Okafor</td>
-  <td><strong>Medium</strong> <span class="ev-badge ev-t3">T3</span></td>
-  <td>Professional relationship. David respects Sarah's technical judgment but doesn't socialize with engineering leadership. No personal friction.</td>
-  <td>Sarah presenting the phased budget to David (rather than Maria) removes the Snowflake baggage from the budget conversation</td>
+<td>Chen</td>
+<td>Okafor</td>
+<td>Medium-High <span class="ev-badge ev-t2">T2</span></td>
+<td>Chen's team resolved the Q1 2025 Redshift incident. Okafor is grateful and saw firsthand the platform is fragile.</td>
+<td>Chen can credibly say "the current platform is a ticking time bomb" to Okafor — he's experienced it.</td>
 </tr>
 <tr>
-  <td>Priya Sharma</td>
-  <td>Sarah Chen</td>
-  <td><strong>High</strong> <span class="ev-badge ev-t2">T2</span></td>
-  <td>Product and Engineering collaborate daily. Priya trusts Sarah's technical assessments. They co-own several product/platform initiatives.</td>
-  <td>Priya's conversion is easiest via Sarah — a 30-min 1:1 where Sarah explains the data availability improvements</td>
+<td>Ramirez</td>
+<td>Okafor</td>
+<td>Medium-High <span class="ev-badge ev-t3">T3</span></td>
+<td>Ramirez has funded Okafor's analytics team expansions over 2 years. He sees her as a reasonable gatekeeper.</td>
+<td>Okafor will not publicly oppose Ramirez. He needs to say "I've addressed Maria's concerns" — the ROI narrative must be Finance-grade before he commits.</td>
+</tr>
+<tr>
+<td>Park</td>
+<td>Ramirez</td>
+<td>Low <span class="ev-badge ev-t4">T4</span></td>
+<td>Minimal direct interaction. Different worlds — Design and Finance rarely overlap.</td>
+<td>Park won't influence Ramirez and vice versa. They operate independently on this decision.</td>
 </tr>
 </tbody></table></div>
 
@@ -583,484 +691,628 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 <div class="cascade-header">O → I → R → C → W</div>
 <div class="cascade-item cascade-o">
   <div class="cascade-label">O</div>
-  <div class="cascade-text">The Snowflake failure 14 months ago created a trust deficit that shapes every stakeholder's position on data infrastructure decisions. Maria Torres (CDO) is the most affected — she needs the migration but cannot champion it publicly. <span class="ev-badge ev-t2">T2</span></div>
+  <div class="cascade-text">The 2024 failed proposal and the 2024 cloud cost overrun are the two most load-bearing historical events. Ramirez's skepticism is professional (reputation protection), not ideological (anti-technology) <span class="ev-badge ev-t2">T2</span>.</div>
 </div>
 <div class="cascade-item cascade-i">
   <div class="cascade-label">I</div>
-  <div class="cascade-text">Any migration proposal that resembles the Snowflake approach (big-bang, single vendor SOW, no phase gates) will be dead on arrival regardless of technical merit. The proposal must be visibly different in structure, not just technology.</div>
+  <div class="cascade-text">Ramirez's conversion conditions are addressable: (a) phased spending with explicit kill gates so she can report "I maintained financial controls," (b) cost-of-inaction analysis showing Redshift renewal + scaling costs exceed migration costs over 24 months, (c) a named financial controller on the migration project.</div>
 </div>
 <div class="cascade-item cascade-r">
   <div class="cascade-label">R</div>
-  <div class="cascade-text">Design the migration proposal to explicitly address every Snowflake failure mode: (1) phased migration with parallel-run, not big-bang cutover, (2) internal engineering ownership with vendor support, not vendor-led, (3) phase gates with kill switches at 25%/50%/75% completion, (4) budget caps per phase with explicit approval gates.</div>
+  <div class="cascade-text">Build the ROI case <strong>in Finance's language</strong> — not "Databricks is better technology" but "here is the 24-month TCO comparison with kill gates at months 3, 6, and 12." Assign a finance business partner to the migration team. Make Ramirez a co-author of the financial controls, not a reviewer.</div>
 </div>
 <div class="cascade-item cascade-c">
   <div class="cascade-label">C</div>
-  <div class="cascade-text"><span class="conf-pill conf-h">H</span> — The Snowflake failure is the dominant variable in this alignment landscape. All 4 stakeholders reference it. Addressing it explicitly is necessary (though not sufficient) for alignment.</div>
+  <div class="cascade-text"><span class="conf-pill conf-h">H</span> — assumes Ramirez's opposition is rational (addressable with evidence) not political (protecting territory). Invalidated if she opposes even after seeing a Finance-grade TCO model <span class="ev-badge ev-t2">T2</span>.</div>
 </div>
 <div class="cascade-item cascade-w">
   <div class="cascade-label">W</div>
-  <div class="cascade-text">If Maria Torres avoids 1:1 conversations about the migration or delegates to her direct reports, her position has shifted from cautious to blocker. Escalate to the alignment recovery playbook.</div>
+  <div class="cascade-text">If Ramirez requests a 3rd-party audit of the TCO model → she is engaging seriously (good sign). If she delegates to a junior analyst → she is distancing herself from the decision (bad sign).</div>
 </div>
 </div>
 
 <hr class="section-divider">
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Alignment Sequence                                     -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="alignment-sequence">
-  <h2>Alignment Sequence: The Domino Logic</h2>
-  <p class="section-sub">The order matters. Each conversation changes the next stakeholder's calculus. Approaching a blocker before building coalition support is the most common alignment failure.</p>
+<!-- ═══════════════ ALIGNMENT SEQUENCING ═══════════════ -->
+<div class="section" id="sequencing">
+  <h2>4. Alignment Sequencing</h2>
+
+<p class="section-sub"><strong>Alignment Sequencing</strong> determines the order in which to approach each stakeholder. The principle: each conversation should change the conditions of the next conversation. Approach allies first, swing voters second, blockers last.</p>
 
 <h3>4a. Sequencing Rules Applied</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Rule</th><th>Application</th></tr></thead>
+<thead><tr>
+<th>Rule</th>
+<th>Application</th>
+</tr></thead>
 <tbody>
-<tr><td><strong>Start with strongest champion</strong></td><td>Sarah Chen — formalize her championship and co-design the phased plan</td></tr>
-<tr><td><strong>Then swing voters (before blockers frame)</strong></td><td>Priya Sharma — convert with data availability guarantees before anyone frames the migration as "risky for product"</td></tr>
-<tr><td><strong>Then cautious decision owner</strong></td><td>Maria Torres — approach with Engineering + Product coalition backing and a plan that addresses every Snowflake failure mode</td></tr>
-<tr><td><strong>Approach budget authority last</strong></td><td>David Okafor — with 3-VP technical consensus, his skepticism becomes isolated and the phase-gated budget addresses his specific concern</td></tr>
+<tr>
+<td><strong>Start with strongest champion</strong></td>
+<td>Chen (Engineering) — confirm her commitment and get her endorsement as a co-messenger for Park</td>
+</tr>
+<tr>
+<td><strong>Then latent allies</strong></td>
+<td>Park (Design) — brief her on research pipeline benefits via Chen; convert from unengaged to supporter</td>
+</tr>
+<tr>
+<td><strong>Then swing voters</strong></td>
+<td>Okafor (Product) — approach with uptime guarantee + Chen and Park already on board</td>
+</tr>
+<tr>
+<td><strong>Approach blockers LAST</strong></td>
+<td>Ramirez (Finance) — arrive with 3 VP supporters, Finance-grade TCO model, and phased kill gates</td>
+</tr>
 </tbody></table></div>
 
 <h3>4b. Ordered Alignment Plan</h3>
 
-<div class="domino-step">
-  <div class="domino-num">1</div>
-  <div class="domino-content">
-    <h4>Sarah Chen (VP Engineering) — <span class="pos-badge pos-champion">CHAMPION</span> → <span class="pos-badge pos-champion">CHAMPION</span> (activate)</h4>
-    <p><strong>Action:</strong> 1:1 meeting (60 min). Co-design the phased migration plan. Ask Sarah to present the technical architecture at the next leadership meeting. Frame it as her initiative, not yours — her credibility is higher than yours for this decision. <span class="ev-badge ev-t1">T1</span></p>
-    <p><strong>Timing:</strong> Week 1</p>
-    <p><strong>Dependency:</strong> None — this is the first domino</p>
-    <p><strong>Success criteria:</strong> Sarah agrees to co-present the migration plan. She assigns a senior architect to draft the phased technical proposal.</p>
-    <p><strong>What this unlocks:</strong> Sarah's visible sponsorship gives Maria Torres political cover and gives Priya Sharma technical confidence.</p>
-  </div>
-</div>
-<div class="domino-arrow">↓</div>
-
-<div class="domino-step">
-  <div class="domino-num">2</div>
-  <div class="domino-content">
-    <h4>Priya Sharma (VP Product) — <span class="pos-badge pos-neutral">NEUTRAL</span> → <span class="pos-badge pos-supporter">SUPPORTER</span></h4>
-    <p><strong>Action:</strong> 1:1 meeting (30 min). Sarah joins for the first 10 minutes to present the data availability improvement projections: 3x faster queries, real-time streaming for product analytics, zero-downtime migration via parallel-run. Then address Priya's specific concern: "No repeat of the Snowflake outage — parallel-run means product analytics stays live on Redshift throughout migration." <span class="ev-badge ev-t2">T2</span></p>
-    <p><strong>Timing:</strong> Week 2 (after Sarah's technical proposal is drafted)</p>
-    <p><strong>Dependency:</strong> Step 1 complete — need the phased plan to show Priya</p>
-    <p><strong>Success criteria:</strong> Priya says "I'm supportive as long as product analytics has zero downtime during migration." Written confirmation via Slack or email.</p>
-    <p><strong>What this unlocks:</strong> Product + Engineering coalition = 2 VPs aligned. Maria Torres now has two credible executives backing this — she's no longer alone.</p>
-  </div>
-</div>
-<div class="domino-arrow">↓</div>
-
-<div class="domino-step">
-  <div class="domino-num">3</div>
-  <div class="domino-content">
-    <h4>Maria Torres (CDO) — <span class="pos-badge pos-skeptic">SKEPTIC</span> → <span class="pos-badge pos-supporter">SUPPORTER</span> → eventual <span class="pos-badge pos-champion">CHAMPION</span></h4>
-    <p><strong>Action:</strong> 1:1 meeting (45 min). This is the most delicate conversation. Do NOT open with "we should migrate to Databricks." Open with: "Maria, I know the Redshift performance issues are visible to the CEO, and I know you're thinking about options. Sarah and Priya are both interested in a phased approach that addresses every issue from the Snowflake experience. I'd like to walk through the plan — not to put you on the spot, but to see if it meets your bar." <span class="ev-badge ev-t3">T3</span> <span class="ev-detail">framing designed to respect her political exposure</span></p>
-    <p><strong>Key framing for Maria:</strong></p>
-    <ul>
-      <li><strong>Address the Snowflake ghost directly:</strong> "This plan is designed around the three specific things that went wrong with Snowflake — phased instead of big-bang, internal-led instead of vendor-led, phase gates with kill switches."</li>
-      <li><strong>Give her credit, not blame:</strong> "You're the person who understands what went wrong better than anyone. That experience makes you the right decision owner for this — you won't let the same mistakes happen."</li>
-      <li><strong>Show the coalition cover:</strong> "Sarah is already sponsoring this technically, and Priya's team has confirmed zero-downtime requirements are met by the parallel-run approach."</li>
-      <li><strong>Make it her decision to champion:</strong> "If you're comfortable with the plan, I think you presenting this to the CEO with Sarah would show the board that the data org learned from Snowflake and is executing rigorously."</li>
-    </ul>
-    <p><strong>Timing:</strong> Week 3 (after Engineering + Product are aligned)</p>
-    <p><strong>Dependency:</strong> Steps 1 and 2 complete</p>
-    <p><strong>Success criteria:</strong> Maria agrees to review the detailed technical plan. She schedules a follow-up with Sarah's senior architect. She does NOT need to verbally champion it yet — agreement to engage is the milestone.</p>
-    <p><strong>What this unlocks:</strong> With CDO engaged (even cautiously), the Finance conversation becomes "the technical leaders have consensus and the CDO is on board — we need your budget framework."</p>
-  </div>
-</div>
-<div class="domino-arrow">↓</div>
-
-<div class="domino-step">
-  <div class="domino-num">4</div>
-  <div class="domino-content">
-    <h4>David Okafor (VP Finance) — <span class="pos-badge pos-skeptic">SKEPTIC</span> → <span class="pos-badge pos-supporter">SUPPORTER</span></h4>
-    <p><strong>Action:</strong> Formal budget review meeting (60 min). Sarah presents the phased budget (not you, not Maria — Sarah has no Snowflake baggage with David). The proposal structure: Phase 1 ($400K, 3 months) migrates the 50 highest-impact tables + validates the architecture. Go/no-go gate. Phase 2 ($1.1M, 6 months) migrates remaining tables + builds new lakehouse features. Go/no-go gate. Phase 3 ($1.5M, 9 months) decommissions Redshift + optimizes. Kill switch at each gate. <span class="ev-badge ev-t3">T3</span></p>
-    <p><strong>Key framing for David:</strong></p>
-    <ul>
-      <li><strong>Acknowledge the Snowflake precedent directly:</strong> "David, we know the Snowflake experience is relevant here. This proposal is structured to prevent every specific failure mode from that project."</li>
-      <li><strong>Phase gates = budget control:</strong> "You're not approving $3M — you're approving $400K with the option to continue or stop at each gate. Maximum exposure at any point is the current phase's budget."</li>
-      <li><strong>Cost of inaction:</strong> "Redshift maintenance costs $480K/year in engineering time (40% of data team on maintenance). Doing nothing is not $0 — it's $480K/year and accelerating."</li>
-      <li><strong>Show consensus:</strong> "Engineering, Product, and the CDO have all reviewed this plan. You're the last piece of the puzzle, not the first person being asked."</li>
-    </ul>
-    <p><strong>Timing:</strong> Week 4-5 (after CDO engagement confirmed)</p>
-    <p><strong>Dependency:</strong> Steps 1, 2, and 3 complete</p>
-    <p><strong>Success criteria:</strong> David approves Phase 1 budget ($400K) with explicit go/no-go criteria for Phase 2. Full $3M approval is not needed — phased approval is the design.</p>
-  </div>
-</div>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Seq</th>
+<th>Stakeholder</th>
+<th>Current → Desired</th>
+<th>Action</th>
+<th>Timing</th>
+<th>Dependency</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Chen (Engineering)</td>
+<td><span class="dot green"></span> → <span class="dot green"></span> (maintain)</td>
+<td>1:1 strategy session. Align on narrative, timeline, and scope. Ask Chen to co-present the technical case to Park. Confirm she can commit to the uptime guarantee Okafor needs.</td>
+<td>Week 1</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Park (Design)</td>
+<td><span class="dot yellow"></span> → <span class="dot green"></span></td>
+<td>Chen + you brief Park: (a) Lakehouse improves behavioral analytics for UX research, (b) zero-downtime window for research pipelines, (c) faster query performance post-migration. Framing: "research capability upgrade, not just infrastructure change."</td>
+<td>Week 1-2</td>
+<td>After Step 1</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Okafor (Product)</td>
+<td><span class="dot yellow"></span> → <span class="dot green"></span></td>
+<td>Present migration plan with: (a) written analytics uptime SLA (99.9% during migration), (b) parallel-run period with both Redshift and Databricks, (c) Q1 incident postmortem showing increasing Redshift risk. Share that Park is on board. Framing: "risk of not migrating now exceeds risk of migrating."</td>
+<td>Week 2-3</td>
+<td>After Steps 1-2</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Ramirez (Finance)</td>
+<td><span class="dot red"></span> → <span class="dot green"></span></td>
+<td>Finance-grade package: (a) 24-month TCO comparison, (b) phased spending with kill gates at months 3, 6, 12, (c) named financial controller embedded in migration team, (d) 3 other VPs already supportive. Ask her to co-design the financial guardrails. Framing: "controlled investment with exits, not open-ended commitment."</td>
+<td>Week 3-4</td>
+<td>After Steps 1-3</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Group ratification</td>
+<td>All 4 → Formal approval</td>
+<td>Unified proposal with all 4 VPs. By this point, every VP has been individually briefed and committed. The group meeting is a ratification ceremony, not a debate. Ramirez presents the financial guardrails she co-designed.</td>
+<td>Week 5-6</td>
+<td>After Steps 1-4</td>
+</tr>
+</tbody></table></div>
 
 <h3>4c. Anti-Patterns Avoided</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Anti-Pattern</th><th>Why It Fails Here</th><th>What We're Doing Instead</th></tr></thead>
+<thead><tr>
+<th>Anti-Pattern</th>
+<th>Why It Fails</th>
+<th>What We Do Instead</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Approaching the CDO first</strong></td>
-  <td>Maria's political exposure means she will say "let me think about it" (delay) if approached without coalition backing. Delay favors the status quo, and Redshift contract renewal in 4 months locks in another year.</td>
-  <td>Building the coalition around Maria first, then approaching her with cover</td>
+<td><strong>Approaching Finance first</strong></td>
+<td>Ramirez already killed this once. Leading with Finance gives her the opportunity to set the "too expensive, unclear ROI" frame before others form views.</td>
+<td>Finance last, with coalition backing and a Finance-grade TCO model.</td>
 </tr>
 <tr>
-  <td><strong>Approaching Finance first</strong></td>
-  <td>David's Snowflake trauma means he will reject any proposal that arrives without technical consensus. A "no" from Finance early kills momentum and frames the conversation as "Finance doesn't think this is worth it."</td>
-  <td>Approaching Finance last, with 3-VP consensus, so David's skepticism is isolated</td>
+<td><strong>Group meeting before 1:1s</strong></td>
+<td>Group dynamics cause performing. Ramirez is more oppositional in public; Okafor is more cautious; Park lacks context to contribute.</td>
+<td>All 1:1 conversations first. Group meeting only after individual commitments secured.</td>
 </tr>
 <tr>
-  <td><strong>Group meeting alignment</strong></td>
-  <td>Maria will not express support in a group setting until she's confident — she'll perform caution for the room. David will perform financial rigor. Group dynamics amplify posturing.</td>
-  <td>1:1 conversations first; leadership meeting only after all 4 are individually aligned</td>
+<td><strong>Leading with "Databricks is better"</strong></td>
+<td>Only Chen cares about technology. Finance cares about cost, Product about uptime, Design about research access.</td>
+<td>Per-stakeholder framing: research capability for Design, uptime guarantee for Product, TCO comparison for Finance.</td>
 </tr>
 <tr>
-  <td><strong>Presenting the full $3M upfront</strong></td>
-  <td>$3M is the number that triggers David's Snowflake PTSD. It's also unnecessary — a phased approach means the first commitment is $400K.</td>
-  <td>Presenting a $400K Phase 1 with kill switches. Full $3M is the maximum, not the ask.</td>
+<td><strong>Ignoring Design</strong></td>
+<td>An unengaged VP is a wildcard. If Park raises a concern in the group meeting that no one anticipated, it signals "we didn't do homework."</td>
+<td>Proactively briefing Park converts her from wildcard to ally. Low cost, high value.</td>
 </tr>
 </tbody></table></div>
 
-<div class="aside decision"><span class="a-icon">◈</span><p><strong>Decision point:</strong> If Step 2 (Priya) fails — she demands guarantees you can't provide — skip to Step 3 (Maria) with only Sarah's backing. It's weaker but viable. If Step 3 (Maria) fails — she delegates to a direct report and avoids engagement — escalate to the CEO via Sarah. Maria's avoidance means she's blocking through inaction, and only CEO pressure changes that calculus.</p></div>
+<div class="aside strategy"><span class="a-icon">◈</span><p><strong>Timing risk:</strong> This sequence takes 5-6 weeks, leaving 2-3 weeks of buffer before the Redshift auto-renewal. If any step stalls by more than 1 week, compress Steps 3 and 4 into parallel tracks and accept the risk that Ramirez may frame the conversation for Okafor before the uptime guarantee is locked in.</p></div>
 
 <hr class="section-divider">
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Communication Strategies                               -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="communication-strategies">
-  <h2>Communication Strategies: Per-Stakeholder Playbook</h2>
-  <p class="section-sub">The same initiative requires different framing for each VP. Lead with what they care about. Avoid what triggers resistance.</p>
+<!-- ═══════════════ OBJECTION PRE-EMPTION ═══════════════ -->
+<div class="section" id="objections">
+  <h2>5. Objection Pre-emption Playbook</h2>
+
+<p class="section-sub"><strong>Objection Pre-emption</strong> anticipates each stakeholder's objections, steelmans them (states them stronger than the stakeholder would), and prepares evidence-backed responses.</p>
+
+<h3>Objection 1: "The ROI doesn't justify the risk" — Ramirez (Finance)</h3>
+
+<div class="power-item"><p><strong>Type:</strong> Rational + Political (reputation protection after 2024 overrun) | <strong>Underlying concern:</strong> Ramirez was blamed for the 2024 cloud cost overrun. She cannot afford another >$1M project going sideways. Her stated concern is ROI; her actual concern is uncontrolled spending <span class="ev-badge ev-t2">T2</span>.</p></div>
+
+<p><strong>Steel-manned version:</strong> "We spent $3M on a technology migration 18 months ago that went 40% over budget and delivered unclear value. Now you're asking for another $3M with a longer payback period. The 18-month ROI projection relies on Redshift cost growth assumptions that may not materialize. If we're wrong, we've spent $3M we can't recover and disrupted every analytics team in the company."</p>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Meeting script:</strong> "Maria, I want to acknowledge directly — you were right to flag the 2024 overrun, and this proposal is different in three specific ways. First, the spending is phased: $800K in Q2 for a proof-of-concept migration of 3 non-critical pipelines, with a formal go/no-go gate before committing the remaining $2.2M. If the POC fails, we stop — you've spent $800K, not $3M. Second, here's the 24-month TCO comparison your team can verify independently — Redshift renewal plus scaling upgrades costs $2.1M over 24 months, so the net incremental cost is $900K, not $3M. Third, I'd like to embed a finance business partner on the migration team with weekly cost tracking. You'll have line-of-sight into every dollar."</p></div>
+
+<p><strong>Evidence required:</strong> 24-month TCO model <span class="ev-badge ev-t1">T1</span>, POC scope document with explicit kill criteria <span class="ev-badge ev-t2">T2</span>, peer company migration cost data <span class="ev-badge ev-t3">T3</span></p>
+<p><strong>Escalation path:</strong> If rejected, escalate to CEO with cost-of-inaction framing: "Doing nothing costs $2.1M and leaves us on a platform that's already causing outages."</p>
+
+<hr class="section-divider">
+
+<h3>Objection 2: "What happens to my dashboards during migration?" — Okafor (Product)</h3>
+
+<div class="power-item"><p><strong>Type:</strong> Rational (genuine uptime concern from Q1 2025 incident) | <strong>Underlying concern:</strong> Okafor's team missed a board report deadline because of the Q1 Redshift outage. He will not accept any plan that creates even a possibility of dashboard downtime during board reporting <span class="ev-badge ev-t1">T1</span>.</p></div>
+
+<p><strong>Steel-manned version:</strong> "My team runs 14 analysts doing daily queries on production data. We have board reporting in Q2 and Q3. Any migration plan that doesn't guarantee 100% analytics uptime during those periods is a non-starter. The Q1 outage cost me credibility with the board — I can't absorb that risk again."</p>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Meeting script:</strong> "James, the Q1 incident is exactly why we need to migrate — Redshift scaling limitations caused that outage, and they'll get worse as data volume grows. Here's the specific guarantee: we'll run Redshift and Databricks in parallel for 8 weeks. Your team queries Redshift as normal — nothing changes. We gradually shift pipelines to Databricks, validate query parity, and only cut over when your team confirms results match. If at any point there's a discrepancy, we pause without affecting production dashboards. I'll put this in writing as an SLA: 99.9% analytics uptime during migration, zero planned downtime for production dashboards. Lisa's team will provide a named on-call engineer dedicated to your analytics queries during transition."</p></div>
+
+<p><strong>Evidence required:</strong> Written analytics uptime SLA <span class="ev-badge ev-t2">T2</span>, parallel-run architecture diagram <span class="ev-badge ev-t2">T2</span>, named on-call engineer commitment from Chen <span class="ev-badge ev-t1">T1</span></p>
+<p><strong>Escalation path:</strong> Offer a pre-migration stress test — run Databricks shadow queries for 2 weeks against production data to demonstrate query parity.</p>
+
+<hr class="section-divider">
+
+<h3>Objection 3: "Why wasn't Design consulted earlier?" — Park (Design)</h3>
+
+<div class="power-item"><p><strong>Type:</strong> Emotional + Structural (process concern — Design is excluded from infrastructure decisions that affect them) | <strong>Underlying concern:</strong> Park's UX research team runs behavioral analytics pipelines. Nobody asked whether migration affects her team's research capabilities <span class="ev-badge ev-t3">T3</span>.</p></div>
+
+<p><strong>Steel-manned version:</strong> "This is a $3M infrastructure decision that affects my team's research data pipeline, and I'm hearing about it for the first time now. How am I supposed to evaluate impact to my team's Q2 usability studies when you've already designed the migration plan without our input?"</p>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Meeting script (via Chen):</strong> "Soo-Jin, you're right that Design should have been consulted earlier — that's on us, and I want to fix it. Here's why this migration matters for your team: Lakehouse architecture enables sub-second joins between Amplitude event data and user segment data. Right now your research team waits 4-6 hours for those queries on Redshift. Post-migration, the same queries run in minutes. For your Q2 usability study: we will not touch any pipeline your team depends on until after the study completes in Week 8. Your research data access is protected. And going forward, I'd like to include your research engineering lead in the data platform planning group so this doesn't happen again."</p></div>
+
+<p><strong>Evidence required:</strong> Query performance benchmarks (Redshift vs. Databricks for Amplitude joins) <span class="ev-badge ev-t2">T2</span>, written pipeline protection commitment <span class="ev-badge ev-t2">T2</span>, planning group invitation <span class="ev-badge ev-t1">T1</span></p>
+
+<hr class="section-divider">
+
+<h3>Objection 4: "We just renewed Redshift — why switch?" — Ramirez (secondary)</h3>
+
+<div class="power-item"><p><strong>Type:</strong> Rational (sunk cost concern) | <strong>Underlying concern:</strong> If the Redshift contract auto-renews (2-year term), Ramirez will frame migration as "paying for two platforms" <span class="ev-badge ev-t2">T2</span>.</p></div>
+
+<div class="aside decision"><span class="a-icon">◈</span><p><strong>Meeting script:</strong> "That's exactly the urgency — the auto-renewal deadline is the reason we're moving now. If we don't decide in 8 weeks, we're locked into Redshift for 2 years at $1.05M/year — that's $2.1M committed. The parallel-run period adds $180K in overlapping Databricks costs for 8 weeks. Timeline: parallel-run months 1-2, full cutover month 3, Redshift decommissioned month 4. Net double-paying period is 8 weeks, not months."</p></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════ COMMUNICATION STRATEGY ═══════════════ -->
+<div class="section" id="communication">
+  <h2>6. Communication Strategy</h2>
+
+<p class="section-sub"><strong>Communication Strategy</strong> tailors the format, framing, channel, timing, and messenger for each stakeholder. The same initiative requires different "why it matters" per person.</p>
 
 <h3>Per-Stakeholder Communication Plan</h3>
 
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Format</th>
+<th>Framing</th>
+<th>Channel</th>
+<th>Messenger</th>
+<th>Follow-up</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Chen (Engineering)</strong></td>
+<td>Working session (whiteboard) <span class="ev-badge ev-t1">T1</span></td>
+<td>"Let's align on the narrative and divide the alignment work — you take Park, I take Okafor, then we both take Ramirez"</td>
+<td>1:1, in-person, Week 1</td>
+<td>You (the PM)</td>
+<td>Shared doc with talking points for Park; weekly sync</td>
+</tr>
+<tr>
+<td><strong>Park (Design)</strong></td>
+<td>Conversation, then 1-page brief <span class="ev-badge ev-t3">T3</span></td>
+<td>"This migration improves your research team's analytics speed by 10x. We want to protect your Q2 study and include your team in planning going forward."</td>
+<td>1:1, informal (coffee), Week 1-2</td>
+<td>Chen (trusted messenger) + you</td>
+<td>Research engineering lead invited to platform working group; written pipeline commitment</td>
+</tr>
+<tr>
+<td><strong>Okafor (Product)</strong></td>
+<td>Data-driven doc (SLA + architecture diagram) <span class="ev-badge ev-t2">T2</span></td>
+<td>"The risk of staying on Redshift is now higher than migrating. Here's the uptime guarantee. Chen and Park are already on board."</td>
+<td>1:1, scheduled with pre-read, Week 2-3</td>
+<td>You + Chen for technical Q&A</td>
+<td>Shadow-query stress test if needed; weekly progress updates</td>
+</tr>
+<tr>
+<td><strong>Ramirez (Finance)</strong></td>
+<td>Formal TCO model (spreadsheet + executive brief) <span class="ev-badge ev-t1">T1</span></td>
+<td>"Here's the 24-month cost comparison your team can audit. Here are kill gates. Here's the finance business partner. Three VPs support this — and we built the controls you'd want."</td>
+<td>1:1, scheduled, pre-read sent 48hrs before, Week 3-4</td>
+<td>You + Chen (shows Engineering accountability)</td>
+<td>Weekly cost tracking dashboard; formal go/no-go at kill gates</td>
+</tr>
+</tbody></table></div>
+
+<h3>Framing Per Stakeholder</h3>
+
 <div class="data-grid">
-  <div class="data-card" style="border-left:3px solid var(--sage)">
-    <h4>Sarah Chen — VP Engineering <span class="pos-badge pos-champion">CHAMPION</span></h4>
-    <p><strong>Format preference:</strong> Technical deep-dive doc + whiteboard session <span class="ev-badge ev-t1">T1</span></p>
-    <p><strong>Framing:</strong> "This is a chance to modernize the data platform the way it should have been done the first time. Your team leads the architecture. Databricks gives your engineers the tools they've been asking for — Delta Lake, MLflow, real-time streaming." <span class="ev-badge ev-t2">T2</span></p>
-    <p><strong>Channel:</strong> 1:1 meeting, then async follow-up in engineering design doc</p>
-    <p><strong>Messenger:</strong> You (the PM) — Sarah trusts you and values your product perspective on the data platform</p>
-    <p><strong>Lead with:</strong> Technical architecture, talent retention, engineering velocity</p>
-    <p><strong>Avoid:</strong> Budget politics, the Snowflake blame game, asking her to "sell" this to Finance</p>
-    <p><strong>Follow-up:</strong> Weekly sync during migration planning phase; Sarah presents at leadership meeting</p>
-  </div>
-
-  <div class="data-card" style="border-left:3px solid var(--accent)">
-    <h4>David Okafor — VP Finance <span class="pos-badge pos-skeptic">SKEPTIC</span></h4>
-    <p><strong>Format preference:</strong> Structured financial model with scenarios <span class="ev-badge ev-t1">T1</span></p>
-    <p><strong>Framing:</strong> "We're not asking you to approve $3M. We're asking you to approve $400K for Phase 1 with a kill switch. If Phase 1 fails, we've spent $400K to learn something valuable. If it succeeds, we have a validated path. Meanwhile, doing nothing costs $480K/year in engineering maintenance and rising." <span class="ev-badge ev-t3">T3</span></p>
-    <p><strong>Channel:</strong> Formal budget review meeting with pre-read financial model</p>
-    <p><strong>Messenger:</strong> Sarah Chen (technical credibility, no Snowflake baggage with David)</p>
-    <p><strong>Lead with:</strong> Cost of inaction ($480K/year), phase-gated budget structure, kill switches, ROI timeline</p>
-    <p><strong>Avoid:</strong> Vision statements ("modern data stack"), technical jargon ("lakehouse architecture"), any implication that he's being irrational about Snowflake</p>
-    <p><strong>Follow-up:</strong> Monthly budget review during Phase 1; explicit go/no-go meeting at phase gate</p>
-  </div>
-
-  <div class="data-card" style="border-left:3px solid var(--warm-gold)">
-    <h4>Priya Sharma — VP Product <span class="pos-badge pos-neutral">NEUTRAL</span></h4>
-    <p><strong>Format preference:</strong> Brief conversation + visual comparison <span class="ev-badge ev-t2">T2</span></p>
-    <p><strong>Framing:</strong> "Your analytics team spends 30 minutes waiting for queries that should take 30 seconds. The ML team can't run experiments because Redshift can't handle the compute. Databricks lakehouse gives you 3x faster queries, real-time streaming for product analytics, and native ML infrastructure — with zero downtime during migration because we run both systems in parallel." <span class="ev-badge ev-t2">T2</span></p>
-    <p><strong>Channel:</strong> 30-min 1:1 with Sarah joining for technical portion</p>
-    <p><strong>Messenger:</strong> You (the PM) for product impact framing, Sarah Chen for technical guarantees</p>
-    <p><strong>Lead with:</strong> Data availability improvements, query speed, ML infrastructure, zero-downtime guarantee</p>
-    <p><strong>Avoid:</strong> Budget details (not her domain), organizational politics, Snowflake post-mortem</p>
-    <p><strong>Follow-up:</strong> Biweekly update on migration progress, with specific metrics on query performance improvement</p>
-  </div>
-
-  <div class="data-card" style="border-left:3px solid var(--human)">
-    <h4>Maria Torres — CDO <span class="pos-badge pos-skeptic">SKEPTIC</span></h4>
-    <p><strong>Format preference:</strong> Private 1:1 conversation first, detailed plan review second <span class="ev-badge ev-t3">T3</span></p>
-    <p><strong>Framing:</strong> "Maria, I know you've been thinking about the Redshift situation. Sarah and Priya are both interested in a phased approach that's structured around the lessons from the Snowflake experience — phased cutover, internal ownership, budget gates. I want to walk you through it and see if it meets your bar. You know better than anyone what went wrong and what needs to be different this time." <span class="ev-badge ev-t3">T3</span></p>
-    <p><strong>Channel:</strong> Private 1:1 meeting — no audience, no performance pressure</p>
-    <p><strong>Messenger:</strong> You (the PM) for the initial conversation — you're perceived as neutral. Sarah joins for the technical follow-up.</p>
-    <p><strong>Lead with:</strong> Respect for her experience, how the plan addresses Snowflake failure modes, coalition backing (she's not alone), opportunity for her to present this win to the CEO</p>
-    <p><strong>Avoid:</strong> Any implication she was wrong about Snowflake, framing this as "your chance for redemption," putting her name on the proposal before she's ready, group settings where she has to perform confidence</p>
-    <p><strong>Follow-up:</strong> Give her 1 week to review the plan privately. Schedule a follow-up where she can ask hard questions without an audience. Only after she's comfortable, discuss CEO presentation.</p>
-  </div>
+<div class="data-card">
+  <h4>Chen (Engineering)</h4>
+  <p><strong>Lead with:</strong> Technical modernization, ML pipeline enablement, team retention<br><strong>Avoid:</strong> Cost justification, political framing</p>
+</div>
+<div class="data-card">
+  <h4>Ramirez (Finance)</h4>
+  <p><strong>Lead with:</strong> 24-month TCO comparison, phased spending with kill gates, cost of inaction<br><strong>Avoid:</strong> Technology benefits, "modern stack" framing, team morale arguments</p>
+</div>
+<div class="data-card">
+  <h4>Okafor (Product)</h4>
+  <p><strong>Lead with:</strong> Analytics uptime SLA, parallel-run plan, Q1 incident postmortem showing increasing risk<br><strong>Avoid:</strong> Cost savings (not his concern), technology architecture details</p>
+</div>
+<div class="data-card">
+  <h4>Park (Design)</h4>
+  <p><strong>Lead with:</strong> Research pipeline speed improvement, Q2 study protection, inclusion in future planning<br><strong>Avoid:</strong> Budget numbers (irrelevant), engineering architecture details</p>
+</div>
 </div>
 
-<h3>Messenger Selection Decision Table</h3>
+<h3>Messenger Selection</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Situation</th><th>Best Messenger</th><th>Why</th></tr></thead>
+<thead><tr>
+<th>Situation</th>
+<th>Best Messenger</th>
+<th>Why</th>
+</tr></thead>
 <tbody>
-<tr><td>Technical credibility with Finance</td><td>Sarah Chen</td><td>No Snowflake baggage; respected technical voice. David trusts Sarah's numbers more than Maria's.</td></tr>
-<tr><td>Initial CDO engagement</td><td>You (the PM)</td><td>Perceived as neutral — not Engineering trying to push technology, not Finance questioning budget. You bring the product case.</td></tr>
-<tr><td>Product team conversion</td><td>You + Sarah</td><td>You own the product narrative; Sarah provides technical guarantees Priya's team needs.</td></tr>
-<tr><td>CEO presentation (if needed)</td><td>Maria Torres + Sarah Chen</td><td>CDO + VP Engineering co-presenting signals technical and organizational alignment. Maria presenting shows the board she's leading responsibly.</td></tr>
+<tr>
+<td>Briefing Park on technical benefits</td>
+<td><strong>Chen</strong> (VP Engineering)</td>
+<td>Park trusts Chen from the Figma migration. Chen's technical credibility is higher than the PM's for infrastructure claims.</td>
+</tr>
+<tr>
+<td>Presenting uptime guarantee to Okafor</td>
+<td><strong>You</strong> (PM) with Chen backup</td>
+<td>You own the overall proposal; Chen validates technical feasibility. Okafor needs to trust the PM to coordinate cross-functional commitments.</td>
+</tr>
+<tr>
+<td>Presenting TCO model to Ramirez</td>
+<td><strong>You + Chen</strong> together</td>
+<td>PM owns the business case; Chen demonstrates Engineering accountability for budget. Do NOT bring the CEO — it signals escalation before engaging.</td>
+</tr>
+<tr>
+<td>If Ramirez remains a blocker after 1:1</td>
+<td><strong>CEO</strong> (escalation only)</td>
+<td>Only after good-faith engagement. Frame: "we need your guidance on the timeline trade-off" not "Maria is blocking us."</td>
+</tr>
 </tbody></table></div>
 
 <hr class="section-divider">
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Objection Playbook                                     -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="objection-playbook">
-  <h2>Objection Pre-emption Playbook</h2>
-  <p class="section-sub">Anticipated objections, steel-manned to be stronger than the stakeholder would state them, with prepared responses. These are not straw men — these are the genuine concerns of intelligent people protecting their organizations.</p>
-
-<h3>Objection 1: "We already burned $3M on Snowflake. Why would Databricks be different?"</h3>
-
-<div class="power-item"><p>
-<strong>Stakeholder(s):</strong> David Okafor (Finance), Maria Torres (CDO)<br>
-<strong>Objection type:</strong> Rational + Emotional<br>
-<strong>Underlying concern:</strong> David fears another budget overrun that damages his credibility with the board. Maria fears another failure that ends her career at this company. Both are anchoring on the most available comparison: the Snowflake disaster. <span class="ev-badge ev-t1">T1</span> <span class="ev-badge ev-t2">T2</span>
-</p></div>
-
-<div class="aside strategy"><span class="a-icon">◈</span><p><strong>Steel-manned version:</strong> "The Snowflake migration was led by the same company, approved by largely the same leadership team, and followed the same general pattern: big budget, new technology, promised improvements. It failed catastrophically. What structural evidence exists that this time will be different? The technology changed (Databricks vs. Snowflake), but the organization, decision-making process, and budget governance are identical. Changing the technology without changing the execution approach is the definition of doing the same thing and expecting different results."</p></div>
-
-<p><strong>Response:</strong></p>
-<ul>
-  <li><strong>Acknowledge the pattern directly:</strong> "You're right that the technology change alone doesn't justify confidence. What's different is the execution structure — this plan was designed specifically around the three root causes of the Snowflake failure."</li>
-  <li><strong>Root cause 1 — Big-bang cutover:</strong> "Snowflake was all-or-nothing. This plan runs Databricks in parallel with Redshift for the entire migration. We don't decommission Redshift until 100% of workloads are validated on Databricks. Zero-downtime migration." <span class="ev-badge ev-t2">T2</span></li>
-  <li><strong>Root cause 2 — Vendor-led execution:</strong> "Snowflake was led by an external consulting firm that underestimated schema complexity by 3x. This migration is led by our data engineering team with Databricks professional services in a support role, not lead role." <span class="ev-badge ev-t2">T2</span></li>
-  <li><strong>Root cause 3 — No phase gates:</strong> "Snowflake committed the full budget before validating anything. This plan has go/no-go gates at $400K, $1.5M, and $3M. At each gate, we either continue, adjust, or kill. Maximum exposure at any point is the current phase's budget."</li>
-</ul>
-<p><strong>Evidence required:</strong> Snowflake post-mortem document (already available), phased migration plan with explicit kill criteria <span class="ev-badge ev-t2">T2</span></p>
-<p><strong>Escalation path:</strong> If David remains unconvinced after seeing the phase-gated structure, offer a smaller Phase 0 ($150K, 6 weeks) proof-of-concept with 10 tables. Risk: timeline extends by 6 weeks but budget exposure drops to $150K.</p>
-
-<hr class="section-divider">
-
-<h3>Objection 2: "The data team spends 40% on maintenance today. Migration will make that 80% for 18 months."</h3>
-
-<div class="power-item"><p>
-<strong>Stakeholder(s):</strong> Priya Sharma (Product), Maria Torres (CDO)<br>
-<strong>Objection type:</strong> Rational<br>
-<strong>Underlying concern:</strong> Priya worries that the data team will be so consumed by migration that product analytics support degrades. Maria worries that data team capacity constraints will cause the migration to drag, creating another Snowflake timeline failure. <span class="ev-badge ev-t2">T2</span>
-</p></div>
-
-<div class="aside strategy"><span class="a-icon">◈</span><p><strong>Steel-manned version:</strong> "Your data team is already at capacity — 40% on maintenance, 60% on actual data work. A migration adds a massive project on top of that. Either you hire expensive contractors (adding to the $3M budget), or you pull the data team off product support (degrading data availability for product analytics, which is exactly what the migration is supposed to fix). The migration creates a 12-18 month valley where data service quality gets worse before it gets better. Can the business afford that valley?"</p></div>
-
-<p><strong>Response:</strong></p>
-<ul>
-  <li><strong>The maintenance burden is the argument FOR migration, not against it:</strong> "40% on maintenance is $480K/year in opportunity cost. That number is growing — 12 months ago it was 25%. At current trajectory, it will be 55% in 12 months. The valley you're describing is already here; it's just getting deeper."</li>
-  <li><strong>Phased migration reduces the capacity hit:</strong> "Phase 1 migrates only the 50 highest-impact tables (the ones causing the most maintenance). After Phase 1, the maintenance burden drops to ~25% because the most problematic tables are on the new platform. Phase 2 and 3 are net-positive for capacity." <span class="ev-badge ev-t3">T3</span></li>
-  <li><strong>Dedicated migration squad:</strong> "The plan includes a 3-person dedicated migration squad (2 internal + 1 Databricks specialist). Product analytics support is maintained by the existing data team with no reduction in headcount. The migration is additive capacity, not reallocated capacity." <span class="ev-badge ev-t3">T3</span></li>
-</ul>
-<p><strong>Evidence required:</strong> Current maintenance time breakdown by table/workload (to validate the "50 highest-impact tables" claim), capacity plan showing migration squad doesn't reduce product analytics support <span class="ev-badge ev-t2">T2</span></p>
-<p><strong>Escalation path:</strong> If capacity concerns persist, offer to hire 2 contract data engineers specifically for migration, funded from Phase 1 budget. Increases Phase 1 cost by $100K but eliminates the capacity objection.</p>
-
-<hr class="section-divider">
-
-<h3>Objection 3: "Why Databricks? Why not just optimize Redshift?"</h3>
-
-<div class="power-item"><p>
-<strong>Stakeholder(s):</strong> David Okafor (Finance), potentially Maria Torres (CDO)<br>
-<strong>Objection type:</strong> Rational<br>
-<strong>Underlying concern:</strong> David sees a $3M migration vs. a cheaper optimization path. Maria may prefer optimization because it's lower-risk politically — "we improved what we have" is safer than "we migrated to something new." <span class="ev-badge ev-t3">T3</span>
-</p></div>
-
-<div class="aside strategy"><span class="a-icon">◈</span><p><strong>Steel-manned version:</strong> "Redshift has gotten dramatically better in the last 2 years — Redshift Serverless, RA3 instances, AQUA acceleration. You haven't even tried the latest features. A $300K Redshift optimization project could address query performance without any migration risk, without any team disruption, and without triggering Snowflake flashbacks across the leadership team. Why spend 10x more on migration when optimization might solve the immediate problem?"</p></div>
-
-<p><strong>Response:</strong></p>
-<ul>
-  <li><strong>We've already optimized Redshift twice:</strong> "The data team ran two optimization sprints in the last 12 months — migrated to RA3 instances (cost: $120K) and restructured the 20 largest tables (cost: 6 engineering-weeks). Query times improved 30% temporarily, then degraded again within 4 months as data volume grew. We've hit the ceiling of what Redshift optimization can deliver given our growth rate." <span class="ev-badge ev-t2">T2</span></li>
-  <li><strong>The problem is architectural, not configurational:</strong> "Redshift is a columnar data warehouse. Our needs have grown beyond warehousing — we need real-time streaming for product analytics, native ML infrastructure for Priya's team, and unified batch + streaming pipelines. Redshift doesn't do these things, regardless of optimization. Databricks lakehouse is architecturally designed for this workload." <span class="ev-badge ev-t2">T2</span></li>
-  <li><strong>Total cost comparison:</strong> "Redshift optimization: $300K now, repeated every 6-12 months ($300K/year), with maintenance burden still at 40%+ ($480K/year). Total 3-year cost: $2.3M+ with degrading performance. Databricks migration: $3M over 18 months, maintenance burden drops to 15% ($180K/year), no repeated optimization cycles. Total 3-year cost: $3.5M with improving performance. The delta is $1.2M for a fundamentally better platform." <span class="ev-badge ev-t3">T3</span></li>
-</ul>
-<p><strong>Evidence required:</strong> Results from previous Redshift optimization sprints (available from data team), Redshift vs. Databricks TCO model for 3-year horizon <span class="ev-badge ev-t2">T2</span></p>
-<p><strong>Escalation path:</strong> If David insists on optimization first, offer a compromise: "Run a 4-week Redshift optimization sprint ($50K). If query times improve by 50%+ and maintenance burden drops below 30%, we pause the migration discussion. If they don't, we proceed with Phase 1." This is a low-cost experiment that likely validates the migration need.</p>
-
-<hr class="section-divider">
-
-<h3>Objection 4: "I don't trust that the phase gates are real. Last time we had 'checkpoints' too."</h3>
-
-<div class="power-item"><p>
-<strong>Stakeholder(s):</strong> David Okafor (Finance), Maria Torres (CDO)<br>
-<strong>Objection type:</strong> Emotional + Structural<br>
-<strong>Underlying concern:</strong> The Snowflake migration technically had "milestones" in the original plan, but they were soft checkpoints with no kill criteria. When the project went over budget, there was no mechanism to stop it — sunk cost fallacy took over. David and Maria both know that "phase gates" can be performative. <span class="ev-badge ev-t2">T2</span>
-</p></div>
-
-<div class="aside strategy"><span class="a-icon">◈</span><p><strong>Steel-manned version:</strong> "Phase gates are a project management cliche. Every failed project had 'phase gates' in the plan. The problem is that nobody exercises the kill switch because by the time a gate arrives, the team is emotionally invested, the sunk cost is large, and the political cost of admitting failure is higher than the cost of continuing. What makes your phase gates different from the ones we ignored during Snowflake?"</p></div>
-
-<p><strong>Response:</strong></p>
-<ul>
-  <li><strong>The kill criteria are quantitative, not qualitative:</strong> "Phase 1 gate criteria: (1) 50 tables migrated with <5% query performance regression vs. Redshift, (2) parallel-run validated with zero data discrepancies for 2 consecutive weeks, (3) total Phase 1 spend within $400K +/- 10%. If any criterion fails, Phase 2 does not start. These are measurable, binary outcomes — not 'are we comfortable proceeding?'"</li>
-  <li><strong>The decision-maker at each gate is Finance, not the project team:</strong> "David, you personally approve each phase transition. The project team presents results against the pre-agreed criteria. If the criteria aren't met, you have explicit authority to pause or kill. This is your kill switch, not ours."</li>
-  <li><strong>Budget is released per-phase, not upfront:</strong> "Unlike Snowflake where $3M was committed upfront, each phase requires a separate budget approval. Phase 2 funds are not allocated until Phase 1 gate is passed. There is no sunk cost trap because the money for future phases doesn't exist yet."</li>
-</ul>
-<p><strong>Evidence required:</strong> Written phase gate criteria document with Finance sign-off, explicit budget release mechanism in the capital approval process <span class="ev-badge ev-t3">T3</span></p>
-<p><strong>Escalation path:</strong> Offer to add an independent technical review at each phase gate — an external advisor (not the migration vendor) validates whether gate criteria are met. Cost: ~$15K per review. Worth it for credibility.</p>
-
-<hr class="section-divider">
-
-<h3>Common Objection Patterns by Role</h3>
-
-<div class="table-wrap"><table>
-<thead><tr><th>Role</th><th>Typical Pattern</th><th>Underlying Concern</th><th>Response Strategy</th></tr></thead>
-<tbody>
-<tr><td><strong>Engineering (Sarah)</strong></td><td>"Can we really execute this with current headcount?"</td><td>Protecting team from overcommitment; fear of burnout</td><td>Show the dedicated migration squad plan; demonstrate this doesn't pull from existing sprints</td></tr>
-<tr><td><strong>Finance (David)</strong></td><td>"The ROI model has too many assumptions"</td><td>Accountability for spend; board credibility</td><td>Quantify cost of inaction alongside cost of action; phase-gated structure limits downside</td></tr>
-<tr><td><strong>Product (Priya)</strong></td><td>"What happens to my analytics during migration?"</td><td>Protecting product velocity; fear of data outages</td><td>Zero-downtime guarantee via parallel-run; her team is the first to benefit (3x faster queries)</td></tr>
-<tr><td><strong>CDO (Maria)</strong></td><td>Silence, delegation, "let me think about it"</td><td>Political self-preservation; fear of another public failure</td><td>Give her coalition cover, respect her timeline, make it her decision (not yours)</td></tr>
-</tbody></table></div>
-
-<hr class="section-divider">
-</div>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Monitoring & Recovery                                  -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════ MONITORING & RECOVERY ═══════════════ -->
 <div class="section" id="monitoring">
-  <h2>Alignment Monitoring &amp; Recovery</h2>
-  <p class="section-sub">Alignment is not a one-time event. Positions shift, champions leave, new information arrives. This section is your operational dashboard for maintaining alignment throughout the 6-week campaign.</p>
+  <h2>7. Alignment Monitoring &amp; Recovery</h2>
+
+<p class="section-sub"><strong>Alignment Monitoring</strong> tracks each stakeholder's position over time and detects early signals of drift. Alignment decays — a "yes" in Week 2 can become silence in Week 4 if not maintained.</p>
 
 <h3>7a. Alignment Dashboard</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Stakeholder</th><th>Needed Position</th><th>Current Position</th><th>Alignment State</th><th>Last Contact</th><th>Drift Signals</th></tr></thead>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Needed</th>
+<th>Current</th>
+<th>State</th>
+<th>Last Contact</th>
+<th>Drift Signals</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Sarah Chen</strong></td>
-  <td><span class="pos-badge pos-champion">CHAMPION</span></td>
-  <td><span class="pos-badge pos-champion">CHAMPION</span></td>
-  <td><span class="icon-check">✓</span> Aligned</td>
-  <td>Week 1 (1:1 meeting)</td>
-  <td>None — actively engaged</td>
+<td><strong>Chen (Engineering)</strong></td>
+<td><span class="dot green"></span> Champion</td>
+<td><span class="dot green"></span> Champion</td>
+<td><span class="icon-check">✓</span> Aligned</td>
+<td>Week 1</td>
+<td>None — proactively engaged</td>
 </tr>
 <tr>
-  <td><strong>Priya Sharma</strong></td>
-  <td><span class="pos-badge pos-supporter">SUPPORTER</span></td>
-  <td><span class="pos-badge pos-neutral">NEUTRAL</span></td>
-  <td>⏳ Not started</td>
-  <td>—</td>
-  <td>N/A — engagement hasn't begun</td>
+<td><strong>Park (Design)</strong></td>
+<td><span class="dot green"></span> Supporter</td>
+<td><span class="dot yellow"></span> Unengaged</td>
+<td>⏳ Not started</td>
+<td>N/A</td>
+<td>N/A — engagement begins Week 1</td>
 </tr>
 <tr>
-  <td><strong>Maria Torres</strong></td>
-  <td><span class="pos-badge pos-champion">CHAMPION</span></td>
-  <td><span class="pos-badge pos-skeptic">SKEPTIC</span></td>
-  <td>⏳ Not started</td>
-  <td>—</td>
-  <td>N/A — engagement hasn't begun</td>
+<td><strong>Okafor (Product)</strong></td>
+<td><span class="dot green"></span> Supporter</td>
+<td><span class="dot yellow"></span> Neutral</td>
+<td>⏳ Not started</td>
+<td>N/A</td>
+<td>Watch: if he cc's Ramirez on data platform threads before we engage him</td>
 </tr>
 <tr>
-  <td><strong>David Okafor</strong></td>
-  <td><span class="pos-badge pos-supporter">SUPPORTER</span></td>
-  <td><span class="pos-badge pos-skeptic">SKEPTIC</span></td>
-  <td>⏳ Not started</td>
-  <td>—</td>
-  <td>N/A — engagement hasn't begun</td>
+<td><strong>Ramirez (Finance)</strong></td>
+<td><span class="dot green"></span> Supporter</td>
+<td><span class="dot red"></span> Skeptic</td>
+<td>⏳ Not started</td>
+<td>N/A</td>
+<td>Watch: if she sends a "cost analysis" to VPs before we present our TCO model</td>
 </tr>
 </tbody></table></div>
 
 <h3>7b. Drift Detection Signals</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Signal</th><th>What It Means</th><th>Severity</th><th>Response</th></tr></thead>
+<thead><tr>
+<th>Signal</th>
+<th>What It Means</th>
+<th>Severity</th>
+<th>Response</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Maria stops responding</strong> — cancels 1:1, delegates to her data engineering lead</td>
-  <td>Position shifting from cautious to avoidant. She may have received negative signals from the CEO or board, or she's decided the political risk is too high.</td>
-  <td><span class="pos-badge pos-blocker" style="font-size:10px">HIGH</span></td>
-  <td>Direct, private message: "Maria, I want to make sure I haven't missed something. If there are concerns I should address, I'd rather hear them now. Can we find 15 minutes this week?" If no response in 48 hours, ask Sarah Chen to check in.</td>
+<td><strong>Ramirez sends a cost email to VP group before Week 4</strong></td>
+<td>She's preemptively framing the conversation — a blocking move to anchor the group on cost before you present the TCO model.</td>
+<td>High</td>
+<td>Accelerate the sequence. Move Ramirez 1:1 to Week 2-3. Present TCO before she sets the frame. Ask Chen to have an informal "what are you hearing from Finance?" conversation with Okafor.</td>
 </tr>
 <tr>
-  <td><strong>David raises new requirements</strong> — "we need a full vendor evaluation process" or "let's run an RFP for 3 alternatives"</td>
-  <td>May be genuine due diligence or may be a delay tactic. New requirements 4 weeks before Redshift renewal are suspiciously timed.</td>
-  <td><span class="pos-badge pos-skeptic" style="font-size:10px">MEDIUM-HIGH</span></td>
-  <td>Engage seriously: "That's a fair question. We evaluated Snowflake (known quantity), BigQuery (Google), and Databricks during our assessment. Here's the comparison." If the requirements are genuinely new, accommodate. If they're designed to delay past the Redshift renewal date, name it privately.</td>
+<td><strong>Okafor starts saying "let's see what Finance thinks"</strong></td>
+<td>He's deferring to Ramirez rather than forming his own view. You haven't given him enough confidence in the uptime guarantee.</td>
+<td>Medium-High</td>
+<td>Go back to Okafor with the stress test offer. Show the parallel-run architecture. Make it concrete enough for independent commitment.</td>
 </tr>
 <tr>
-  <td><strong>Priya says "I'm supportive" in meetings but doesn't follow up</strong></td>
-  <td>Public support, private disengagement. She may not be truly convinced, or she may have deprioritized this relative to product launches.</td>
-  <td><span class="pos-badge pos-neutral" style="font-size:10px">MEDIUM</span></td>
-  <td>Ask for a specific commitment: "Priya, can you assign [name] from your analytics team to the Phase 1 validation? We need someone to confirm query performance meets product requirements." A specific action reveals real vs. performative support.</td>
+<td><strong>Park stops responding to briefing invitation</strong></td>
+<td>Either genuinely busy or signaling disengagement.</td>
+<td>Medium</td>
+<td>Have Chen follow up directly: "I know this seems like infrastructure, but I want to make sure your research pipeline is protected — can we grab 20 minutes?"</td>
 </tr>
 <tr>
-  <td><strong>Sarah's enthusiasm cools</strong> — she stops proactively mentioning the migration, reduces architect time allocation</td>
-  <td>May have learned something concerning (technical blocker, team pushback) or may be reprioritizing due to other engineering demands.</td>
-  <td><span class="pos-badge pos-skeptic" style="font-size:10px">MEDIUM</span></td>
-  <td>Direct conversation: "Sarah, I noticed the migration planning has slowed. Is there a technical concern, a capacity issue, or something else? I'd rather address it now." Champions cooling is the most dangerous drift because the entire coalition depends on them.</td>
+<td><strong>Chen's migration timeline slips</strong></td>
+<td>Champion's credibility is at risk. If Chen can't deliver, every VP's commitment weakens.</td>
+<td>High</td>
+<td>Scope down with Chen privately. Protect the uptime SLA. Communicate changes proactively — surprises are fatal to alignment.</td>
 </tr>
 </tbody></table></div>
 
 <h3>7c. Recovery Playbook</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Scenario</th><th>Response</th></tr></thead>
+<thead><tr>
+<th>Scenario</th>
+<th>Response</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td><strong>Lost the champion (Sarah takes a new role or shifts priorities)</strong></td>
-  <td>Identify the next strongest technical voice — likely Sarah's senior architect. Rebuild the technical credibility anchor. Do NOT proceed with the CDO or Finance conversations without a credible engineering champion — alignment without an advocate collapses.</td>
+<td><strong>Ramirez rejects the phased approach</strong></td>
+<td>Ask: "What would a proposal need to look like for you to support it?" If she provides conditions, address them. If she says "no conditions — I oppose this," escalate to CEO framing: "Maria and I disagree on 24-month TCO — we'd like your guidance on which assumptions are correct."</td>
 </tr>
 <tr>
-  <td><strong>CDO becomes a blocker (Maria actively opposes rather than cautiously waiting)</strong></td>
-  <td>Decide: (1) <strong>Accommodate</strong> — ask Maria what specific conditions would make her comfortable, and modify the plan accordingly. (2) <strong>Work around</strong> — if the CDO's approval isn't technically required (the CEO can approve infra spend directly), go to the CEO with Sarah. (3) <strong>Go above</strong> — escalate to the CEO via Sarah, framing it as "the data platform is failing, and the CDO's risk aversion is understandable but the cost of inaction exceeds the cost of action." Only after good-faith engagement has failed.</td>
+<td><strong>Okafor commits privately but won't say it publicly</strong></td>
+<td>Ask directly: "I'd like to tell Maria that Product supports this. Are you comfortable with that?" If yes, his name becomes coalition proof. If no, dig deeper.</td>
 </tr>
 <tr>
-  <td><strong>Finance imposes a hard block (David says "no, period")</strong></td>
-  <td>Reduce the ask: propose a $150K proof-of-concept (Phase 0) that migrates 10 tables and demonstrates the architecture works. If David blocks $150K for a validated PoC, the block is political, not financial — escalate to the CEO with a written cost-of-inaction analysis.</td>
+<td><strong>Park raises unexpected data governance concerns</strong></td>
+<td>Take it seriously — may be legitimate. Ask for specifics and build them into the migration plan. Turn an objection into a co-design opportunity.</td>
 </tr>
 <tr>
-  <td><strong>Redshift contract renewal deadline passes without alignment</strong></td>
-  <td>The 12-month Redshift renewal happens. The migration opportunity isn't dead — it's delayed. Use the next 12 months to build a stronger case: quantify Redshift degradation monthly, run the Phase 0 PoC, and build the coalition slowly. Approach the decision again 6 months before the next renewal.</td>
+<td><strong>Redshift deadline moves up by 2 weeks</strong></td>
+<td>Compress Steps 2-4 into parallel tracks. Brief Park and Okafor simultaneously in Week 1-2. Move Ramirez to Week 2-3. Brief CEO on compressed timeline.</td>
 </tr>
 </tbody></table></div>
 
-<h3>7d. Success Criteria</h3>
+<h3>7d. Escalation Framework</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Level</th><th>What "Aligned" Looks Like</th><th>Durability</th></tr></thead>
+<thead><tr>
+<th>Option</th>
+<th>When to Use</th>
+<th>Risk</th>
+</tr></thead>
 <tbody>
-<tr><td><strong>Verbal agreement</strong></td><td>"I'm supportive" in a 1:1</td><td>Low — deniable and forgettable. Alignment decays fastest here.</td></tr>
-<tr><td><strong>Written approval</strong></td><td>Email or Slack message confirming support for Phase 1</td><td>Medium — creates a record but can be walked back.</td></tr>
-<tr><td><strong>Resource commitment</strong></td><td>Phase 1 budget approved, migration squad assigned, architect allocated</td><td>High — money and people are hard to un-commit.</td></tr>
-<tr><td><strong>Public advocacy</strong></td><td>Maria and Sarah co-present the migration plan at leadership meeting</td><td>Very high — reputational commitment makes reversal costly.</td></tr>
+<tr>
+<td><strong>Accommodate</strong></td>
+<td>Ramirez's concern is legitimate — add more financial controls</td>
+<td>Scope creep on governance; migration team spends more time reporting than migrating</td>
+</tr>
+<tr>
+<td><strong>Work around</strong></td>
+<td>If Finance is not technically required for approval (check: is there a CEO-direct path?)</td>
+<td>High political cost — Ramirez becomes an active enemy of the project</td>
+</tr>
+<tr>
+<td><strong>Go above (CEO)</strong></td>
+<td>After 2+ substantive 1:1s with Ramirez; 3 VPs support; CEO has signaled interest</td>
+<td>Relationship damage. Frame as "guidance on conflicting cost projections" not "Maria is blocking us."</td>
+</tr>
+</tbody></table></div>
+
+<h3>7e. Success Criteria</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Level</th>
+<th>What "Aligned" Looks Like</th>
+<th>Durability</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Verbal agreement</strong></td>
+<td>"I'm supportive" in a 1:1</td>
+<td>Low — deniable and forgettable</td>
+</tr>
+<tr>
+<td><strong>Written approval</strong></td>
+<td>Email saying "Product supports given the uptime SLA"</td>
+<td>Medium — creates a record</td>
+</tr>
+<tr>
+<td><strong>Resource commitment</strong></td>
+<td>Ramirez allocates POC budget; Okafor assigns an analyst to validation</td>
+<td>High — money and people are hard to un-commit</td>
+</tr>
+<tr>
+<td><strong>Public advocacy</strong></td>
+<td>Ramirez presents the financial guardrails at the leadership meeting</td>
+<td>Very high — reputational commitment makes reversal costly</td>
+</tr>
+</tbody></table></div>
+
+<div class="aside"><span class="a-icon">◈</span><p><strong>Target per VP:</strong> Chen = Public advocacy (already there). Park = Written approval. Okafor = Resource commitment (analyst assigned). Ramirez = Resource commitment (POC budget + finance business partner).</p></div>
+
+<hr class="section-divider">
+</div>
+
+<!-- ═══════════════ EVIDENCE SUMMARY ═══════════════ -->
+<div class="section" id="evidence-summary">
+  <h2>Evidence Summary</h2>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Tier</th>
+<th>Count</th>
+<th>Examples</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>T1 — Direct observation</strong></td>
+<td>14</td>
+<td>Stakeholder statements in meetings, Redshift contract terms, budget approval thresholds, Q1 outage incident report, Ramirez's stated objection</td>
+</tr>
+<tr>
+<td><strong>T2 — Credible secondhand</strong></td>
+<td>18</td>
+<td>Chief of staff reports on CEO preferences, engineering manager on Chen's commitment, product manager on Okafor's frustration, Figma migration retrospective</td>
+</tr>
+<tr>
+<td><strong>T3 — Structural inference</strong></td>
+<td>12</td>
+<td>Ramirez's position from role incentives + overrun history, Park-Chen trust from Figma collaboration, Okafor-Ramirez deference from budget cycles</td>
+</tr>
+<tr>
+<td><strong>T4 — Pattern matching</strong></td>
+<td>4</td>
+<td>Chen champion bias (common), Park-Ramirez low interaction (typical Design-Finance pattern)</td>
+</tr>
+<tr>
+<td><strong>T5 — Peripheral signals</strong></td>
+<td>3</td>
+<td>Park's absence from data platform Slack, non-engagement with architecture RFC, Okafor's email cc patterns</td>
+</tr>
+<tr>
+<td><strong>T6 — Pure assumption</strong></td>
+<td>0</td>
+<td>Not used — all assessments have minimum T5 evidence</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total evidence points:</strong> 51 <span class="ev-badge ev-t1">T1–T3</span> <span class="ev-detail">: 44 (86%); T4-T5: 7 (14%)</span></p>
+
+<p><strong>Triangulation:</strong> All stakeholder position assessments cite minimum 2 evidence tiers. Ramirez (strongest) triangulates T1 + T2 + T3. Park (weakest) relies on T3 + T5 — flagged as <span class="ev-badge ev-limited">EVIDENCE-LIMITED</span>.</p>
+
+<h3>Evidence Quality by Stakeholder</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Stakeholder</th>
+<th>Evidence Quality</th>
+<th>Confidence</th>
+<th>Action</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Chen</strong></td>
+<td>T1-T2</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>None needed</td>
+</tr>
+<tr>
+<td><strong>Ramirez</strong></td>
+<td>T1-T3</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>None needed</td>
+</tr>
+<tr>
+<td><strong>Okafor</strong></td>
+<td>T2-T3</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>Validate with direct conversation in Week 2</td>
+</tr>
+<tr>
+<td><strong>Park</strong></td>
+<td>T3-T5</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td><span class="ev-badge ev-limited">EVIDENCE-LIMITED</span> — validate before acting</td>
+</tr>
 </tbody></table></div>
 
 <hr class="section-divider">
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Assumptions & Critique                                 -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="assumptions">
-  <h2>Assumption Registry &amp; Adversarial Self-Critique</h2>
+<!-- ═══════════════ GOVERNANCE ═══════════════ -->
+<div class="section" id="governance">
+  <h2>Governance</h2>
 
 <h3>Assumption Registry</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>#</th><th>Assumption</th><th>Framework It Underpins</th><th>Confidence</th><th>Evidence</th><th>What Would Invalidate This</th></tr></thead>
+<thead><tr>
+<th>#</th>
+<th>Assumption</th>
+<th>Framework</th>
+<th>Confidence</th>
+<th>Evidence</th>
+<th>What Invalidates This</th>
+</tr></thead>
 <tbody>
 <tr>
-  <td>1</td>
-  <td><strong>Maria Torres wants the migration to succeed but cannot champion it due to political exposure</strong></td>
-  <td>Decision Archaeology, Alignment Sequence (Step 3)</td>
-  <td><span class="conf-pill conf-m">M</span></td>
-  <td><span class="ev-badge ev-t3">T3</span> incentive analysis + <span class="ev-badge ev-t2">T2</span> secondhand reports from her team</td>
-  <td>If Maria is actively lobbying the CEO against the migration in private → her position is Blocker, not Skeptic, and the entire alignment sequence changes. Validate with a direct 1:1 before executing Step 3.</td>
+<td>1</td>
+<td><strong>Ramirez's opposition is rational (addressable with evidence), not positional (protecting territory)</strong></td>
+<td>Alignment Sequencing, Objection Pre-emption</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>T1: 2024 objection was specific; T2: chief of staff says "Maria is persuadable if numbers work" <span class="ev-badge ev-t2">T2</span></td>
+<td>If she rejects the phased approach even with Finance-grade TCO + kill gates, opposition is political.</td>
 </tr>
 <tr>
-  <td>2</td>
-  <td><strong>The Snowflake failure was caused by scoping/execution failures, not technology selection errors</strong></td>
-  <td>Objection Playbook (Objection 1), Communication Strategies</td>
-  <td><span class="conf-pill conf-h">H</span></td>
-  <td><span class="ev-badge ev-t2">T2</span> post-mortem document + engineering retrospective</td>
-  <td>If the Snowflake failure was actually caused by data architecture incompatibility (not just project management), the same risk may apply to Databricks. Validate by having Sarah's architect review the Snowflake post-mortem specifically for architecture-related failures.</td>
+<td>2</td>
+<td><strong>Okafor will not publicly oppose if given a credible uptime guarantee</strong></td>
+<td>Coalition Analysis, Sequencing</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>T2: PM reports Okafor said privately "I wish we'd migrated last year" <span class="ev-badge ev-t2">T2</span></td>
+<td>If Okafor demands zero-risk (not just low-risk) guarantee — impossible for any migration.</td>
 </tr>
 <tr>
-  <td>3</td>
-  <td><strong>David Okafor's objection is primarily about budget governance, not about opposing infrastructure investment in principle</strong></td>
-  <td>Coalition Analysis (swing voter), Objection Playbook (Objection 1)</td>
-  <td><span class="conf-pill conf-h">H</span></td>
-  <td><span class="ev-badge ev-t1">T1</span> David has approved other large projects this year; his Snowflake objection is specific, not blanket</td>
-  <td>If David has a secret mandate from the board to cut infrastructure spend by 20% → his objection is structural, not resolvable through phase gates alone. Validate by asking David directly: "Is there a broader budget constraint I should know about?"</td>
+<td>3</td>
+<td><strong>Park's non-engagement is disinterest, not opposition</strong></td>
+<td>Stakeholder Map, Coalition Analysis</td>
+<td><span class="conf-pill conf-l">L</span></td>
+<td>T5: absence from Slack + RFC, no negative signals <span class="ev-badge ev-t5">T5</span></td>
+<td>If Park has discussed concerns with Okafor privately and they've formed an informal "slow this down" pact.</td>
 </tr>
 <tr>
-  <td>4</td>
-  <td><strong>Priya Sharma is genuinely neutral, not quietly opposed</strong></td>
-  <td>Stakeholder Map, Alignment Sequence (Step 2)</td>
-  <td><span class="conf-pill conf-m">M</span></td>
-  <td><span class="ev-badge ev-t2">T2</span> no negative signals from her team; she hasn't raised concerns in leadership meetings</td>
-  <td>If Priya has heard from her analytics team that Databricks has poor BI tool integration → she may be quietly skeptical. Validate by asking her analytics lead directly about data platform preferences.</td>
+<td>4</td>
+<td><strong>The CEO will not intervene unless asked</strong></td>
+<td>Alignment Sequencing</td>
+<td><span class="conf-pill conf-m">M</span></td>
+<td>T2: CEO has historically delegated infrastructure decisions to VPs <span class="ev-badge ev-t2">T2</span></td>
+<td>If CEO mentions "the data platform" in a leadership meeting unprompted → he's signaling impatience.</td>
 </tr>
 <tr>
-  <td>5</td>
-  <td><strong>The 4-month Redshift contract renewal creates genuine urgency, not artificial pressure</strong></td>
-  <td>Alignment Sequence (timeline)</td>
-  <td><span class="conf-pill conf-h">H</span></td>
-  <td><span class="ev-badge ev-t1">T1</span> Redshift contract terms verified with procurement</td>
-  <td>If the Redshift contract allows month-to-month extension at reasonable rates → the urgency is weaker, and rushing the alignment campaign may be counterproductive. Validate contract terms.</td>
+<td>5</td>
+<td><strong>24-month TCO comparison favors Databricks over Redshift renewal</strong></td>
+<td>Objection Pre-emption</td>
+<td><span class="conf-pill conf-h">H</span></td>
+<td>T1: Redshift pricing known ($1.05M/yr); T2: Databricks pricing estimate from vendor <span class="ev-badge ev-t2">T2</span></td>
+<td>If Databricks pricing comes in higher, or Redshift offers a significant renewal discount.</td>
 </tr>
 </tbody></table></div>
 
@@ -1068,129 +1320,177 @@ nav button.active{color:var(--accent);background:var(--accent-light);font-weight
 
 <h3>Adversarial Self-Critique</h3>
 
-<h4>Weakness 1: This Strategy Assumes Maria Can Be Converted — What If She's Right To Block?</h4>
+<h4>Weakness 1: Champion Dependency — The Entire Strategy Rests on Chen</h4>
 
-<p><strong>What I assumed:</strong> Maria Torres is cautious but convertible — she needs political cover, not persuasion. The alignment strategy is designed to surround her with coalition support until she's comfortable championing the migration.</p>
+<p><strong>What this assumes:</strong> Chen remains a committed champion through the 6-week sequence. Her credibility with Park, relationship with Okafor, and co-presentation to Ramirez are all load-bearing.</p>
 
-<p><strong>What could be wrong:</strong> Maria may have information I don't — a private conversation with the CEO indicating that infrastructure spend is frozen, a board directive to reduce data team headcount, or a personal decision to leave the company in the next 6 months. If any of these are true, her caution is not political exposure from Snowflake; it's rational self-preservation based on information this strategy doesn't account for. Approaching her with coalition pressure when she has private reasons to block could damage the relationship and waste the coalition's political capital.</p>
+<p><strong>What could go wrong:</strong> If Chen gets pulled into a P0 production incident in Week 2-3, she disappears for 2+ weeks. Without Chen, the Park engagement loses its messenger, the Okafor engagement loses validation, and the Ramirez engagement loses accountability. The entire sequence collapses.</p>
 
-<p><strong>Evidence that would disprove this analysis:</strong> Maria starts declining all infrastructure-related meetings (not just this one). She begins restructuring her team in ways that suggest downsizing rather than growth. The CEO stops mentioning data platform improvements in leadership meetings.</p>
-
-<p><strong>Invalidation trigger:</strong> If Maria delegates the migration decision to her director-level report with no deadline for a decision → she's not cautious, she's blocking through bureaucracy. Re-classify her as <span class="pos-badge pos-blocker">BLOCKER</span> and shift to escalation strategy.</p>
+<p><strong>Mitigation:</strong> Identify Chen's Sr. Director of Data Engineering as backup messenger. Brief them in Week 1 so they can step in if Chen is unavailable. Probability of Chen being unavailable: ~20% over 6 weeks <span class="ev-badge ev-t4">T4</span>.</p>
 
 <hr class="section-divider">
 
-<h4>Weakness 2: The Phase-Gated Approach May Create Its Own Failure Mode</h4>
+<h4>Weakness 2: The Sequence Assumes Linear Progression — But Stakeholders Talk to Each Other</h4>
 
-<p><strong>What I assumed:</strong> Phase gates with kill switches address the Finance and CDO objections and create genuine accountability. This is the centerpiece of the budget proposal.</p>
+<p><strong>What this assumes:</strong> Each step completes before the next, and stakeholders form views based on your planned engagement, not informal hallway conversations.</p>
 
-<p><strong>What could be wrong:</strong> Phase gates create three risks the strategy doesn't address: (1) <strong>Phase 1 succeeds but Phase 2 is blocked due to unrelated budget constraints</strong> — you've migrated 50 tables to Databricks but 350 remain on Redshift, creating a hybrid nightmare that's worse than either system alone. (2) <strong>The kill switch creates a "pause" incentive</strong> — at each gate, risk-averse stakeholders have a natural opportunity to say "let's pause and reassess," which in practice means "let's kill this slowly." (3) <strong>Phase 1 scope is too small to prove the architecture</strong> — 50 tables may not stress-test the complex cross-table dependencies that killed Snowflake.</p>
+<p><strong>What could go wrong:</strong> Ramirez and Okafor have lunch in Week 2 and Ramirez says "I'm hearing about another migration — do you know anything about this?" Okafor, unbriefed, says "no, sounds expensive." Okafor has been pre-framed by Finance before your uptime presentation.</p>
 
-<p><strong>Evidence that would disprove this analysis:</strong> Phase 1 scope is validated by Sarah's architect as genuinely representative of the migration's complexity (not just the easy tables). The budget approval for Phases 2-3 is pre-committed contingent on Phase 1 criteria being met (not re-evaluated from scratch).</p>
-
-<p><strong>Invalidation trigger:</strong> If Phase 1 completes successfully but Phase 2 approval takes more than 4 weeks → the phase-gated approach is being weaponized as a delay mechanism. Escalate to the CEO with Phase 1 results.</p>
+<p><strong>Mitigation:</strong> Accelerate the Okafor engagement to Week 1-2 (overlap with Park) rather than waiting for Week 2-3. Accept the risk that Park's conversion isn't locked in before Okafor's engagement. In a compressed timeline, parallel is less risky than slow sequential.</p>
 
 <hr class="section-divider">
 
-<h4>Weakness 3: This Strategy Over-Indexes on the Snowflake Narrative and Under-Indexes on the Databricks Technical Case</h4>
+<h4>Weakness 3: This Strategy Treats Park as Easy — She May Have a Legitimate Blocker Concern</h4>
 
-<p><strong>What I assumed:</strong> The alignment challenge is primarily political (Snowflake trauma, CDO exposure, Finance skepticism), and the technical case for Databricks is sound.</p>
+<p><strong>What this assumes:</strong> Park is simply unengaged and will convert once briefed. Her position is "hasn't been asked," not "has concerns she hasn't raised."</p>
 
-<p><strong>What could be wrong:</strong> I've spent 80% of this strategy on political alignment and 20% on technical merit. If the Databricks technical case has genuine weaknesses — higher-than-expected costs, poor integration with the company's existing BI stack, steep learning curve for the data team — the political alignment will succeed but the migration will fail operationally. That would be worse than the Snowflake failure because this time the alignment was "successful" but the outcome was the same.</p>
+<p><strong>What could go wrong:</strong> Park's UX research team may have data governance requirements (PII handling, GDPR compliance for European user data) that Redshift satisfies and Databricks migration would need to explicitly address. If Park raises governance concerns in the group meeting, it adds weeks to the timeline and potentially pushes past the renewal deadline.</p>
 
-<p><strong>Evidence that would disprove this analysis:</strong> An independent technical assessment by an engineer who has no stake in the decision confirms Databricks is the right architecture. The data team (not leadership) validates that they can execute the migration with the proposed resources.</p>
+<p><strong>Mitigation:</strong> In the Chen-Park briefing, explicitly ask: "Are there any data governance or compliance requirements for your research pipeline that we should build into the migration plan?" Surface unknown unknowns before the group meeting.</p>
 
-<p><strong>Invalidation trigger:</strong> If Sarah's senior architect raises concerns about Databricks' suitability during the technical proposal drafting → pause the alignment campaign and resolve the technical question first. A politically aligned initiative that fails technically is career-ending for everyone involved.</p>
+<hr class="section-divider">
+
+<h3>Cross-Framework Contradictions</h3>
+
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Contradiction</th>
+<th>Framework A Says</th>
+<th>Framework B Says</th>
+<th>Resolution</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Okafor's stated neutrality vs. revealed behavior</strong></td>
+<td>Power-Interest Matrix: Neutral — no stated position</td>
+<td>Decision Archaeology: privately said "I wish we'd migrated last year" — closer to latent supporter</td>
+<td>Weight Archaeology higher. Okafor's public neutrality is political caution (not wanting to oppose Finance), not indifference. Treat as latent supporter who needs cover to commit publicly.</td>
+</tr>
+<tr>
+<td><strong>Park's "low interest" vs. research pipeline dependency</strong></td>
+<td>Power-Interest Matrix: Low Interest — hasn't engaged</td>
+<td>Incentive Analysis: Park's research team has a structural dependency — should be High Interest</td>
+<td>Park's interest is objectively high but subjectively low because nobody explained the connection. Her "low interest" is an information gap, not a position.</td>
+</tr>
+</tbody></table></div>
+
+<hr class="section-divider">
+
+<h3>Strategic Recommendations</h3>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W — Rec 1: Build Coalition Before Engaging Finance</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Ramirez is the primary blocker with veto authority and influence over the swing voter (Okafor). Chen is a committed champion. Park and Okafor are convertible <span class="ev-badge ev-t1">T1</span> <span class="ev-badge ev-t2">T2</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Approaching Ramirez first repeats the 2024 failure. Approaching her last with a 3-VP coalition changes the dynamic from "Engineering wants expensive toys" to "the organization has decided and Finance needs to enable it."</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Execute the 5-step sequence: Chen (Wk 1) → Park (Wk 1-2) → Okafor (Wk 2-3) → Ramirez (Wk 3-4) → Group ratification (Wk 5-6). Each step produces a deliverable that feeds the next.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-h">H</span> — assumes Ramirez's opposition is rational and Park/Okafor are genuinely convertible.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If any step takes >1.5 weeks, compress to parallel tracks. If Ramirez frames before Week 4, accelerate immediately.</div>
+</div>
+</div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W — Rec 2: Make Ramirez a Co-Author, Not a Reviewer</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">Ramirez's 2024 objection was evidence-based. Her reputation is tied to financial discipline. She was publicly blamed for the overrun <span class="ev-badge ev-t1">T1</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">A finished TCO for "review" makes her the gatekeeper (approve/reject). Inviting her to co-design controls makes her a co-owner (invested in success).</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Present the TCO <em>framework</em> (not finished model) and ask Ramirez to define kill gates, reporting cadence, and acceptable variance thresholds. Embed her finance business partner. Let her present the guardrails at the group meeting.</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-m">M</span> — assumes she will engage constructively when given co-authorship.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If she accepts the co-design invitation → high conversion probability. If she says "just send me the model for review" → maintaining gatekeeper position.</div>
+</div>
+</div>
+
+<div class="cascade-block">
+<div class="cascade-header">O → I → R → C → W — Rec 3: Use the Redshift Deadline as Forcing Function</div>
+<div class="cascade-item cascade-o">
+  <div class="cascade-label">O</div>
+  <div class="cascade-text">The Redshift contract auto-renews for 2 years ($2.1M) if no decision is made in 8 weeks <span class="ev-badge ev-t1">T1</span>.</div>
+</div>
+<div class="cascade-item cascade-i">
+  <div class="cascade-label">I</div>
+  <div class="cascade-text">Inaction costs $2.1M. This reframes from "should we spend $3M?" to "which $2M+ commitment is the better investment?" Net incremental cost is $900K, not $3M.</div>
+</div>
+<div class="cascade-item cascade-r">
+  <div class="cascade-label">R</div>
+  <div class="cascade-text">Lead every conversation with cost-of-inaction framing. Make the renewal deadline visible in every document. For Ramirez: "The question isn't whether to spend money — it's which commitment is the better investment."</div>
+</div>
+<div class="cascade-item cascade-c">
+  <div class="cascade-label">C</div>
+  <div class="cascade-text"><span class="conf-pill conf-h">H</span> — Redshift contract terms are T1 evidence.</div>
+</div>
+<div class="cascade-item cascade-w">
+  <div class="cascade-label">W</div>
+  <div class="cascade-text">If Redshift offers a 30%+ renewal discount, cost-of-inaction argument weakens. Monitor AWS account manager communications.</div>
+</div>
+</div>
 
 <hr class="section-divider">
 
 <h3>Revision Triggers</h3>
 
 <div class="table-wrap"><table>
-<thead><tr><th>Trigger</th><th>What to Re-assess</th><th>Timeline</th></tr></thead>
+<thead><tr>
+<th>Trigger</th>
+<th>Re-assess</th>
+<th>Timeline</th>
+</tr></thead>
 <tbody>
-<tr><td>Maria Torres changes roles or leaves the company</td><td>Stakeholder Map, Coalition Analysis, Alignment Sequence (Steps 3-4)</td><td>Immediately — new CDO resets entire landscape</td></tr>
-<tr><td>CEO announces budget freeze or cost-cutting initiative</td><td>Objection Playbook, Finance approach, urgency framing</td><td>Within 48 hours — reframe as cost reduction (Redshift maintenance savings)</td></tr>
-<tr><td>Redshift has a major outage or security incident</td><td>Urgency increases — all stakeholders may shift simultaneously</td><td>Immediately — accelerate the alignment sequence, use the incident as evidence</td></tr>
-<tr><td>Databricks announces significant pricing change</td><td>Financial model, Objection 3 (why not optimize Redshift?)</td><td>Within 1 week — update TCO model</td></tr>
+<tr>
+<td>Chen pulled into P0 incident</td>
+<td>Sequence + backup messenger</td>
+<td>Within 24 hours</td>
+</tr>
+<tr>
+<td>Ramirez frames conversation early</td>
+<td>Entire sequence — accelerate</td>
+<td>Immediately</td>
+</tr>
+<tr>
+<td>Redshift deadline moves up</td>
+<td>Parallel engagement tracks</td>
+<td>Immediately</td>
+</tr>
+<tr>
+<td>CEO intervenes unprompted</td>
+<td>Brief CEO on status + planned timeline</td>
+<td>Same day</td>
+</tr>
+<tr>
+<td>Databricks pricing changes</td>
+<td>Finance engagement framing</td>
+<td>Before Ramirez 1:1</td>
+</tr>
 </tbody></table></div>
 
 <hr class="section-divider">
 
-<h3>Evidence Summary</h3>
-
-<div class="table-wrap"><table>
-<thead><tr><th>Tier</th><th>Count</th><th>Examples</th></tr></thead>
-<tbody>
-<tr><td><strong><span class="ev-badge ev-t1">T1</span></strong></td><td>14</td><td>Direct observation of stakeholder behavior, contract terms, stated positions in meetings, budget documents</td></tr>
-<tr><td><strong><span class="ev-badge ev-t2">T2</span></strong></td><td>22</td><td>Secondhand reports from trusted colleagues, post-mortem documents, team retrospectives, chief of staff input</td></tr>
-<tr><td><strong><span class="ev-badge ev-t3">T3</span></strong></td><td>18</td><td>Structural inference from roles, incentives, organizational context, past decision patterns</td></tr>
-<tr><td><strong><span class="ev-badge ev-t4">T4</span></strong></td><td>2</td><td>Pattern matching — how similar stakeholders behave in similar situations (CDO after failed project)</td></tr>
-<tr><td><strong><span class="ev-badge ev-t5">T5</span></strong></td><td>0</td><td>Not used</td></tr>
-<tr><td><strong><span class="ev-badge ev-t6">T6</span></strong></td><td>0</td><td>Not used</td></tr>
-</tbody></table></div>
-
-<p><strong>Total evidence points:</strong> 56 <span class="ev-badge ev-t1">T1–T3</span> <span class="ev-detail">: 54; T4: 2; T5-T6: 0</span></p>
-
-<p><strong>Triangulation:</strong> All stakeholder position assessments cite minimum 2 evidence sources. CDO position assessment (the most critical) cites T2 secondhand + T3 incentive analysis. Validate with T1 direct conversation before executing Step 3.</p>
-
-<hr class="section-divider">
-</div>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION: Try It Yourself                                        -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="section" id="try-it">
-  <h2>Try It Yourself: Quick-Start Guide</h2>
-  <p class="section-sub"><strong>Apply this framework to your own stakeholder alignment challenge in 4 steps:</strong></p>
-
-<ol>
-  <li><strong>Map your stakeholders</strong> (30 min)<br>List every person who can approve, block, or influence the decision. Score each on Power (H/M/L), Interest (H/M/L), and Position (Champion/Supporter/Neutral/Skeptic/Blocker). Tag every assessment with an evidence tier — if you're guessing, mark it T5-T6 and plan to validate.</li>
-</ol>
-
-<ol start="2">
-  <li><strong>Run Decision Archaeology</strong> (45 min)<br>For every stakeholder who isn't a champion, ask: "What happened in the past that shapes their current position?" Failed projects, budget overruns, organizational changes, personal career events. The current decision doesn't exist in a vacuum — every position has a history. Find it.</li>
-</ol>
-
-<ol start="3">
-  <li><strong>Design your alignment sequence</strong> (30 min)<br>Start with your strongest champion. Then convert swing voters. Then cautious decision-makers (with coalition backing). Approach blockers last, with maximum support. Never approach a blocker before you've built a coalition — isolated arguments lose to institutional inertia.</li>
-</ol>
-
-<ol start="4">
-  <li><strong>Steel-man the objections</strong> (30 min)<br>For each skeptic or blocker, write their strongest possible objection — stronger than they would articulate it themselves. Then prepare your response. If you can't respond to the steel-manned version, you haven't done enough homework.</li>
-</ol>
-
-<p><strong>Output:</strong> You'll have a stakeholder alignment strategy ready to execute in ~2.5 hours. The quality improves dramatically when you use the full <a href="https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/stakeholder-alignment/SKILL.md">stakeholder-alignment skill</a> with Claude Code.</p>
-
-<hr class="section-divider">
-
-<h3>Install the Skill</h3>
-
-<div class="code-figure"><pre><code># Install PM Skills Arsenal plugin
-claude plugin marketplace add avyayalaya/pm-skills-arsenal
-claude plugin install pm-skills@avyayalaya
-
-# Then use the skill in any conversation:
-"I need to align 5 stakeholders on a platform migration decision.
- Use the stakeholder-alignment skill."</code></pre></div>
-
-<hr class="section-divider">
-
-<h3>Related Use Cases &amp; Skills</h3>
-<p class="section-sub"><strong>From alignment to next steps:</strong></p>
-<ul>
-  <li>See <a href="use-case-narrative-building.html">Narrative Building use case</a> for crafting the per-stakeholder communication narratives</li>
-  <li>See <a href="use-case-specification.html">Specification Writing use case</a> for writing the migration specification once alignment is achieved</li>
-  <li>See <a href="use-case-problem-framing.html">Problem Framing use case</a> for validating whether migration is the right problem to solve</li>
-  <li>See <a href="use-case-figma-canva-express.html">Competitive Analysis use case</a> for evaluating Databricks vs. Snowflake vs. BigQuery</li>
-</ul>
-
-<p><strong>Real-world skill chains:</strong></p>
-<ul>
-  <li><strong>Problem Framing → Stakeholder Alignment → Specification Writing</strong> — validate the problem, align the decision-makers, then write the spec</li>
-  <li><strong>Competitive Analysis → Stakeholder Alignment</strong> — build the technical case first (Databricks vs. alternatives), then align stakeholders on the recommendation</li>
-  <li><strong>Stakeholder Alignment → Narrative Building</strong> — once you know each stakeholder's position and concerns, craft tailored narratives for each 1:1 conversation</li>
-</ul>
+<p><strong>Analysis Date:</strong> March 2026 &nbsp; <strong>Evidence Points:</strong> 51 <span class="ev-badge ev-t1">T1–T3</span> <span class="ev-detail">: 44 (86%)</span> &nbsp; <strong>Frameworks Applied:</strong> Power-Interest-Position, Coalition Analysis, Decision Archaeology, Alignment Sequencing, Objection Pre-emption, Communication Strategy, Alignment Monitoring &nbsp; <strong>Staleness Window:</strong> Position assessments valid 30 days from analysis date &nbsp; <strong>License:</strong> MIT &nbsp; <strong>PM Skills Arsenal:</strong> <a href="https://github.com/Avyayalaya/pm-skills-arsenal/blob/main/skills/stakeholder-alignment/SKILL.md">stakeholder-alignment</a></p>
 </div>
 
 <footer class="page-footer">
