@@ -4,6 +4,8 @@
 
 > *Process guides raise the floor. Knowledge weapons raise the ceiling.*
 
+**Live site with interactive showcases:** [avyayalaya.github.io/pm-skills-arsenal](https://avyayalaya.github.io/pm-skills-arsenal)
+
 ---
 
 ## Why This Exists
