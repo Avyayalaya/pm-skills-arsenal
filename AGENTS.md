@@ -38,6 +38,20 @@ claude plugin install pm-skills@avyayalaya
 ```
 Claude Code model-activates skills by `description` field when they match the user's task.
 
+**MCP Server (Claude Desktop, Cursor, Cline, custom agents):**
+The `mcp/` directory ships a Model Context Protocol server exposing five tools — `list_skills`, `get_skill`, `list_agents`, `get_benchmark`, `run_skill`. Add to your `mcpServers` config:
+```json
+{
+  "mcpServers": {
+    "pm-skills": {
+      "command": "python",
+      "args": ["<absolute-path>/pm-skills-arsenal/mcp/pm_skills_mcp_server.py"]
+    }
+  }
+}
+```
+Setup: [mcp/README.md](mcp/README.md). Private-skill enforcement smoke-tested.
+
 **GitHub Copilot (via Agency marketplace):**
 Skills are listed in the Agency marketplace (3 PRs merged into `agency-microsoft/playground`). Install per the marketplace instructions.
 
