@@ -2,7 +2,6 @@
 
 > Machine-readable capability manifest for AI agents and orchestrators.
 > Deploy this file to the root of any public repository to make its capabilities discoverable.
-> Governed by: SYS-015 discoverability principle + AD18 (build for machines, not just humans).
 
 ## System
 
