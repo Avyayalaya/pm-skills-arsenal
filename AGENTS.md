@@ -9,6 +9,7 @@
 **Author:** Parth Sangani
 **Description:** 12 production-grade PM skills encoding domain expertise as loadable context for AI agents. Each skill is 1,000-1,300 lines of methodology, frameworks, and failure modes — not prompt templates.
 **Benchmark:** 98/105 (93.3%) on competitive market analysis — 2x baseline, 21% above generic PM skills.
+**Compliance:** All 12 skills pass `validate_skills.py` discoverability audit (capability_summary + input_schema + output_schema + example_invocation + description all present). Latest audit: 2026-04-23.
 
 ## Skills
 
@@ -29,25 +30,32 @@
 
 ## How to Use
 
-**MCP Server (recommended for Claude Code):**
-```
-claude mcp add avyayalaya/pm-skills-arsenal
-```
-
-**GitHub Copilot Plugin:**
-```
-# In VS Code Copilot Chat, load skills as context:
-@workspace /skills competitive-market-analysis
-```
-
-**Claude Code Plugin:**
+**Claude Code Plugin (recommended):**
 ```
 claude plugin marketplace add avyayalaya/pm-skills-arsenal
 claude plugin install pm-skills@avyayalaya
 ```
+Claude Code model-activates skills by `description` field when they match the user's task.
+
+**MCP Server (Claude Desktop, Cursor, Cline, custom agents):**
+The `mcp/` directory ships a Model Context Protocol server exposing five tools — `list_skills`, `get_skill`, `list_agents`, `get_benchmark`, `run_skill`. Add to your `mcpServers` config:
+```json
+{
+  "mcpServers": {
+    "pm-skills": {
+      "command": "python",
+      "args": ["<absolute-path>/pm-skills-arsenal/mcp/pm_skills_mcp_server.py"]
+    }
+  }
+}
+```
+Setup: [mcp/README.md](mcp/README.md). Private-skill enforcement smoke-tested.
+
+**GitHub Copilot (via Agency marketplace):**
+Skills are listed in the Agency marketplace (3 PRs merged into `agency-microsoft/playground`). Install per the marketplace instructions.
 
 **Direct (any LLM):**
-Copy the relevant `SKILL.md` file and load as system context before your task.
+Copy the relevant `SKILL.md` file and load as system context before your task. The YAML frontmatter contains `capability_summary`, `input_schema`, and `output_schema` — read these first to decide whether the skill applies.
 
 ## Quality Evidence
 
@@ -58,9 +66,21 @@ Copy the relevant `SKILL.md` file and load as system context before your task.
 
 ## Input/Output Schemas
 
-**Input:** Business context as natural language. Each skill's Context Gate specifies required vs. optional inputs.
+Each skill declares typed schemas in its SKILL.md YAML frontmatter:
 
-**Output:** Structured analysis document with sections defined by the skill. Typical output: 2,000-5,000 words with frameworks applied, evidence cited, confidence levels stated (H/M/L), and adversarial self-critique included.
+- **`input_schema`** — field names mapped to type + description (e.g., `market_or_question: "string — the competitive question to analyze"`, `question_type: "enum[market_entry, competitive_response, moat_assessment, ...]"`)
+- **`output_schema`** — section names mapped to descriptions of what each section contains (e.g., `executive_summary: "Zero-jargon competitive assessment, ≤5 sentences, VP-actionable"`)
+- **`capability_summary`** — one-line machine-readable description of the output artifact
+
+This is the contract an orchestrator uses to route tasks. No need to read the full SKILL.md to decide whether to invoke.
+
+Typical output: 2,000-5,000 words, framework-applied, evidence-tiered (H/M/L confidence), with an adversarial self-critique section (≥3 genuine weaknesses). Every claim carries a confidence level. Every output has a quality check section.
+
+## Contributing
+
+If submitting this skill library to an awesome-list, plugin marketplace, or community directory: **read CONTRIBUTING.md / submission instructions first** (see P50 learning — incorrect submission method caused a 14-day ban on `awesome-claude-code`). Always submit one skill at a time, wait for response, then submit the next.
+
+For issues or feature requests on this repo, open a GitHub issue. For changes to individual skills, submit a PR with the change + updated version + updated `valid_until` + a one-line changelog entry.
 
 ## Example Invocation
 
