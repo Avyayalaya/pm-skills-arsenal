@@ -218,15 +218,16 @@ def get_benchmark(skill_name: str) -> str:
             "score": "98/105",
             "percentage": "93.3%",
             "methodology": "15-criterion evaluation, 7-point scale per criterion",
-            "evaluator": "LLM-as-judge (Claude Opus 4)",
+            "evaluator": "self-administered (rubric authored by the skill author; scored via LLM-as-judge with Claude Opus 4 by the same author)",
+            "independence": "this is an author-administered assessment, not an independent evaluation; raw outputs published at benchmark/ for re-scoring",
             "date": "2026-02-19",
-            "threshold": "90/105 (publication quality)",
+            "threshold": "90/105 (publication quality, author-administered)",
             "details": "Missing 7 points: D2 (per-cell tier annotation) and D7 (H/M/L inline throughout)",
         }, indent=2)
     return json.dumps({
         "skill": skill_name,
         "score": "not yet benchmarked",
-        "note": "Formal benchmark available for competitive-market-analysis only. Other skills follow the same structural standards.",
+        "note": "Formal benchmark available for competitive-market-analysis only. Other skills follow the same structural standards. All benchmark assessments are author-administered.",
     }, indent=2)
 
 

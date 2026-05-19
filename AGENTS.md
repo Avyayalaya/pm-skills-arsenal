@@ -7,8 +7,8 @@
 
 **Name:** PM Skills Arsenal
 **Author:** Parth Sangani
-**Description:** 12 production-grade PM skills encoding domain expertise as loadable context for AI agents. Each skill is 1,000-1,300 lines of methodology, frameworks, and failure modes — not prompt templates.
-**Benchmark:** 98/105 (93.3%) on competitive market analysis — 2x baseline, 21% above generic PM skills.
+**Description:** 12 PM skills encoding domain expertise as loadable context for AI agents. Each skill is 1,000-1,300 lines of methodology, frameworks, and failure modes — not prompt templates.
+**Benchmark (self-administered):** 98/105 on a self-authored 7-dimension rubric, scored by the same author who wrote the skills. Methodology + 15 raw outputs at `benchmark/` for independent re-scoring. **Read this score with that lens.**
 **Compliance:** All 12 skills pass `validate_skills.py` discoverability audit (capability_summary + input_schema + output_schema + example_invocation + description all present). Latest audit: 2026-04-23.
 
 ## Skills
@@ -32,8 +32,8 @@
 
 **Claude Code Plugin (recommended):**
 ```
-claude plugin marketplace add avyayalaya/pm-skills-arsenal
-claude plugin install pm-skills@avyayalaya
+claude plugin marketplace add Avyayalaya/pm-skills-arsenal
+claude plugin install pm-skills@pm-skills-arsenal
 ```
 Claude Code model-activates skills by `description` field when they match the user's task.
 
@@ -59,8 +59,8 @@ Copy the relevant `SKILL.md` file and load as system context before your task. T
 
 ## Quality Evidence
 
-- **Benchmark:** 98/105 (93.3%) — evaluated against 15 quality dimensions on competitive market analysis
-- **Baseline comparison:** Generic AI without skill scores 47/105 (44.8%). Anthropic's PM skill scores 81/105 (77.1%).
+- **Benchmark (self-administered):** 98/105 against a self-authored 7-dimension rubric. The same author wrote the rubric AND scored every output across 5 prompts × 3 conditions — this is an author-administered assessment, not an independent evaluation.
+- **Comparison (same caveat applies):** Baseline (no skill) 47/105; Anthropic's PM Skill 81/105; PM Skills Arsenal 98/105. All 15 raw outputs are published at [`benchmark/`](benchmark/) for independent re-scoring.
 - **18 use cases** with before/after comparisons using real company scenarios (Stripe, Figma, Salesforce, etc.)
 - **12 HTML showcases** with tabbed navigation and evidence tiers
 
@@ -97,6 +97,6 @@ MIT
 
 ## Links
 
-- **Repository:** https://github.com/avyayalaya/pm-skills-arsenal
-- **Documentation:** https://avyayalaya.github.io/pm-skills-arsenal/
-- **Benchmarks:** https://github.com/avyayalaya/pm-skills-arsenal/tree/main/benchmark
+- **Repository:** https://github.com/Avyayalaya/pm-skills-arsenal
+- **Documentation:** showcase/
+- **Benchmarks:** https://github.com/Avyayalaya/pm-skills-arsenal/tree/main/benchmark

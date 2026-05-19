@@ -2,36 +2,63 @@
 
 > *AI produces polished analysis that changes no decisions. These skills fix that.*
 
-12 codex-grade PM skills — 1,000–1,300 lines each — for senior PMs, founders, AI engineers, and the agents that route between them.
+12 PM skills — 1,000–1,300 lines each — for senior PMs, founders, AI engineers, and the agents that route between them.
 
-| Condition | Score | vs. Baseline |
-|---|---|---|
-| Baseline (Claude, no skill) | 47 / 105 | — |
-| Anthropic's PM Skill | 81 / 105 | +72% |
-| **PM Skills Arsenal** | **98 / 105** | **+109%** |
+### Quality benchmark (self-administered — read with that lens)
 
-5 prompts × 7 dimensions × 3 conditions. [Full methodology and 15 raw outputs →](benchmark/)
+| Condition | Score |
+|---|---|
+| Baseline (Claude, no skill) | 47 / 105 |
+| Anthropic's PM Skill | 81 / 105 |
+| **PM Skills Arsenal** | **98 / 105** |
 
-[Live site with interactive showcases →](https://avyayalaya.github.io/pm-skills-arsenal) · [Machine-readable manifest (AGENTS.md) →](AGENTS.md)
+5 prompts × 7 dimensions × 3 conditions. **The same author wrote the rubric AND scored every output** — this is the author's own assessment, not an independent evaluation. The full methodology, the 7-dimension rubric, and all 15 raw outputs are published at [`benchmark/`](benchmark/) so you can re-score them yourself. If you do and reach a different conclusion, [open an issue](https://github.com/Avyayalaya/pm-skills-arsenal/issues) — independent verification beats author-administered scores every time.
+
+[Live site with interactive showcases →](showcase/) · [Machine-readable manifest (AGENTS.md) →](AGENTS.md)
 
 <table>
 <tr>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-figma-canva-express.html"><img src="docs/screenshots/screenshot-competitive-analysis.png" width="400" alt="Competitive Analysis output"></a><br><strong>Competitive & Market Analysis</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-executive-writing.html"><img src="docs/screenshots/screenshot-executive-writing.png" width="400" alt="Executive Writing output"></a><br><strong>Executive Writing</strong></td>
+<td align="center"><a href="showcase/articles/use-case-figma-canva-express.html"><img src="docs/screenshots/screenshot-competitive-analysis.png" width="400" alt="Competitive Analysis output"></a><br><strong>Competitive & Market Analysis</strong></td>
+<td align="center"><a href="showcase/articles/use-case-executive-writing.html"><img src="docs/screenshots/screenshot-executive-writing.png" width="400" alt="Executive Writing output"></a><br><strong>Executive Writing</strong></td>
 </tr>
 <tr>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-metric-design.html"><img src="docs/screenshots/screenshot-metric-design.png" width="400" alt="Metric Design output"></a><br><strong>Metric Design & Experimentation</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-product-strategy.html"><img src="docs/screenshots/screenshot-product-strategy.png" width="400" alt="Product Strategy output"></a><br><strong>Product Strategy</strong></td>
+<td align="center"><a href="showcase/articles/use-case-metric-design.html"><img src="docs/screenshots/screenshot-metric-design.png" width="400" alt="Metric Design output"></a><br><strong>Metric Design & Experimentation</strong></td>
+<td align="center"><a href="showcase/articles/use-case-product-strategy.html"><img src="docs/screenshots/screenshot-product-strategy.png" width="400" alt="Product Strategy output"></a><br><strong>Product Strategy</strong></td>
 </tr>
 </table>
 
 ## Install
 
-**Claude Code (plugin):**
+### Via APM (recommended — one install, every harness)
+
+[APM](https://github.com/microsoft/apm) — the Agent Package Manager — is a multi-harness manifest. One command configures the plugin across GitHub Copilot CLI, Claude Code, Cursor, OpenCode, Codex, and Gemini from a single `apm.yml`.
 
 ```bash
-claude plugin marketplace add avyayalaya/pm-skills-arsenal
-claude plugin install pm-skills@avyayalaya
+# pin to the released version for reproducibility
+apm install Avyayalaya/pm-skills-arsenal#v2.1.0
+
+# or floating on main (will warn about unpinned dependency)
+apm install Avyayalaya/pm-skills-arsenal
+```
+
+The install brings the 12 PM skills, the `pm-skills` MCP server, and lifecycle telemetry hooks. Skills auto-register with each compatible harness.
+
+> **First-time setup tip.** APM auto-detects your harness from directory markers (`.claude/`, `CLAUDE.md`, `.cursor/`, `.github/copilot-instructions.md`, `.codex/`, `.gemini/`, etc.). In a fresh project with no markers yet, pass `--target` explicitly:
+>
+> ```bash
+> apm install Avyayalaya/pm-skills-arsenal#v2.1.0 --target claude
+> # or: --target copilot, cursor, codex, gemini, opencode, windsurf
+> ```
+>
+> Run `apm targets` to see the full list of supported harnesses.
+
+### Direct (per-harness fallback)
+
+**Claude Code:**
+
+```bash
+claude plugin marketplace add Avyayalaya/pm-skills-arsenal
+claude plugin install pm-skills
 ```
 
 **GitHub Copilot (Agency marketplace):**
@@ -68,7 +95,8 @@ This system is designed to be discovered, evaluated, and routed by other AI agen
 **MCP server** — `mcp/pm_skills_mcp_server.py` exposes five tools (`list_skills`, `get_skill`, `list_agents`, `get_benchmark`, `run_skill`) over the Model Context Protocol. Works with any MCP host: Claude Desktop, Cursor, Cline, custom agents. [Setup →](mcp/README.md)
 
 **Plugin marketplaces:**
-- Claude Code: `claude plugin marketplace add avyayalaya/pm-skills-arsenal`
+- APM (multi-harness, recommended): `apm install Avyayalaya/pm-skills-arsenal`
+- Claude Code direct: `claude plugin marketplace add Avyayalaya/pm-skills-arsenal`
 - Agency marketplace (Microsoft Copilot): listed in `agency-microsoft/playground`
 
 **Invoke from a custom agent (Anthropic SDK):**
@@ -106,7 +134,7 @@ Decides who wins a market, why their advantage holds, and what to do about it.
 **Use when:** market entry, competitive response, moat assessment, build/buy/partner.
 **Don't use for:** pure feature parity comparisons (use specification-writing).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-figma-canva-express.html) · [SKILL.md →](skills/competitive-market-analysis/SKILL.md)
+[Showcase →](showcase/articles/use-case-figma-canva-express.html) · [SKILL.md →](skills/competitive-market-analysis/SKILL.md)
 
 #### Discovery Research
 
@@ -119,7 +147,7 @@ Synthesizes raw research inputs into findings a PM can act on, with explicit con
 **Use when:** synthesizing interview rounds, evaluating whether evidence is decision-ready, resolving conflicting signals across surveys/interviews/behavioral data.
 **Don't use for:** designing the research itself (use problem-framing to identify what to investigate).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-discovery-research.html) · [SKILL.md →](skills/discovery-research/SKILL.md)
+[Showcase →](showcase/articles/use-case-discovery-research.html) · [SKILL.md →](skills/discovery-research/SKILL.md)
 
 #### Problem Framing
 
@@ -132,7 +160,7 @@ Decomposes a vague problem area into an evidence-graded statement, sized opportu
 **Use when:** stakeholder hands you a solution disguised as a problem, multiple teams disagree on what's broken, prioritizing across competing problem areas, scoping a new initiative.
 **Don't use for:** detailed solution design once the problem is clear (use specification-writing).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-problem-framing.html) · [SKILL.md →](skills/problem-framing/SKILL.md)
+[Showcase →](showcase/articles/use-case-problem-framing.html) · [SKILL.md →](skills/problem-framing/SKILL.md)
 
 ### Definition & Measurement
 
@@ -147,7 +175,7 @@ Closes the gap between rough feature intent and a spec an executor can begin wit
 **Use when:** product or feature specs, API contracts, agent task specs, infrastructure migrations.
 **Don't use for:** problem definition before the spec exists (use problem-framing).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-specification.html) · [SKILL.md →](skills/specification-writing/SKILL.md)
+[Showcase →](showcase/articles/use-case-specification.html) · [SKILL.md →](skills/specification-writing/SKILL.md)
 
 #### Metric Design & Experimentation
 
@@ -160,7 +188,7 @@ Builds a measurement framework that detects problems early, resists gaming, and 
 **Use when:** new-launch measurement, A/B design, suspected metric gaming, building a team metric tree.
 **Don't use for:** SaaS finance metric formulas (use a finance reference).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-metric-design.html) · [SKILL.md →](skills/metric-design-experimentation/SKILL.md)
+[Showcase →](showcase/articles/use-case-metric-design.html) · [SKILL.md →](skills/metric-design-experimentation/SKILL.md)
 
 ### Strategy & Planning
 
@@ -175,7 +203,7 @@ Sequences strategic bets so a team knows what to build, in what order, why, and 
 **Use when:** quarterly or annual planning, portfolio allocation, strategy reviews.
 **Don't use for:** writing the spec for a single bet once chosen (use specification-writing).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-product-strategy.html) · [SKILL.md →](skills/product-strategy/SKILL.md)
+[Showcase →](showcase/articles/use-case-product-strategy.html) · [SKILL.md →](skills/product-strategy/SKILL.md)
 
 #### Go-to-Market Strategy
 
@@ -188,7 +216,7 @@ Maps how a product wins its first customers and compounds from there — wedge, 
 **Use when:** new market entry, feature launch, GTM motion pivot, launch-readiness review.
 **Don't use for:** pricing-only decisions (use pricing-packaging).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-go-to-market-strategy.html) · [SKILL.md →](skills/go-to-market-strategy/SKILL.md)
+[Showcase →](showcase/articles/use-case-go-to-market-strategy.html) · [SKILL.md →](skills/go-to-market-strategy/SKILL.md)
 
 #### Pricing & Packaging
 
@@ -201,7 +229,7 @@ Tests what to charge, why, and what breaks if you're wrong before the new price 
 **Use when:** new product pricing, packaging redesign, price change impact, usage-based AI pricing.
 **Don't use for:** full GTM strategy (use go-to-market-strategy).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-pricing-packaging.html) · [SKILL.md →](skills/pricing-packaging/SKILL.md)
+[Showcase →](showcase/articles/use-case-pricing-packaging.html) · [SKILL.md →](skills/pricing-packaging/SKILL.md)
 
 ### Communication & Influence
 
@@ -216,7 +244,7 @@ Compresses a full analysis into a document a VP can read once and act on without
 **Use when:** board memos, exec review docs, decision briefs, investment memos, strategy one-pagers.
 **Don't use for:** working-level engineering specs (use specification-writing).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-executive-writing.html) · [SKILL.md →](skills/executive-writing/SKILL.md)
+[Showcase →](showcase/articles/use-case-executive-writing.html) · [SKILL.md →](skills/executive-writing/SKILL.md)
 
 #### Narrative Building
 
@@ -229,7 +257,7 @@ Constructs the story that makes a product or strategy feel inevitable — not by
 **Use when:** product launches, repositioning, investor pitches, internal alignment, analyst briefings.
 **Don't use for:** the underlying competitive analysis (use competitive-market-analysis first).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-narrative-building.html) · [SKILL.md →](skills/narrative-building/SKILL.md)
+[Showcase →](showcase/articles/use-case-narrative-building.html) · [SKILL.md →](skills/narrative-building/SKILL.md)
 
 #### Multi-Channel Publishing
 
@@ -242,7 +270,7 @@ Derives channel-ready content from a long-form source — LinkedIn post, confere
 **Use when:** repurposing a Substack into LinkedIn, deriving a conference abstract, building a launch distribution package.
 **Don't use for:** writing the long-form source itself.
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-multi-channel-publishing.html) · [SKILL.md →](skills/multi-channel-publishing/SKILL.md)
+[Showcase →](showcase/articles/use-case-multi-channel-publishing.html) · [SKILL.md →](skills/multi-channel-publishing/SKILL.md)
 
 #### Stakeholder Alignment
 
@@ -255,7 +283,7 @@ Diagnoses why a multi-stakeholder decision is stuck and sequences the moves that
 **Use when:** 3+ stakeholders with different interests, executive sponsorship, diagnosing silent resistance, inheriting a politically complex project.
 **Don't use for:** RACI assignment (build a RACI directly).
 
-[Showcase →](https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-stakeholder-alignment.html) · [SKILL.md →](skills/stakeholder-alignment/SKILL.md)
+[Showcase →](showcase/articles/use-case-stakeholder-alignment.html) · [SKILL.md →](skills/stakeholder-alignment/SKILL.md)
 
 ## Output examples
 
@@ -263,26 +291,26 @@ Each thumbnail links to an interactive showcase: full skill output with tabbed n
 
 <table>
 <tr>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-figma-canva-express.html"><img src="docs/screenshots/screenshot-competitive-analysis.png" width="220" alt="Competitive & Market Analysis"></a><br><strong>Competitive & Market Analysis</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-discovery-research.html"><img src="docs/screenshots/screenshot-discovery-research.png" width="220" alt="Discovery Research"></a><br><strong>Discovery Research</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-problem-framing.html"><img src="docs/screenshots/screenshot-problem-framing.png" width="220" alt="Problem Framing"></a><br><strong>Problem Framing</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-specification.html"><img src="docs/screenshots/screenshot-specification-writing.png" width="220" alt="Specification Writing"></a><br><strong>Specification Writing</strong></td>
+<td align="center"><a href="showcase/articles/use-case-figma-canva-express.html"><img src="docs/screenshots/screenshot-competitive-analysis.png" width="220" alt="Competitive & Market Analysis"></a><br><strong>Competitive & Market Analysis</strong></td>
+<td align="center"><a href="showcase/articles/use-case-discovery-research.html"><img src="docs/screenshots/screenshot-discovery-research.png" width="220" alt="Discovery Research"></a><br><strong>Discovery Research</strong></td>
+<td align="center"><a href="showcase/articles/use-case-problem-framing.html"><img src="docs/screenshots/screenshot-problem-framing.png" width="220" alt="Problem Framing"></a><br><strong>Problem Framing</strong></td>
+<td align="center"><a href="showcase/articles/use-case-specification.html"><img src="docs/screenshots/screenshot-specification-writing.png" width="220" alt="Specification Writing"></a><br><strong>Specification Writing</strong></td>
 </tr>
 <tr>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-metric-design.html"><img src="docs/screenshots/screenshot-metric-design.png" width="220" alt="Metric Design & Experimentation"></a><br><strong>Metric Design & Experimentation</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-product-strategy.html"><img src="docs/screenshots/screenshot-product-strategy.png" width="220" alt="Product Strategy"></a><br><strong>Product Strategy</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-go-to-market-strategy.html"><img src="docs/screenshots/screenshot-go-to-market-strategy.png" width="220" alt="Go-to-Market Strategy"></a><br><strong>Go-to-Market Strategy</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-pricing-packaging.html"><img src="docs/screenshots/screenshot-pricing-packaging.png" width="220" alt="Pricing & Packaging"></a><br><strong>Pricing & Packaging</strong></td>
+<td align="center"><a href="showcase/articles/use-case-metric-design.html"><img src="docs/screenshots/screenshot-metric-design.png" width="220" alt="Metric Design & Experimentation"></a><br><strong>Metric Design & Experimentation</strong></td>
+<td align="center"><a href="showcase/articles/use-case-product-strategy.html"><img src="docs/screenshots/screenshot-product-strategy.png" width="220" alt="Product Strategy"></a><br><strong>Product Strategy</strong></td>
+<td align="center"><a href="showcase/articles/use-case-go-to-market-strategy.html"><img src="docs/screenshots/screenshot-go-to-market-strategy.png" width="220" alt="Go-to-Market Strategy"></a><br><strong>Go-to-Market Strategy</strong></td>
+<td align="center"><a href="showcase/articles/use-case-pricing-packaging.html"><img src="docs/screenshots/screenshot-pricing-packaging.png" width="220" alt="Pricing & Packaging"></a><br><strong>Pricing & Packaging</strong></td>
 </tr>
 <tr>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-executive-writing.html"><img src="docs/screenshots/screenshot-executive-writing.png" width="220" alt="Executive Writing"></a><br><strong>Executive Writing</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-narrative-building.html"><img src="docs/screenshots/screenshot-narrative-building.png" width="220" alt="Narrative Building"></a><br><strong>Narrative Building</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-multi-channel-publishing.html"><img src="docs/screenshots/screenshot-multi-channel-publishing.png" width="220" alt="Multi-Channel Publishing"></a><br><strong>Multi-Channel Publishing</strong></td>
-<td align="center"><a href="https://avyayalaya.github.io/pm-skills-arsenal/showcase/articles/use-case-stakeholder-alignment.html"><img src="docs/screenshots/screenshot-stakeholder-alignment.png" width="220" alt="Stakeholder Alignment"></a><br><strong>Stakeholder Alignment</strong></td>
+<td align="center"><a href="showcase/articles/use-case-executive-writing.html"><img src="docs/screenshots/screenshot-executive-writing.png" width="220" alt="Executive Writing"></a><br><strong>Executive Writing</strong></td>
+<td align="center"><a href="showcase/articles/use-case-narrative-building.html"><img src="docs/screenshots/screenshot-narrative-building.png" width="220" alt="Narrative Building"></a><br><strong>Narrative Building</strong></td>
+<td align="center"><a href="showcase/articles/use-case-multi-channel-publishing.html"><img src="docs/screenshots/screenshot-multi-channel-publishing.png" width="220" alt="Multi-Channel Publishing"></a><br><strong>Multi-Channel Publishing</strong></td>
+<td align="center"><a href="showcase/articles/use-case-stakeholder-alignment.html"><img src="docs/screenshots/screenshot-stakeholder-alignment.png" width="220" alt="Stakeholder Alignment"></a><br><strong>Stakeholder Alignment</strong></td>
 </tr>
 </table>
 
-[All 12 interactive showcases →](https://avyayalaya.github.io/pm-skills-arsenal/docs/use-cases.html)
+[All 12 interactive showcases →](docs/use-cases.md)
 
 ## Who this is for
 
@@ -304,4 +332,4 @@ Each thumbnail links to an interactive showcase: full skill output with tabbed n
 
 ---
 
-[Live site](https://avyayalaya.github.io/pm-skills-arsenal) · [Benchmark](benchmark/) · [Contribute](CONTRIBUTING.md) · MIT · [Parth Sangani](https://github.com/avyayalaya)
+[Live site](showcase/) · [Benchmark](benchmark/) · [Contribute](CONTRIBUTING.md) · MIT · [Parth Sangani](https://github.com/Avyayalaya)

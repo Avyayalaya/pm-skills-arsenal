@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "pm-skills": {
+      "command": "python",
+      "args": ["${PLUGIN_ROOT}/mcp/pm_skills_mcp_server.py"]
+    }
+  }
+}

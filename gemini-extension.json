@@ -1,0 +1,11 @@
+{
+  "name": "pm-skills",
+  "version": "2.1.0",
+  "description": "12 PM skills covering the full product-management lifecycle. Install once, use across Gemini CLI and every other compatible agent harness.",
+  "mcpServers": {
+    "pm-skills": {
+      "command": "python",
+      "args": ["${PLUGIN_ROOT}/mcp/pm_skills_mcp_server.py"]
+    }
+  }
+}

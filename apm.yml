@@ -1,0 +1,15 @@
+name: pm-skills-arsenal
+version: 2.1.0
+description: Product management skills — competitive analysis, market analysis, specification writing, product strategy, go-to-market, pricing & packaging, executive writing, narrative building, stakeholder alignment, problem framing, metric design, A/B experimentation, discovery research, multi-channel publishing. Twelve skills covering the full PM lifecycle — analysis, definition, strategy, communication, influence. Install once, use across Copilot CLI, Claude Code, Cursor, OpenCode, Codex, and Gemini via APM.
+
+# Marketplace authoring: source of truth for .claude-plugin/marketplace.json.
+# Regenerate the JSON with `apm pack` (https://github.com/microsoft/apm).
+marketplace:
+  owner:
+    name: Parth Sangani
+    url: https://github.com/Avyayalaya
+  packages:
+    - name: pm-skills
+      description: 12 PM skills covering the full product-management lifecycle — analysis (competitive-market-analysis, discovery-research, problem-framing), definition (specification-writing, metric-design-experimentation), strategy (product-strategy, go-to-market-strategy, pricing-packaging), communication (executive-writing, narrative-building, multi-channel-publishing), influence (stakeholder-alignment). Install once, use across every compatible agent harness.
+      source: ./
+      homepage: https://github.com/Avyayalaya/pm-skills-arsenal
