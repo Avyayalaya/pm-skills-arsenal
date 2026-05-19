@@ -6,7 +6,7 @@ Initial APM release. Multi-harness install (Copilot CLI, Claude Code, Cursor, Op
 
 Pull `apm install Avyayalaya/pm-skills-arsenal#v2.1.0` for a pinned install across every compatible harness. See [README](README.md#install) for direct per-harness install paths.
 
-### APM port + Microsoft-style plugin metadata
+### APM port + plugin metadata (structure mirroring `microsoft/azure-skills`)
 
 - `apm.yml` with marketplace authoring block
 - Root `plugin.json` mirroring the `microsoft/azure-skills` shape
