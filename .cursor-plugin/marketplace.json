@@ -1,0 +1,16 @@
+{
+  "name": "pm-skills-arsenal",
+  "owner": {
+    "name": "Parth Sangani"
+  },
+  "metadata": {
+    "description": "PM Skills Arsenal — 12 PM skills (competitive analysis, specification writing, product strategy, GTM, pricing, narrative, stakeholder alignment, and more) for use from Cursor."
+  },
+  "plugins": [
+    {
+      "name": "pm-skills",
+      "description": "12 PM skills covering the full product-management lifecycle. Install once, use from Cursor and every other compatible agent harness.",
+      "source": "./"
+    }
+  ]
+}

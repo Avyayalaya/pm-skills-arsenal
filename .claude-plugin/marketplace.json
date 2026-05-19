@@ -1,17 +1,22 @@
 {
-  "name": "pm-skills-dev",
-  "description": "Local development marketplace for PM Skills Arsenal — 6 PM knowledge codices",
+  "name": "pm-skills-arsenal",
+  "description": "PM Skills Arsenal — 12 PM skills covering analysis, definition, strategy, communication, and influence. Distributed via APM across Copilot CLI, Claude Code, Cursor, OpenCode, Codex, and Gemini.",
   "owner": {
-    "name": "Parth Sangani"
+    "name": "Parth Sangani",
+    "url": "https://github.com/Avyayalaya"
   },
+  "homepage": "https://github.com/Avyayalaya/pm-skills-arsenal",
+  "repository": "https://github.com/Avyayalaya/pm-skills-arsenal",
   "plugins": [
     {
       "name": "pm-skills",
-      "description": "12 PM knowledge codices covering the full PM lifecycle — from analysis through strategy, communication, and influence",
-      "version": "2.0.0",
+      "description": "12 PM skills — competitive-market-analysis, discovery-research, problem-framing, specification-writing, metric-design-experimentation, product-strategy, go-to-market-strategy, pricing-packaging, executive-writing, narrative-building, multi-channel-publishing, stakeholder-alignment.",
+      "version": "2.1.0",
       "source": "./",
+      "homepage": "https://github.com/Avyayalaya/pm-skills-arsenal",
       "author": {
-        "name": "Parth Sangani"
+        "name": "Parth Sangani",
+        "url": "https://github.com/Avyayalaya"
       }
     }
   ]

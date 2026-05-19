@@ -16,25 +16,27 @@ AI produces polished analysis that changes no decisions. These skills fix that.
 
 ## Why This Exists
 
-When you load a skill, the cheapest model beats the best model without it.
+The premise: a loaded skill changes what the same model produces.
 
-| Condition | Score | vs. Baseline |
-|---|---|---|
-| Baseline (Claude, no skill) | 47 / 105 | — |
-| Anthropic's PM Skill (methodology) | 81 / 105 | +72% |
-| **PM Skills Arsenal (codex)** | **98 / 105** | **+109%** |
+### Self-administered benchmark — read with that lens
 
-Benchmark: 5 prompts × 7 dimensions × 3 conditions. Full methodology and outputs in [`benchmark/`](https://github.com/Avyayalaya/pm-skills-arsenal/tree/main/benchmark).
+| Condition | Score |
+|---|---|
+| Baseline (Claude, no skill) | 47 / 105 |
+| Anthropic's PM Skill (methodology) | 81 / 105 |
+| **PM Skills Arsenal** | **98 / 105** |
 
-The gap isn't model quality — it's encoded knowledge. Raw prompting produces generic analysis. Skill-loaded agents produce structured frameworks with evidence tiers, confidence calibration, and outputs that hold up to scrutiny.
+5 prompts × 7 dimensions × 3 conditions. **The same author wrote the rubric AND scored every output** — this is the author's own assessment, not an independent evaluation. Full methodology and 15 raw outputs in [`benchmark/`](https://github.com/Avyayalaya/pm-skills-arsenal/tree/main/benchmark); re-score them yourself if you want a check.
+
+The premise being tested: that encoded methodology changes what the same model produces. Raw prompting produces generic analysis. Skill-loaded agents produce structured frameworks with evidence tiers, confidence calibration, and outputs the operator can scrutinize directly.
 
 ---
 
 ## Install (Claude Code)
 
 ```bash
-claude plugin marketplace add avyayalaya/pm-skills-arsenal
-claude plugin install pm-skills@avyayalaya
+claude plugin marketplace add Avyayalaya/pm-skills-arsenal
+claude plugin install pm-skills@pm-skills-arsenal
 ```
 
 Skills auto-activate when you ask Claude to do anything in their domain. No slash commands needed.
@@ -112,4 +114,4 @@ Interactive showcases — full skill outputs with tabbed navigation, evidence ti
 
 ---
 
-MIT · [Parth Sangani](https://github.com/avyayalaya)
+MIT · [Parth Sangani](https://github.com/Avyayalaya)
