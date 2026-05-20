@@ -52,6 +52,17 @@ The install brings the 12 PM skills, the `pm-skills` MCP server, and lifecycle t
 >
 > Run `apm targets` to see the full list of supported harnesses.
 
+### Via awesome-copilot marketplace (curated as of 2026-05-20)
+
+`github/awesome-copilot` — the canonical APM aggregator marketplace — accepted this package into its `plugins/external.json` on 2026-05-20. If you already have that marketplace registered, install via:
+
+```bash
+apm marketplace add github/awesome-copilot   # first time only
+apm install pm-skills@awesome-copilot
+```
+
+Same source repo (this one), same release ref (`v2.1.0`). Useful when `awesome-copilot` is already your team's go-to APM index.
+
 ### Direct (per-harness fallback)
 
 **Claude Code:**
