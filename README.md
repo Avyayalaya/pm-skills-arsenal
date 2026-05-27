@@ -4,6 +4,8 @@
 
 12 PM skills — 1,000–1,300 lines each — for senior PMs, founders, AI engineers, and the agents that route between them.
 
+*Personal research, separate from my day-job at Microsoft. MIT-licensed.*
+
 ### Quality benchmark (self-administered — read with that lens)
 
 | Condition | Score |
