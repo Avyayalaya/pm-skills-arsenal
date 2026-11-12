@@ -1,7 +1,7 @@
 {
   "name": "pm-skills",
   "description": "12 PM skills covering the full product-management lifecycle: analysis (competitive & market analysis, discovery research, problem framing), definition (specification writing, metric design & experimentation), strategy (product strategy, go-to-market, pricing & packaging), communication (executive writing, narrative building, multi-channel publishing), and influence (stakeholder alignment). Each skill encodes 1,000+ lines of frameworks, decision rubrics, evidence standards, and failure modes.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": {
     "name": "Parth Sangani",
     "url": "https://github.com/Avyayalaya"
@@ -19,7 +19,5 @@
     "specification",
     "stakeholder-alignment"
   ],
-  "skills": "./skills/",
-  "mcpServers": "./.mcp.json",
-  "hooks": "./hooks/hooks.json"
+  "skills": "./skills/"
 }

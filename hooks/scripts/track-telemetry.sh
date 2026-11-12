@@ -124,6 +124,6 @@ fi
 HOST=$(detect_host "$PAYLOAD")
 SKILL=$(extract_skill_name "$PAYLOAD")
 TS=$(iso_now)
-LINE=$(printf '{"ts":"%s","host":"%s","event":"skill_invocation","skill":"%s","plugin":"pm-skills","plugin_version":"2.1.0"}' "$TS" "$HOST" "$SKILL")
+LINE=$(printf '{"ts":"%s","host":"%s","event":"skill_invocation","skill":"%s","plugin":"pm-skills","plugin_version":"2.2.0"}' "$TS" "$HOST" "$SKILL")
 emit_line "$LINE"
 exit 0

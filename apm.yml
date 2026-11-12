@@ -1,5 +1,5 @@
 name: pm-skills-arsenal
-version: 2.1.0
+version: 2.2.0
 description: Product management skills — competitive analysis, market analysis, specification writing, product strategy, go-to-market, pricing & packaging, executive writing, narrative building, stakeholder alignment, problem framing, metric design, A/B experimentation, discovery research, multi-channel publishing. Twelve skills covering the full PM lifecycle — analysis, definition, strategy, communication, influence. Install once, use across Copilot CLI, Claude Code, Cursor, OpenCode, Codex, and Gemini via APM.
 
 # Marketplace authoring: source of truth for .claude-plugin/marketplace.json.

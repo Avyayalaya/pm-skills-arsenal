@@ -43,7 +43,7 @@ apm install Avyayalaya/pm-skills-arsenal#v2.1.0
 apm install Avyayalaya/pm-skills-arsenal
 ```
 
-The install brings the 12 PM skills, the `pm-skills` MCP server, and lifecycle telemetry hooks. Skills auto-register with each compatible harness.
+The install brings the 12 PM skills. Skills auto-register with each compatible harness. The Claude plugin installs only the skills. The other plugin manifests also add the `pm-skills` MCP server. The Copilot CLI and Cursor manifests also add a telemetry hook. When it detects a skill run, it logs the time, harness, skill name and version to a local file. The data remains on your machine.
 
 > **First-time setup tip.** APM auto-detects your harness from directory markers (`.claude/`, `CLAUDE.md`, `.cursor/`, `.github/copilot-instructions.md`, `.codex/`, `.gemini/`, etc.). In a fresh project with no markers yet, pass `--target` explicitly:
 >

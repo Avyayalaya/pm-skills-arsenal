@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.0
+
+The Claude plugin is now skills-only, ready for Claude's plugin directory.
+
+- Removed `hooks/hooks.json`, the Claude Code telemetry hook. It wrote only to a local file on the user's machine.
+- Removed the MCP server and hooks entries from `.claude-plugin/plugin.json`. Claude loads the skills natively.
+- Moved the shared MCP config from `.mcp.json` to `mcp/mcp.json`. The root, `.plugin` and `.cursor-plugin` manifests now point there. Those harnesses work as before.
+- Bumped the version to 2.2.0 in every manifest and both telemetry scripts.
+
 ## 2.1.0
 
 Initial APM release. Multi-harness install (Copilot CLI, Claude Code, Cursor, OpenCode, Codex, Gemini) via the [APM Agent Package Manager](https://github.com/microsoft/apm) + telemetry hooks + composition wiring with [`microsoft/azure-skills`](https://github.com/microsoft/azure-skills) via `composes_with:` frontmatter on five highest-traffic skills + a [`docs/composition.md`](docs/composition.md) guide.
