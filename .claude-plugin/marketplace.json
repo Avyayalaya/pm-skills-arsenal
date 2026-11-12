@@ -11,7 +11,7 @@
     {
       "name": "pm-skills",
       "description": "12 PM skills — competitive-market-analysis, discovery-research, problem-framing, specification-writing, metric-design-experimentation, product-strategy, go-to-market-strategy, pricing-packaging, executive-writing, narrative-building, multi-channel-publishing, stakeholder-alignment.",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "source": "./",
       "homepage": "https://github.com/Avyayalaya/pm-skills-arsenal",
       "author": {

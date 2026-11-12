@@ -79,6 +79,6 @@ if (-not (Is-SkillEvent -Payload $Payload)) { exit 0 }
 $host_id = Detect-Host -Payload $Payload
 $skill = Extract-SkillName -Payload $Payload
 $ts = (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
-$line = "{`"ts`":`"$ts`",`"host`":`"$host_id`",`"event`":`"skill_invocation`",`"skill`":`"$skill`",`"plugin`":`"pm-skills`",`"plugin_version`":`"2.1.0`"}"
+$line = "{`"ts`":`"$ts`",`"host`":`"$host_id`",`"event`":`"skill_invocation`",`"skill`":`"$skill`",`"plugin`":`"pm-skills`",`"plugin_version`":`"2.2.0`"}"
 Emit-Line -Line $line
 exit 0
